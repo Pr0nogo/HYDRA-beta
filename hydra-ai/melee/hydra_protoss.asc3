@@ -1537,45 +1537,73 @@ script_id PMCx
 	goto buildRangerFin
 	
 	:buildRanger1GateExpo
-	wait_buildstart 8 probe
+	wait 600
 	build 1 pylon 66
 	wait 600
 	build 1 gateway 66
-	wait 300
-	build 1 assimilator 66
-	wait 600
-	var set cutWorker 1 13
-	build 1 cybernetics_core 66
-	wait_buildstart 1 cybernetics_core
-	queue 1 zealot gateway 255 Local Loc.63 80
+	wait 900
+	queue 1 zealot gateway 255 Global Loc.63 80
 	wait 24
 	build 2 pylon 66
-	wait_build 1 cybernetics_core
-	queue 1 dragoon gateway 255 Local Loc.63 80
-	upgrade_queue 1 dragoon_range 88
-	wait 24
-	var set cutWorker 0 13
-	wait 600 # wait time of 2 probes
-	queue 1 dragoon gateway 255 Local Loc.63 80
-	wait 24
-	build 3 pylon 66
-	wait 600
-	queue 1 dragoon gateway 255 Local Loc.63 80
-	var set canExpand 1 13
 	wait 300
+	queue 1 zealot gateway 255 Global Loc.63 80
 	var set cutWorker 1 13
+	var set canExpand 1 13
 	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	var set cutWorker 0 13
 	var set canExpand 0 13
-	build 3 gateway 66
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	wait 300
+	queue 1 zealot gateway 255 Global Loc.63 80
+	build 3 pylon 66
+	wait 300
+	build 1 cybernetics_core 66
 	wait 24
+	build 1 assimilator 66
+	wait 24
+	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 300
 	build 4 pylon 66
 	wait 24
+	build 3 gateway 66
+	wait_buildstart 3 gateway
+	var set canAttack 1 13
+	wait 300
+	upgrade_queue 1 dragoon_range 88
+	wait 600
+	queue 1 dragoon gateway 255 Global Loc.63 80
+	wait 24
+	queue 1 dragoon gateway 255 Global Loc.63 80
+	wait 24
+	queue 1 dragoon gateway 255 Global Loc.63 80
+	wait 24
+	build 5 pylon 66
+	wait 600
+	var set buildGas 1 13
+	build 6 pylon 66
+	wait 24
+	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 24
+	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 24
+	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 24
+	build 7 pylon 66
+	wait 600
 	build 1 forge 66
-	wait_buildstart 1 forge
-	queue 3 dragoon gateway 255 Local Loc.63 80
+	wait 24
+	build 1 citadel_of_adun 66
+	wait 600
+	build 8 pylon 66
 	upgrade_queue 1 p_ground_weapon 88
-	var set cutWorker 0 13
+	wait 24
+	build 1 warp_anchor 66
+	wait 600
+	build 8 pylon 66
+	wait 24
+	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 24
+	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 24
 	multirun addProd
 	
 	:buildRangerFin
