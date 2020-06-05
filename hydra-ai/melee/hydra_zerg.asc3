@@ -34,6 +34,7 @@ script_id ZMCx
 	var set canStatic 0 13
 	var set buildGas 0 13
 	var set buildSupply 0 13
+	var set wRes 0 13
 	queue 1 drone larva 255 Local Loc.63 80
 	multirun uAttack
 	multirun wResource
@@ -193,12 +194,11 @@ script_id ZMCx
 	return
 	
 	:wResource
-	resources 13 AtLeast_Wait Ore 500 blank
-	wait 240
-	aicontrol dont_wait_request_resources
-	resources 13 AtMost_Wait Ore 499 blank
-	wait 240
 	aicontrol wait_request_resources
+	var exactly|wait wRes 1 13
+	aicontrol dont_wait_request_resources
+	wait 24
+	var exactly|wait wRes 0 13
 	goto wResource
 	
 	:wGas
@@ -1003,7 +1003,7 @@ script_id ZMCx
 	resarea_jump 255 AtMost 255 Ore 600 mainWorkerLowStart
 	var exactly|wait cutWorker 0 13
 	var exactly|WaitFor(360) cutWorkerAll 0 13
-	var exactly|wait underAttack 0 13
+	var exactly|WaitFor(360) underAttack 0 13
 	local_jump 255 AtLeast_Wait 1 hatchery|lair|hive blank
 	local_jump 255 AtLeast_Wait 1 larva blank
 	bring_jump 13 AtLeast 5 hatchery|lair|hive Loc.63 mainWorkerMax
@@ -1013,7 +1013,6 @@ script_id ZMCx
 	:mainWorkerEarly
 	local_jump 255 AtLeast 12 drone mainWorker
 	max_workers 12
-	resources 13 AtLeast_Wait Ore 50 blank
 	call wWorkerDef
 	queue 1 drone larva 255 Local Loc.63 80
 	wait 120
@@ -1024,7 +1023,6 @@ script_id ZMCx
 	max_workers 12
 	local_jump 255 AtLeast 12 drone mainWorker
 	local_jump 255 AtMost 1 larva mainWorker
-	resources 13 AtLeast_Wait Ore 50 blank
 	call wWorkerDef
 	queue 1 drone larva 255 Local Loc.63 80
 	wait 120
@@ -1034,8 +1032,7 @@ script_id ZMCx
 	wait 12
 	max_workers 16
 	local_jump 255 AtLeast 16 drone mainWorker
-	local_jump 255 AtMost 3 larva mainWorker
-	resources 13 AtLeast_Wait Ore 50 blank
+	local_jump 255 AtMost 2 larva mainWorker
 	call wWorkerDef
 	queue 1 drone larva 255 Local Loc.63 80
 	wait 120
@@ -1045,7 +1042,7 @@ script_id ZMCx
 	wait 12
 	max_workers 22
 	local_jump 255 AtLeast 22 drone mainWorker
-	local_jump 255 AtMost 5 larva mainWorker
+	local_jump 255 AtMost 3 larva mainWorker
 	resources 13 AtLeast_Wait Ore 50 blank
 	call wWorkerDef
 	queue 1 drone larva 255 Local Loc.63 80
@@ -1073,7 +1070,10 @@ script_id ZMCx
 	bring_jump 13 AtLeast 4 hatchery|lair|hive Loc.63 zExpandB
 	call wUpgradeDef
 	expand 9 expRandTown
-	wait 2920
+	var set wRes 1 13
+	wait 720
+	var set wRes 0 13
+	wait 2200
 	goto zExpand
 	
 	:zExpandB
@@ -1116,12 +1116,13 @@ script_id ZMCx
 	wait_buildstart 1 hatchery
 	build 2 drone 98
 	wait_build 1 hatchery
-	get_oldpeons 6
+	get_oldpeons 3
 	goto expWorkerStd
 	
 	:expWorkerStd
 	wait 12
 	bring_jump 13 AtLeast 80 drone Loc.63 expWorkerStd
+	local_jump 13 Exactly 0 larva expWorkerStd
 	var exactly|WaitFor(360) cutWorkerAll 0 13
 	bring_jump 13 AtLeast 5 hatchery|lair|hive Loc.63 expWorkerMax
 	bring_jump 13 AtLeast 3 hatchery|lair|hive Loc.63 expWorkerMed
@@ -1129,7 +1130,6 @@ script_id ZMCx
 	max_workers 10
 	wait 300
 	local_jump 255 AtLeast 10 drone expWorkerStd
-	resources 13 AtLeast_Wait Ore 50 blank
 	call wWorkerDef
 	queue 1 drone larva 255 Local Loc.63 80
 	goto expWorkerStd
@@ -1149,7 +1149,6 @@ script_id ZMCx
 	max_workers 18
 	wait 300
 	local_jump 255 AtLeast 18 drone expWorkerStd
-	resources 13 AtLeast_Wait Ore 50 blank
 	call wWorkerDef
 	queue 1 drone larva 255 Local Loc.63 80
 	goto expWorkerStd
@@ -1159,7 +1158,6 @@ script_id ZMCx
 	max_workers 6
 	wait 300
 	local_jump 255 AtLeast 6 drone expWorkerLow
-	resources 13 AtLeast_Wait Ore 50 blank
 	call wWorkerDef
 	queue 1 drone larva 255 Local Loc.63 80
 	goto expWorkerLow

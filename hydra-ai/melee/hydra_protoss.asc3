@@ -33,6 +33,7 @@ script_id PMCx
 	var set canStatic 0 13
 	var set buildGas 0 13
 	var set buildSupply 0 13
+	var set wRes 0 13
 	queue 1 probe nexus 255 Local Loc.63 80
 	multirun uAttack
 	multirun wResource
@@ -189,12 +190,11 @@ script_id PMCx
 	return
 	
 	:wResource
-	resources 13 AtLeast_Wait Ore 500 blank
-	wait 240
-	aicontrol dont_wait_request_resources
-	resources 13 AtMost_Wait Ore 499 blank
-	wait 240
 	aicontrol wait_request_resources
+	var exactly|wait wRes 1 13
+	aicontrol dont_wait_request_resources
+	wait 24
+	var exactly|wait wRes 0 13
 	goto wResource
 	
 	:wGas
@@ -1212,7 +1212,10 @@ script_id PMCx
 	var exactly|wait canExpand 1 13
 	call wUpgradeDef
 	expand 9 expRandTown
-	wait 2920
+	var set wRes 1 13
+	wait 720
+	var set wRes 0 13
+	wait 2800
 	goto pExpand
 	
 	:expRandTown
@@ -1250,7 +1253,7 @@ script_id PMCx
 	build 2 probe 98
 	wait_build 1 nexus
 	max_workers 18
-	get_oldpeons 6
+	get_oldpeons 4
 	goto expWorkerStd
 	
 	:expWorkerStd
