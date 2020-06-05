@@ -1,11 +1,16 @@
 # Project: HYDRA
 
 Thank you for testing Project: HYDRA 2.0!
+
+[Project info](http://pr0nogo.wikidot.com/sc-hydra)
+
 Please send any feedback to me through:
+
 Discord - Pr0nogo#1940
+
 Email - Pronogo@hotmail.com
-Project info: http://pr0nogo.wikidot.com/sc-hydra
-Github repo: https://github.com/Cr0wnogo/HYDRA-beta
+
+# Primer:
 
 Project: HYDRA is a complete overhaul of Starcraft. When it is complete, the first three campaigns will have been remade, with accessory voice acting, significant changes to the techtrees, fully-fledged custom AI, and 2-player cooperative and melee support.
 
