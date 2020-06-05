@@ -9,15 +9,15 @@ script_id PMCx
 	default_min 1
 	defaultbuild_off
 	wait 1
-	aicontrol dont_build_gas
-	aicontrol unit_mover_enabled
-	aicontrol dont_focus_disabled
+	aictrl dont_build_gas
+	aictrl unit_mover_enabled
+	aictrl dont_focus_disabled
 	under_attack 0
 	transports_off
 	guard_all
 	max_force 3000
 	help_iftrouble
-	idle_orders DisableBuiltin 0 0 0 0 0 0 0
+	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	town_state 255 persist true
 	set_var_local blank stp 13
 	set_var_local blankReturn ret 13
@@ -35,59 +35,59 @@ script_id PMCx
 	var set buildSupply 0 13
 	var set wRes 0 13
 	queue 1 probe nexus 255 Local Loc.63 80
-	multirun uAttack
-	multirun wResource
-	multirun wGas
-	multirun wSupply
-	multirun pTown
-	multirun pMax
-	multirun pDef
-	multirun pUpg
-	multirun pExpand
-	multirun pScale
+	multi uAttack
+	multi wResource
+	multi wGas
+	multi wSupply
+	multi pTown
+	multi pMax
+	multi pDef
+	multi pUpg
+	multi pExpand
+	multi pScale
 	
 	:slcPers
-	deaths 13 AtLeast 1 crashed_battle dbgPers
-	deaths 13 Randomize 4 crashed_battle blank
+	dth 13 AtL 1 crashed_battle dbgPers
+	dth 13 Rand 4 crashed_battle blank
 	
 	:dbgPers
-	deaths 13 Exactly 1 crashed_battle dbgPers1
-	deaths 13 Exactly 2 crashed_battle dbgPers2
-	deaths 13 Exactly 3 crashed_battle dbgPers3
+	dth 13 Ex 1 crashed_battle dbgPers1
+	dth 13 Ex 2 crashed_battle dbgPers2
+	dth 13 Ex 3 crashed_battle dbgPers3
 	print <32>HYDRA<32>Protoss<32>AI<32>personality<32>0:<32>General
-	deaths 13 AtLeast 1 stasis_chamber dbgBuild
-	deaths 13 Randomize 4 stasis_chamber blank
+	dth 13 AtL 1 stasis_chamber dbgBuild
+	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers1
 	print <32>HYDRA<32>Protoss<32>AI<32>personality<32>1:<32>Ranger
-	deaths 13 AtLeast 1 stasis_chamber dbgBuild
-	deaths 13 Randomize 5 stasis_chamber blank
+	dth 13 AtL 1 stasis_chamber dbgBuild
+	dth 13 Rand 5 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers2
 	print <32>HYDRA<32>Protoss<32>AI<32>personality<32>2:<32>Templar
-	deaths 13 AtLeast 1 stasis_chamber dbgBuild
-	deaths 13 Randomize 4 stasis_chamber blank
+	dth 13 AtL 1 stasis_chamber dbgBuild
+	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers3
 	print <32>HYDRA<32>Protoss<32>AI<32>personality<32>3:<32>Skylord
-	deaths 13 AtLeast 1 stasis_chamber dbgBuild
-	deaths 13 Randomize 4 stasis_chamber blank
+	dth 13 AtL 1 stasis_chamber dbgBuild
+	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgBuild
-	deaths 13 Exactly 1 stasis_chamber dbgBuild1
-	deaths 13 Exactly 2 stasis_chamber dbgBuild2
-	deaths 13 Exactly 3 stasis_chamber dbgBuild3
-	deaths 13 Exactly 4 stasis_chamber dbgBuild4
+	dth 13 Ex 1 stasis_chamber dbgBuild1
+	dth 13 Ex 2 stasis_chamber dbgBuild2
+	dth 13 Ex 3 stasis_chamber dbgBuild3
+	dth 13 Ex 4 stasis_chamber dbgBuild4
 	goto idle
 	
 	:dbgBuild1
-	deaths 13 Exactly 1 crashed_battle dbgBuild1Ranger
-	deaths 13 Exactly 2 crashed_battle dbgBuild1Gate
-	deaths 13 Exactly 3 crashed_battle dbgBuild1Skylord
+	dth 13 Ex 1 crashed_battle dbgBuild1Ranger
+	dth 13 Ex 2 crashed_battle dbgBuild1Gate
+	dth 13 Ex 3 crashed_battle dbgBuild1Skylord
 	
 	:dbgBuild1Gen
 	print Protoss<32>General<32>build<32>1:<32>ForgeFE
@@ -106,9 +106,9 @@ script_id PMCx
 	goto idle
 	
 	:dbgBuild2
-	deaths 13 Exactly 1 crashed_battle dbgBuild2Ranger
-	deaths 13 Exactly 2 crashed_battle dbgBuild2Gate
-	deaths 13 Exactly 3 crashed_battle dbgBuild2Skylord
+	dth 13 Ex 1 crashed_battle dbgBuild2Ranger
+	dth 13 Ex 2 crashed_battle dbgBuild2Gate
+	dth 13 Ex 3 crashed_battle dbgBuild2Skylord
 	
 	:dbgBuild2Gen
 	print Protoss<32>General<32>build<32>2:<32>NexusFE
@@ -127,9 +127,9 @@ script_id PMCx
 	goto idle
 	
 	:dbgBuild3
-	deaths 13 Exactly 1 crashed_battle dbgBuild3Ranger
-	deaths 13 Exactly 2 crashed_battle dbgBuild3Gate
-	deaths 13 Exactly 3 crashed_battle dbgBuild3Skylord
+	dth 13 Ex 1 crashed_battle dbgBuild3Ranger
+	dth 13 Ex 2 crashed_battle dbgBuild3Gate
+	dth 13 Ex 3 crashed_battle dbgBuild3Skylord
 	
 	:dbgBuild3Gen
 	print Protoss<32>General<32>build<32>3:<32>2GateRobo
@@ -148,7 +148,7 @@ script_id PMCx
 	goto idle
 	
 	:dbgBuild4
-	deaths 13 Exactly 1 crashed_battle dbgBuild4Ranger
+	dth 13 Ex 1 crashed_battle dbgBuild4Ranger
 	goto idle
 	
 	:dbgBuild4Ranger
@@ -172,313 +172,311 @@ script_id PMCx
 	
 	:uAttack
 	wait 12
-	comparison player_combat 17 13 63 True Wait Any Group_Buildings|probe
+	player_combat 17 13 63 True Wait Any Group_Buildings|probe
 	var set underAttack 1 13
-	comparison player_combat 17 13 63 False Wait Any Group_Buildings|probe
+	player_combat 17 13 63 False Wait Any Group_Buildings|probe
 	wait 240
 	var set underAttack 0 13
 	goto uAttack
 	
 	:wAttack
 	wait 24
-	bring_jump 13 AtMost 12 probe Loc.63 wAttack
-	bring_jump 13 AtMost 1 gateway|principality|warp_anchor|robotics_facility|robotics_authority|stargate|argosy|starfield Loc.63 wAttack
-	bring_jump 13 AtLeast 10 Group_Factories Loc.63 blankReturn
-	resources 13 AtLeast Any 999 blankReturn
-	var exactly|WaitFor(360) underAttack 0 13
-	resources 13 AtMost Ore 199 wAttack
+	bring 13 AtM 12 probe Loc.63 wAttack
+	bring 13 AtM 1 gateway|principality|warp_anchor|robotics_facility|robotics_authority|stargate|argosy|starfield Loc.63 wAttack
+	bring 13 AtL 10 Group_Factories Loc.63 blankReturn
+	res 13 AtL Any 999 blankReturn
+	var Ex|WaitFor(360) underAttack 0 13
+	res 13 AtM Ore 199 wAttack
 	return
 	
 	:wResource
-	aicontrol wait_request_resources
-	var exactly|wait wRes 1 13
-	aicontrol dont_wait_request_resources
+	aictrl wait_request_resources
+	var Ex|wait wRes 1 13
+	aictrl dont_wait_request_resources
 	wait 24
-	var exactly|wait wRes 0 13
+	var Ex|wait wRes 0 13
 	goto wResource
 	
 	:wGas
-	var exactly|wait buildGas 1 13
-	aicontrol build_gas
+	var Ex|wait buildGas 1 13
+	aictrl build_gas
 	stop
 	
 	:wSupply
-	multirun wSupply2
-	#max_build 255 pylon 0
-	var exactly|wait buildSupply 1 13
+	multi wSupply2
+	var Ex|wait buildSupply 1 13
 	goto wSupply3
 	
 	:wSupply2
-	deaths 13 AtLeast_Wait 1 pylon blank
-	var exactly|jump buildSupply 1 stp 13
+	dth 13 AtL_W 1 pylon blank
+	var Ex|jump buildSupply 1 stp 13
 	
 	:wSupply3
 	farms_timing
-	#max_build 255 pylon 254
 	stop
 	
 	:wWorkerDef
 	wait 12
-	resources 13 AtLeast Ore 500 blankReturn
-	var exactly|WaitFor(360) underAttack 0 13
+	res 13 AtL Ore 500 blankReturn
+	var Ex|WaitFor(360) underAttack 0 13
 	return
 	
 	:wUpgradeDef
 	wait 12
-	resources 13 AtLeast Any 399 blankReturn
-	var exactly|WaitFor(360) underAttack 0 13
-	resources 13 AtMost Any 199 wUpgradeDef
+	res 13 AtL Any 399 blankReturn
+	var Ex|WaitFor(360) underAttack 0 13
+	res 13 AtM Any 199 wUpgradeDef
 	return
 	
 	:pMax
-	define_max 90 probe
-	define_max 64 zealot
-	define_max 80 legionnaire
-	define_max 52 dragoon
-	define_max 36 hierophant
-	define_max 32 high_templar
-	define_max 36 dark_templar
-	define_max 32 archon
-	define_max 28 dark_archon
-	define_max 24 shuttle
-	define_max 20 reaver
-	define_max 18 clarion
-	define_max 10 warp_relay
-	define_max 12 observer
-	define_max 64 scout
-	define_max 28 corsair
-	define_max 42 exemplar
-	define_max 20 carrier
-	define_max 16 starcaller
-	define_max 12 arbiter
+	def_max 90 probe
+	def_max 64 zealot
+	def_max 80 legionnaire
+	def_max 52 dragoon
+	def_max 36 hierophant
+	def_max 32 high_templar
+	def_max 36 dark_templar
+	def_max 32 archon
+	def_max 28 dark_archon
+	def_max 24 shuttle
+	def_max 20 reaver
+	def_max 18 clarion
+	def_max 10 warp_relay
+	def_max 12 observer
+	def_max 64 scout
+	def_max 28 corsair
+	def_max 42 exemplar
+	def_max 20 carrier
+	def_max 16 starcaller
+	def_max 12 arbiter
 	stop
 	
 	:pDef
 	call pDefUse
-	var exactly|WaitFor(240) underAttack 1 13
+	var Ex|WaitFor(240) underAttack 1 13
 	call pDefGBuild
 	call pDefABuild
 	wait 360
-	var exactly|wait underAttack 0 13
-	defenseclear_gg
-	defenseclear_aa
-	defenseclear_ag
+	var Ex|wait underAttack 0 13
+	defc_gg
+	defc_aa
+	defc_ag
 	goto pDef
 	
 	:pDefGBuild
-	deaths 13 Exactly 1 crashed_battle pDefGBuildMech
-	deaths 13 Exactly 2 crashed_battle pDefGBuildGate
-	deaths 13 Exactly 3 crashed_battle pDefGBuildAir
+	dth 13 Ex 1 crashed_battle pDefGBuildMech
+	dth 13 Ex 2 crashed_battle pDefGBuildGate
+	dth 13 Ex 3 crashed_battle pDefGBuildAir
 	
 	:pDefGBuildGen
-	deaths 13 AtLeast 1 raynor_marine pDefGBuildGen2
-	deaths 13 Add 1 raynor_marine blank
-	defensebuild_gg 2 zealot
-	defensebuild_gg 2 legionnaire
-	defensebuild_gg 1 dragoon
-	defensebuild_gg 1 high_templar
-	defensebuild_gg 1 archon
-	defensebuild_gg 1 reaver
-	defensebuild_gg 2 scout
-	random_jump 160 blankReturn
-	defensebuild_gg 1 carrier
-	random_jump 64 blankReturn
-	defensebuild_gg 1 starcaller
+	dth 13 AtL 1 raynor_marine pDefGBuildGen2
+	dth 13 Add 1 raynor_marine blank
+	defb_gg 2 zealot
+	defb_gg 2 legionnaire
+	defb_gg 1 dragoon
+	defb_gg 1 high_templar
+	defb_gg 1 archon
+	defb_gg 1 reaver
+	defb_gg 2 scout
+	rand_j 160 blankReturn
+	defb_gg 1 carrier
+	rand_j 64 blankReturn
+	defb_gg 1 starcaller
 	return
 	
 	:pDefGBuildGen2
-	deaths 13 Set 0 raynor_marine blank
-	defensebuild_gg 1 zealot
-	defensebuild_gg 2 legionnaire
-	defensebuild_gg 1 dragoon
-	defensebuild_gg 1 hierophant
-	defensebuild_gg 1 dark_templar
-	defensebuild_gg 1 archon
-	defensebuild_gg 1 clarion
-	defensebuild_gg 2 scout
-	defensebuild_gg 1 exemplar
-	random_jump 160 blankReturn
-	defensebuild_gg 1 carrier
-	random_jump 64 blankReturn
-	defensebuild_gg 1 starcaller
+	dth 13 Set 0 raynor_marine blank
+	defb_gg 1 zealot
+	defb_gg 2 legionnaire
+	defb_gg 1 dragoon
+	defb_gg 1 hierophant
+	defb_gg 1 dark_templar
+	defb_gg 1 archon
+	defb_gg 1 clarion
+	defb_gg 2 scout
+	defb_gg 1 exemplar
+	rand_j 160 blankReturn
+	defb_gg 1 carrier
+	rand_j 64 blankReturn
+	defb_gg 1 starcaller
 	return
 	
 	:pDefGBuildMech
-	deaths 13 AtLeast 1 raynor_marine pDefGBuildMech2
-	deaths 13 Add 1 raynor_marine blank
-	defensebuild_gg 2 dragoon
-	defensebuild_gg 1 hierophant
-	defensebuild_gg 2 reaver
-	defensebuild_gg 1 zealot
-	defensebuild_gg 1 legionnaire
-	defensebuild_gg 1 carrier
-	defensebuild_gg 2 scout
+	dth 13 AtL 1 raynor_marine pDefGBuildMech2
+	dth 13 Add 1 raynor_marine blank
+	defb_gg 2 dragoon
+	defb_gg 1 hierophant
+	defb_gg 2 reaver
+	defb_gg 1 zealot
+	defb_gg 1 legionnaire
+	defb_gg 1 carrier
+	defb_gg 2 scout
 	return
 	
 	:pDefGBuildMech2
-	deaths 13 Set 0 raynor_marine blank
-	defensebuild_gg 3 dragoon
-	defensebuild_gg 1 reaver
-	defensebuild_gg 1 hierophant
-	defensebuild_gg 2 scout
-	defensebuild_gg 1 exemplar
-	defensebuild_gg 1 arbiter
-	#defensebuild_gg 1 starcaller
-	defensebuild_gg 1 carrier
-	defensebuild_gg 1 zealot
+	dth 13 Set 0 raynor_marine blank
+	defb_gg 3 dragoon
+	defb_gg 1 reaver
+	defb_gg 1 hierophant
+	defb_gg 2 scout
+	defb_gg 1 exemplar
+	defb_gg 1 arbiter
+	#defb_gg 1 starcaller
+	defb_gg 1 carrier
+	defb_gg 1 zealot
 	return
 	
 	:pDefGBuildGate
-	deaths 13 AtLeast 1 raynor_marine pDefGBuildGate2
-	deaths 13 Add 1 raynor_marine blank
-	defensebuild_gg 1 zealot
-	defensebuild_gg 3 legionnaire
-	defensebuild_gg 2 dragoon
-	defensebuild_gg 1 hierophant
-	defensebuild_gg 1 archon
-	defensebuild_gg 1 dark_templar
-	defensebuild_gg 1 high_templar
-	defensebuild_gg 1 reaver
-	defensebuild_gg 1 arbiter
+	dth 13 AtL 1 raynor_marine pDefGBuildGate2
+	dth 13 Add 1 raynor_marine blank
+	defb_gg 1 zealot
+	defb_gg 3 legionnaire
+	defb_gg 2 dragoon
+	defb_gg 1 hierophant
+	defb_gg 1 archon
+	defb_gg 1 dark_templar
+	defb_gg 1 high_templar
+	defb_gg 1 reaver
+	defb_gg 1 arbiter
 	return
 	
 	:pDefGBuildGate2
-	deaths 13 Set 0 raynor_marine blank
-	defensebuild_gg 2 zealot
-	defensebuild_gg 2 legionnaire
-	defensebuild_gg 2 dragoon
-	defensebuild_gg 1 archon
-	defensebuild_gg 1 dark_templar
-	defensebuild_gg 1 dark_archon
-	defensebuild_gg 1 scout
-	defensebuild_gg 1 arbiter
+	dth 13 Set 0 raynor_marine blank
+	defb_gg 2 zealot
+	defb_gg 2 legionnaire
+	defb_gg 2 dragoon
+	defb_gg 1 archon
+	defb_gg 1 dark_templar
+	defb_gg 1 dark_archon
+	defb_gg 1 scout
+	defb_gg 1 arbiter
 	return
 	
 	:pDefGBuildAir
-	deaths 13 AtLeast 1 raynor_marine pDefGBuildAir2
-	deaths 13 Add 1 raynor_marine blank
-	defensebuild_gg 2 zealot
-	defensebuild_gg 1 dragoon
-	defensebuild_gg 1 hierophant
-	defensebuild_gg 3 scout
-	defensebuild_gg 1 carrier
-	defensebuild_gg 1 arbiter
+	dth 13 AtL 1 raynor_marine pDefGBuildAir2
+	dth 13 Add 1 raynor_marine blank
+	defb_gg 2 zealot
+	defb_gg 1 dragoon
+	defb_gg 1 hierophant
+	defb_gg 3 scout
+	defb_gg 1 carrier
+	defb_gg 1 arbiter
 	return
 	
 	:pDefGBuildAir2
-	deaths 13 Set 0 raynor_marine blank
-	defensebuild_gg 2 zealot
-	defensebuild_gg 1 dragoon
-	defensebuild_gg 2 scout
-	defensebuild_gg 1 exemplar
-	#defensebuild_gg 1 starcaller
-	defensebuild_gg 1 carrier
-	defensebuild_gg 1 arbiter
+	dth 13 Set 0 raynor_marine blank
+	defb_gg 2 zealot
+	defb_gg 1 dragoon
+	defb_gg 2 scout
+	defb_gg 1 exemplar
+	#defb_gg 1 starcaller
+	defb_gg 1 carrier
+	defb_gg 1 arbiter
 	return
 	
 	:pDefABuild
-	deaths 13 Exactly 1 crashed_battle pDefABuildMech
-	deaths 13 Exactly 2 crashed_battle pDefABuildGate
-	deaths 13 Exactly 3 crashed_battle pDefABuildAir
+	dth 13 Ex 1 crashed_battle pDefABuildMech
+	dth 13 Ex 2 crashed_battle pDefABuildGate
+	dth 13 Ex 3 crashed_battle pDefABuildAir
 	
 	:pDefABuildGen
-	defensebuild_ag 2 dragoon
-	defensebuild_ag 1 hierophant
-	defensebuild_ag 1 scout
-	defensebuild_ag 1 corsair
-	defensebuild_ag 1 exemplar
-	defensebuild_aa 2 dragoon
-	defensebuild_aa 1 hierophant
-	defensebuild_aa 1 scout
-	defensebuild_aa 1 corsair
-	defensebuild_aa 1 exemplar
-	random_jump 160 blankReturn
-	defensebuild_ag 1 carrier
-	defensebuild_aa 1 carrier
-	random_jump 64 blankReturn
-	defensebuild_ag 1 starcaller
-	defensebuild_aa 1 starcaller
+	defb_ag 2 dragoon
+	defb_ag 1 hierophant
+	defb_ag 1 scout
+	defb_ag 1 corsair
+	defb_ag 1 exemplar
+	defb_aa 2 dragoon
+	defb_aa 1 hierophant
+	defb_aa 1 scout
+	defb_aa 1 corsair
+	defb_aa 1 exemplar
+	rand_j 160 blankReturn
+	defb_ag 1 carrier
+	defb_aa 1 carrier
+	rand_j 64 blankReturn
+	defb_ag 1 starcaller
+	defb_aa 1 starcaller
 	return
 	
 	:pDefABuildMech
-	defensebuild_ag 3 dragoon
-	defensebuild_ag 1 hierophant
-	defensebuild_ag 2 scout
-	defensebuild_ag 1 corsair
-	defensebuild_aa 3 dragoon
-	defensebuild_aa 1 hierophant
-	defensebuild_aa 2 scout
-	defensebuild_aa 1 exemplar
-	defensebuild_aa 1 corsair
-	random_jump 160 blankReturn
-	defensebuild_ag 1 carrier
-	defensebuild_aa 1 carrier
+	defb_ag 3 dragoon
+	defb_ag 1 hierophant
+	defb_ag 2 scout
+	defb_ag 1 corsair
+	defb_aa 3 dragoon
+	defb_aa 1 hierophant
+	defb_aa 2 scout
+	defb_aa 1 exemplar
+	defb_aa 1 corsair
+	rand_j 160 blankReturn
+	defb_ag 1 carrier
+	defb_aa 1 carrier
 	return
 	
 	:pDefABuildGate
-	defensebuild_ag 2 dragoon
-	defensebuild_ag 1 hierophant
-	defensebuild_ag 1 high_templar
-	defensebuild_ag 1 archon
-	defensebuild_ag 1 scout
-	defensebuild_ag 1 arbiter
-	defensebuild_aa 2 dragoon
-	defensebuild_aa 1 hierophant
-	defensebuild_aa 1 high_templar
-	defensebuild_aa 1 archon
-	defensebuild_aa 1 scout
-	defensebuild_aa 1 arbiter
+	defb_ag 2 dragoon
+	defb_ag 1 hierophant
+	defb_ag 1 high_templar
+	defb_ag 1 archon
+	defb_ag 1 scout
+	defb_ag 1 arbiter
+	defb_aa 2 dragoon
+	defb_aa 1 hierophant
+	defb_aa 1 high_templar
+	defb_aa 1 archon
+	defb_aa 1 scout
+	defb_aa 1 arbiter
 	return
 	
 	:pDefABuildAir
-	defensebuild_ag 1 dragoon
-	defensebuild_ag 1 hierophant
-	defensebuild_ag 3 scout
-	defensebuild_ag 1 exemplar
-	defensebuild_ag 2 corsair
-	defensebuild_ag 1 arbiter
-	defensebuild_aa 1 dragoon
-	defensebuild_aa 1 hierophant
-	defensebuild_aa 3 scout
-	defensebuild_aa 1 exemplar
-	defensebuild_aa 2 corsair
-	defensebuild_aa 1 arbiter
-	random_jump 160 blankReturn
-	defensebuild_ag 1 carrier
-	defensebuild_aa 1 carrier
-	random_jump 64 blankReturn
-	defensebuild_ag 1 starcaller
-	defensebuild_aa 1 starcaller 
+	defb_ag 1 dragoon
+	defb_ag 1 hierophant
+	defb_ag 3 scout
+	defb_ag 1 exemplar
+	defb_ag 2 corsair
+	defb_ag 1 arbiter
+	defb_aa 1 dragoon
+	defb_aa 1 hierophant
+	defb_aa 3 scout
+	defb_aa 1 exemplar
+	defb_aa 2 corsair
+	defb_aa 1 arbiter
+	rand_j 160 blankReturn
+	defb_ag 1 carrier
+	defb_aa 1 carrier
+	rand_j 64 blankReturn
+	defb_ag 1 starcaller
+	defb_aa 1 starcaller 
 	return
 	
 	:pDefUse
-	defenseuse_gg 2 zealot
-	defenseuse_gg 2 legionnaire
-	defenseuse_gg 2 dragoon
-	defenseuse_gg 1 hierophant
-	defenseuse_gg 1 dark_templar
-	defenseuse_gg 1 archon
-	defenseuse_gg 2 reaver
-	defenseuse_gg 2 scout
-	defenseuse_gg 1 exemplar
-	defenseuse_gg 1 carrier
-	defenseuse_gg 1 starcaller
-	defenseuse_ag 2 dragoon
-	defenseuse_ag 1 hierophant
-	defenseuse_ag 1 archon
-	defenseuse_ag 2 scout
-	defenseuse_ag 1 exemplar
-	defenseuse_ag 2 corsair
-	defenseuse_ag 1 carrier
-	defenseuse_ag 1 starcaller
-	defenseuse_aa 2 dragoon
-	defenseuse_aa 1 hierophant
-	defenseuse_aa 1 archon
-	defenseuse_aa 2 scout
-	defenseuse_aa 1 exemplar
-	defenseuse_aa 2 corsair
-	defenseuse_aa 1 carrier
-	defenseuse_aa 1 starcaller
+	defu_gg 2 zealot
+	defu_gg 2 legionnaire
+	defu_gg 2 dragoon
+	defu_gg 1 hierophant
+	defu_gg 1 dark_templar
+	defu_gg 1 archon
+	defu_gg 2 reaver
+	defu_gg 2 scout
+	defu_gg 1 exemplar
+	defu_gg 1 carrier
+	defu_gg 1 starcaller
+	defu_ag 2 dragoon
+	defu_ag 1 hierophant
+	defu_ag 1 archon
+	defu_ag 2 scout
+	defu_ag 1 exemplar
+	defu_ag 2 corsair
+	defu_ag 1 carrier
+	defu_ag 1 starcaller
+	defu_aa 2 dragoon
+	defu_aa 1 hierophant
+	defu_aa 1 archon
+	defu_aa 2 scout
+	defu_aa 1 exemplar
+	defu_aa 2 corsair
+	defu_aa 1 carrier
+	defu_aa 1 starcaller
 	return
 	
 	:pUpg
@@ -503,244 +501,244 @@ script_id PMCx
 	var set upgObs 0 13
 	var set upgArb 0 13
 	var set upgEndVar 0 13
-	multirun ioHallucinate
-	multirun ioPhaseLink
-	multirun ioConduit
-	multirun ioAperture
-	multirun ioMindControl
-	var exactly|wait canUpgrade 1 13
-	multirun pUpgEnd
-	deaths 13 Exactly 1 crashed_battle pUpgMech
-	deaths 13 Exactly 2 crashed_battle pUpgGate
-	deaths 13 Exactly 3 crashed_battle pUpgAir
+	multi ioHallucinate
+	multi ioPhaseLink
+	multi ioConduit
+	multi ioAperture
+	multi ioMindControl
+	var Ex|wait canUpgrade 1 13
+	multi pUpgEnd
+	dth 13 Ex 1 crashed_battle pUpgMech
+	dth 13 Ex 2 crashed_battle pUpgGate
+	dth 13 Ex 3 crashed_battle pUpgAir
 	goto pUpgGen
 	
 	:pUpgEnd
 	wait 12
-	var exactly|jump upgForgeWeapon 0 upgEndP 13
-	var exactly|jump upgForgeArmor 0 upgEndP 13
-	var exactly|jump upgForgeShields 0 upgEndP 13
-	var exactly|jump upgForgeUtility 0 upgEndP 13
-	var exactly|jump upgCybStrider 0 upgEndP 13
-	var exactly|jump upgCybWeapon 0 upgEndP 13
-	var exactly|jump upgCybArmor 0 upgEndP 13
-	var exactly|jump upgCitZealot 0 upgEndP 13
-	var exactly|jump upgCitLegion 0 upgEndP 13
-	var exactly|jump upgRoboShuttle 0 upgEndP 13
-	var exactly|jump upgRoboReaver 0 upgEndP 13
-	var exactly|jump upgFleetScout 0 upgEndP 13
-	var exactly|jump upgFleetCorsair 0 upgEndP 13
-	var exactly|jump upgFleetCarrier 0 upgEndP 13
-	var exactly|jump upgFleetStarcaller 0 upgEndP 13
-	var exactly|jump upgTempTemplar 0 upgEndP 13
-	var exactly|jump upgTempDArchon 0 upgEndP 13
-	var exactly|jump upgObs 0 upgEndP 13
-	var exactly|jump upgArb 0 upgEndP 13
+	var Ex|jump upgForgeWeapon 0 upgEndP 13
+	var Ex|jump upgForgeArmor 0 upgEndP 13
+	var Ex|jump upgForgeShields 0 upgEndP 13
+	var Ex|jump upgForgeUtility 0 upgEndP 13
+	var Ex|jump upgCybStrider 0 upgEndP 13
+	var Ex|jump upgCybWeapon 0 upgEndP 13
+	var Ex|jump upgCybArmor 0 upgEndP 13
+	var Ex|jump upgCitZealot 0 upgEndP 13
+	var Ex|jump upgCitLegion 0 upgEndP 13
+	var Ex|jump upgRoboShuttle 0 upgEndP 13
+	var Ex|jump upgRoboReaver 0 upgEndP 13
+	var Ex|jump upgFleetScout 0 upgEndP 13
+	var Ex|jump upgFleetCorsair 0 upgEndP 13
+	var Ex|jump upgFleetCarrier 0 upgEndP 13
+	var Ex|jump upgFleetStarcaller 0 upgEndP 13
+	var Ex|jump upgTempTemplar 0 upgEndP 13
+	var Ex|jump upgTempDArchon 0 upgEndP 13
+	var Ex|jump upgObs 0 upgEndP 13
+	var Ex|jump upgArb 0 upgEndP 13
 	var set upgEndVar 1 13
 	stop
 	
 	:pUpgGen
-	var exactly|jump upgEndVar 1 stp 13
+	var Ex|jump upgEndVar 1 stp 13
 	wait 240
-	bring_jump 13 AtLeast_Multi 1 forge Loc.63 upgForgeWeaponCheck
-	bring_jump 13 AtLeast_Multi 2 forge Loc.63 upgForgeArmorCheck
-	bring_jump 13 AtLeast_Multi 3 forge Loc.63 upgForgeUtilityCheck
-	bring_jump 13 AtLeast_Multi 4 forge Loc.63 upgForgeShieldsCheck
-	bring_jump 13 AtLeast_Multi 1 cybernetics_core Loc.63 upgCybStriderCheck
-	bring_jump 13 AtLeast_Multi 2 cybernetics_core Loc.63 upgCybArmorCheck
-	bring_jump 13 AtLeast_Multi 2 cybernetics_core Loc.63 upgCybWeaponCheck
-	bring_jump 13 AtLeast_Multi 1 citadel_of_adun Loc.63 upgCitZealotCheck
-	bring_jump 13 AtLeast_Multi 1 robotics_support_bay Loc.63 upgRoboReaverCheck
-	bring_jump 13 AtLeast_Multi 1 fleet_beacon Loc.63 upgFleetScoutCheck
-	bring_jump 13 AtLeast_Multi 1 templar_archives Loc.63 upgTempTemplarGenCheck
-	bring_jump 13 AtLeast_Multi 1 observatory Loc.63 upgObsCheck
-	bring_jump 13 AtLeast_Multi 1 arbiter_tribunal Loc.63 upgArbCheck
-	bring_jump 13 AtLeast_Multi 2 robotics_facility Loc.63 upgRoboShuttleCheck
-	bring_jump 13 AtLeast_Multi 4 clarion Loc.63 upgRoboClarionCheck
-	bring_jump 13 AtLeast_Multi 2 warp_relay Loc.63 upgRoboRelayCheck
-	bring_jump 13 AtLeast_Multi 5 corsair Loc.63 upgFleetCorsairCheck
-	bring_jump 13 AtLeast_Multi 3 stargate|carrier Loc.63 upgFleetCarrierCheck
-	bring_jump 13 AtLeast_Multi 3 principality Loc.63 upgCitLegionCheck
-	bring_jump 13 AtLeast_Multi 6 gateway|principality|warp_anchor Loc.63 upgTempDArchonCheck
-	bring_jump 13 AtLeast_Multi 1 starfield Loc.63 upgFleetStarcallerCheck
-	bring_jump 13 AtLeast_Multi 2 argosy Loc.63 upgFleetExemplarCheck
+	bring 13 AtL_M 1 forge Loc.63 upgForgeWeaponCheck
+	bring 13 AtL_M 2 forge Loc.63 upgForgeArmorCheck
+	bring 13 AtL_M 3 forge Loc.63 upgForgeUtilityCheck
+	bring 13 AtL_M 4 forge Loc.63 upgForgeShieldsCheck
+	bring 13 AtL_M 1 cybernetics_core Loc.63 upgCybStriderCheck
+	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybArmorCheck
+	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybWeaponCheck
+	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitZealotCheck
+	bring 13 AtL_M 1 robotics_support_bay Loc.63 upgRoboReaverCheck
+	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetScoutCheck
+	bring 13 AtL_M 1 templar_archives Loc.63 upgTempTemplarGenCheck
+	bring 13 AtL_M 1 observatory Loc.63 upgObsCheck
+	bring 13 AtL_M 1 arbiter_tribunal Loc.63 upgArbCheck
+	bring 13 AtL_M 2 robotics_facility Loc.63 upgRoboShuttleCheck
+	bring 13 AtL_M 4 clarion Loc.63 upgRoboClarionCheck
+	bring 13 AtL_M 2 warp_relay Loc.63 upgRoboRelayCheck
+	bring 13 AtL_M 5 corsair Loc.63 upgFleetCorsairCheck
+	bring 13 AtL_M 3 stargate|carrier Loc.63 upgFleetCarrierCheck
+	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
+	bring 13 AtL_M 6 gateway|principality|warp_anchor Loc.63 upgTempDArchonCheck
+	bring 13 AtL_M 1 starfield Loc.63 upgFleetStarcallerCheck
+	bring 13 AtL_M 2 argosy Loc.63 upgFleetExemplarCheck
 	goto pUpgGen
 	
 	:pUpgMech
-	var exactly|jump upgEndVar 1 stp 13
+	var Ex|jump upgEndVar 1 stp 13
 	wait 240
-	bring_jump 13 AtLeast_Multi 1 forge Loc.63 upgForgeWeaponCheck
-	bring_jump 13 AtLeast_Multi 2 forge Loc.63 upgForgeArmorCheck
-	bring_jump 13 AtLeast_Multi 4 forge Loc.63 upgForgeShieldsCheck
-	bring_jump 13 AtLeast_Multi 3 forge Loc.63 upgForgeUtilityCheck
-	bring_jump 13 AtLeast_Multi 1 cybernetics_core Loc.63 upgCybStriderCheck
-	bring_jump 13 AtLeast_Multi 2 cybernetics_core Loc.63 upgCybWeaponCheck
-	bring_jump 13 AtLeast_Multi 2 cybernetics_core Loc.63 upgCybArmorCheck
-	bring_jump 13 AtLeast_Multi 1 citadel_of_adun Loc.63 upgCitZealotCheck
-	bring_jump 13 AtLeast_Multi 1 robotics_support_bay Loc.63 upgRoboReaverCheck
-	bring_jump 13 AtLeast_Multi 1 robotics_support_bay Loc.63 upgRoboShuttleCheck
-	bring_jump 13 AtLeast_Multi 1 fleet_beacon Loc.63 upgFleetScoutCheck
-	bring_jump 13 AtLeast_Multi 1 fleet_beacon Loc.63 upgFleetCarrierCheck
-	bring_jump 13 AtLeast_Multi 1 observatory Loc.63 upgObsCheck
-	bring_jump 13 AtLeast_Multi 1 arbiter_tribunal Loc.63 upgArbCheck
-	bring_jump 13 AtLeast_Multi 4 clarion Loc.63 upgRoboClarionCheck
-	bring_jump 13 AtLeast_Multi 2 warp_relay Loc.63 upgRoboRelayCheck
-	bring_jump 13 AtLeast_Multi 5 corsair Loc.63 upgFleetCorsairCheck
-	bring_jump 13 AtLeast_Multi 3 principality Loc.63 upgCitLegionCheck
-	bring_jump 13 AtLeast_Multi 6 gateway|principality|warp_anchor Loc.63 upgTempTemplarGenCheck
-	bring_jump 13 AtLeast_Multi 9 gateway|principality|warp_anchor Loc.63 upgTempDArchonCheck
-	bring_jump 13 AtLeast_Multi 1 starfield Loc.63 upgFleetStarcallerCheck
-	bring_jump 13 AtLeast_Multi 2 argosy Loc.63 upgFleetExemplarCheck
+	bring 13 AtL_M 1 forge Loc.63 upgForgeWeaponCheck
+	bring 13 AtL_M 2 forge Loc.63 upgForgeArmorCheck
+	bring 13 AtL_M 4 forge Loc.63 upgForgeShieldsCheck
+	bring 13 AtL_M 3 forge Loc.63 upgForgeUtilityCheck
+	bring 13 AtL_M 1 cybernetics_core Loc.63 upgCybStriderCheck
+	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybWeaponCheck
+	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybArmorCheck
+	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitZealotCheck
+	bring 13 AtL_M 1 robotics_support_bay Loc.63 upgRoboReaverCheck
+	bring 13 AtL_M 1 robotics_support_bay Loc.63 upgRoboShuttleCheck
+	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetScoutCheck
+	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetCarrierCheck
+	bring 13 AtL_M 1 observatory Loc.63 upgObsCheck
+	bring 13 AtL_M 1 arbiter_tribunal Loc.63 upgArbCheck
+	bring 13 AtL_M 4 clarion Loc.63 upgRoboClarionCheck
+	bring 13 AtL_M 2 warp_relay Loc.63 upgRoboRelayCheck
+	bring 13 AtL_M 5 corsair Loc.63 upgFleetCorsairCheck
+	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
+	bring 13 AtL_M 6 gateway|principality|warp_anchor Loc.63 upgTempTemplarGenCheck
+	bring 13 AtL_M 9 gateway|principality|warp_anchor Loc.63 upgTempDArchonCheck
+	bring 13 AtL_M 1 starfield Loc.63 upgFleetStarcallerCheck
+	bring 13 AtL_M 2 argosy Loc.63 upgFleetExemplarCheck
 	goto pUpgMech
 	
 	:pUpgGate
-	var exactly|jump upgEndVar 1 stp 13
+	var Ex|jump upgEndVar 1 stp 13
 	wait 240
-	bring_jump 13 AtLeast_Multi 1 forge Loc.63 upgForgeWeaponCheck
-	bring_jump 13 AtLeast_Multi 2 forge Loc.63 upgForgeArmorCheck
-	bring_jump 13 AtLeast_Multi 4 forge Loc.63 upgForgeShieldsCheck
-	bring_jump 13 AtLeast_Multi 3 forge Loc.63 upgForgeUtilityCheck
-	bring_jump 13 AtLeast_Multi 1 citadel_of_adun Loc.63 upgCitZealotCheck
-	bring_jump 13 AtLeast_Multi 1 citadel_of_adun Loc.63 upgCitLegionCheck
-	bring_jump 13 AtLeast_Multi 1 templar_archives Loc.63 upgTempTemplarGateCheck
-	bring_jump 13 AtLeast_Multi 1 templar_archives Loc.63 upgTempDArchonCheck	
-	bring_jump 13 AtLeast_Multi 1 observatory Loc.63 upgObsCheck
-	bring_jump 13 AtLeast_Multi 1 arbiter_tribunal Loc.63 upgArbCheck
-	bring_jump 13 AtLeast_Multi 2 robotics_facility|robotics_support_bay Loc.63 upgRoboReaverCheck
-	bring_jump 13 AtLeast_Multi 2 robotics_facility|robotics_support_bay Loc.63 upgRoboShuttleCheck
-	bring_jump 13 AtLeast_Multi 4 clarion Loc.63 upgRoboClarionCheck
-	bring_jump 13 AtLeast_Multi 2 warp_relay Loc.63 upgRoboRelayCheck
-	bring_jump 13 AtLeast_Multi 5 corsair Loc.63 upgFleetCorsairCheck
-	bring_jump 13 AtLeast_Multi 2 stargate|fleet_beacon Loc.63 upgFleetScoutCheck
-	bring_jump 13 AtLeast_Multi 2 stargate|fleet_beacon Loc.63 upgFleetCarrierCheck
-	bring_jump 13 AtLeast_Multi 1 starfield Loc.63 upgFleetStarcallerCheck
-	bring_jump 13 AtLeast_Multi 2 argosy Loc.63 upgFleetExemplarCheck
+	bring 13 AtL_M 1 forge Loc.63 upgForgeWeaponCheck
+	bring 13 AtL_M 2 forge Loc.63 upgForgeArmorCheck
+	bring 13 AtL_M 4 forge Loc.63 upgForgeShieldsCheck
+	bring 13 AtL_M 3 forge Loc.63 upgForgeUtilityCheck
+	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitZealotCheck
+	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitLegionCheck
+	bring 13 AtL_M 1 templar_archives Loc.63 upgTempTemplarGateCheck
+	bring 13 AtL_M 1 templar_archives Loc.63 upgTempDArchonCheck	
+	bring 13 AtL_M 1 observatory Loc.63 upgObsCheck
+	bring 13 AtL_M 1 arbiter_tribunal Loc.63 upgArbCheck
+	bring 13 AtL_M 2 robotics_facility|robotics_support_bay Loc.63 upgRoboReaverCheck
+	bring 13 AtL_M 2 robotics_facility|robotics_support_bay Loc.63 upgRoboShuttleCheck
+	bring 13 AtL_M 4 clarion Loc.63 upgRoboClarionCheck
+	bring 13 AtL_M 2 warp_relay Loc.63 upgRoboRelayCheck
+	bring 13 AtL_M 5 corsair Loc.63 upgFleetCorsairCheck
+	bring 13 AtL_M 2 stargate|fleet_beacon Loc.63 upgFleetScoutCheck
+	bring 13 AtL_M 2 stargate|fleet_beacon Loc.63 upgFleetCarrierCheck
+	bring 13 AtL_M 1 starfield Loc.63 upgFleetStarcallerCheck
+	bring 13 AtL_M 2 argosy Loc.63 upgFleetExemplarCheck
 	goto pUpgGate
 	
 	:pUpgAir
-	var exactly|jump upgEndVar 1 stp 13
+	var Ex|jump upgEndVar 1 stp 13
 	wait 240
-	bring_jump 13 AtLeast_Multi 1 forge Loc.63 upgForgeWeaponCheck
-	bring_jump 13 AtLeast_Multi 2 forge Loc.63 upgForgeArmorCheck
-	bring_jump 13 AtLeast_Multi 3 forge Loc.63 upgForgeUtilityCheck
-	bring_jump 13 AtLeast_Multi 4 forge Loc.63 upgForgeShieldsCheck
-	bring_jump 13 AtLeast_Multi 1 cybernetics_core Loc.63 upgCybWeaponCheck
-	bring_jump 13 AtLeast_Multi 2 cybernetics_core Loc.63 upgCybArmorCheck
-	bring_jump 13 AtLeast_Multi 1 fleet_beacon Loc.63 upgFleetScoutCheck
-	bring_jump 13 AtLeast_Multi 1 carrier Loc.63 upgFleetCarrierCheck
-	bring_jump 13 AtLeast_Multi 4 stargate Loc.63 upgFleetCorsairCheck
-	bring_jump 13 AtLeast_Multi 1 observatory Loc.63 upgObsCheck
-	bring_jump 13 AtLeast_Multi 1 arbiter_tribunal Loc.63 upgArbCheck
-	bring_jump 13 AtLeast_Multi 3 gateway|dragoon Loc.63 upgCybStriderCheck
-	bring_jump 13 AtLeast_Multi 3 gateway|citadel_of_adun Loc.63 upgCitZealotCheck
-	bring_jump 13 AtLeast_Multi 4 clarion Loc.63 upgRoboClarionCheck
-	bring_jump 13 AtLeast_Multi 2 warp_relay Loc.63 upgRoboRelayCheck
-	bring_jump 13 AtLeast_Multi 3 principality Loc.63 upgCitLegionCheck
-	bring_jump 13 AtLeast_Multi 6 gateway|principality|warp_anchor Loc.63 upgTempTemplarGenCheck
-	bring_jump 13 AtLeast_Multi 9 gateway|principality|warp_anchor Loc.63 upgTempDArchonCheck
-	bring_jump 13 AtLeast_Multi 1 starfield Loc.63 upgFleetStarcallerCheck
-	bring_jump 13 AtLeast_Multi 2 argosy Loc.63 upgFleetExemplarCheck
+	bring 13 AtL_M 1 forge Loc.63 upgForgeWeaponCheck
+	bring 13 AtL_M 2 forge Loc.63 upgForgeArmorCheck
+	bring 13 AtL_M 3 forge Loc.63 upgForgeUtilityCheck
+	bring 13 AtL_M 4 forge Loc.63 upgForgeShieldsCheck
+	bring 13 AtL_M 1 cybernetics_core Loc.63 upgCybWeaponCheck
+	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybArmorCheck
+	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetScoutCheck
+	bring 13 AtL_M 1 carrier Loc.63 upgFleetCarrierCheck
+	bring 13 AtL_M 4 stargate Loc.63 upgFleetCorsairCheck
+	bring 13 AtL_M 1 observatory Loc.63 upgObsCheck
+	bring 13 AtL_M 1 arbiter_tribunal Loc.63 upgArbCheck
+	bring 13 AtL_M 3 gateway|dragoon Loc.63 upgCybStriderCheck
+	bring 13 AtL_M 3 gateway|citadel_of_adun Loc.63 upgCitZealotCheck
+	bring 13 AtL_M 4 clarion Loc.63 upgRoboClarionCheck
+	bring 13 AtL_M 2 warp_relay Loc.63 upgRoboRelayCheck
+	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
+	bring 13 AtL_M 6 gateway|principality|warp_anchor Loc.63 upgTempTemplarGenCheck
+	bring 13 AtL_M 9 gateway|principality|warp_anchor Loc.63 upgTempDArchonCheck
+	bring 13 AtL_M 1 starfield Loc.63 upgFleetStarcallerCheck
+	bring 13 AtL_M 2 argosy Loc.63 upgFleetExemplarCheck
 	goto pUpgAir
 	
 	:upgForgeWeaponCheck
-	var exactly|jump upgForgeWeapon 1 stp 13
+	var Ex|jump upgForgeWeapon 1 stp 13
 	var set upgForgeWeapon 1 13
 	
 	:upgForgeWeapon
 	wait 12
-	notowns_jump forge upgForgeWeapon
+	notowns forge upgForgeWeapon
 	wait 60
 	call wUpgradeDef
-	upgrade_queue 1 p_ground_weapon 88
-	upgrade_jump 13 AtLeast_Wait 13 1 blank
+	upg_queue 1 p_ground_weapon 88
+	upg_j 13 AtL_W 13 1 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 2 p_ground_weapon 88
-	upgrade_jump 13 AtLeast_Wait 13 2 blank
+	upg_queue 2 p_ground_weapon 88
+	upg_j 13 AtL_W 13 2 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 3 p_ground_weapon 88
-	upgrade_jump 13 AtLeast_Wait 13 3 blank
+	upg_queue 3 p_ground_weapon 88
+	upg_j 13 AtL_W 13 3 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 4 p_ground_weapon 88
-	upgrade_jump 13 AtLeast_Wait 13 4 blank
+	upg_queue 4 p_ground_weapon 88
+	upg_j 13 AtL_W 13 4 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 5 p_ground_weapon 88
+	upg_queue 5 p_ground_weapon 88
 	goto wUpgrade
 	
 	:upgForgeArmorCheck
-	var exactly|jump upgForgeArmor 1 stp 13
+	var Ex|jump upgForgeArmor 1 stp 13
 	var set upgForgeArmor 1 13
 	
 	:upgForgeArmor
 	wait 12
-	notowns_jump forge upgForgeArmor
+	notowns forge upgForgeArmor
 	wait 60
 	call wUpgradeDef
-	upgrade_queue 1 p_armor 88
-	upgrade_jump 13 AtLeast_Wait 13 1 blank
+	upg_queue 1 p_armor 88
+	upg_j 13 AtL_W 13 1 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 2 p_armor 88
-	upgrade_jump 13 AtLeast_Wait 13 2 blank
+	upg_queue 2 p_armor 88
+	upg_j 13 AtL_W 13 2 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 3 p_armor 88
-	upgrade_jump 13 AtLeast_Wait 13 3 blank
+	upg_queue 3 p_armor 88
+	upg_j 13 AtL_W 13 3 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 4 p_armor 88
-	upgrade_jump 13 AtLeast_Wait 13 4 blank
+	upg_queue 4 p_armor 88
+	upg_j 13 AtL_W 13 4 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 5 p_armor 88
+	upg_queue 5 p_armor 88
 	goto wUpgrade
 	
 	:upgForgeShieldsCheck
-	var exactly|jump upgForgeShields 1 stp 13
+	var Ex|jump upgForgeShields 1 stp 13
 	var set upgForgeShields 1 13
 	
 	:upgForgeShields
 	wait 12
-	notowns_jump forge upgForgeShields
+	notowns forge upgForgeShields
 	wait 60
 	call wUpgradeDef
-	upgrade_queue 1 p_shields 88
-	upgrade_jump 13 AtLeast_Wait 15 1 blank
+	upg_queue 1 p_shields 88
+	upg_j 13 AtL_W 15 1 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 2 p_shields 88
-	upgrade_jump 13 AtLeast_Wait 15 2 blank
+	upg_queue 2 p_shields 88
+	upg_j 13 AtL_W 15 2 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 3 p_shields 88
-	upgrade_jump 13 AtLeast_Wait 15 3 blank
+	upg_queue 3 p_shields 88
+	upg_j 13 AtL_W 15 3 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 4 p_shields 88
-	upgrade_jump 13 AtLeast_Wait 15 4 blank
+	upg_queue 4 p_shields 88
+	upg_j 13 AtL_W 15 4 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 5 p_shields 88
+	upg_queue 5 p_shields 88
 	goto wUpgrade
 	
 	:upgForgeUtilityCheck
-	var exactly|jump upgForgeUtility 1 stp 13
+	var Ex|jump upgForgeUtility 1 stp 13
 	var set upgForgeUtility 1 13
 	
 	:upgForgeUtility
 	wait 12
-	notowns_jump forge upgForgeUtility
-	notowns_jump robotics_facility upgForgeUtility
+	notowns forge upgForgeUtility
+	notowns robotics_facility upgForgeUtility
 	call wUpgradeDef
 	extupgrade 1 temporal_batteries 88
 	wait 4500
 	wait_upgrades
 	call wUpgradeDef
-	upgrade_queue 1 prismatic_shield 88
-	upgrade_jump 13 AtLeast_Wait 46 1 blank
+	upg_queue 1 prismatic_shield 88
+	upg_j 13 AtL_W 46 1 blank
 	call wUpgradeDef
 	extupgrade 1 power_flux 88
 	wait 4500
@@ -750,16 +748,16 @@ script_id PMCx
 	goto wUpgrade
 	
 	:upgCybStriderCheck
-	var exactly|jump upgCybStrider 1 stp 13
+	var Ex|jump upgCybStrider 1 stp 13
 	var set upgCybStrider 1 13
 	
 	:upgCybStrider
 	wait 12
-	notowns_jump cybernetics_core upgCybStrider
+	notowns cybernetics_core upgCybStrider
 	wait 60
 	call wUpgradeDef
-	upgrade_queue 1 dragoon_range 88
-	upgrade_jump 13 AtLeast_Wait 33 1 blank
+	upg_queue 1 dragoon_range 88
+	upg_j 13 AtL_W 33 1 blank
 	wait 240
 	call wUpgradeDef
 	extupgrade 1 taldarins_grace 88
@@ -768,137 +766,137 @@ script_id PMCx
 	
 	:upgCybStrider2
 	wait 12
-	notowns_jump cybernetics_core upgCybStrider2
-	bring_jump 13 AtMost 1 warp_anchor Loc.63 upgCybStrider2
+	notowns cybernetics_core upgCybStrider2
+	bring 13 AtM 1 warp_anchor Loc.63 upgCybStrider2
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 1 signify_malice 88
+	upg_queue 1 signify_malice 88
 	goto wUpgrade
 	
 	:upgCybWeaponCheck
-	var exactly|jump upgCybWeapon 1 stp 13
+	var Ex|jump upgCybWeapon 1 stp 13
 	var set upgCybWeapon 1 13
 	
 	:upgCybWeapon
 	wait 12
-	notowns_jump cybernetics_core upgCybWeapon
+	notowns cybernetics_core upgCybWeapon
 	call wUpgradeDef
-	upgrade_queue 1 p_air_weapon 88
-	upgrade_jump 13 AtLeast_Wait 14 1 blank
+	upg_queue 1 p_air_weapon 88
+	upg_j 13 AtL_W 14 1 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 2 p_air_weapon 88
-	upgrade_jump 13 AtLeast_Wait 14 2 blank
+	upg_queue 2 p_air_weapon 88
+	upg_j 13 AtL_W 14 2 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 3 p_air_weapon 88
-	upgrade_jump 13 AtLeast_Wait 14 3 blank
+	upg_queue 3 p_air_weapon 88
+	upg_j 13 AtL_W 14 3 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 4 p_air_weapon 88
-	upgrade_jump 13 AtLeast_Wait 14 4 blank
+	upg_queue 4 p_air_weapon 88
+	upg_j 13 AtL_W 14 4 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 5 p_air_weapon 88
+	upg_queue 5 p_air_weapon 88
 	goto wUpgrade
 	
 	:upgCybArmorCheck
-	var exactly|jump upgCybArmor 1 stp 13
+	var Ex|jump upgCybArmor 1 stp 13
 	var set upgCybArmor 1 13
 	
 	:upgCybArmor
 	wait 12
-	notowns_jump cybernetics_core upgCybArmor
+	notowns cybernetics_core upgCybArmor
 	call wUpgradeDef
-	upgrade_queue 1 p_plating 88
-	upgrade_jump 13 AtLeast_Wait 14 1 blank
+	upg_queue 1 p_plating 88
+	upg_j 13 AtL_W 14 1 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 2 p_plating 88
-	upgrade_jump 13 AtLeast_Wait 14 2 blank
+	upg_queue 2 p_plating 88
+	upg_j 13 AtL_W 14 2 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 3 p_plating 88
-	upgrade_jump 13 AtLeast_Wait 14 3 blank
+	upg_queue 3 p_plating 88
+	upg_j 13 AtL_W 14 3 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 4 p_plating 88
-	upgrade_jump 13 AtLeast_Wait 14 4 blank
+	upg_queue 4 p_plating 88
+	upg_j 13 AtL_W 14 4 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 5 p_plating 88
+	upg_queue 5 p_plating 88
 	goto wUpgrade
 	
 	:upgCitZealotCheck
-	var exactly|jump upgCitZealot 1 stp 13
+	var Ex|jump upgCitZealot 1 stp 13
 	var set upgCitZealot 1 13
 	
 	:upgCitZealot
 	wait 12
-	notowns_jump citadel_of_adun upgCitZealot
+	notowns citadel_of_adun upgCitZealot
 	call wUpgradeDef
-	upgrade_queue 1 zealot_speed 88
+	upg_queue 1 zealot_speed 88
 	goto wUpgrade
 	
 	:upgCitLegionCheck
-	var exactly|jump upgCitLegion 1 stp 13
+	var Ex|jump upgCitLegion 1 stp 13
 	var set upgCitLegion 1 13
 	
 	:upgCitLegion
 	wait 12
-	notowns_jump citadel_of_adun upgCitLegion
+	notowns citadel_of_adun upgCitLegion
 	call wUpgradeDef
-	upgrade_queue 1 battle_harmony 88
+	upg_queue 1 battle_harmony 88
 	goto wUpgrade
 	
 	:upgRoboShuttleCheck
-	var exactly|jump upgRoboShuttle 1 stp 13
+	var Ex|jump upgRoboShuttle 1 stp 13
 	var set upgRoboShuttle 1 13
 	
 	:upgRoboShuttle
 	wait 12
-	notowns_jump robotics_support_bay upgRoboShuttle
+	notowns robotics_support_bay upgRoboShuttle
 	wait 60
 	call wUpgradeDef
-	upgrade_queue 1 shuttle_speed 88
-	upgrade_jump 13 AtLeast_Wait 37 1 blank
+	upg_queue 1 shuttle_speed 88
+	upg_j 13 AtL_W 37 1 blank
 	wait 240
 	call wUpgradeDef
 	extupgrade 1 expanded_hull 88
 	goto wUpgrade
 	
 	:upgRoboReaverCheck
-	var exactly|jump upgRoboReaver 1 stp 13
+	var Ex|jump upgRoboReaver 1 stp 13
 	var set upgRoboReaver 1 13
 	
 	:upgRoboReaver
 	wait 12
-	notowns_jump robotics_support_bay upgRoboReaver
+	notowns robotics_support_bay upgRoboReaver
 	wait 60
 	call wUpgradeDef
-	upgrade_queue 1 reinforced_scarabs 88
-	upgrade_jump 13 AtLeast_Wait 35 1 blank
+	upg_queue 1 reinforced_scarabs 88
+	upg_j 13 AtL_W 35 1 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 1 relocators 88
+	upg_queue 1 relocators 88
 	goto wUpgrade
 	
 	:upgRoboClarionCheck
-	var exactly|jump upgRoboClarion 1 stp 13
+	var Ex|jump upgRoboClarion 1 stp 13
 	var set upgRoboClarion 1 13
 	
 	:upgRoboClarion
 	wait 12
-	notowns_jump robotics_support_bay upgRoboClarion
+	notowns robotics_support_bay upgRoboClarion
 	goto wUpgrade
 	
 	:upgRoboRelayCheck
-	var exactly|jump upgRoboRelay 1 stp 13
+	var Ex|jump upgRoboRelay 1 stp 13
 	var set upgRoboRelay 1 13
 	
 	:upgRoboRelay
 	wait 12
-	notowns_jump robotics_support_bay upgRoboRelay
+	notowns robotics_support_bay upgRoboRelay
 	wait 240
 	call wUpgradeDef
 	extupgrade 1 warp_relay_mana 88
@@ -908,43 +906,43 @@ script_id PMCx
 	stop
 	
 	:upgFleetScoutCheck
-	var exactly|jump upgFleetScout 1 stp 13
+	var Ex|jump upgFleetScout 1 stp 13
 	var set upgFleetScout 1 13
 	
 	:upgFleetScout
 	wait 12
-	notowns_jump fleet_beacon upgFleetScout
+	notowns fleet_beacon upgFleetScout
 	wait 60
 	call wUpgradeDef
-	upgrade_queue 1 scout_speed 88
-	upgrade_jump 13 AtLeast_Wait 42 1 blank
+	upg_queue 1 scout_speed 88
+	upg_j 13 AtL_W 42 1 blank
 	wait 240
 	call wUpgradeDef
 	extupgrade 1 last_orders 88
 	goto wUpgrade
 	
 	:upgFleetCorsairCheck
-	var exactly|jump upgFleetCorsair 1 stp 13
+	var Ex|jump upgFleetCorsair 1 stp 13
 	var set upgFleetCorsair 1 13
 	
 	:upgFleetCorsair
 	wait 12
-	notowns_jump fleet_beacon upgFleetCorsair
+	notowns fleet_beacon upgFleetCorsair
 	wait 240
 	tech disruption_web 88
-	tech_jump 13 AtLeast_Wait 25 1 blank
+	tech_j 13 AtL_W 25 1 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 1 corsair_mana 88
+	upg_queue 1 corsair_mana 88
 	goto wUpgrade
 	
 	:upgFleetExemplarCheck
-	var exactly|jump upgFleetExemplar 1 stp 13
+	var Ex|jump upgFleetExemplar 1 stp 13
 	var set upgFleetExemplar 1 13
 	
 	:upgFleetExemplar
 	wait 12
-	notowns_jump fleet_beacon upgFleetExemplar
+	notowns fleet_beacon upgFleetExemplar
 	wait 60
 	call wUpgradeDef
 	extupgrade 1 gravitic_attenuator 88
@@ -955,49 +953,49 @@ script_id PMCx
 	goto wUpgrade
 	
 	:upgFleetCarrierCheck
-	var exactly|jump upgFleetCarrier 1 stp 13
+	var Ex|jump upgFleetCarrier 1 stp 13
 	var set upgFleetCarrier 1 13
 	
 	:upgFleetCarrier
 	wait 12
-	notowns_jump fleet_beacon upgFleetCarrier
+	notowns fleet_beacon upgFleetCarrier
 	wait 60
 	call wUpgradeDef
-	upgrade_queue 1 carrier_capacity 88
-	upgrade_jump 13 AtLeast_Wait 43 1 blank
+	upg_queue 1 carrier_capacity 88
+	upg_j 13 AtL_W 43 1 blank
 	wait 240
 	call wUpgradeDef
 	extupgrade 1 skyforge 88
 	goto wUpgrade
 	
 	:upgFleetStarcallerCheck
-	var exactly|jump upgFleetStarcaller 1 stp 13
+	var Ex|jump upgFleetStarcaller 1 stp 13
 	var set upgFleetStarcaller 1 13
 	
 	:upgFleetStarcaller
 	wait 12
-	notowns_jump fleet_beacon upgFleetStarcaller
+	notowns fleet_beacon upgFleetStarcaller
 	wait 60
 	call wUpgradeDef
 	extupgrade 1 starcaller_mana 88
 	goto wUpgrade
 	
 	:upgTempTemplarGenCheck
-	var exactly|jump upgTempTemplar 1 stp 13
+	var Ex|jump upgTempTemplar 1 stp 13
 	var set upgTempTemplar 1 13
 	
 	:upgTempTemplarGen
 	wait 12
-	notowns_jump templar_archives upgTempTemplarGen
+	notowns templar_archives upgTempTemplarGen
 	wait 60
 	call wUpgradeDef
 	tech psionic_storm 88
-	tech_jump 13 AtLeast_Wait 19 1 blank
-	multirun ioStorm
+	tech_j 13 AtL_W 19 1 blank
+	multi ioStorm
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 1 templar_mana 88
-	upgrade_jump 13 AtLeast_Wait 40 1 blank
+	upg_queue 1 templar_mana 88
+	upg_j 13 AtL_W 40 1 blank
 	wait 240
 	call wUpgradeDef
 	extupgrade 1 ascendancy 88
@@ -1012,12 +1010,12 @@ script_id PMCx
 	goto wUpgrade
 	
 	:upgTempTemplarGateCheck
-	var exactly|jump upgTempTemplar 1 stp 13
+	var Ex|jump upgTempTemplar 1 stp 13
 	var set upgTempTemplar 1 13
 	
 	:upgTempTemplarGate
 	wait 12
-	notowns_jump templar_archives upgTempTemplarGate
+	notowns templar_archives upgTempTemplarGate
 	wait 60
 	call wUpgradeDef
 	extupgrade 1 ephemeral_blades 88
@@ -1025,78 +1023,78 @@ script_id PMCx
 	wait_upgrades
 	call wUpgradeDef
 	tech psionic_storm 88
-	tech_jump 13 AtLeast_Wait 19 1 blank
-	multirun ioStorm
+	tech_j 13 AtL_W 19 1 blank
+	multi ioStorm
 	wait 240
 	call wUpgradeDef
 	extupgrade 1 ascendancy 88
 	wait 4500
 	wait_upgrades
 	call wUpgradeDef
-	upgrade_queue 1 templar_mana 88
-	upgrade_jump 13 AtLeast_Wait 40 1 blank
+	upg_queue 1 templar_mana 88
+	upg_j 13 AtL_W 40 1 blank
 	wait 240
 	call wUpgradeDef
 	extupgrade 1 astral_aegis 88
 	goto wUpgrade
 	
 	:upgTempDArchonCheck
-	var exactly|jump upgTempDArchon 1 stp 13
+	var Ex|jump upgTempDArchon 1 stp 13
 	var set upgTempDArchon 1 13
 	
 	:upgTempDArchon
 	wait 12
-	notowns_jump templar_archives upgTempDArchon
+	notowns templar_archives upgTempDArchon
 	wait 240
 	call wUpgradeDef
 	tech maelstrom 88
-	tech_jump 13 AtLeast_Wait 31 1 blank
-	multirun ioMaelstrom
+	tech_j 13 AtL_W 31 1 blank
+	multi ioMaelstrom
 	wait 240
 	call wUpgradeDef
 	extupgrade 1 malediction 88
 	wait 4500
 	wait_upgrades
 	call wUpgradeDef
-	upgrade_queue 1 dark_archon_mana 88
+	upg_queue 1 dark_archon_mana 88
 	goto wUpgrade
 	
 	:upgObsCheck
-	var exactly|jump upgObs 1 stp 13
+	var Ex|jump upgObs 1 stp 13
 	var set upgObs 1 13
 	
 	:upgObs
 	wait 12
-	notowns_jump observatory upgObs
+	notowns observatory upgObs
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 1 observer_sight 88
-	upgrade_jump 13 AtLeast_Wait 38 1 blank
+	upg_queue 1 observer_sight 88
+	upg_j 13 AtL_W 38 1 blank
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 1 observer_speed 88
+	upg_queue 1 observer_speed 88
 	goto wUpgrade
 	
 	:upgArbCheck
-	var exactly|jump upgArb 1 stp 13
+	var Ex|jump upgArb 1 stp 13
 	var set upgArb 1 13
 	
 	:upgArb
 	wait 12
-	notowns_jump arbiter_tribunal upgArb
+	notowns arbiter_tribunal upgArb
 	wait 240
 	call wUpgradeDef
 	tech stasis_field 88
-	tech_jump 13 AtLeast_Wait 22 1 blank
-	multirun ioStasis
+	tech_j 13 AtL_W 22 1 blank
+	multi ioStasis
 	wait 240
 	call wUpgradeDef
 	tech recall 88
-	tech_jump 13 AtLeast_Wait 21 1 blank
-	multirun ioRecall
+	tech_j 13 AtL_W 21 1 blank
+	multi ioRecall
 	wait 240
 	call wUpgradeDef
-	upgrade_queue 1 arbiter_mana 88
+	upg_queue 1 arbiter_mana 88
 	
 	:wUpgrade
 	wait 480
@@ -1104,13 +1102,13 @@ script_id PMCx
 	stop
 	
 	:ioHallucinate
-	idle_orders 148 0 1 high_templar 960 t_siege_mode|paladin|wyvern|battlecruiser|archon|reaver|carrier|starcaller|lurker|guardian|devourer|ultralisk|k_screamer 90 RandomRate(60 240)|InCombat|Own|Allied|NotEnemies
-	idle_orders 148 0 1 high_templar 960 ghost|siege_tank|goliath|wraith|zealot|dragoon|hierophant|dark_templar|scout|hydralisk|basilisk|mutalisk|gorgoleth 80 RandomRate(60 240)|InCombat|Own|NotEnemies
+	i_orders 148 0 1 high_templar 960 t_siege_mode|paladin|wyvern|battlecruiser|archon|reaver|carrier|starcaller|lurker|guardian|devourer|ultralisk|k_screamer 90 RandomRate(60 240)|InCombat|Own|Allied|NotEnemies
+	i_orders 148 0 1 high_templar 960 ghost|siege_tank|goliath|wraith|zealot|dragoon|hierophant|dark_templar|scout|hydralisk|basilisk|mutalisk|gorgoleth 80 RandomRate(60 240)|InCombat|Own|NotEnemies
 	stop
 	
 	:ioStorm
-	idle_orders 142 0 1 high_templar 1440 Group_Men 75 RandomRate(24 120)|Count(AtLeast 3 96 14)|InCombat
-	idle_orders 142 0 1 high_templar 1440 Group_Men 75 Deathrattle|Targeting(OtherUnit)
+	i_orders 142 0 1 high_templar 1440 Group_Men 75 RandomRate(24 120)|Count(AtL 3 96 14)|InCombat
+	i_orders 142 0 1 high_templar 1440 Group_Men 75 Deathrattle|Targeting(OtherUnit)
 	stop
 	
 	:ioPhaseLink
@@ -1126,35 +1124,35 @@ script_id PMCx
 	stop
 	
 	:ioMindControl
-	idle_orders 182 0 1 dark_archon 1440 ghost|savant|t_siege_mode|paladin|wyvern|battlecruiser|high_templar|dark_archon|reaver|carrier|starcaller|guardian|devourer|defiler|ultralisk|k_screamer 90 RandomRate(24 120)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)
-	idle_orders 182 0 1 dark_archon 1440 medic|shaman|siege_tank|goliath|wraith|dragoon|hierophant|archon|dark_templar|basilisk|lurker|mutalisk|queen 80 RandomRate(24 120)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)
-	idle_orders 182 0 1 dark_archon 1440 Group_Men 90 Deathrattle|Targeting(OtherUnit)
+	i_orders 182 0 1 dark_archon 1440 ghost|savant|t_siege_mode|paladin|wyvern|battlecruiser|high_templar|dark_archon|reaver|carrier|starcaller|guardian|devourer|defiler|ultralisk|k_screamer 90 RandomRate(24 120)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)
+	i_orders 182 0 1 dark_archon 1440 medic|shaman|siege_tank|goliath|wraith|dragoon|hierophant|archon|dark_templar|basilisk|lurker|mutalisk|queen 80 RandomRate(24 120)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)
+	i_orders 182 0 1 dark_archon 1440 Group_Men 90 Deathrattle|Targeting(OtherUnit)
 	stop
 	
 	:ioMaelstrom
-	idle_orders 186 0 1 dark_archon 1440 Group_Men 80 RandomRate(24 120)|Count(AtLeast 3 128 14)|UnitFlags(Organic)|InCombat|Targeting(Own|Ally|OtherUnit)
+	i_orders 186 0 1 dark_archon 1440 Group_Men 80 RandomRate(24 120)|Count(AtL 3 128 14)|UnitFlags(Organic)|InCombat|Targeting(Own|Ally|OtherUnit)
 	stop
 	
 	:ioStasis
-	idle_orders 147 0 1 arbiter 1080 Group_Men 80 RandomRate(60 240)|Count(AtLeast 4 128 14)|InCombat|Targeting(Own|Ally|OtherUnit)
-	idle_orders 147 0 1 arbiter 1080 wyvern|battlecruiser|reaver|carrier|starcaller|guardian|devourer|ultralisk|k_screamer 80 RandomRate(120 240)|Health(GreaterThanPercent 40)
+	i_orders 147 0 1 arbiter 1080 Group_Men 80 RandomRate(60 240)|Count(AtL 4 128 14)|InCombat|Targeting(Own|Ally|OtherUnit)
+	i_orders 147 0 1 arbiter 1080 wyvern|battlecruiser|reaver|carrier|starcaller|guardian|devourer|ultralisk|k_screamer 80 RandomRate(120 240)|Health(GreaterThanPercent 40)
 	stop
 	
 	:ioRecall
-	idle_orders 137 0 1 arbiter 9999 Group_Men 80 Self(InCombat|Health(LessThanPercent 30)|TileFlags(Walkable))|Count(AtLeast 2 128 13)|Own|Allied|NotEnemies|Order(2)
+	i_orders 137 0 1 arbiter 9999 Group_Men 80 Self(InCombat|Health(LessThanPercent 30)|TileFlags(Walkable))|Count(AtL 2 128 13)|Own|Allied|NotEnemies|Order(2)
 	stop
 	
 	:pTown
-	multirun mainWorker
-	multirun mainTransport
-	build 1 nexus 90
-	wait_build 1 nexus
-	multirun buildOrder
-	bring_jump 13 AtLeast_Wait 1 forge Loc.63 blank
+	multi mainWorker
+	multi mainTransport
+	bld 1 nexus 90
+	w_bld 1 nexus
+	multi buildOrder
+	bring 13 AtL_W 1 forge Loc.63 blank
 	wait 120
-	multirun addCannon
-	bring_jump 13 AtLeast_Wait 1 gateway Loc.63 blank
-	multirun addBattery
+	multi addCannon
+	bring 13 AtL_W 1 gateway Loc.63 blank
+	multi addBattery
 	goto idle
 	
 	:mainWorkerStart
@@ -1162,54 +1160,54 @@ script_id PMCx
 	
 	:mainWorker
 	wait 12
-	bring_jump 13 AtLeast 90 probe Loc.63 mainWorker
-	var exactly|wait cutWorker 0 13
-	resarea_jump 255 AtMost 255 Ore 600 mainWorkerLowStart
-	local_jump 255 AtLeast 24 probe mainWorker
+	bring 13 AtL 90 probe Loc.63 mainWorker
+	var Ex|wait cutWorker 0 13
+	resarea 255 AtM 255 Ore 600 mainWorkerLowStart
+	local 255 AtL 24 probe mainWorker
 	max_workers 28
-	resources 13 AtLeast_Wait Ore 50 blank
+	res 13 AtL_W Ore 50 blank
 	call wWorkerDef
 	queue 1 probe nexus 255 Local Loc.63 80
 	wait 300
 	goto mainWorker
 	
 	:mainWorkerLowStart
-	var subtract miningCount 1 13
+	var sub miningCount 1 13
 	
 	:mainWorkerLow
 	wait 12
-	resarea_jump 255 AtLeast 255 Ore 6000 mainWorkerStart
+	resarea 255 AtL 255 Ore 6000 mainWorkerStart
 	max_workers 6
-	local_jump 255 AtLeast 6 probe mainWorkerLow
-	resources 13 AtLeast_Wait Ore 50 blank
+	local 255 AtL 6 probe mainWorkerLow
+	res 13 AtL_W Ore 50 blank
 	call wWorkerDef
 	queue 1 probe nexus 255 Local Loc.63 80
 	wait 300
 	goto mainWorkerLow
 	
 	:mainTransport
-	multirun mainTransportOn
+	multi mainTransportOn
 	
 	:mainTransportLoop
 	wait 12
-	comparison player_combat 17 13 63 False Wait Any Group_Buildings
-	bring_jump 13 Exactly 0 robotics_facility Loc.63 mainTransport
-	bring_jump 13 AtMost 7 shuttle Loc.63 mainTransport
-	resources 13 AtMost Ore 249 mainTransport
+	player_combat 17 13 63 False Wait Any Group_Buildings
+	bring 13 Ex 0 robotics_facility Loc.63 mainTransport
+	bring 13 AtM 7 shuttle Loc.63 mainTransport
+	res 13 AtM Ore 249 mainTransport
 	call wWorkerDef
 	queue 1 shuttle robotics_facility 255 Global Loc.63 75
 	wait 2440
 	goto mainTransportLoop
 	
 	:mainTransportOn
-	bring_jump 13 AtLeast_Wait 1 robotics_facility|robotics_authority|shuttle Loc.63 blank
+	bring 13 AtL_W 1 robotics_facility|robotics_authority|shuttle Loc.63 blank
 	check_transports
 	stop
 	
 	:pExpand
 	wait 12
-	bring_jump 13 AtLeast 90 probe Loc.63 pExpand
-	var exactly|wait canExpand 1 13
+	bring 13 AtL 90 probe Loc.63 pExpand
+	var Ex|wait canExpand 1 13
 	call wUpgradeDef
 	expand 9 expRandTown
 	var set wRes 1 13
@@ -1220,60 +1218,60 @@ script_id PMCx
 	
 	:expRandTown
 	call initTown
-	build 1 nexus 90
-	multirun expWorker
-	wait_buildstart 1 nexus
-	build 1 pylon 65
-	wait_build 1 pylon
-	multirun addCannon
-	wait_build 1 nexus
-	multirun expCount
-	build 2 pylon 65
-	wait_buildstart 10 probe
-	multirun addProd
+	bld 1 nexus 90
+	multi expWorker
+	w_bldstart 1 nexus
+	bld 1 pylon 65
+	w_bld 1 pylon
+	multi addCannon
+	w_bld 1 nexus
+	multi expCount
+	bld 2 pylon 65
+	w_bldstart 10 probe
+	multi addProd
 	wait 2400
-	multirun buildOrderExp
+	multi buildOrderExp
 	goto idle
 	
 	:expCount
 	wait 12
-	local_jump 255 Exactly 0 nexus expCount
+	local 255 Ex 0 nexus expCount
 	town_state 255 persist true
 	var add townCount 1 13
-	local_jump 255 Exactly_Wait 0 nexus blank
-	var subtract townCount 1 13
+	local 255 Ex_W 0 nexus blank
+	var sub townCount 1 13
 	town_state 255 persist false
 	goto expCount
 	
 	:expWorker
 	max_workers 2
-	get_oldpeons 1
-	build 1 probe 98
-	wait_buildstart 1 nexus
-	build 2 probe 98
-	wait_build 1 nexus
+	maynard 1
+	bld 1 probe 98
+	w_bldstart 1 nexus
+	bld 2 probe 98
+	w_bld 1 nexus
 	max_workers 18
-	get_oldpeons 4
+	maynard 4
 	goto expWorkerStd
 	
 	:expWorkerStd
 	wait 12
-	bring_jump 13 AtLeast 80 probe Loc.63 expWorkerStd
-	resarea_jump 255 AtMost 255 Ore 600 expWorkerLow
+	bring 13 AtL 80 probe Loc.63 expWorkerStd
+	resarea 255 AtM 255 Ore 600 expWorkerLow
 	max_workers 28
 	wait 300
-	local_jump 255 AtLeast 18 probe expWorkerStd
-	resources 13 AtLeast_Wait Ore 50 blank
+	local 255 AtL 18 probe expWorkerStd
+	res 13 AtL_W Ore 50 blank
 	call wWorkerDef
 	queue 1 probe nexus 255 Local Loc.63 80
 	goto expWorkerStd
 	
 	:expWorkerLow
-	resarea_jump 255 AtLeast 255 Ore 6000 expWorkerStd
+	resarea 255 AtL 255 Ore 6000 expWorkerStd
 	max_workers 6
 	wait 300
-	local_jump 255 AtLeast 6 probe expWorkerLow
-	resources 13 AtLeast_Wait Ore 50 blank
+	local 255 AtL 6 probe expWorkerLow
+	res 13 AtL_W Ore 50 blank
 	call wWorkerDef
 	queue 1 probe nexus 255 Local Loc.63 80
 	goto expWorkerLow
@@ -1289,55 +1287,55 @@ script_id PMCx
 	return
 	
 	:buildOrder
-	deaths 13 Exactly 1 crashed_battle buildOrderRanger
-	deaths 13 Exactly 2 crashed_battle buildOrderGate
-	deaths 13 Exactly 3 crashed_battle buildOrderSkylord
+	dth 13 Ex 1 crashed_battle buildOrderRanger
+	dth 13 Ex 2 crashed_battle buildOrderGate
+	dth 13 Ex 3 crashed_battle buildOrderSkylord
 	
 	:buildOrderGen
-	deaths 13 Exactly 1 stasis_chamber buildGenFFE
-	deaths 13 Exactly 2 stasis_chamber buildGenNFE
-	deaths 13 Exactly 3 stasis_chamber buildGen2GateRobo
+	dth 13 Ex 1 stasis_chamber buildGenFFE
+	dth 13 Ex 2 stasis_chamber buildGenNFE
+	dth 13 Ex 3 stasis_chamber buildGen2GateRobo
 	
 	:buildGenFFE
-	wait_buildstart 8 probe
-	build 1 pylon 66
-	wait_build 1 pylon
-	build 1 forge 66
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
+	bld 1 forge 66
 	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set canExpand 0 13
 	var set buildSupply 1 13
 	wait 60
 	var set cutWorker 0 13
-	build 1 photon_cannon 66
-	wait_buildstart 1 photon_cannon
-	build 1 gateway 66
-	wait_buildstart 1 gateway
-	build 1 assimilator 66
-	wait_buildstart 1 assimilator
+	bld 1 photon_cannon 66
+	w_bldstart 1 photon_cannon
+	bld 1 gateway 66
+	w_bldstart 1 gateway
+	bld 1 assimilator 66
+	w_bldstart 1 assimilator
 	var set canStatic 1 13
-	build 2 gateway 66
-	wait_build 1 gateway
-	build 1 cybernetics_core 66
-	wait_buildstart 1 cybernetics_core
-	multirun addProd
+	bld 2 gateway 66
+	w_bld 1 gateway
+	bld 1 cybernetics_core 66
+	w_bldstart 1 cybernetics_core
+	multi addProd
 	goto buildGenFin
 	
 	:buildGenNFE
-	wait_buildstart 8 probe
-	build 1 pylon 66
+	w_bldstart 8 probe
+	bld 1 pylon 66
 	wait 600
-	build 1 gateway 66
+	bld 1 gateway 66
 	wait 600
-	build 1 assimilator 66
+	bld 1 assimilator 66
 	wait 300
-	build 1 cybernetics_core 66
+	bld 1 cybernetics_core 66
 	wait 600
-	build 2 pylon 66
+	bld 2 pylon 66
 	wait 300
-	upgrade_queue 1 dragoon_range 88
+	upg_queue 1 dragoon_range 88
 	wait 600
 	var set cutWorker 1 13
 	queue 1 dragoon gateway 255 Local Loc.63 80
@@ -1345,14 +1343,14 @@ script_id PMCx
 	queue 1 dragoon gateway 255 Local Loc.63 80
 	wait 24
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set canExpand 0 13
 	wait 24
-	build 2 gateway 66
+	bld 2 gateway 66
 	wait 24
 	queue 1 dragoon gateway 255 Local Loc.63 80
 	wait 300
-	build 3 pylon 66
+	bld 3 pylon 66
 	wait 24
 	var set cutWorker 0 13
 	wait 600
@@ -1360,9 +1358,9 @@ script_id PMCx
 	wait 300
 	queue 1 dragoon gateway 255 Local Loc.63 80
 	var set cutWorker 1 13
-	build 3 gateway 66
+	bld 3 gateway 66
 	wait 24
-	build 4 pylon 66
+	bld 4 pylon 66
 	wait 24
 	queue 1 dragoon gateway 255 Local Loc.63 80
 	wait 24
@@ -1370,7 +1368,7 @@ script_id PMCx
 	wait 24
 	var set cutWorker 0 13
 	wait 600
-	build 1 robotics_facility 66
+	bld 1 robotics_facility 66
 	wait 1200
 	var set cutWorker 1 13
 	queue 1 dragoon gateway 255 Local Loc.63 80
@@ -1380,10 +1378,10 @@ script_id PMCx
 	queue 1 dragoon gateway 255 Local Loc.63 80
 	wait 24
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 3 nexus Loc.63 blank
+	bring 13 AtL_W 3 nexus Loc.63 blank
 	var set canExpand 0 13
 	var set buildSupply 1 13
-	build 1 observatory 66
+	bld 1 observatory 66
 	var set cutWorker 0 13
 	queue 1 dragoon gateway 255 Local Loc.63 80
 	wait 24
@@ -1393,55 +1391,55 @@ script_id PMCx
 	wait 24
 	var set buildGas 1 13
 	wait 24
-	build 2 forge 66
+	bld 2 forge 66
 	wait 240
-	multirun addProd
+	multi addProd
 	goto buildGenFin
 	
 	:buildGen2GateRobo
-	wait_buildstart 8 probe
-	build 1 pylon 66
-	wait_build 1 pylon
-	build 1 gateway 66
-	wait_buildstart 1 gateway
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
+	bld 1 gateway 66
+	w_bldstart 1 gateway
 	wait 300
-	build 2 gateway 66
-	wait_buildstart 2 gateway
-	build 1 assimilator 66
-	wait_buildstart 1 assimilator
-	build 2 pylon 66
-	wait_build 1 gateway
+	bld 2 gateway 66
+	w_bldstart 2 gateway
+	bld 1 assimilator 66
+	w_bldstart 1 assimilator
+	bld 2 pylon 66
+	w_bld 1 gateway
 	queue 1 zealot gateway 255 Local Loc.63 80
 	var set buildSupply 1 13
-	wait_build 1 assimilator
-	build 1 cybernetics_core 66
-	wait_build 2 gateway
+	w_bld 1 assimilator
+	bld 1 cybernetics_core 66
+	w_bld 2 gateway
 	queue 1 zealot gateway 255 Local Loc.63 80
-	wait_build 1 cybernetics_core
-	build 1 robotics_facility 66
-	wait_buildstart 1 robotics_authority
-	upgrade_queue 1 dragoon_range 88
-	build 1 forge 66
-	multirun addProd
+	w_bld 1 cybernetics_core
+	bld 1 robotics_facility 66
+	w_bldstart 1 robotics_authority
+	upg_queue 1 dragoon_range 88
+	bld 1 forge 66
+	multi addProd
 	goto buildGenFin
 	
 	:buildGenFin
 	call buildBool
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
-	bring_jump 13 AtLeast_Wait 2 gateway Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 gateway Loc.63 blank
 	call wRoboFac
-	bring_jump 13 AtLeast_Wait 1 robotics_facility Loc.63 blank
+	bring 13 AtL_W 1 robotics_facility Loc.63 blank
 	call wCit
-	bring_jump 13 AtLeast_Wait 1 citadel_of_adun Loc.63 blank
+	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
 	call wForge
 	call wRoboBay
-	bring_jump 13 AtLeast_Wait 1 robotics_support_bay Loc.63 blank
+	bring 13 AtL_W 1 robotics_support_bay Loc.63 blank
 	call wTemp
-	bring_jump 13 AtLeast_Wait 1 templar_archives Loc.63 blank
+	bring 13 AtL_W 1 templar_archives Loc.63 blank
 	call wStargate
-	bring_jump 13 AtLeast_Wait 1 stargate Loc.63 blank
+	bring 13 AtL_W 1 stargate Loc.63 blank
 	call wObs
-	bring_jump 13 AtLeast_Wait 1 observatory Loc.63 blank
+	bring 13 AtL_W 1 observatory Loc.63 blank
 	call wFleet
 	call wArb
 	wait 240
@@ -1450,447 +1448,449 @@ script_id PMCx
 	stop
 	
 	:buildOrderRanger
-	deaths 13 Exactly 1 stasis_chamber buildRanger2GateGoon
-	deaths 13 Exactly 2 stasis_chamber buildRanger1GateRobo
-	deaths 13 Exactly 3 stasis_chamber buildRangerFFEReaver
-	deaths 13 Exactly 4 stasis_chamber buildRanger1GateExpo
+	dth 13 Ex 1 stasis_chamber buildRanger2GateGoon
+	dth 13 Ex 2 stasis_chamber buildRanger1GateRobo
+	dth 13 Ex 3 stasis_chamber buildRangerFFEReaver
+	dth 13 Ex 4 stasis_chamber buildRanger1GateExpo
 	
 	:buildRanger2GateGoon
-	wait_buildstart 8 probe
-	#max_build 255 pylon 1
-	build 1 pylon 66
-	wait_build 1 pylon
-	build 1 gateway 66
-	wait_buildstart 1 gateway
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
+	bld 1 gateway 66
+	w_bldstart 1 gateway
 	wait 300
-	build 1 assimilator 66
-	wait_buildstart 1 assimilator
-	build 2 gateway 66
-	wait_build 1 gateway
+	bld 1 assimilator 66
+	w_bldstart 1 assimilator
+	bld 2 gateway 66
+	w_bld 1 gateway
 	var set buildSupply 1 13
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 24
-	build 1 cybernetics_core 66
-	wait_build 2 gateway
+	bld 1 cybernetics_core 66
+	w_bld 2 gateway
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 24
-	build 1 forge 66
-	wait_build 1 cybernetics_core
+	bld 1 forge 66
+	w_bld 1 cybernetics_core
 	queue 2 dragoon gateway 255 Local Loc.63 80
-	wait_buildstart 1 forge
-	upgrade_queue 1 dragoon_range 88
-	multirun addProd
+	w_bldstart 1 forge
+	upg_queue 1 dragoon_range 88
+	multi addProd
 	goto buildRangerFin
 	
 	:buildRanger1GateRobo
-	wait_buildstart 8 probe
-	#max_build 255 pylon 1
-	build 1 pylon 66
-	wait_build 1 pylon
-	build 1 gateway 66
-	wait_buildstart 1 gateway
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
+	bld 1 gateway 66
+	w_bldstart 1 gateway
 	wait 300
-	build 1 assimilator 66
-	wait_build 1 gateway
+	bld 1 assimilator 66
+	w_bld 1 gateway
 	var set buildSupply 1 13
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 60
-	build 1 cybernetics_core 66
-	wait_buildstart 1 cybernetics_core
-	build 2 gateway 66
-	wait_build 1 cybernetics_core
+	bld 1 cybernetics_core 66
+	w_bldstart 1 cybernetics_core
+	bld 2 gateway 66
+	w_bld 1 cybernetics_core
 	queue 1 dragoon gateway 255 Local Loc.63 80
 	wait 60
-	build 1 robotics_facility 66
-	wait_buildstart 1 robotics_facility
-	build 1 forge 66
-	wait_buildstart 1 forge
-	multirun addProd
+	bld 1 robotics_facility 66
+	w_bldstart 1 robotics_facility
+	bld 1 forge 66
+	w_bldstart 1 forge
+	multi addProd
 	goto buildRangerFin
 	
 	:buildRangerFFEReaver
-	wait_buildstart 8 probe
-	#max_build 255 pylon 1
-	build 1 pylon 66
-	wait_build 1 pylon
-	build 1 forge 66
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
+	bld 1 forge 66
 	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set canExpand 0 13
 	var set cutWorker 0 13
 	var set buildSupply 1 13
 	wait 60
-	build 1 gateway 66
-	wait_buildstart 1 gateway
-	build 1 assimilator 66
-	wait_buildstart 1 assimilator
-	build 1 photon_cannon 66
-	wait_build 1 gateway
+	bld 1 gateway 66
+	w_bldstart 1 gateway
+	bld 1 assimilator 66
+	w_bldstart 1 assimilator
+	bld 1 photon_cannon 66
+	w_bld 1 gateway
 	var set canStatic 1 13
-	build 1 cybernetics_core 66
-	wait_buildstart 1 cybernetics_core
-	build 2 gateway 66
-	wait_build 1 cybernetics_core
-	build 1 robotics_facility 66
-	wait_buildstart 1 robotics_facility
-	upgrade_queue 1 dragoon_range 88
-	multirun addProd
+	bld 1 cybernetics_core 66
+	w_bldstart 1 cybernetics_core
+	bld 2 gateway 66
+	w_bld 1 cybernetics_core
+	bld 1 robotics_facility 66
+	w_bldstart 1 robotics_facility
+	upg_queue 1 dragoon_range 88
+	multi addProd
 	goto buildRangerFin
 	
 	:buildRanger1GateExpo
 	wait 600
-	build 1 pylon 66
+	bld 1 pylon 66
 	wait 600
-	build 1 gateway 66
+	bld 1 gateway 66
 	wait 900
 	queue 1 zealot gateway 255 Global Loc.63 80
 	wait 24
-	build 2 pylon 66
+	bld 2 pylon 66
 	wait 300
 	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 24
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	wait 300
 	queue 1 zealot gateway 255 Global Loc.63 80
-	build 3 pylon 66
-	wait 300
-	build 1 cybernetics_core 66
 	wait 24
-	build 1 assimilator 66
+	bld 3 pylon 66
+	wait 300
+	bld 1 cybernetics_core 66
+	wait 24
+	bld 1 assimilator 66
 	wait 24
 	queue 1 zealot gateway 255 Global Loc.63 80
 	wait 300
-	build 4 pylon 66
+	bld 4 pylon 66
 	wait 24
-	build 3 gateway 66
-	wait_buildstart 3 gateway
+	bld 3 gateway 66
+	wait 240
 	var set canAttack 1 13
-	wait 300
-	upgrade_queue 1 dragoon_range 88
 	wait 600
-	queue 1 dragoon gateway 255 Global Loc.63 80
+	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 24
+	upg_queue 1 dragoon_range 88
 	wait 24
 	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
 	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	build 5 pylon 66
+	bld 5 pylon 66
 	wait 600
 	var set buildGas 1 13
-	build 6 pylon 66
 	wait 24
-	queue 1 zealot gateway 255 Global Loc.63 80
+	bld 6 pylon 66
 	wait 24
-	queue 1 zealot gateway 255 Global Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	queue 1 zealot gateway 255 Global Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	build 7 pylon 66
+	queue 1 dragoon gateway 255 Global Loc.63 80
+	wait 24
+	bld 1 forge 66
 	wait 600
-	build 1 forge 66
-	wait 24
-	build 1 citadel_of_adun 66
+	bld 1 citadel_of_adun 66
 	wait 600
-	build 8 pylon 66
-	upgrade_queue 1 p_ground_weapon 88
+	bld 7 pylon 66
 	wait 24
-	build 1 warp_anchor 66
+	upg_queue 1 p_ground_weapon 88
+	wait 24
+	bld 4 gateway 66
 	wait 600
-	build 8 pylon 66
-	wait 24
 	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 1200
+	bld 1 templar_archives 66
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring 13 AtL_W 3 nexus Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	queue 1 zealot gateway 255 Global Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	multirun addProd
+	queue 1 dragoon gateway 255 Global Loc.63 80
+	wait 24
+	queue 1 dragoon gateway 255 Global Loc.63 80
+	wait 600
+	multi addProd
 	
 	:buildRangerFin
 	call buildBool
 	call wGateway
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
-	bring_jump 13 AtLeast_Wait 2 gateway Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 gateway Loc.63 blank
 	call wRoboFac
-	bring_jump 13 AtLeast_Wait 1 robotics_facility Loc.63 blank
+	bring 13 AtL_W 1 robotics_facility Loc.63 blank
 	call wStargate
-	bring_jump 13 AtLeast_Wait 1 stargate Loc.63 blank
+	bring 13 AtL_W 1 stargate Loc.63 blank
 	call wRoboFac
-	bring_jump 13 AtLeast_Wait 1 robotics_facility Loc.63 blank
+	bring 13 AtL_W 1 robotics_facility Loc.63 blank
 	call wCit
 	wait 240
 	call wForge
-	bring_jump 13 AtLeast_Wait 1 citadel_of_adun Loc.63 blank
+	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
 	call wRoboBay
-	bring_jump 13 AtLeast_Wait 1 robotics_support_bay Loc.63 blank
+	bring 13 AtL_W 1 robotics_support_bay Loc.63 blank
 	call wFleet
 	wait 240
 	call wCyb
 	call wObs
-	bring_jump 13 AtLeast_Wait 1 fleet_beacon Loc.63 blank
+	bring 13 AtL_W 1 fleet_beacon Loc.63 blank
 	call wTemp
-	bring_jump 13 AtLeast_Wait 1 templar_archives Loc.63 blank
+	bring 13 AtL_W 1 templar_archives Loc.63 blank
 	call wArb
 	call wForge
 	stop
 	
 	:buildOrderGate
-	deaths 13 Exactly 1 stasis_chamber buildGate4Gate
-	deaths 13 Exactly 2 stasis_chamber buildGate3GateGoon
-	deaths 13 Exactly 3 stasis_chamber buildGate2GateDT
+	dth 13 Ex 1 stasis_chamber buildGate4Gate
+	dth 13 Ex 2 stasis_chamber buildGate3GateGoon
+	dth 13 Ex 3 stasis_chamber buildGate2GateDT
 	
 	:buildGate4Gate
-	wait_buildstart 8 probe
-	#max_build 255 pylon 1
-	build 1 pylon 66
-	wait_build 1 pylon
-	build 1 gateway 66
-	wait_buildstart 1 gateway
-	build 2 gateway 66
-	wait_buildstart 2 gateway
-	build 3 gateway 66
-	wait_buildstart 3 gateway
-	#max_build 255 pylon 2
-	build 2 pylon 66
-	wait_buildstart 2 pylon
-	build 1 assimilator 66
-	wait_build 1 gateway
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
+	bld 1 gateway 66
+	w_bldstart 1 gateway
+	bld 2 gateway 66
+	w_bldstart 2 gateway
+	bld 3 gateway 66
+	w_bldstart 3 gateway
+	bld 2 pylon 66
+	w_bldstart 2 pylon
+	bld 1 assimilator 66
+	w_bld 1 gateway
 	var set buildSupply 1 13
-	build 4 gateway 66
+	bld 4 gateway 66
 	queue 1 zealot gateway 255 Local Loc.63 80
-	wait_buildstart 4 gateway
+	w_bldstart 4 gateway
 	var set canAttack 1 13
 	queue 4 zealot gateway 255 Local Loc.63 80
 	wait 240
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set canExpand 0 13
 	wait 60
 	var set cutWorker 0 13
-	build 1 cybernetics_core 66
-	wait_buildstart 1 cybernetics_core
-	build 1 forge 66
-	wait_build 3 gateway
+	bld 1 cybernetics_core 66
+	w_bldstart 1 cybernetics_core
+	bld 1 forge 66
+	w_bld 3 gateway
 	queue 4 zealot gateway 255 Local Loc.63 80
-	wait_build 1 cybernetics_core
-	build 1 citadel_of_adun 66
-	wait_buildstart 1 citadel_of_adun
-	upgrade_queue 1 dragoon_range 88
-	wait_build 1 forge
-	upgrade_queue 1 p_ground_weapon 88
+	w_bld 1 cybernetics_core
+	bld 1 citadel_of_adun 66
+	w_bldstart 1 citadel_of_adun
+	upg_queue 1 dragoon_range 88
+	w_bld 1 forge
+	upg_queue 1 p_ground_weapon 88
 	wait 24
 	var set canStatic 1 13
-	wait_buildstart 1 citadel_of_adun
-	multirun addProd
+	w_bldstart 1 citadel_of_adun
+	multi addProd
 	goto buildGateFin
 	
 	:buildGate3GateGoon
-	wait_buildstart 8 probe
-	#max_build 255 pylon 1
-	build 1 pylon 66
-	wait_build 1 pylon
-	build 1 gateway 66
-	wait_buildstart 1 gateway
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
+	bld 1 gateway 66
+	w_bldstart 1 gateway
 	wait 300
-	build 2 gateway 66
-	wait_buildstart 2 gateway
-	build 1 assimilator 66
-	wait_build 1 gateway
+	bld 2 gateway 66
+	w_bldstart 2 gateway
+	bld 1 assimilator 66
+	w_bld 1 gateway
 	var set buildSupply 1 13
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 60
-	build 1 cybernetics_core 66
-	wait_buildstart 1 cybernetics_core
-	build 3 gateway 66
+	bld 1 cybernetics_core 66
+	w_bldstart 1 cybernetics_core
+	bld 3 gateway 66
 	queue 1 zealot gateway 255 Local Loc.63 80
-	wait_build 1 cybernetics_core
+	w_bld 1 cybernetics_core
 	queue 1 dragoon gateway 255 Local Loc.63 80
-	wait_build 3 gateway
+	w_bld 3 gateway
 	queue 2 dragoon gateway 255 Local Loc.63 80
 	wait 60
-	upgrade_queue 1 dragoon_range 88
+	upg_queue 1 dragoon_range 88
 	wait 240
-	build 1 citadel_of_adun 66
+	bld 1 citadel_of_adun 66
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set cutWorker 0 13
 	var set canExpand 0 13
-	build 1 forge 66
-	multirun addProd
+	bld 1 forge 66
+	multi addProd
 	goto buildGateFin
 	
 	:buildGate2GateDT
-	wait_buildstart 8 probe
-	#max_build 255 pylon 1
-	build 1 pylon 66
-	build 1 gateway 66
-	wait_buildstart 1 gateway
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	bld 1 gateway 66
+	w_bldstart 1 gateway
 	wait 300
-	build 2 gateway 66
-	wait_buildstart 2 gateway
-	build 1 assimilator 66
-	wait_build 1 gateway
+	bld 2 gateway 66
+	w_bldstart 2 gateway
+	bld 1 assimilator 66
+	w_bld 1 gateway
 	var set buildSupply 1 13
-	build 1 cybernetics_core 66
-	wait_build 2 gateway
+	bld 1 cybernetics_core 66
+	w_bld 2 gateway
 	queue 2 zealot gateway 255 Local Loc.63 80
-	wait_build 1 cybernetics_core
-	build 1 citadel_of_adun 66
-	wait_buildstart 1 citadel_of_adun
+	w_bld 1 cybernetics_core
+	bld 1 citadel_of_adun 66
+	w_bldstart 1 citadel_of_adun
 	queue 2 zealot gateway 255 Local Loc.63 80
-	wait_build 1 citadel_of_adun
-	build 1 templar_archives 66
-	wait_buildstart 1 templar_archives
+	w_bld 1 citadel_of_adun
+	bld 1 templar_archives 66
+	w_bldstart 1 templar_archives
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set cutWorker 0 13
 	var set canExpand 0 13
-	upgrade_queue 1 zealot_speed 88
+	upg_queue 1 zealot_speed 88
 	wait 240
-	build 1 forge 66
-	wait_build 1 templar_archives
+	bld 1 forge 66
+	w_bld 1 templar_archives
 	queue 2 dark_templar gateway 255 Local Loc.63 80
-	multirun addProd
+	multi addProd
 	
 	:buildGateFin
 	call buildBool
-	bring_jump 13 AtLeast_Wait 1 citadel_of_adun Loc.63 blank
+	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
 	call wRoboFac
-	bring_jump 13 AtLeast_Wait 1 robotics_facility Loc.63 blank
+	bring 13 AtL_W 1 robotics_facility Loc.63 blank
 	call wTemp
-	bring_jump 13 AtLeast_Wait 1 templar_archives Loc.63 blank
+	bring 13 AtL_W 1 templar_archives Loc.63 blank
 	call wObs
-	bring_jump 13 AtLeast_Wait 1 observatory Loc.63 blank
+	bring 13 AtL_W 1 observatory Loc.63 blank
 	call wGateway
 	wait 240
 	call wForge
 	wait 240
 	call wStargate
-	bring_jump 13 AtLeast_Wait 1 stargate Loc.63 blank
+	bring 13 AtL_W 1 stargate Loc.63 blank
 	call wRoboBay
-	bring_jump 13 AtLeast_Wait 1 robotics_support_bay Loc.63 blank
+	bring 13 AtL_W 1 robotics_support_bay Loc.63 blank
 	call wArb
-	bring_jump 13 AtLeast_Wait 1 arbiter_tribunal Loc.63 blank
+	bring 13 AtL_W 1 arbiter_tribunal Loc.63 blank
 	call wFleet
 	call wCyb
 	stop
 	
 	:buildOrderSkylord
-	deaths 13 Exactly 1 stasis_chamber buildSkylordFFECorsair
-	deaths 13 Exactly 2 stasis_chamber buildSkylordDon
-	deaths 13 Exactly 3 stasis_chamber buildSkylord2GateScout
+	dth 13 Ex 1 stasis_chamber buildSkylordFFECorsair
+	dth 13 Ex 2 stasis_chamber buildSkylordDon
+	dth 13 Ex 3 stasis_chamber buildSkylord2GateScout
 	
 	:buildSkylordFFECorsair
-	wait_buildstart 8 probe
-	#max_build 255 pylon 1
-	build 1 pylon 66
-	wait_build 1 pylon
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
 	wait 300
-	build 1 forge 66
-	wait_buildstart 1 forge
+	bld 1 forge 66
+	w_bldstart 1 forge
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set canExpand 0 13
 	wait 60
-	build 1 gateway 66
-	wait_buildstart 1 gateway
-	build 1 assimilator 66
+	bld 1 gateway 66
+	w_bldstart 1 gateway
+	bld 1 assimilator 66
 	var set buildSupply 1 13
 	var set cutWorker 0 13
-	wait_build 1 gateway
-	build 1 cybernetics_core 66
-	multirun addProd
-	wait_build 1 cybernetics_core
-	build 1 stargate 66
+	w_bld 1 gateway
+	bld 1 cybernetics_core 66
+	multi addProd
+	w_bld 1 cybernetics_core
+	bld 1 stargate 66
 	wait 24
 	var set canStatic 1 13
-	wait_buildstart 1 stargate
-	upgrade_queue 1 p_air_weapon 88
-	wait_build 1 stargate
+	w_bldstart 1 stargate
+	upg_queue 1 p_air_weapon 88
+	w_bld 1 stargate
 	queue 1 corsair stargate 255 Local Loc.63 80
 	goto buildSkylordFin
 	
 	:buildSkylordDon
-	wait_buildstart 8 probe
-	#max_build 255 pylon 1
-	build 1 pylon 66
-	wait_build 1 pylon
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
 	wait 300
-	build 1 gateway 66
-	wait_buildstart 1 gateway
+	bld 1 gateway 66
+	w_bldstart 1 gateway
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set cutWorker 0 13
 	var set canExpand 0 13
-	build 1 forge 66
-	wait_buildstart 1 forge
+	bld 1 forge 66
+	w_bldstart 1 forge
 	var set buildSupply 1 13
-	build 1 assimilator 66
-	wait_build 1 gateway
+	bld 1 assimilator 66
+	w_bld 1 gateway
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 60
-	build 1 cybernetics_core 66
-	wait_build 1 forge
+	bld 1 cybernetics_core 66
+	w_bld 1 forge
 	var set canStatic 1 13
-	wait_build 1 cybernetics_core
-	build 1 stargate 66
-	wait_buildstart 1 stargate
-	build 2 stargate 66
-	wait_buildstart 2 stargate
-	upgrade_queue 1 p_air_weapon 88
-	wait_build 1 stargate
-	build 1 fleet_beacon 66
-	wait_buildstart 1 fleet_beacon
-	multirun addProd
-	wait_build 1 fleet_beacon
+	w_bld 1 cybernetics_core
+	bld 1 stargate 66
+	w_bldstart 1 stargate
+	bld 2 stargate 66
+	w_bldstart 2 stargate
+	upg_queue 1 p_air_weapon 88
+	w_bld 1 stargate
+	bld 1 fleet_beacon 66
+	w_bldstart 1 fleet_beacon
+	multi addProd
+	w_bld 1 fleet_beacon
 	queue 2 carrier stargate 255 Local Loc.63 80
-	upgrade_queue 1 carrier_capacity 88
+	upg_queue 1 carrier_capacity 88
 	goto buildSkylordFin
 	
 	:buildSkylord2GateScout
-	wait_buildstart 8 probe
-	#max_build 255 pylon 1
-	build 1 pylon 66
-	wait_build 1 pylon
-	build 1 gateway 66
-	wait_buildstart 1 gateway
-	build 1 assimilator 66
-	wait_buildstart 1 assimilator
-	build 2 gateway 66
-	wait_build 1 gateway
+	w_bldstart 8 probe
+	bld 1 pylon 66
+	w_bld 1 pylon
+	bld 1 gateway 66
+	w_bldstart 1 gateway
+	bld 1 assimilator 66
+	w_bldstart 1 assimilator
+	bld 2 gateway 66
+	w_bld 1 gateway
 	var set buildSupply 1 13
-	build 1 cybernetics_core 66
-	wait_buildstart 1 cybernetics_core
+	bld 1 cybernetics_core 66
+	w_bldstart 1 cybernetics_core
 	queue 1 zealot gateway 255 Local Loc.63 80
-	wait_build 1 cybernetics_core
-	build 1 stargate 66
-	wait_buildstart 1 stargate
-	upgrade_queue 1 p_air_weapon 88
+	w_bld 1 cybernetics_core
+	bld 1 stargate 66
+	w_bldstart 1 stargate
+	upg_queue 1 p_air_weapon 88
 	queue 2 zealot gateway 255 Local Loc.63 80
-	wait_build 1 stargate
+	w_bld 1 stargate
 	queue 1 scout stargate 255 Local Loc.63 80
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring_jump 13 AtLeast_Wait 2 nexus Loc.63 blank
+	bring 13 AtL_W 2 nexus Loc.63 blank
 	var set cutWorker 0 13
 	var set canExpand 0 13
-	build 1 forge 66
-	wait_buildstart 1 forge
-	multirun addProd
-	build 1 citadel_of_adun 88
+	bld 1 forge 66
+	w_bldstart 1 forge
+	multi addProd
+	bld 1 citadel_of_adun 88
 	wait 240
 	
 	:buildSkylordFin
 	call buildBool
-	bring_jump 13 AtLeast_Wait 1 stargate Loc.63 blank
+	bring 13 AtL_W 1 stargate Loc.63 blank
 	call wStargate
 	wait 240
 	call wGateway
@@ -1898,730 +1898,730 @@ script_id PMCx
 	call wForge
 	wait 360
 	call wCit
-	bring_jump 13 AtLeast_Wait 1 citadel_of_adun Loc.63 blank
+	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
 	call wFleet
 	wait 240
 	call wCyb
-	bring_jump 13 AtLeast_Wait 1 fleet_beacon Loc.63 blank
+	bring 13 AtL_W 1 fleet_beacon Loc.63 blank
 	call wRoboFac
 	wait 240
 	call wTemp
-	bring_jump 13 AtLeast_Wait 1 robotics_facility Loc.63 blank
+	bring 13 AtL_W 1 robotics_facility Loc.63 blank
 	call wObs
-	bring_jump 13 AtLeast_Wait 1 templar_archives Loc.63 blank
+	bring 13 AtL_W 1 templar_archives Loc.63 blank
 	call wRoboBay
 	call wArb
 	call wForge
 	stop
 	
 	:buildOrderExp
-	bring_jump 13 AtLeast_Wait 1 gateway|principality|warp_anchor Loc.63 blank
+	bring 13 AtL_W 1 gateway|principality|warp_anchor Loc.63 blank
 	call wCyb
-	bring_jump 13 AtLeast_Wait 1 cybernetics_core Loc.63 blank
+	bring 13 AtL_W 1 cybernetics_core Loc.63 blank
 	call wCit
-	bring_jump 13 AtLeast_Wait 1 robotics_facility|robotics_authority Loc.63 blank
+	bring 13 AtL_W 1 robotics_facility|robotics_authority Loc.63 blank
 	call wRoboBay
 	wait 600
 	call wObs
-	bring_jump 13 AtLeast_Wait 1 citadel_of_adun Loc.63 blank
+	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
 	call wTemp
-	bring_jump 13 AtLeast_Wait 1 stargate|argosy|starfield Loc.63 blank
+	bring 13 AtL_W 1 stargate|argosy|starfield Loc.63 blank
 	call wFleet
-	bring_jump 13 AtLeast_Wait 1 templar_archives Loc.63 blank
+	bring 13 AtL_W 1 templar_archives Loc.63 blank
 	call wArb
 	stop
 	
 	:wAss
 	wait 12
-	resarea_jump 255 Exactly 255 Gas 0 blankReturn
-	resources 13 AtMost Ore 99 wAss
-	build 1 assimilator 65
+	resarea 255 Ex 255 Gas 0 blankReturn
+	res 13 AtM Ore 99 wAss
+	bld 1 assimilator 65
 	return
 	
 	:wGateway
 	wait 12
-	notowns_jump nexus wGateway
-	resources 13 AtMost Ore 149 wGateway
-	add_build 255 gateway 1 99 66
+	notowns nexus wGateway
+	res 13 AtM Ore 149 wGateway
+	add_bld 255 gateway 1 99 66
 	return
 	
 	:wForge
 	wait 12
-	notowns_jump nexus wForge
-	resources 13 AtMost Ore 149 wForge
-	bring_jump 13 AtLeast 4 forge Loc.63 wForge2
+	notowns nexus wForge
+	res 13 AtM Ore 149 wForge
+	bring 13 AtL 4 forge Loc.63 wForge2
 	call wUpgradeDef
-	add_build 255 forge 1 4 66
+	add_bld 255 forge 1 4 66
 	return
 	
 	:wForge2
-	local_jump 255 AtLeast 1 forge wForge3
-	player_need 1 forge
+	local 255 AtL 1 forge wForge3
+	p_need 1 forge
 	return
 	
 	:wForge3
-	player_need 2 forge
+	p_need 2 forge
 	return
 	
 	:wCyb
 	wait 12
-	notowns_jump gateway wCyb
-	resources 13 AtMost Ore 199 wCyb
-	bring_jump 13 AtLeast 2 cybernetics_core Loc.63 wCyb2
+	notowns gateway wCyb
+	res 13 AtM Ore 199 wCyb
+	bring 13 AtL 2 cybernetics_core Loc.63 wCyb2
 	call wUpgradeDef
-	add_build 255 cybernetics_core 1 2 66
+	add_bld 255 cybernetics_core 1 2 66
 	return
 	
 	:wCyb2
-	player_need 1 cybernetics_core
+	p_need 1 cybernetics_core
 	return
 	
 	:wRoboFac
 	wait 12
-	notowns_jump cybernetics_core wRoboFac
-	resources 13 AtMost Any 199 wRoboFac
-	add_build 255 robotics_facility 1 99 66
+	notowns cybernetics_core wRoboFac
+	res 13 AtM Any 199 wRoboFac
+	add_bld 255 robotics_facility 1 99 66
 	return
 	
 	:wStargate
 	wait 12
-	notowns_jump cybernetics_core wStargate
-	resources 13 AtMost Any 199 wStargate
-	add_build 255 stargate 1 99 66
+	notowns cybernetics_core wStargate
+	res 13 AtM Any 199 wStargate
+	add_bld 255 stargate 1 99 66
 	return
 	
 	:wCit
 	wait 12
-	notowns_jump cybernetics_core wCit
-	resources 13 AtMost Any 149 wCit
-	bring_jump 13 AtLeast 1 citadel_of_adun Loc.63 wCit2
+	notowns cybernetics_core wCit
+	res 13 AtM Any 149 wCit
+	bring 13 AtL 1 citadel_of_adun Loc.63 wCit2
 	call wUpgradeDef
-	add_build 255 citadel_of_adun 1 1 66
+	add_bld 255 citadel_of_adun 1 1 66
 	return
 	
 	:wCit2
-	player_need 1 citadel_of_adun
+	p_need 1 citadel_of_adun
 	return
 	
 	:wRoboBay
 	wait 12
-	notowns_jump robotics_facility wRoboBay
-	resources 13 AtMost Any 149 wRoboBay
-	bring_jump 13 AtLeast 1 robotics_support_bay Loc.63 wRoboBay2
+	notowns robotics_facility wRoboBay
+	res 13 AtM Any 149 wRoboBay
+	bring 13 AtL 1 robotics_support_bay Loc.63 wRoboBay2
 	call wUpgradeDef
-	add_build 255 robotics_support_bay 1 1 66
+	add_bld 255 robotics_support_bay 1 1 66
 	return
 	
 	:wRoboBay2
-	player_need 1 robotics_support_bay
+	p_need 1 robotics_support_bay
 	return
 	
 	:wFleet
 	wait 12
-	notowns_jump stargate wFleet
-	resources 13 AtMost Any 249 wFleet
-	bring_jump 13 AtLeast 1 fleet_beacon Loc.63 wFleet2
+	notowns stargate wFleet
+	res 13 AtM Any 249 wFleet
+	bring 13 AtL 1 fleet_beacon Loc.63 wFleet2
 	call wUpgradeDef
-	add_build 255 fleet_beacon 1 1 66
+	add_bld 255 fleet_beacon 1 1 66
 	return
 	
 	:wFleet2
-	player_need 1 fleet_beacon
+	p_need 1 fleet_beacon
 	return
 	
 	:wTemp
 	wait 12
-	notowns_jump citadel_of_adun wTemp
-	resources 13 AtMost Any 149 wTemp
-	bring_jump 13 AtLeast 1 templar_archives Loc.63 wTemp2
+	notowns citadel_of_adun wTemp
+	res 13 AtM Any 149 wTemp
+	bring 13 AtL 1 templar_archives Loc.63 wTemp2
 	call wUpgradeDef
-	add_build 255 templar_archives 1 1 66
+	add_bld 255 templar_archives 1 1 66
 	return
 	
 	:wTemp2
-	player_need 1 templar_archives
+	p_need 1 templar_archives
 	return
 	
 	:wObs
 	wait 12
-	notowns_jump robotics_facility wObs
-	resources 13 AtMost Any 99 wObs
-	bring_jump 13 AtLeast 1 observatory Loc.63 wObs2
+	notowns robotics_facility wObs
+	res 13 AtM Any 99 wObs
+	bring 13 AtL 1 observatory Loc.63 wObs2
 	call wUpgradeDef
-	add_build 255 observatory 1 1 66
+	add_bld 255 observatory 1 1 66
 	return
 	
 	:wObs2
-	player_need 1 observatory
+	p_need 1 observatory
 	return
 	
 	:wArb
 	wait 12
-	notowns_jump stargate wArb
-	notowns_jump templar_archives wArb
-	resources 13 AtMost Any 149 wArb
-	bring_jump 13 AtLeast 1 arbiter_tribunal Loc.63 wArb2
+	notowns stargate wArb
+	notowns templar_archives wArb
+	res 13 AtM Any 149 wArb
+	bring 13 AtL 1 arbiter_tribunal Loc.63 wArb2
 	call wUpgradeDef
-	add_build 255 arbiter_tribunal 1 1 66
+	add_bld 255 arbiter_tribunal 1 1 66
 	return
 	
 	:wArb2
-	player_need 1 arbiter_tribunal
+	p_need 1 arbiter_tribunal
 	return
 	
 	:addCannon
-	var exactly|wait canStatic 1 13
+	var Ex|wait canStatic 1 13
 	wait 12
-	notowns_jump forge addCannon
+	notowns forge addCannon
 	call wUpgradeDef
-	resources 13 AtLeast_Call Ore 175 addCannonCheck
+	res 13 AtL_C Ore 175 addCannonCheck
 	wait 480
 	goto addCannon
 	
 	:addCannonCheck
-	local_jump 255 AtLeast 3 photon_cannon addCannonCheck2
-	add_build 255 photon_cannon 1 3 65
+	local 255 AtL 3 photon_cannon addCannonCheck2
+	add_bld 255 photon_cannon 1 3 65
 	goto addReturn
 	
 	:addCannonCheck2
-	var exactly|jump underAttack 0 ret 13
-	local_jump 255 AtLeast 7 photon_cannon addReturn
-	add_build 255 photon_cannon 1 7 65
+	var Ex|jump underAttack 0 ret 13
+	local 255 AtL 7 photon_cannon addReturn
+	add_bld 255 photon_cannon 1 7 65
 	goto addReturn
 	
 	:addBattery
 	wait 12
-	notowns_jump gateway addBattery
+	notowns gateway addBattery
 	call wUpgradeDef
-	resources 13 AtLeast_Call Ore 125 addBatteryCheck
+	res 13 AtL_C Ore 125 addBatteryCheck
 	wait 480
 	goto addBattery
 	
 	:addBatteryCheck
-	add_build 255 shield_battery 1 2 64
+	add_bld 255 shield_battery 1 2 64
 	goto addReturn
 	
 	:addProd
-	var atleast|wait townCount 1 13
-	local_jump 255 AtLeast_Wait 1 nexus blank
-	deaths 13 Exactly 1 crashed_battle addProdMech
-	deaths 13 Exactly 2 crashed_battle addProdGate
-	deaths 13 Exactly 3 crashed_battle addProdAir
+	var AtL|wait townCount 1 13
+	local 255 AtL_W 1 nexus blank
+	dth 13 Ex 1 crashed_battle addProdMech
+	dth 13 Ex 2 crashed_battle addProdGate
+	dth 13 Ex 3 crashed_battle addProdAir
 	
 	:addProdGen
 	wait 720
-	resources 13 AtLeast_Wait Ore 300 blank
+	res 13 AtL_W Ore 300 blank
 	call wUpgradeDef
-	deaths 13 Set 0 psi_disrupter blank
-	resources 13 AtLeast_Call Ore 300 addGatewayCheck
-	deaths 13 AtLeast 1 psi_disrupter addProdGen
-	resources 13 AtLeast_Call Any 400 addRoboCheck
-	deaths 13 AtLeast 1 psi_disrupter addProdGen
-	resources 13 AtLeast_Call Any 400 addStargateCheck
+	dth 13 Set 0 psi_disrupter blank
+	res 13 AtL_C Ore 300 addGatewayCheck
+	dth 13 AtL 1 psi_disrupter addProdGen
+	res 13 AtL_C Any 400 addRoboCheck
+	dth 13 AtL 1 psi_disrupter addProdGen
+	res 13 AtL_C Any 400 addStargateCheck
 	goto addProdGen
 	
 	:addProdMech
 	wait 720
-	resources 13 AtLeast_Wait Ore 300 blank
+	res 13 AtL_W Ore 300 blank
 	call wUpgradeDef
-	deaths 13 Set 0 psi_disrupter blank
-	resources 13 AtLeast_Call Ore 300 addGatewayCheck
-	deaths 13 AtLeast 1 psi_disrupter addProdMech
-	resources 13 AtLeast_Call Any 400 addStargateCheck
-	deaths 13 AtLeast 1 psi_disrupter addProdMech
-	resources 13 AtLeast_Call Any 400 addRoboCheck
+	dth 13 Set 0 psi_disrupter blank
+	res 13 AtL_C Ore 300 addGatewayCheck
+	dth 13 AtL 1 psi_disrupter addProdMech
+	res 13 AtL_C Any 400 addStargateCheck
+	dth 13 AtL 1 psi_disrupter addProdMech
+	res 13 AtL_C Any 400 addRoboCheck
 	goto addProdMech
 	
 	:addProdGate
 	wait 720
-	resources 13 AtLeast_Wait Ore 300 blank
+	res 13 AtL_W Ore 300 blank
 	call wUpgradeDef
-	deaths 13 Set 0 psi_disrupter blank
-	resources 13 AtLeast_Call Ore 300 addGatewayCheck
-	deaths 13 AtLeast 1 psi_disrupter addProdGate
-	random_jump 128 addProdGate2
-	resources 13 AtLeast_Call Any 400 addRoboCheck
-	deaths 13 AtLeast 1 psi_disrupter addProdGate
+	dth 13 Set 0 psi_disrupter blank
+	res 13 AtL_C Ore 300 addGatewayCheck
+	dth 13 AtL 1 psi_disrupter addProdGate
+	rand_j 128 addProdGate2
+	res 13 AtL_C Any 400 addRoboCheck
+	dth 13 AtL 1 psi_disrupter addProdGate
 	
 	:addProdGate2
-	resources 13 AtLeast_Call Any 400 addStargateCheck
+	res 13 AtL_C Any 400 addStargateCheck
 	goto addProdGate
 	
 	:addProdAir
 	wait 720
-	resources 13 AtLeast_Wait Ore 300 blank
+	res 13 AtL_W Ore 300 blank
 	call wUpgradeDef
-	deaths 13 Set 0 psi_disrupter blank
-	resources 13 AtLeast_Call Any 400 addStargateCheck
-	deaths 13 AtLeast 1 psi_disrupter addProdAir
-	resources 13 AtLeast_Call Ore 300 addGatewayCheck
-	deaths 13 AtLeast 1 psi_disrupter addProdAir
-	resources 13 AtLeast_Call Any 400 addRoboCheck
+	dth 13 Set 0 psi_disrupter blank
+	res 13 AtL_C Any 400 addStargateCheck
+	dth 13 AtL 1 psi_disrupter addProdAir
+	res 13 AtL_C Ore 300 addGatewayCheck
+	dth 13 AtL 1 psi_disrupter addProdAir
+	res 13 AtL_C Any 400 addRoboCheck
 	goto addProdAir
 	
 	:addGatewayCheck
 	wait 12
-	notowns_jump nexus addGatewayCheck
-	resources 13 AtMost Ore 149 addGatewayCheck
-	resarea_jump 255 AtLeast 255 Ore 12000 addGatewayMax
-	resarea_jump 255 AtLeast 255 Ore 6000 addGatewayMed
+	notowns nexus addGatewayCheck
+	res 13 AtM Ore 149 addGatewayCheck
+	resarea 255 AtL 255 Ore 12000 addGatewayMax
+	resarea 255 AtL 255 Ore 6000 addGatewayMed
 	
 	:addGatewayMin
-	deaths 13 Exactly 1 crashed_battle addGatewayMinMech
-	deaths 13 Exactly 2 crashed_battle addGatewayMinGate
+	dth 13 Ex 1 crashed_battle addGatewayMinMech
+	dth 13 Ex 2 crashed_battle addGatewayMinGate
 	
 	:addGatewayMinGen
-	local_jump 255 AtLeast 2 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 2 66
-	random_jump 64 addGatewayMinGen2
-	random_jump 51 addGatewayMinGen3
+	local 255 AtL 2 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 2 66
+	rand_j 64 addGatewayMinGen2
+	rand_j 51 addGatewayMinGen3
 	goto addProdSuccess
 	
 	:addGatewayMinGen2
-	add_build 255 principality 1 2 66
+	add_bld 255 principality 1 2 66
 	goto addProdSuccess
 	
 	:addGatewayMinGen3
-	add_build 255 warp_anchor 1 2 66
+	add_bld 255 warp_anchor 1 2 66
 	goto addProdSuccess
 	
 	:addGatewayMinMech
-	local_jump 255 AtLeast 2 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 2 66
-	random_jump 85 addGatewayMinMech2
-	random_jump 51 addGatewayMinMech3
+	local 255 AtL 2 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 2 66
+	rand_j 85 addGatewayMinMech2
+	rand_j 51 addGatewayMinMech3
 	goto addProdSuccess
 	
 	:addGatewayMinMech2
-	add_build 255 warp_anchor 1 2 66
+	add_bld 255 warp_anchor 1 2 66
 	goto addProdSuccess
 	
 	:addGatewayMinMech3
-	add_build 255 principality 1 2 66
+	add_bld 255 principality 1 2 66
 	goto addProdSuccess
 	
 	:addGatewayMinGate
-	local_jump 255 AtLeast 3 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 3 66
-	random_jump 85 addGatewayMinGate2
-	random_jump 51 addGatewayMinGate3
+	local 255 AtL 3 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 3 66
+	rand_j 85 addGatewayMinGate2
+	rand_j 51 addGatewayMinGate3
 	goto addProdSuccess
 	
 	:addGatewayMinGate2
-	add_build 255 principality 1 3 66
+	add_bld 255 principality 1 3 66
 	goto addProdSuccess
 	
 	:addGatewayMinGate3
-	add_build 255 warp_anchor 1 3 66
+	add_bld 255 warp_anchor 1 3 66
 	goto addProdSuccess
 	
 	:addGatewayMax
-	deaths 13 Exactly 1 crashed_battle addGatewayMaxMech
-	deaths 13 Exactly 2 crashed_battle addGatewayMaxGate
-	deaths 13 Exactly 3 crashed_battle addGatewayMaxAir
+	dth 13 Ex 1 crashed_battle addGatewayMaxMech
+	dth 13 Ex 2 crashed_battle addGatewayMaxGate
+	dth 13 Ex 3 crashed_battle addGatewayMaxAir
 	
 	:addGatewayMaxGen
-	local_jump 255 AtLeast 8 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 8 66
-	random_jump 64 addGatewayMaxGen2
-	random_jump 51 addGatewayMaxGen3
+	local 255 AtL 8 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 8 66
+	rand_j 64 addGatewayMaxGen2
+	rand_j 51 addGatewayMaxGen3
 	goto addProdSuccess
 	
 	:addGatewayMaxGen2
-	add_build 255 principality 1 8 66
+	add_bld 255 principality 1 8 66
 	goto addProdSuccess
 	
 	:addGatewayMaxGen3
-	add_build 255 principality 1 8 66
+	add_bld 255 principality 1 8 66
 	goto addProdSuccess
 	
 	:addGatewayMaxMech
-	local_jump 255 AtLeast 6 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 6 66
-	random_jump 85 addGatewayMaxMech2
-	random_jump 51 addGatewayMaxMech3
+	local 255 AtL 6 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 6 66
+	rand_j 85 addGatewayMaxMech2
+	rand_j 51 addGatewayMaxMech3
 	goto addProdSuccess
 	
 	:addGatewayMaxMech2
-	add_build 255 warp_anchor 1 6 66
+	add_bld 255 warp_anchor 1 6 66
 	goto addProdSuccess
 	
 	:addGatewayMaxMech3
-	add_build 255 principality 1 6 66
+	add_bld 255 principality 1 6 66
 	goto addProdSuccess
 	
 	:addGatewayMaxGate
-	local_jump 255 AtLeast 10 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 10 66
-	random_jump 85 addGatewayMaxGate2
-	random_jump 51 addGatewayMaxGate3
+	local 255 AtL 10 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 10 66
+	rand_j 85 addGatewayMaxGate2
+	rand_j 51 addGatewayMaxGate3
 	goto addProdSuccess
 	
 	:addGatewayMaxGate2
-	add_build 255 principality 1 10 66
+	add_bld 255 principality 1 10 66
 	goto addProdSuccess
 	
 	:addGatewayMaxGate3
-	add_build 255 warp_anchor 1 10 66
+	add_bld 255 warp_anchor 1 10 66
 	goto addProdSuccess
 	
 	:addGatewayMaxAir
-	local_jump 255 AtLeast 10 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 10 66
-	random_jump 64 addGatewayMaxAir2
-	random_jump 51 addGatewayMaxAir3
+	local 255 AtL 10 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 10 66
+	rand_j 64 addGatewayMaxAir2
+	rand_j 51 addGatewayMaxAir3
 	goto addProdSuccess
 	
 	:addGatewayMaxAir2
-	add_build 255 principality 1 10 66
+	add_bld 255 principality 1 10 66
 	goto addProdSuccess
 	
 	:addGatewayMaxAir3
-	add_build 255 warp_anchor 1 10 66
+	add_bld 255 warp_anchor 1 10 66
 	goto addProdSuccess
 	
 	:addGatewayMed
-	deaths 13 Exactly 1 crashed_battle addGatewayMedMech
-	deaths 13 Exactly 2 crashed_battle addGatewayMedGate
-	deaths 13 Exactly 3 crashed_battle addGatewayMedAir
+	dth 13 Ex 1 crashed_battle addGatewayMedMech
+	dth 13 Ex 2 crashed_battle addGatewayMedGate
+	dth 13 Ex 3 crashed_battle addGatewayMedAir
 	
 	:addGatewayMedGen
-	local_jump 255 AtLeast 5 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 5 66
-	random_jump 64 addGatewayMedGen2
-	random_jump 51 addGatewayMedGen3
+	local 255 AtL 5 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 5 66
+	rand_j 64 addGatewayMedGen2
+	rand_j 51 addGatewayMedGen3
 	goto addProdSuccess
 	
 	:addGatewayMedGen2
-	add_build 255 principality 1 5 66
+	add_bld 255 principality 1 5 66
 	goto addProdSuccess
 	
 	:addGatewayMedGen3
-	add_build 255 warp_anchor 1 5 66
+	add_bld 255 warp_anchor 1 5 66
 	goto addProdSuccess
 	
 	:addGatewayMedMech
-	local_jump 255 AtLeast 4 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 4 66
-	random_jump 85 addGatewayMedMech2
-	random_jump 51 addGatewayMedMech3
+	local 255 AtL 4 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 4 66
+	rand_j 85 addGatewayMedMech2
+	rand_j 51 addGatewayMedMech3
 	goto addProdSuccess
 	
 	:addGatewayMedMech2
-	add_build 255 warp_anchor 1 4 66
+	add_bld 255 warp_anchor 1 4 66
 	goto addProdSuccess
 	
 	:addGatewayMedMech3
-	add_build 255 principality 1 4 66
+	add_bld 255 principality 1 4 66
 	goto addProdSuccess
 	
 	:addGatewayMedGate
-	local_jump 255 AtLeast 5 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 5 66
-	random_jump 85 addGatewayMedGate2
-	random_jump 51 addGatewayMedGate3
+	local 255 AtL 5 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 5 66
+	rand_j 85 addGatewayMedGate2
+	rand_j 51 addGatewayMedGate3
 	goto addProdSuccess
 	
 	:addGatewayMedGate2
-	add_build 255 principality 1 5 66
+	add_bld 255 principality 1 5 66
 	goto addProdSuccess
 	
 	:addGatewayMedGate3
-	add_build 255 warp_anchor 1 5 66
+	add_bld 255 warp_anchor 1 5 66
 	goto addProdSuccess
 	
 	:addGatewayMedAir
-	local_jump 255 AtLeast 4 gateway|principality|warp_anchor addReturn
-	add_build 255 gateway 1 4 66
-	random_jump 64 addGatewayMedAir2
-	random_jump 51 addGatewayMedAir3
+	local 255 AtL 4 gateway|principality|warp_anchor addReturn
+	add_bld 255 gateway 1 4 66
+	rand_j 64 addGatewayMedAir2
+	rand_j 51 addGatewayMedAir3
 	goto addProdSuccess
 	
 	:addGatewayMedAir2
-	add_build 255 principality 1 4 66
+	add_bld 255 principality 1 4 66
 	goto addProdSuccess
 	
 	:addGatewayMedAir3
-	add_build 255 warp_anchor 1 4 66
+	add_bld 255 warp_anchor 1 4 66
 	goto addProdSuccess
 	
 	:addRoboCheck
 	wait 12
-	notowns_jump cybernetics_core addRoboCheck
-	resources 13 AtMost Any 199 addRoboCheck
-	resarea_jump 255 AtLeast 255 Ore 12000 addRoboMax
-	resarea_jump 255 AtLeast 255 Ore 6000 addRoboMed
+	notowns cybernetics_core addRoboCheck
+	res 13 AtM Any 199 addRoboCheck
+	resarea 255 AtL 255 Ore 12000 addRoboMax
+	resarea 255 AtL 255 Ore 6000 addRoboMed
 	
 	:addRoboMin
-	deaths 13 Exactly 1 crashed_battle addRoboMedGen
+	dth 13 Ex 1 crashed_battle addRoboMedGen
 	
 	:addRoboMinGen
-	local_jump 255 AtLeast 1 robotics_facility addReturn
-	add_build 255 robotics_facility 1 1 66
-	random_jump 43 addRoboMinGen2
+	local 255 AtL 1 robotics_facility addReturn
+	add_bld 255 robotics_facility 1 1 66
+	rand_j 43 addRoboMinGen2
 	goto addProdSuccess
 	
 	:addRoboMinGen2
-	bring_jump 13 AtLeast 3 robotics_authority Loc.63 addProdSuccess
-	add_build 255 robotics_authority 1 1 66
+	bring 13 AtL 3 robotics_authority Loc.63 addProdSuccess
+	add_bld 255 robotics_authority 1 1 66
 	goto addProdSuccess
 	
 	:addRoboMax
-	deaths 13 Exactly 1 crashed_battle addRoboMaxMech
-	deaths 13 Exactly 3 crashed_battle addRoboMedGen
+	dth 13 Ex 1 crashed_battle addRoboMaxMech
+	dth 13 Ex 3 crashed_battle addRoboMedGen
 	
 	:addRoboMaxGen
-	local_jump 255 AtLeast 3 robotics_facility addReturn
-	add_build 255 robotics_facility 1 3 66
-	local_jump 255 AtLeast 1 robotics_authority addProdSuccess
-	random_jump 43 addRoboMinGen2
+	local 255 AtL 3 robotics_facility addReturn
+	add_bld 255 robotics_facility 1 3 66
+	local 255 AtL 1 robotics_authority addProdSuccess
+	rand_j 43 addRoboMinGen2
 	goto addProdSuccess
 	
 	:addRoboMaxMech
-	local_jump 255 AtLeast 4 robotics_facility addReturn
-	add_build 255 robotics_facility 1 4 66
-	local_jump 255 AtLeast 1 robotics_authority addProdSuccess
-	random_jump 43 addRoboMinGen2
+	local 255 AtL 4 robotics_facility addReturn
+	add_bld 255 robotics_facility 1 4 66
+	local 255 AtL 1 robotics_authority addProdSuccess
+	rand_j 43 addRoboMinGen2
 	goto addProdSuccess
 	
 	:addRoboMed
-	deaths 13 Exactly 1 crashed_battle addRoboMaxGen
-	deaths 13 Exactly 3 crashed_battle addRoboMinGen
+	dth 13 Ex 1 crashed_battle addRoboMaxGen
+	dth 13 Ex 3 crashed_battle addRoboMinGen
 	
 	:addRoboMedGen
-	local_jump 255 AtLeast 2 robotics_facility addReturn
-	add_build 255 robotics_facility 1 2 66
-	local_jump 255 AtLeast 1 robotics_authority addProdSuccess
-	random_jump 43 addRoboMinGen2
+	local 255 AtL 2 robotics_facility addReturn
+	add_bld 255 robotics_facility 1 2 66
+	local 255 AtL 1 robotics_authority addProdSuccess
+	rand_j 43 addRoboMinGen2
 	goto addProdSuccess
 	
 	:addStargateCheck
 	wait 12
-	notowns_jump cybernetics_core addStargateCheck
-	resources 13 AtMost Any 199 addStargateCheck
-	resarea_jump 255 AtLeast 255 Ore 12000 addStargateMax
-	resarea_jump 255 AtLeast 255 Ore 6000 addStargateMed
+	notowns cybernetics_core addStargateCheck
+	res 13 AtM Any 199 addStargateCheck
+	resarea 255 AtL 255 Ore 12000 addStargateMax
+	resarea 255 AtL 255 Ore 6000 addStargateMed
 	
 	:addStargateMinGen
-	local_jump 255 AtLeast 3 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 1 66
-	random_jump 85 addStargateMinGen2
-	random_jump 51 addStargateMinGen3
+	local 255 AtL 3 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 1 66
+	rand_j 85 addStargateMinGen2
+	rand_j 51 addStargateMinGen3
 	goto addProdSuccess
 	
 	:addStargateMinGen2
-	add_build 255 argosy 1 1 66
+	add_bld 255 argosy 1 1 66
 	goto addProdSuccess
 	
 	:addStargateMinGen3
-	add_build 255 starfield 1 1 66	
+	add_bld 255 starfield 1 1 66	
 	goto addProdSuccess
 	
 	:addStargateMinMech
-	local_jump 255 AtLeast 3 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 2 66
-	random_jump 64 addStargateMinMech2
-	random_jump 51 addStargateMinMech3
+	local 255 AtL 3 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 2 66
+	rand_j 64 addStargateMinMech2
+	rand_j 51 addStargateMinMech3
 	goto addProdSuccess
 	
 	:addStargateMinMech2
-	add_build 255 argosy 1 2 66
+	add_bld 255 argosy 1 2 66
 	goto addProdSuccess
 	
 	:addStargateMinMech3
-	add_build 255 starfield 1 2 66	
+	add_bld 255 starfield 1 2 66	
 	goto addProdSuccess
 	
 	:addStargateMinGate
-	local_jump 255 AtLeast 2 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 1 66
-	random_jump 51 addStargateMinGate2
-	random_jump 43 addStargateMinGate3
+	local 255 AtL 2 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 1 66
+	rand_j 51 addStargateMinGate2
+	rand_j 43 addStargateMinGate3
 	goto addProdSuccess
 	
 	:addStargateMinGate2
-	add_build 255 argosy 1 1 66
+	add_bld 255 argosy 1 1 66
 	goto addProdSuccess
 	
 	:addStargateMinGate3
-	add_build 255 starfield 1 1 66	
+	add_bld 255 starfield 1 1 66	
 	goto addProdSuccess
 	
 	:addStargateMinAir
-	local_jump 255 AtLeast 4 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 2 66
-	random_jump 85 addStargateMinAir2
-	random_jump 64 addStargateMinAir3
+	local 255 AtL 4 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 2 66
+	rand_j 85 addStargateMinAir2
+	rand_j 64 addStargateMinAir3
 	goto addProdSuccess
 	
 	:addStargateMinAir2
-	add_build 255 argosy 1 2 66
+	add_bld 255 argosy 1 2 66
 	goto addProdSuccess
 	
 	:addStargateMinAir3
-	add_build 255 starfield 1 2 66	
+	add_bld 255 starfield 1 2 66	
 	goto addProdSuccess
 	
 	:addStargateMax
-	deaths 13 Exactly 1 crashed_battle addStargateMaxMech
-	deaths 13 Exactly 2 crashed_battle addStargateMaxGate
-	deaths 13 Exactly 3 crashed_battle addStargateMaxAir
+	dth 13 Ex 1 crashed_battle addStargateMaxMech
+	dth 13 Ex 2 crashed_battle addStargateMaxGate
+	dth 13 Ex 3 crashed_battle addStargateMaxAir
 	
 	:addStargateMaxGen
-	local_jump 255 AtLeast 3 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 4 66
-	random_jump 85 addStargateMaxGen2
-	random_jump 51 addStargateMaxGen3
+	local 255 AtL 3 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 4 66
+	rand_j 85 addStargateMaxGen2
+	rand_j 51 addStargateMaxGen3
 	goto addProdSuccess
 	
 	:addStargateMaxGen2
-	add_build 255 argosy 1 4 66
+	add_bld 255 argosy 1 4 66
 	goto addProdSuccess
 	
 	:addStargateMaxGen3
-	add_build 255 starfield 1 4 66	
+	add_bld 255 starfield 1 4 66	
 	goto addProdSuccess
 	
 	:addStargateMaxMech
-	local_jump 255 AtLeast 4 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 3 66
-	random_jump 64 addStargateMaxMech2
-	random_jump 51 addStargateMaxMech3
+	local 255 AtL 4 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 3 66
+	rand_j 64 addStargateMaxMech2
+	rand_j 51 addStargateMaxMech3
 	goto addProdSuccess
 	
 	:addStargateMaxMech2
-	add_build 255 argosy 1 4 66
+	add_bld 255 argosy 1 4 66
 	goto addProdSuccess
 	
 	:addStargateMaxMech3
-	add_build 255 starfield 1 4 66	
+	add_bld 255 starfield 1 4 66	
 	goto addProdSuccess
 	
 	:addStargateMaxGate
-	local_jump 255 AtLeast 3 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 2 66
-	random_jump 51 addStargateMaxGate2
-	random_jump 43 addStargateMaxGate3
+	local 255 AtL 3 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 2 66
+	rand_j 51 addStargateMaxGate2
+	rand_j 43 addStargateMaxGate3
 	goto addProdSuccess
 	
 	:addStargateMaxGate2
-	add_build 255 argosy 1 3 66
+	add_bld 255 argosy 1 3 66
 	goto addProdSuccess
 	
 	:addStargateMaxGate3
-	add_build 255 starfield 1 3 66	
+	add_bld 255 starfield 1 3 66	
 	goto addProdSuccess
 	
 	:addStargateMaxAir
-	local_jump 255 AtLeast 5 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 5 66
-	random_jump 85 addStargateMaxAir2
-	random_jump 64 addStargateMaxAir3
+	local 255 AtL 5 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 5 66
+	rand_j 85 addStargateMaxAir2
+	rand_j 64 addStargateMaxAir3
 	goto addProdSuccess
 	
 	:addStargateMaxAir2
-	add_build 255 argosy 1 5 66
+	add_bld 255 argosy 1 5 66
 	goto addProdSuccess
 	
 	:addStargateMaxAir3
-	add_build 255 starfield 1 5 66	
+	add_bld 255 starfield 1 5 66	
 	goto addProdSuccess
 	
 	:addStargateMed
-	deaths 13 Exactly 1 crashed_battle addStargateMedMech
-	deaths 13 Exactly 2 crashed_battle addStargateMedGate
-	deaths 13 Exactly 3 crashed_battle addStargateMedAir
+	dth 13 Ex 1 crashed_battle addStargateMedMech
+	dth 13 Ex 2 crashed_battle addStargateMedGate
+	dth 13 Ex 3 crashed_battle addStargateMedAir
 	
 	:addStargateMedGen
-	local_jump 255 AtLeast 3 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 3 66
-	random_jump 85 addStargateMedGen2
-	random_jump 51 addStargateMedGen3
+	local 255 AtL 3 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 3 66
+	rand_j 85 addStargateMedGen2
+	rand_j 51 addStargateMedGen3
 	goto addProdSuccess
 	
 	:addStargateMedGen2
-	add_build 255 argosy 1 3 66
+	add_bld 255 argosy 1 3 66
 	goto addProdSuccess
 	
 	:addStargateMedGen3
-	add_build 255 starfield 1 3 66	
+	add_bld 255 starfield 1 3 66	
 	goto addProdSuccess
 	
 	:addStargateMedMech
-	local_jump 255 AtLeast 3 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 3 66
-	random_jump 64 addStargateMedMech2
-	random_jump 51 addStargateMedMech3
+	local 255 AtL 3 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 3 66
+	rand_j 64 addStargateMedMech2
+	rand_j 51 addStargateMedMech3
 	goto addProdSuccess
 	
 	:addStargateMedMech2
-	add_build 255 argosy 1 3 66
+	add_bld 255 argosy 1 3 66
 	goto addProdSuccess
 	
 	:addStargateMedMech3
-	add_build 255 starfield 1 3 66	
+	add_bld 255 starfield 1 3 66	
 	goto addProdSuccess
 	
 	:addStargateMedGate
-	local_jump 255 AtLeast 2 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 2 66
-	random_jump 51 addStargateMedGate2
-	random_jump 43 addStargateMedGate3
+	local 255 AtL 2 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 2 66
+	rand_j 51 addStargateMedGate2
+	rand_j 43 addStargateMedGate3
 	goto addProdSuccess
 	
 	:addStargateMedGate2
-	add_build 255 argosy 1 2 66
+	add_bld 255 argosy 1 2 66
 	goto addProdSuccess
 	
 	:addStargateMedGate3
-	add_build 255 starfield 1 2 66	
+	add_bld 255 starfield 1 2 66	
 	goto addProdSuccess
 	
 	:addStargateMedAir
-	local_jump 255 AtLeast 4 stargate|argosy|starfield addReturn
-	add_build 255 stargate 1 4 66
-	random_jump 85 addStargateMedAir2
-	random_jump 64 addStargateMedAir3
+	local 255 AtL 4 stargate|argosy|starfield addReturn
+	add_bld 255 stargate 1 4 66
+	rand_j 85 addStargateMedAir2
+	rand_j 64 addStargateMedAir3
 	goto addProdSuccess
 	
 	:addStargateMedAir2
-	add_build 255 argosy 1 4 66
+	add_bld 255 argosy 1 4 66
 	goto addProdSuccess
 	
 	:addStargateMedAir3
-	add_build 255 starfield 1 4 66	
+	add_bld 255 starfield 1 4 66	
 	goto addProdSuccess
 	
 	:addProdSuccess
-	deaths 13 Set 1 psi_disrupter blank
+	dth 13 Set 1 psi_disrupter blank
 	
 	:addReturn
 	wait 24
 	return
 	
 	:pScale
-	bring_jump 13 AtLeast_Wait 2 gateway|principality|warp_anchor|robotics_facility|robotics_authority|stargate|argosy|starfield Loc.63 blank
-	deaths 13 Exactly 1 crashed_battle pScaleExp
-	deaths 13 Exactly 2 crashed_battle pScaleAtk
-	deaths 13 Exactly 3 crashed_battle pScaleExp
-	random_jump 64 pScaleAtk
+	bring 13 AtL_W 2 gateway|principality|warp_anchor|robotics_facility|robotics_authority|stargate|argosy|starfield Loc.63 blank
+	dth 13 Ex 1 crashed_battle pScaleExp
+	dth 13 Ex 2 crashed_battle pScaleAtk
+	dth 13 Ex 3 crashed_battle pScaleExp
+	rand_j 64 pScaleAtk
 	
 	:pScaleExp
-	var exactly|wait canAttack 1 13
+	var Ex|wait canAttack 1 13
 	wait 240
 	call atkGen
 	wait 720
 	goto pLoopA
 	
 	:pScaleAtk
-	var exactly|wait canAttack 1 13
+	var Ex|wait canAttack 1 13
 	wait 480
 	call atkGen
 	wait 720
 	
 	:pLoopA
-	bring_jump 13 AtLeast 10 Group_Factories Loc.63 pLoopC
-	bring_jump 13 AtLeast 7 Group_Factories Loc.63 pLoopB
+	bring 13 AtL 10 Group_Factories Loc.63 pLoopC
+	bring 13 AtL 7 Group_Factories Loc.63 pLoopB
 	call atkGen
 	wait 480
 	goto pLoopA
@@ -2629,7 +2629,7 @@ script_id PMCx
 	:pLoopB
 	call atkGen
 	wait 360
-	random_jump 85 pLoopB
+	rand_j 85 pLoopB
 	wait 240
 	goto pLoopA
 	
@@ -2640,385 +2640,385 @@ script_id PMCx
 	
 	:atkGen
 	call addRand
-	attack_prepare
+	atk_prep
 	call atkPrep
 	return
 	
 	:atkPrep
-	attack_do
+	atk_do
 	wait 500
-	quick_attack
-	attack_clear
-	clear_queues train Any 13
+	atk_now
+	atk_c
+	c_queues train Any 13
 	return
 	
 	:addRand
 	call wAttack
-	deaths 13 Exactly 1 crashed_battle addRandMech
-	deaths 13 Exactly 2 crashed_battle addRandGate
-	deaths 13 Exactly 3 crashed_battle addRandAir
+	dth 13 Ex 1 crashed_battle addRandMech
+	dth 13 Ex 2 crashed_battle addRandGate
+	dth 13 Ex 3 crashed_battle addRandAir
 	
 	:addRandGenRelative
-	random_jump 28 addRandGen
-	random_jump 85 addRandGenRelative2
-	random_jump 128 addRandGenRelative3
-	bring_jump 13 AtLeast 8 robotics_facility|robotics_authority Loc.63 addRandMech
-	bring_jump 13 AtLeast 12 gateway|principality|warp_anchor Loc.63 addRandGate
-	bring_jump 13 AtLeast 8 stargate|argosy|starfield Loc.63 addRandAir
+	rand_j 28 addRandGen
+	rand_j 85 addRandGenRelative2
+	rand_j 128 addRandGenRelative3
+	bring 13 AtL 8 robotics_facility|robotics_authority Loc.63 addRandMech
+	bring 13 AtL 12 gateway|principality|warp_anchor Loc.63 addRandGate
+	bring 13 AtL 8 stargate|argosy|starfield Loc.63 addRandAir
 	goto addMix
 	
 	:addRandGenRelative2
-	bring_jump 13 AtLeast 12 gateway|principality|warp_anchor Loc.63 addRandGate
-	bring_jump 13 AtLeast 8 stargate|argosy|starfield Loc.63 addRandAir
-	bring_jump 13 AtLeast 8 robotics_facility|robotics_authority Loc.63 addRandMech
+	bring 13 AtL 12 gateway|principality|warp_anchor Loc.63 addRandGate
+	bring 13 AtL 8 stargate|argosy|starfield Loc.63 addRandAir
+	bring 13 AtL 8 robotics_facility|robotics_authority Loc.63 addRandMech
 	goto addMix
 	
 	:addRandGenRelative3
-	bring_jump 13 AtLeast 8 stargate|argosy|starfield Loc.63 addRandAir
-	bring_jump 13 AtLeast 8 robotics_facility|robotics_authority Loc.63 addRandMech
-	bring_jump 13 AtLeast 12 gateway|principality|warp_anchor Loc.63 addRandGate
+	bring 13 AtL 8 stargate|argosy|starfield Loc.63 addRandAir
+	bring 13 AtL 8 robotics_facility|robotics_authority Loc.63 addRandMech
+	bring 13 AtL 12 gateway|principality|warp_anchor Loc.63 addRandGate
 	goto addMix
 	
 	:addRandGen
-	random_jump 128 addMechAir
-	random_jump 104 addGateMech
+	rand_j 128 addMechAir
+	rand_j 104 addGateMech
 	goto addMix
 	
 	:addRandMech
-	random_jump 85 addRandMechRelative
+	rand_j 85 addRandMechRelative
 	goto addMech
 	
 	:addRandMechRelative
-	bring_jump 13 AtLeast 5 stargate|argosy|starfield Loc.63 addMechAir
-	bring_jump 13 AtLeast 5 stargate|argosy|starfield Loc.63 addGateMech
+	bring 13 AtL 5 stargate|argosy|starfield Loc.63 addMechAir
+	bring 13 AtL 5 stargate|argosy|starfield Loc.63 addGateMech
 	goto addMech
 	
 	:addRandGate
-	random_jump 85 addRandGateRelative
+	rand_j 85 addRandGateRelative
 	goto addGate
 	
 	:addRandGateRelative
-	bring_jump 13 AtLeast 5 robotics_facility|robotics_authority Loc.63 addGateMech
-	bring_jump 13 AtLeast 5 stargate|argosy|starfield Loc.63 addGateAir
+	bring 13 AtL 5 robotics_facility|robotics_authority Loc.63 addGateMech
+	bring 13 AtL 5 stargate|argosy|starfield Loc.63 addGateAir
 	goto addGate
 	
 	:addRandAir
-	random_jump 85 addRandAirRelative
+	rand_j 85 addRandAirRelative
 	goto addAir
 	
 	:addRandAirRelative
-	bring_jump 13 AtLeast 5 stargate|argosy|starfield Loc.63 addGateAir
-	bring_jump 13 AtLeast 5 robotics_facility|robotics_authority Loc.63 addMechAir
+	bring 13 AtL 5 stargate|argosy|starfield Loc.63 addGateAir
+	bring 13 AtL 5 robotics_facility|robotics_authority Loc.63 addMechAir
 	goto addAir
 	
 	:addMix
-	attack_add 2 zealot
-	attack_add 1 dragoon
-	attack_add 1 hierophant
-	attack_rand 0 1 dark_templar
-	attack_rand 0 1 archon
-	attack_rand 0 1 dark_archon
-	attack_add_relative zealot gateway|warp_anchor 4
-	attack_add_relative legionnaire principality 4
-	attack_add_relative dragoon gateway|principality 2.5
-	attack_add_relative hierophant warp_anchor 1
-	attack_add_relative high_templar gateway|principality|warp_anchor 0.5
-	attack_add_relative archon high_templar 0.33
-	attack_add_relative dark_templar gateway|principality|warp_anchor 0.5
-	attack_add_relative dark_archon dark_templar 0.33
-	attack_add_relative reaver robotics_facility|robotics_authority 1
-	#attack_add_relative clarion robotics_facility 0.33
-	attack_add_relative scout stargate|starfield 2
-	attack_add_relative exemplar argosy 2
-	attack_add_relative carrier stargate|argosy 1
-	#attack_add_relative starcaller starfield 1
-	queue_relative zealot gateway 1 gateway 255 Global 63 99
-	queue_relative zealot warp_anchor 1 warp_anchor 255 Global 63 99
-	queue_relative legionnaire principality 1 principality 255 Global 63 99
-	queue_relative dragoon gateway 1 gateway 255 Global 63 99
-	queue_relative dragoon principality 1 principality 255 Global 63 99
-	queue_relative hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
-	queue_relative high_templar gateway 0.11 gateway 255 Global 63 99
-	queue_relative high_templar principality 0.11 principality 255 Global 63 99
-	queue_relative high_templar warp_anchor 0.11 warp_anchor 255 Global 63 99
-	#queue_relative archon high_templar 0.25 high_templar 255 Global 63 99
-	queue_relative dark_templar gateway 0.11 gateway 255 Global 63 99
-	queue_relative dark_templar principality 0.11 principality 255 Global 63 99
-	queue_relative dark_templar warp_anchor 0.11 warp_anchor 255 Global 63 99
-	#queue_relative dark_archon dark_templar 0.15 dark_templar 255 Global 63 99
-	queue_relative reaver robotics_facility 0.5 robotics_facility 255 Global 63 99
-	queue_relative reaver robotics_authority 0.5 robotics_authority 255 Global 63 99
-	#queue_relative clarion robotics_facility 0.33 robotics_facility 255 Global 63 99
-	queue_relative scout stargate 0.75 stargate 255 Global 63 99
-	queue_relative scout starfield 0.75 starfield 255 Global 63 99
-	queue_relative exemplar argosy 1 argosy 255 Global 63 99
-	queue_relative carrier stargate 0.5 stargate 255 Global 63 99
-	queue_relative carrier argosy 0.5 argosy 255 Global 63 99
-	#queue_relative starcaller starfield 0.5 starfield 255 Global 63 99
+	atk_add 2 zealot
+	atk_add 1 dragoon
+	atk_add 1 hierophant
+	atk_rand 0 1 dark_templar
+	atk_rand 0 1 archon
+	atk_rand 0 1 dark_archon
+	atk_rel zealot gateway|warp_anchor 4
+	atk_rel legionnaire principality 4
+	atk_rel dragoon gateway|principality 2.5
+	atk_rel hierophant warp_anchor 1
+	atk_rel high_templar gateway|principality|warp_anchor 0.5
+	atk_rel archon high_templar 0.33
+	atk_rel dark_templar gateway|principality|warp_anchor 0.5
+	atk_rel dark_archon dark_templar 0.33
+	atk_rel reaver robotics_facility|robotics_authority 1
+	#atk_rel clarion robotics_facility 0.33
+	atk_rel scout stargate|starfield 2
+	atk_rel exemplar argosy 2
+	atk_rel carrier stargate|argosy 1
+	#atk_rel starcaller starfield 1
+	queue_rel zealot gateway 1 gateway 255 Global 63 99
+	queue_rel zealot warp_anchor 1 warp_anchor 255 Global 63 99
+	queue_rel legionnaire principality 1 principality 255 Global 63 99
+	queue_rel dragoon gateway 1 gateway 255 Global 63 99
+	queue_rel dragoon principality 1 principality 255 Global 63 99
+	queue_rel hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
+	queue_rel high_templar gateway 0.11 gateway 255 Global 63 99
+	queue_rel high_templar principality 0.11 principality 255 Global 63 99
+	queue_rel high_templar warp_anchor 0.11 warp_anchor 255 Global 63 99
+	#queue_rel archon high_templar 0.25 high_templar 255 Global 63 99
+	queue_rel dark_templar gateway 0.11 gateway 255 Global 63 99
+	queue_rel dark_templar principality 0.11 principality 255 Global 63 99
+	queue_rel dark_templar warp_anchor 0.11 warp_anchor 255 Global 63 99
+	#queue_rel dark_archon dark_templar 0.15 dark_templar 255 Global 63 99
+	queue_rel reaver robotics_facility 0.5 robotics_facility 255 Global 63 99
+	queue_rel reaver robotics_authority 0.5 robotics_authority 255 Global 63 99
+	#queue_rel clarion robotics_facility 0.33 robotics_facility 255 Global 63 99
+	queue_rel scout stargate 0.75 stargate 255 Global 63 99
+	queue_rel scout starfield 0.75 starfield 255 Global 63 99
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	queue_rel carrier stargate 0.5 stargate 255 Global 63 99
+	queue_rel carrier argosy 0.5 argosy 255 Global 63 99
+	#queue_rel starcaller starfield 0.5 starfield 255 Global 63 99
 	return
 	
 	:addGate
-	attack_add 3 zealot
-	attack_add 5 legionnaire
-	attack_add 5 dragoon
-	attack_add 1 hierophant
-	attack_add 1 high_templar
-	attack_add 1 archon
-	attack_add 2 dark_templar
-	attack_add 1 dark_archon
-	#attack_add 1 clarion
-	attack_add_relative zealot gateway|warp_anchor 2.5
-	attack_add_relative legionnaire principality 4.5
-	attack_add_relative dragoon gateway|principality 2.5
-	attack_add_relative hierophant warp_anchor 1
-	attack_add_relative high_templar gateway|principality|warp_anchor 1
-	attack_add_relative archon high_templar 0.5
-	attack_add_relative dark_templar gateway|principality|warp_anchor 1
-	attack_add_relative dark_archon dark_templar 0.33
-	attack_add_relative reaver robotics_facility|robotics_authority 0.66
-	#attack_add_relative clarion robotics_facility 0.5
-	attack_add_relative scout stargate|starfield 2
-	attack_add_relative exemplar argosy 2
-	queue_relative zealot gateway 1 gateway 255 Global 63 99
-	queue_relative zealot warp_anchor 1 warp_anchor 255 Global 63 99
-	queue_relative legionnaire principality 1 principality 255 Global 63 99
-	queue_relative dragoon gateway 1 gateway 255 Global 63 99
-	queue_relative dragoon principality 1 principality 255 Global 63 99
-	queue_relative hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
-	queue_relative high_templar gateway 0.22 gateway 255 Global 63 99
-	queue_relative high_templar principality 0.22 principality 255 Global 63 99
-	queue_relative high_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
-	#queue_relative archon high_templar 0.25 high_templar 255 Global 63 99
-	queue_relative dark_templar gateway 0.22 gateway 255 Global 63 99
-	queue_relative dark_templar principality 0.22 principality 255 Global 63 99
-	queue_relative dark_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
-	#queue_relative dark_archon dark_templar 0.15 dark_templar 255 Global 63 99
-	queue_relative reaver robotics_facility 0.15 robotics_facility 255 Global 63 99
-	queue_relative reaver robotics_authority 0.33 robotics_authority 255 Global 63 99
-	#queue_relative clarion robotics_facility 0.5 robotics_facility 255 Global 63 99
-	queue_relative scout stargate 0.75 stargate 255 Global 63 99
-	queue_relative scout starfield 0.75 starfield 255 Global 63 99
-	queue_relative exemplar argosy 1 argosy 255 Global 63 99
+	atk_add 3 zealot
+	atk_add 5 legionnaire
+	atk_add 5 dragoon
+	atk_add 1 hierophant
+	atk_add 1 high_templar
+	atk_add 1 archon
+	atk_add 2 dark_templar
+	atk_add 1 dark_archon
+	#atk_add 1 clarion
+	atk_rel zealot gateway|warp_anchor 2.5
+	atk_rel legionnaire principality 4.5
+	atk_rel dragoon gateway|principality 2.5
+	atk_rel hierophant warp_anchor 1
+	atk_rel high_templar gateway|principality|warp_anchor 1
+	atk_rel archon high_templar 0.5
+	atk_rel dark_templar gateway|principality|warp_anchor 1
+	atk_rel dark_archon dark_templar 0.33
+	atk_rel reaver robotics_facility|robotics_authority 0.66
+	#atk_rel clarion robotics_facility 0.5
+	atk_rel scout stargate|starfield 2
+	atk_rel exemplar argosy 2
+	queue_rel zealot gateway 1 gateway 255 Global 63 99
+	queue_rel zealot warp_anchor 1 warp_anchor 255 Global 63 99
+	queue_rel legionnaire principality 1 principality 255 Global 63 99
+	queue_rel dragoon gateway 1 gateway 255 Global 63 99
+	queue_rel dragoon principality 1 principality 255 Global 63 99
+	queue_rel hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
+	queue_rel high_templar gateway 0.22 gateway 255 Global 63 99
+	queue_rel high_templar principality 0.22 principality 255 Global 63 99
+	queue_rel high_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
+	#queue_rel archon high_templar 0.25 high_templar 255 Global 63 99
+	queue_rel dark_templar gateway 0.22 gateway 255 Global 63 99
+	queue_rel dark_templar principality 0.22 principality 255 Global 63 99
+	queue_rel dark_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
+	#queue_rel dark_archon dark_templar 0.15 dark_templar 255 Global 63 99
+	queue_rel reaver robotics_facility 0.15 robotics_facility 255 Global 63 99
+	queue_rel reaver robotics_authority 0.33 robotics_authority 255 Global 63 99
+	#queue_rel clarion robotics_facility 0.5 robotics_facility 255 Global 63 99
+	queue_rel scout stargate 0.75 stargate 255 Global 63 99
+	queue_rel scout starfield 0.75 starfield 255 Global 63 99
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
 	return
 	
 	:addMech
-	attack_add 1 zealot
-	attack_add 6 dragoon
-	attack_add 2 hierophant
-	attack_add 1 reaver
-	#attack_add 1 warp_relay
-	attack_add 3 scout
-	attack_add 1 exemplar
-	attack_add_relative zealot gateway|warp_anchor 1
-	attack_add_relative legionnaire principality 2
-	attack_add_relative dragoon gateway|principality 4.5
-	attack_add_relative hierophant warp_anchor 2
-	attack_add_relative reaver robotics_facility|robotics_authority 0.66
-	#attack_add_relative clarion robotics_facility 0.66
-	#attack_add_relative warp_relay robotics_authority 0.5
-	attack_add_relative scout stargate|starfield 3
-	attack_add_relative exemplar argosy 2.5
-	attack_add_relative carrier stargate|argosy 1
-	#attack_add_relative starcaller starfield 1
-	queue_relative zealot gateway 0.33 gateway 255 Global 63 99
-	queue_relative zealot warp_anchor 0.5 warp_anchor 255 Global 63 99
-	queue_relative legionnaire principality 0.5 principality 255 Global 63 99
-	queue_relative dragoon gateway 1 gateway 255 Global 63 99
-	queue_relative dragoon principality 1 principality 255 Global 63 99
-	queue_relative hierophant warp_anchor 1 warp_anchor 255 Global 63 99
-	queue_relative reaver robotics_facility 1 robotics_facility 255 Global 63 99
-	queue_relative reaver robotics_authority 0.5 robotics_authority 255 Global 63 99
-	#queue_relative clarion robotics_facility 0.33 robotics_facility 255 Global 63 99
-	queue_relative scout stargate 1 stargate 255 Global 63 99
-	queue_relative scout starfield 1 starfield 255 Global 63 99
-	queue_relative exemplar argosy 1 argosy 255 Global 63 99
-	queue_relative carrier stargate 0.5 stargate 255 Global 63 99
-	queue_relative carrier argosy 0.5 argosy 255 Global 63 99
-	#queue_relative starcaller starfield 0.5 starfield 255 Global 63 99
+	atk_add 1 zealot
+	atk_add 6 dragoon
+	atk_add 2 hierophant
+	atk_add 1 reaver
+	#atk_add 1 warp_relay
+	atk_add 3 scout
+	atk_add 1 exemplar
+	atk_rel zealot gateway|warp_anchor 1
+	atk_rel legionnaire principality 2
+	atk_rel dragoon gateway|principality 4.5
+	atk_rel hierophant warp_anchor 2
+	atk_rel reaver robotics_facility|robotics_authority 0.66
+	#atk_rel clarion robotics_facility 0.66
+	#atk_rel warp_relay robotics_authority 0.5
+	atk_rel scout stargate|starfield 3
+	atk_rel exemplar argosy 2.5
+	atk_rel carrier stargate|argosy 1
+	#atk_rel starcaller starfield 1
+	queue_rel zealot gateway 0.33 gateway 255 Global 63 99
+	queue_rel zealot warp_anchor 0.5 warp_anchor 255 Global 63 99
+	queue_rel legionnaire principality 0.5 principality 255 Global 63 99
+	queue_rel dragoon gateway 1 gateway 255 Global 63 99
+	queue_rel dragoon principality 1 principality 255 Global 63 99
+	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	queue_rel reaver robotics_facility 1 robotics_facility 255 Global 63 99
+	queue_rel reaver robotics_authority 0.5 robotics_authority 255 Global 63 99
+	#queue_rel clarion robotics_facility 0.33 robotics_facility 255 Global 63 99
+	queue_rel scout stargate 1 stargate 255 Global 63 99
+	queue_rel scout starfield 1 starfield 255 Global 63 99
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	queue_rel carrier stargate 0.5 stargate 255 Global 63 99
+	queue_rel carrier argosy 0.5 argosy 255 Global 63 99
+	#queue_rel starcaller starfield 0.5 starfield 255 Global 63 99
 	return
 	
 	:addAir
-	attack_add 1 zealot
-	attack_add 1 legionnaire
-	attack_add 2 dragoon
-	attack_add 5 scout
-	attack_add 2 exemplar
-	attack_add 1 carrier
-	#attack_add 1 starcaller
-	attack_add_relative scout stargate|starfield 4
-	attack_add_relative exemplar argosy 2.16
-	attack_add_relative carrier stargate|argosy 1
-	#attack_add_relative starcaller starfield 1.16
-	attack_add_relative zealot gateway|warp_anchor 1.16
-	attack_add_relative legionnaire principality 2.5
-	attack_add_relative dragoon gateway|principality 1.5
-	attack_add_relative hierophant warp_anchor 1
-	attack_add_relative reaver robotics_facility|robotics_authority 1
-	#attack_add_relative clarion robotics_facility 0.35
-	queue_relative zealot gateway 0.75 gateway 255 Global 63 99
-	queue_relative zealot warp_anchor 1 warp_anchor 255 Global 63 99
-	queue_relative legionnaire principality 1 principality 255 Global 63 99
-	queue_relative dragoon gateway 0.66 gateway 255 Global 63 99
-	queue_relative dragoon principality 0.66 principality 255 Global 63 99
-	queue_relative hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
-	queue_relative reaver robotics_facility 0.33 robotics_facility 255 Global 63 99
-	queue_relative reaver robotics_authority 0.5 robotics_authority 255 Global 63 99
-	#queue_relative clarion robotics_facility 0.33 robotics_facility 255 Global 63 99
-	queue_relative scout stargate 1.25 stargate 255 Global 63 99
-	queue_relative scout starfield 1.25 starfield 255 Global 63 99
-	queue_relative exemplar argosy 1 argosy 255 Global 63 99
-	queue_relative carrier stargate 0.66 stargate 255 Global 63 99
-	queue_relative carrier argosy 0.66 argosy 255 Global 63 99
-	#queue_relative starcaller starfield 0.66 starfield 255 Global 63 99
+	atk_add 1 zealot
+	atk_add 1 legionnaire
+	atk_add 2 dragoon
+	atk_add 5 scout
+	atk_add 2 exemplar
+	atk_add 1 carrier
+	#atk_add 1 starcaller
+	atk_rel scout stargate|starfield 4
+	atk_rel exemplar argosy 2.16
+	atk_rel carrier stargate|argosy 1
+	#atk_rel starcaller starfield 1.16
+	atk_rel zealot gateway|warp_anchor 1.16
+	atk_rel legionnaire principality 2.5
+	atk_rel dragoon gateway|principality 1.5
+	atk_rel hierophant warp_anchor 1
+	atk_rel reaver robotics_facility|robotics_authority 1
+	#atk_rel clarion robotics_facility 0.35
+	queue_rel zealot gateway 0.75 gateway 255 Global 63 99
+	queue_rel zealot warp_anchor 1 warp_anchor 255 Global 63 99
+	queue_rel legionnaire principality 1 principality 255 Global 63 99
+	queue_rel dragoon gateway 0.66 gateway 255 Global 63 99
+	queue_rel dragoon principality 0.66 principality 255 Global 63 99
+	queue_rel hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
+	queue_rel reaver robotics_facility 0.33 robotics_facility 255 Global 63 99
+	queue_rel reaver robotics_authority 0.5 robotics_authority 255 Global 63 99
+	#queue_rel clarion robotics_facility 0.33 robotics_facility 255 Global 63 99
+	queue_rel scout stargate 1.25 stargate 255 Global 63 99
+	queue_rel scout starfield 1.25 starfield 255 Global 63 99
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	queue_rel carrier stargate 0.66 stargate 255 Global 63 99
+	queue_rel carrier argosy 0.66 argosy 255 Global 63 99
+	#queue_rel starcaller starfield 0.66 starfield 255 Global 63 99
 	return
 	
 	:addGateMech
-	attack_add 2 zealot
-	attack_add 4 legionnaire
-	attack_add 1 dragoon
-	attack_add 1 high_templar
-	attack_add 1 archon
-	attack_add 1 dark_templar
-	attack_rand 0 1 dark_archon
-	attack_add 1 reaver
-	#attack_add 2 clarion
-	#attack_add 1 warp_relay
-	attack_add 2 scout
-	attack_add 1 exemplar
-	attack_rand 0 1 carrier
-	attack_add_relative zealot gateway|warp_anchor 2.5
-	attack_add_relative legionnaire principality 4.5
-	attack_add_relative dragoon gateway|principality 2.5
-	attack_add_relative hierophant warp_anchor 1
-	attack_add_relative high_templar gateway|principality|warp_anchor 1
-	attack_add_relative archon high_templar 0.5
-	attack_add_relative dark_templar gateway|principality|warp_anchor 1
-	attack_add_relative dark_archon dark_templar 0.33
-	attack_add_relative reaver robotics_facility|robotics_authority 2
-	#attack_add_relative clarion robotics_facility 0.5
-	attack_add_relative scout stargate|starfield 2.5
-	attack_add_relative exemplar argosy 2
-	attack_add_relative carrier stargate|argosy 0.66
-	#attack_add_relative starcaller starfield 1
-	queue_relative zealot gateway 1 gateway 255 Global 63 99
-	queue_relative zealot warp_anchor 1 warp_anchor 255 Global 63 99
-	queue_relative legionnaire principality 1 principality 255 Global 63 99
-	queue_relative dragoon gateway 1 gateway 255 Global 63 99
-	queue_relative dragoon principality 1 principality 255 Global 63 99
-	queue_relative hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
-	queue_relative high_templar gateway 0.22 gateway 255 Global 63 99
-	queue_relative high_templar principality 0.22 principality 255 Global 63 99
-	queue_relative high_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
-	#queue_relative archon high_templar 0.25 high_templar 255 Global 63 99
-	queue_relative dark_templar gateway 0.22 gateway 255 Global 63 99
-	queue_relative dark_templar principality 0.22 principality 255 Global 63 99
-	queue_relative dark_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
-	#queue_relative dark_archon dark_templar 0.15 dark_templar 255 Global 63 99
-	queue_relative reaver robotics_facility 0.5 robotics_facility 255 Global 63 99
-	queue_relative reaver robotics_authority 1 robotics_authority 255 Global 63 99
-	#queue_relative clarion robotics_facility 1 robotics_facility 255 Global 63 99
-	queue_relative scout stargate 1 stargate 255 Global 63 99
-	queue_relative scout starfield 1 starfield 255 Global 63 99
-	queue_relative exemplar argosy 1 argosy 255 Global 63 99
-	queue_relative carrier stargate 0.33 stargate 255 Global 63 99
-	queue_relative carrier argosy 0.33 argosy 255 Global 63 99
-	#queue_relative starcaller starfield 0.5 starfield 255 Global 63 99
+	atk_add 2 zealot
+	atk_add 4 legionnaire
+	atk_add 1 dragoon
+	atk_add 1 high_templar
+	atk_add 1 archon
+	atk_add 1 dark_templar
+	atk_rand 0 1 dark_archon
+	atk_add 1 reaver
+	#atk_add 2 clarion
+	#atk_add 1 warp_relay
+	atk_add 2 scout
+	atk_add 1 exemplar
+	atk_rand 0 1 carrier
+	atk_rel zealot gateway|warp_anchor 2.5
+	atk_rel legionnaire principality 4.5
+	atk_rel dragoon gateway|principality 2.5
+	atk_rel hierophant warp_anchor 1
+	atk_rel high_templar gateway|principality|warp_anchor 1
+	atk_rel archon high_templar 0.5
+	atk_rel dark_templar gateway|principality|warp_anchor 1
+	atk_rel dark_archon dark_templar 0.33
+	atk_rel reaver robotics_facility|robotics_authority 2
+	#atk_rel clarion robotics_facility 0.5
+	atk_rel scout stargate|starfield 2.5
+	atk_rel exemplar argosy 2
+	atk_rel carrier stargate|argosy 0.66
+	#atk_rel starcaller starfield 1
+	queue_rel zealot gateway 1 gateway 255 Global 63 99
+	queue_rel zealot warp_anchor 1 warp_anchor 255 Global 63 99
+	queue_rel legionnaire principality 1 principality 255 Global 63 99
+	queue_rel dragoon gateway 1 gateway 255 Global 63 99
+	queue_rel dragoon principality 1 principality 255 Global 63 99
+	queue_rel hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
+	queue_rel high_templar gateway 0.22 gateway 255 Global 63 99
+	queue_rel high_templar principality 0.22 principality 255 Global 63 99
+	queue_rel high_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
+	#queue_rel archon high_templar 0.25 high_templar 255 Global 63 99
+	queue_rel dark_templar gateway 0.22 gateway 255 Global 63 99
+	queue_rel dark_templar principality 0.22 principality 255 Global 63 99
+	queue_rel dark_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
+	#queue_rel dark_archon dark_templar 0.15 dark_templar 255 Global 63 99
+	queue_rel reaver robotics_facility 0.5 robotics_facility 255 Global 63 99
+	queue_rel reaver robotics_authority 1 robotics_authority 255 Global 63 99
+	#queue_rel clarion robotics_facility 1 robotics_facility 255 Global 63 99
+	queue_rel scout stargate 1 stargate 255 Global 63 99
+	queue_rel scout starfield 1 starfield 255 Global 63 99
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	queue_rel carrier stargate 0.33 stargate 255 Global 63 99
+	queue_rel carrier argosy 0.33 argosy 255 Global 63 99
+	#queue_rel starcaller starfield 0.5 starfield 255 Global 63 99
 	return
 	
 	:addGateAir
-	attack_add 2 zealot
-	attack_add 4 legionnaire
-	attack_add 1 dragoon
-	attack_add 1 hierophant
-	attack_rand 0 1 high_templar
-	attack_add 1 archon
-	attack_add 1 dark_templar
-	attack_add 1 dark_archon
-	#attack_add 1 clarion
-	attack_add 2 scout
-	attack_add 1 exemplar
-	attack_add 1 carrier
-	#attack_rand 0 1 starcaller
-	attack_add_relative zealot gateway|warp_anchor 2.5
-	attack_add_relative legionnaire principality 4.5
-	attack_add_relative dragoon gateway|principality 2.5
-	attack_add_relative hierophant warp_anchor 1.16
-	attack_add_relative high_templar gateway|principality|warp_anchor 1.16
-	attack_add_relative archon high_templar 0.66
-	attack_add_relative dark_templar gateway|principality|warp_anchor 1.16
-	attack_add_relative dark_archon dark_templar 0.5
-	attack_add_relative reaver robotics_facility|robotics_authority 0.66
-	#attack_add_relative clarion robotics_facility 1
-	attack_add_relative scout stargate|starfield 3
-	attack_add_relative exemplar argosy 2.3
-	attack_add_relative carrier stargate|argosy 2
-	#attack_add_relative starcaller starfield 1
-	queue_relative zealot gateway 1 gateway 255 Global 63 99
-	queue_relative zealot warp_anchor 1 warp_anchor 255 Global 63 99
-	queue_relative legionnaire principality 1 principality 255 Global 63 99
-	queue_relative dragoon gateway 1 gateway 255 Global 63 99
-	queue_relative dragoon principality 1 principality 255 Global 63 99
-	queue_relative hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
-	queue_relative high_templar gateway 0.22 gateway 255 Global 63 99
-	queue_relative high_templar principality 0.22 principality 255 Global 63 99
-	queue_relative high_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
-	#queue_relative archon high_templar 0.25 high_templar 255 Global 63 99
-	queue_relative dark_templar gateway 0.22 gateway 255 Global 63 99
-	queue_relative dark_templar principality 0.22 principality 255 Global 63 99
-	queue_relative dark_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
-	#queue_relative dark_archon dark_templar 0.15 dark_templar 255 Global 63 99
-	queue_relative reaver robotics_facility 0.15 robotics_facility 255 Global 63 99
-	queue_relative reaver robotics_authority 0.33 robotics_authority 255 Global 63 99
-	#queue_relative clarion robotics_facility 0.5 robotics_facility 255 Global 63 99
-	queue_relative scout stargate 1.25 stargate 255 Global 63 99
-	queue_relative scout starfield 1.25 starfield 255 Global 63 99
-	queue_relative exemplar argosy 1 argosy 255 Global 63 99
-	queue_relative carrier stargate 0.66 stargate 255 Global 63 99
-	queue_relative carrier argosy 0.66 argosy 255 Global 63 99
-	#queue_relative starcaller starfield 0.66 starfield 255 Global 63 99
+	atk_add 2 zealot
+	atk_add 4 legionnaire
+	atk_add 1 dragoon
+	atk_add 1 hierophant
+	atk_rand 0 1 high_templar
+	atk_add 1 archon
+	atk_add 1 dark_templar
+	atk_add 1 dark_archon
+	#atk_add 1 clarion
+	atk_add 2 scout
+	atk_add 1 exemplar
+	atk_add 1 carrier
+	#atk_rand 0 1 starcaller
+	atk_rel zealot gateway|warp_anchor 2.5
+	atk_rel legionnaire principality 4.5
+	atk_rel dragoon gateway|principality 2.5
+	atk_rel hierophant warp_anchor 1.16
+	atk_rel high_templar gateway|principality|warp_anchor 1.16
+	atk_rel archon high_templar 0.66
+	atk_rel dark_templar gateway|principality|warp_anchor 1.16
+	atk_rel dark_archon dark_templar 0.5
+	atk_rel reaver robotics_facility|robotics_authority 0.66
+	#atk_rel clarion robotics_facility 1
+	atk_rel scout stargate|starfield 3
+	atk_rel exemplar argosy 2.3
+	atk_rel carrier stargate|argosy 2
+	#atk_rel starcaller starfield 1
+	queue_rel zealot gateway 1 gateway 255 Global 63 99
+	queue_rel zealot warp_anchor 1 warp_anchor 255 Global 63 99
+	queue_rel legionnaire principality 1 principality 255 Global 63 99
+	queue_rel dragoon gateway 1 gateway 255 Global 63 99
+	queue_rel dragoon principality 1 principality 255 Global 63 99
+	queue_rel hierophant warp_anchor 0.66 warp_anchor 255 Global 63 99
+	queue_rel high_templar gateway 0.22 gateway 255 Global 63 99
+	queue_rel high_templar principality 0.22 principality 255 Global 63 99
+	queue_rel high_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
+	#queue_rel archon high_templar 0.25 high_templar 255 Global 63 99
+	queue_rel dark_templar gateway 0.22 gateway 255 Global 63 99
+	queue_rel dark_templar principality 0.22 principality 255 Global 63 99
+	queue_rel dark_templar warp_anchor 0.22 warp_anchor 255 Global 63 99
+	#queue_rel dark_archon dark_templar 0.15 dark_templar 255 Global 63 99
+	queue_rel reaver robotics_facility 0.15 robotics_facility 255 Global 63 99
+	queue_rel reaver robotics_authority 0.33 robotics_authority 255 Global 63 99
+	#queue_rel clarion robotics_facility 0.5 robotics_facility 255 Global 63 99
+	queue_rel scout stargate 1.25 stargate 255 Global 63 99
+	queue_rel scout starfield 1.25 starfield 255 Global 63 99
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	queue_rel carrier stargate 0.66 stargate 255 Global 63 99
+	queue_rel carrier argosy 0.66 argosy 255 Global 63 99
+	#queue_rel starcaller starfield 0.66 starfield 255 Global 63 99
 	return
 	
 	:addMechAir
-	attack_add 1 zealot
-	attack_add 1 legionnaire
-	attack_add 3 dragoon
-	attack_add 1 hierophant
-	attack_add 1 reaver
-	#attack_add 1 warp_relay
-	attack_add 3 scout
-	attack_add 1 exemplar
-	attack_add 1 carrier
-	attack_rand 0 1 starcaller
-	attack_add_relative zealot gateway|warp_anchor 1
-	attack_add_relative legionnaire principality 2
-	attack_add_relative dragoon gateway|principality 4.5
-	attack_add_relative hierophant warp_anchor 2
-	attack_add_relative reaver robotics_facility|robotics_authority 1
-	#attack_add_relative clarion robotics_facility 0.66
-	#attack_add_relative warp_relay robotics_authority 0.5
-	attack_add_relative scout stargate|starfield 2.5
-	attack_add_relative exemplar argosy 2
-	attack_add_relative carrier stargate|argosy 1
-	#attack_add_relative starcaller starfield 1.16
-	queue_relative zealot gateway 0.33 gateway 255 Global 63 99
-	queue_relative zealot warp_anchor 0.5 warp_anchor 255 Global 63 99
-	queue_relative legionnaire principality 0.5 principality 255 Global 63 99
-	queue_relative dragoon gateway 1 gateway 255 Global 63 99
-	queue_relative dragoon principality 1 principality 255 Global 63 99
-	queue_relative hierophant warp_anchor 1 warp_anchor 255 Global 63 99
-	queue_relative reaver robotics_facility 1 robotics_facility 255 Global 63 99
-	queue_relative reaver robotics_authority 0.5 robotics_authority 255 Global 63 99
-	#queue_relative clarion robotics_facility 0.33 robotics_facility 255 Global 63 99
-	queue_relative scout stargate 1 stargate 255 Global 63 99
-	queue_relative scout starfield 1 starfield 255 Global 63 99
-	queue_relative exemplar argosy 1 argosy 255 Global 63 99
-	queue_relative carrier stargate 0.5 stargate 255 Global 63 99
-	queue_relative carrier argosy 0.5 argosy 255 Global 63 99
-	#queue_relative starcaller starfield 0.5 starfield 255 Global 63 99
-	queue_relative scout stargate 1.25 stargate 255 Global 63 99
-	queue_relative scout starfield 1.25 starfield 255 Global 63 99
-	queue_relative exemplar argosy 1 argosy 255 Global 63 99
-	queue_relative carrier stargate 0.66 stargate 255 Global 63 99
-	queue_relative carrier argosy 0.66 argosy 255 Global 63 99
-	#queue_relative starcaller starfield 0.66 starfield 255 Global 63 99
+	atk_add 1 zealot
+	atk_add 1 legionnaire
+	atk_add 3 dragoon
+	atk_add 1 hierophant
+	atk_add 1 reaver
+	#atk_add 1 warp_relay
+	atk_add 3 scout
+	atk_add 1 exemplar
+	atk_add 1 carrier
+	atk_rand 0 1 starcaller
+	atk_rel zealot gateway|warp_anchor 1
+	atk_rel legionnaire principality 2
+	atk_rel dragoon gateway|principality 4.5
+	atk_rel hierophant warp_anchor 2
+	atk_rel reaver robotics_facility|robotics_authority 1
+	#atk_rel clarion robotics_facility 0.66
+	#atk_rel warp_relay robotics_authority 0.5
+	atk_rel scout stargate|starfield 2.5
+	atk_rel exemplar argosy 2
+	atk_rel carrier stargate|argosy 1
+	#atk_rel starcaller starfield 1.16
+	queue_rel zealot gateway 0.33 gateway 255 Global 63 99
+	queue_rel zealot warp_anchor 0.5 warp_anchor 255 Global 63 99
+	queue_rel legionnaire principality 0.5 principality 255 Global 63 99
+	queue_rel dragoon gateway 1 gateway 255 Global 63 99
+	queue_rel dragoon principality 1 principality 255 Global 63 99
+	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	queue_rel reaver robotics_facility 1 robotics_facility 255 Global 63 99
+	queue_rel reaver robotics_authority 0.5 robotics_authority 255 Global 63 99
+	#queue_rel clarion robotics_facility 0.33 robotics_facility 255 Global 63 99
+	queue_rel scout stargate 1 stargate 255 Global 63 99
+	queue_rel scout starfield 1 starfield 255 Global 63 99
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	queue_rel carrier stargate 0.5 stargate 255 Global 63 99
+	queue_rel carrier argosy 0.5 argosy 255 Global 63 99
+	#queue_rel starcaller starfield 0.5 starfield 255 Global 63 99
+	queue_rel scout stargate 1.25 stargate 255 Global 63 99
+	queue_rel scout starfield 1.25 starfield 255 Global 63 99
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	queue_rel carrier stargate 0.66 stargate 255 Global 63 99
+	queue_rel carrier argosy 0.66 argosy 255 Global 63 99
+	#queue_rel starcaller starfield 0.66 starfield 255 Global 63 99
 	return 
