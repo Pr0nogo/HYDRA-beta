@@ -1,0 +1,118 @@
+This document details features of the melee AI for Project: HYDRA.
+
+Useful links:
+Project info - http://pr0nogo.wikidot.com/sc-hydra
+Beta build - https://mega.nz/#F!PxA1BQRD!tgPGL8FxFtTC9q8tXJBuLQ
+AI scripts - https://mega.nz/folder/H9YFBIpT#_SAB9mfgqW5885RaVD9yBA
+
+Setup for UMS maps:
+-Make sure your AI has the correct race set in map settings
+-Set crashed battlecruiser deaths for personalities and stasis chamber deaths for build orders
+-Run <race> expansion custom level in a location placed over the starting town hall
+-Results not guaranteed; the AI have only been tested with melee starting conditions
+
+Special thanks to Connor5620 for testing and documenting many of the AI's build orders! You can take a look at his guides at the no frauds club forum.
+https://thenofraudsclub.proboards.com/
+
+Legend:
+* - Tested and approved
+♣ - Build by Connor
+
+=============
+PERSONALITIES
+=============
+These use crashed battlecruiser deaths.
+Their number corresponds to how many deaths you should set before running the AI.
+Without any deaths set, the personality will be chosen at random.
+
+TERRAN
+1 - Mech
+2 - Raider (bio)
+3 - Air
+4 - General
+
+PROTOSS
+1 - Ranger (Dragoon/Reaver/Air)
+2 - Templar (mass Gateway)
+3 - Skylord (Air/Reaver)
+4 - General
+
+ZERG
+1 - Connor (Hydra)
+2 - Swarm (mass melee)
+3 - Air
+4 - General
+
+=============
+BUILD  ORDERS
+=============
+These use stasis chamber deaths.
+Their number corresponds to how many deaths you should set before running the AI.
+Without any deaths set, the build order will be chosen at random.
+
+TERRAN
+General
+1 - 8Rax into Mech					* ♣
+2 - 12CC (fast expo)				
+3 - TenTenTen						
+4 - BBS (Barracks Barracks Supply)	* ♣
+
+Mech
+1 - Tank Timing (Factory first)		
+2 - Tank Wraith						
+3 - 2Fact Vult						
+
+Raider
+1 - 8Rax					
+2 - 3Rax Marine & Medic				* ♣
+3 - Fast Ghost/Nuke					
+4 - 4Rax Pressure					* ♣
+
+Air
+1 - 2Port Wraith					*
+2 - Battlecruiser					
+3 - Wraith Bio						
+
+PROTOSS
+General
+1 - Forge FE						
+2 - Nexus FE						♣
+3 - 2Gate Robo						
+
+Ranger
+1 - 2Gate Goon						
+2 - 1Gate Robo						
+3 - Forge FE Reaver					
+4 - 1Gate Expo						* ♣
+
+Templar
+1 - 4Gate							*
+2 - 3Gate Goon						
+3 - 2Gate DT						
+
+Skylord
+1 - Forge FE Corsair				
+2 - Carrier							
+3 - 2Gate Scout						
+
+ZERG
+General
+1 - 2Hatch Hive						
+2 - 2Hatch Vorv						
+3 - 3Hatch Hydra Queen				
+
+Connor
+1 - 3Hatch Hydra					♣
+2 - 2Hatch Lurker					
+3 - 2Hatch Hydraling				
+
+Swarm
+1 - 3Hatch Flood					♣
+2 - 3Hatch Ultra					♣
+3 - 9Pool							
+4 - 3Hatch Hive						♣
+
+Air
+1 - 3Hatch Mutaling					
+2 - 2Hatch Guard					
+3 - 2Hatch Muta						

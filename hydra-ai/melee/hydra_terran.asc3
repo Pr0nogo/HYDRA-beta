@@ -1,0 +1,2704 @@
+script_name Terran Expansion Custom Level
+script_id TMCx
+
+	unstart_campaign
+	wait 1
+	start_town
+	set_free_id
+	wait 1
+	default_min 1
+	defaultbuild_off
+	wait 1
+	aicontrol dont_build_gas
+	aicontrol unit_mover_enabled
+	aicontrol dont_focus_disabled
+	farms_notiming
+	under_attack 0
+	transports_off
+	guard_all
+	max_force 3000
+	help_iftrouble
+	idle_orders DisableBuiltin 0 0 0 0 0 0 0
+	town_state 255 persist true
+	set_var_local blank stp 13
+	set_var_local blankReturn ret 13
+	set_var_local tUpgEnd upgEndT 13
+	set_var_local wWorkerDef wWorker 13
+	var set townCount 1 13
+	var set miningCount 1 13
+	var set underAttack 0 13
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	var set canAttack 0 13
+	var set canUpgrade 0 13
+	var set canStatic 0 13
+	var set buildGas 0 13
+	var set buildSupply 0 13
+	queue 1 scv command_center 255 Local Loc.63 80
+	multirun uAttack
+	multirun wResource
+	multirun wGas
+	multirun wSupply
+	multirun tTown
+	multirun tMax
+	multirun tDef
+	multirun tUpg
+	multirun tExpand
+	multirun tScale
+	
+	:slcPers
+	deaths 13 AtLeast 1 crashed_battle dbgPers
+	deaths 13 Randomize 4 crashed_battle blank
+	
+	:dbgPers
+	deaths 13 Exactly 1 crashed_battle dbgPers1
+	deaths 13 Exactly 2 crashed_battle dbgPers2
+	deaths 13 Exactly 3 crashed_battle dbgPers3
+	print <32>HYDRA<32>Terran<32>AI<32>personality<32>0:<32>General
+	deaths 13 AtLeast 1 stasis_chamber dbgBuild
+	deaths 13 Randomize 5 stasis_chamber blank
+	goto dbgBuild
+	
+	:dbgPers1
+	print <32>HYDRA<32>Terran<32>AI<32>personality<32>1:<32>Mech
+	deaths 13 AtLeast 1 stasis_chamber dbgBuild
+	deaths 13 Randomize 4 stasis_chamber blank
+	goto dbgBuild
+	
+	:dbgPers2
+	print <32>HYDRA<32>Terran<32>AI<32>personality<32>2:<32>Raider
+	deaths 13 AtLeast 1 stasis_chamber dbgBuild
+	deaths 13 Randomize 5 stasis_chamber blank
+	goto dbgBuild
+	
+	:dbgPers3
+	print <32>HYDRA<32>Terran<32>AI<32>personality<32>3:<32>Air
+	deaths 13 AtLeast 1 stasis_chamber dbgBuild
+	deaths 13 Randomize 4 stasis_chamber blank
+	goto dbgBuild
+	
+	:dbgBuild
+	deaths 13 Exactly 1 stasis_chamber dbgBuild1
+	deaths 13 Exactly 2 stasis_chamber dbgBuild2
+	deaths 13 Exactly 3 stasis_chamber dbgBuild3
+	deaths 13 Exactly 4 stasis_chamber dbgBuild4
+	goto dbgBuild1
+	
+	:dbgBuild1
+	deaths 13 Exactly 1 crashed_battle dbgBuild1Mech
+	deaths 13 Exactly 2 crashed_battle dbgBuild1Bio
+	deaths 13 Exactly 3 crashed_battle dbgBuild1Air
+	
+	:dbgBuild1Gen
+	print Terran<32>General<32>build<32>1:<32>8RaxMech
+	goto idle
+	
+	:dbgBuild1Mech
+	print Terran<32>Mech<32>build<32>1:<32>TankTiming
+	goto idle
+	
+	:dbgBuild1Bio
+	print Terran<32>Raider<32>build<32>1:<32>8Rax
+	goto idle
+	
+	:dbgBuild1Air
+	print Terran<32>Air<32>build<32>1:<32>2PortWraith
+	goto idle
+	
+	:dbgBuild2
+	deaths 13 Exactly 1 crashed_battle dbgBuild2Mech
+	deaths 13 Exactly 2 crashed_battle dbgBuild2Bio
+	deaths 13 Exactly 3 crashed_battle dbgBuild2Air
+	
+	:dbgBuild2Gen
+	print Terran<32>General<32>build<32>2:<32>12CC
+	goto idle
+	
+	:dbgBuild2Mech
+	print Terran<32>Mech<32>build<32>2:<32>TankWraith
+	goto idle
+	
+	:dbgBuild2Bio
+	print Terran<32>Raider<32>build<32>2:<32>3RaxM&M
+	goto idle
+	
+	:dbgBuild2Air
+	print Terran<32>Air<32>build<32>2:<32>Don
+	goto idle
+	
+	:dbgBuild3
+	deaths 13 Exactly 1 crashed_battle dbgBuild3Mech
+	deaths 13 Exactly 2 crashed_battle dbgBuild3Bio
+	deaths 13 Exactly 3 crashed_battle dbgBuild3Air
+	
+	:dbgBuild3Gen
+	print Terran<32>General<32>build<32>3:<32>TenTenTen
+	goto idle
+	
+	:dbgBuild3Mech
+	print Terran<32>Mech<32>build<32>3:<32>2FactVult
+	goto idle
+	
+	:dbgBuild3Bio
+	print Terran<32>Raider<32>build<32>3:<32>3RaxNuke
+	goto idle
+	
+	:dbgBuild3Air
+	print Terran<32>Air<32>build<32>3:<32>WraithRax
+	goto idle
+	
+	:dbgBuild4
+	deaths 13 Exactly 1 crashed_battle dbgBuild4Gen
+	deaths 13 Exactly 2 crashed_battle dbgBuild4Bio
+	deaths 13 Exactly 3 crashed_battle idle
+	
+	:dbgBuild4Gen
+	print Terran<32>General<32>build<32>4:<32>BBS
+	goto idle
+	
+	:dbgBuild4Bio
+	print Terran<32>Raider<32>build<32>4:<32>4RaxPressure
+	
+	:idle
+	wait 25500
+	goto idle
+	
+	:blank
+	stop
+	
+	:blankReturn
+	return
+	
+	:initTown
+	start_town
+	wait 1
+	set_free_id
+	return
+	
+	:uAttack
+	wait 12
+	comparison player_combat 17 13 63 True Wait Any Group_Buildings|scv
+	var set underAttack 1 13
+	comparison player_combat 17 13 63 False Wait Any Group_Buildings|scv
+	wait 240
+	var set underAttack 0 13
+	goto uAttack
+	
+	:wAttack
+	wait 24
+	bring_jump 13 AtMost 12 scv Loc.63 wAttack
+	bring_jump 13 AtMost 1 barracks|factory|starport Loc.63 wAttack
+	bring_jump 13 AtLeast 10 Group_Factories Loc.63 blankReturn
+	resources 13 AtLeast Any 999 blankReturn
+	var exactly|WaitFor(360) underAttack 0 13
+	resources 13 AtMost Ore 199 wAttack
+	return
+	
+	:wResource
+	resources 13 AtLeast_Wait Ore 500 blank
+	wait 240
+	aicontrol dont_wait_request_resources
+	resources 13 AtMost_Wait Ore 499 blank
+	wait 240
+	aicontrol wait_request_resources
+	goto wResource
+	
+	:wGas
+	var exactly|wait buildGas 1 13
+	aicontrol build_gas
+	stop
+	
+	:wSupply
+	multirun wSupply2
+	#max_build 255 supply_depot 0
+	var exactly|wait buildSupply 1 13
+	goto wSupply3
+	
+	:wSupply2
+	deaths 13 AtLeast_Wait 1 supply_depot blank
+	var exactly|jump buildSupply 1 stp 13
+	
+	:wSupply3
+	farms_timing
+	#max_build 255 supply_depot 254
+	stop
+	
+	:wWorkerDef
+	wait 12
+	resources 13 AtLeast Ore 500 blankReturn
+	var exactly|WaitFor(360) underAttack 0 13
+	return
+	
+	:wUpgradeDef
+	wait 12
+	resources 13 AtLeast Any 399 blankReturn
+	var exactly|WaitFor(360) underAttack 0 13
+	resources 13 AtMost Any 199 wUpgradeDef
+	return
+	
+	:tMax
+	define_max 90 scv
+	define_max 80 marine
+	define_max 42 firebat
+	define_max 42 cyprian
+	define_max 42 medic
+	define_max 28 shaman
+	define_max 36 ghost
+	define_max 32 savant
+	define_max 50 vulture
+	define_max 40 siege_tank
+	define_max 40 goliath
+	define_max 22 paladin
+	define_max 36 wraith
+	define_max 24 dropship
+	define_max 24 wyvern
+	define_max 18 science_vessel
+	define_max 22 azazel
+	define_max 21 battlecruiser
+	stop
+	
+	:tDef
+	call tDefUse
+	var exactly|WaitFor(480) underAttack 1 13
+	call tDefGBuild
+	call tDefABuild
+	wait 360
+	var exactly|wait underAttack 0 13
+	defenseclear_gg
+	defenseclear_aa
+	defenseclear_ag
+	goto tDef
+	
+	:tDefGBuild
+	deaths 13 Exactly 1 crashed_battle tDefGBuildMech
+	deaths 13 Exactly 2 crashed_battle tDefGBuildBio
+	deaths 13 Exactly 3 crashed_battle tDefGBuildAir
+	
+	:tDefGBuildGen
+	deaths 13 AtLeast 1 fenix_zealot tDefGBuildGen2
+	deaths 13 Add 1 fenix_zealot blank
+	defensebuild_gg 2 marine
+	defense 1 medic Build Ground Ground
+	defense 1 ghost Build Ground Ground
+	defensebuild_gg 1 vulture
+	defensebuild_gg 1 siege_tank
+	defense 1 goliath Build Ground Ground
+	defensebuild_gg 1 wraith
+	random_jump 160 blankReturn
+	defensebuild_gg 1 battlecruiser
+	return
+	
+	:tDefGBuildGen2
+	deaths 13 Set 0 fenix_zealot blank
+	defensebuild_gg 2 marine
+	defense 1 firebat Build Ground Ground
+	defensebuild_gg 2 vulture
+	defensebuild_gg 1 siege_tank
+	defense 1 science_vessel Build Ground Ground
+	return
+	
+	:tDefGBuildMech
+	deaths 13 AtLeast 1 fenix_zealot tDefGBuildMech2
+	deaths 13 Add 1 fenix_zealot blank
+	defensebuild_gg 2 siege_tank
+	defensebuild_gg 2 goliath
+	defensebuild_gg 1 vulture
+	defense 1 ghost Build Ground Ground
+	defensebuild_gg 1 marine
+	defense 1 science_vessel Build Ground Ground
+	defense 1 firebat Build Ground Ground
+	defensebuild_gg 2 wraith
+	return
+	
+	:tDefGBuildMech2
+	deaths 13 Set 0 fenix_zealot blank
+	defensebuild_gg 1 siege_tank
+	defensebuild_gg 3 goliath
+	defensebuild_gg 2 vulture
+	defensebuild_gg 2 marine
+	defense 1 science_vessel Build Ground Ground
+	defense 1 firebat Build Ground Ground
+	defensebuild_gg 1 wraith
+	return
+	
+	:tDefGBuildBio
+	deaths 13 AtLeast 1 fenix_zealot tDefGBuildBio2
+	deaths 13 Add 1 fenix_zealot blank
+	defensebuild_gg 4 marine
+	defense 2 firebat Build Ground Ground
+	defense 1 medic Build Ground Ground
+	defense 2 ghost Build Ground Ground
+	defensebuild_gg 1 vulture
+	defensebuild_gg 1 siege_tank
+	defensebuild_gg 2 wraith
+	defense 1 science_vessel Build Ground Ground
+	return
+	
+	:tDefGBuildBio2
+	deaths 13 Set 0 fenix_zealot blank
+	defensebuild_gg 3 marine
+	defense 2 firebat Build Ground Ground
+	defense 1 medic Build Ground Ground
+	defense 2 ghost Build Ground Ground
+	defensebuild_gg 1 siege_tank
+	defense 1 goliath Build Ground Ground
+	defensebuild_gg 2 wraith
+	defense 1 science_vessel Build Ground Ground
+	return
+	
+	:tDefGBuildAir
+	deaths 13 AtLeast 1 fenix_zealot tDefGBuildAir2
+	deaths 13 Add 1 fenix_zealot blank
+	defensebuild_gg 2 marine
+	defensebuild_gg 3 wraith
+	#defensebuild_gg 1 wyvern
+	defense 1 ghost Build Ground Ground
+	defensebuild_gg 1 siege_tank
+	defense 1 goliath Build Ground Ground
+	defense 1 science_vessel Build Ground Ground
+	defensebuild_gg 1 battlecruiser
+	return
+	
+	:tDefGBuildAir2
+	deaths 13 Set 0 fenix_zealot blank
+	defensebuild_gg 2 marine
+	defensebuild_gg 4 wraith
+	defensebuild_gg 1 siege_tank
+	defense 1 science_vessel Build Ground Ground
+	defensebuild_gg 1 battlecruiser
+	defense 1 goliath Build Ground Ground
+	return
+	
+	:tDefABuild
+	deaths 13 Exactly 1 crashed_battle tDefABuildMech
+	deaths 13 Exactly 2 crashed_battle tDefABuildBio
+	deaths 13 Exactly 3 crashed_battle tDefABuildAir
+	
+	:tDefABuildGen
+	defensebuild_ag 2 marine
+	defense 1 ghost Build Ground Air
+	defense 1 goliath Build Ground Air
+	defensebuild_ag 1 wraith
+	defensebuild_aa 2 marine
+	defense 1 ghost Build Air Air
+	defense 1 goliath Build Air Air
+	defensebuild_aa 1 wraith
+	random_jump 160 blankReturn
+	defensebuild_ag 1 battlecruiser
+	defensebuild_aa 1 battlecruiser
+	return
+	
+	:tDefABuildMech
+	defensebuild_ag 2 marine
+	defense 1 medic Build Ground Air
+	defense 3 goliath Build Ground Air
+	defensebuild_ag 2 wraith
+	defensebuild_aa 2 marine
+	defense 1 medic Build Air Air
+	defense 3 goliath Build Air Air
+	defensebuild_aa 2 wraith
+	random_jump 160 blankReturn
+	defensebuild_ag 1 battlecruiser
+	defensebuild_aa 1 battlecruiser
+	return
+	
+	:tDefABuildBio
+	defensebuild_ag 4 marine
+	defense 1 medic Build Ground Air
+	defensebuild_ag 2 wraith
+	defense 1 goliath Build Ground Air
+	defensebuild_ag 1 battlecruiser
+	defensebuild_aa 4 marine
+	defense 1 medic Build Air Air
+	defensebuild_aa 2 wraith
+	defense 1 goliath Build Air Air
+	defensebuild_aa 1 battlecruiser
+	return
+	
+	:tDefABuildAir
+	defensebuild_ag 2 marine
+	defense 1 medic Build Ground Air
+	defensebuild_ag 2 wraith
+	#defensebuild_ag 1 valkyrie
+	defense 1 goliath Build Ground Air
+	defense 1 science_vessel Build Ground Air
+	defensebuild_ag 1 battlecruiser
+	defensebuild_aa 2 marine
+	defense 1 medic Build Air Air
+	defensebuild_aa 2 wraith
+	#defensebuild_aa 1 valkyrie
+	defense 1 goliath Build Air Air
+	defense 1 science_vessel Build Air Air
+	defensebuild_aa 1 battlecruiser
+	return
+	
+	:tDefUse
+	defenseuse_gg 2 marine
+	defense 1 firebat Use Ground Ground
+	defense 1 ghost Use Ground Ground
+	defenseuse_gg 2 vulture
+	defenseuse_gg 1 siege_tank
+	defense 2 goliath Use Ground Ground
+	defenseuse_gg 1 wraith
+	#defenseuse_gg 1 wyvern
+	defenseuse_gg 1 battlecruiser
+	defenseuse_ag 2 marine
+	defense 1 ghost Use Ground Air
+	defense 2 goliath Use Ground Air
+	defenseuse_ag 1 wraith
+	defenseuse_aa 2 marine
+	defense 1 ghost Use Air Air
+	defense 2 goliath Use Air Air
+	defenseuse_aa 1 wraith
+	defenseuse_ag 1 battlecruiser
+	defenseuse_aa 1 battlecruiser
+	return
+	
+	:tUpg
+	var set upgEngUtility 0 13
+	var set upgEngInfArmor 0 13
+	var set upgEngInfWeapon 0 13
+	var set upgArmVehArmor 0 13
+	var set upgArmVehWeapon 0 13
+	var set upgArmShipArmor 0 13
+	var set upgArmShipWeapon 0 13
+	var set upgAcadGen 0 13
+	var set upgAcadFirebat 0 13
+	var set upgAcadCyprian 0 13
+	var set upgMedbayMedic 0 13
+	var set upgMedbayShaman 0 13
+	var set upgCovGhost 0 13
+	var set upgMacVulture 0 13
+	var set upgMacTank 0 13
+	var set upgConWraith 0 13
+	var set upgConDropship 0 13
+	var set upgConWyvern 0 13
+	var set upgSciVessel 0 13
+	var set upgSciAzazel 0 13
+	var set upgPhysGen 0 13
+	var set upgEndVar 0 13
+	multirun ioComsat
+	multirun ioMedstims
+	multirun ioIrradiate
+	multirun ioMatrix
+	var exactly|wait canUpgrade 1 13
+	multirun tUpgEnd
+	deaths 13 Exactly 1 crashed_battle tUpgMech
+	deaths 13 Exactly 2 crashed_battle tUpgBio
+	deaths 13 Exactly 3 crashed_battle tUpgAir
+	goto tUpgGen
+	
+	:tUpgEnd
+	wait 12
+	var exactly|jump upgEngUtility 0 upgEndT 13
+	var exactly|jump upgEngInfArmor 0 upgEndT 13
+	var exactly|jump upgEngInfWeapon 0 upgEndT 13
+	var exactly|jump upgArmVehArmor 0 upgEndT 13
+	var exactly|jump upgArmVehWeapon 0 upgEndT 13
+	var exactly|jump upgArmShipArmor 0 upgEndT 13
+	var exactly|jump upgArmShipWeapon 0 upgEndT 13
+	var exactly|jump upgAcadGen 0 upgEndT 13
+	var exactly|jump upgAcadFirebat 0 upgEndT 13
+	var exactly|jump upgAcadCyprian 0 upgEndT 13
+	var exactly|jump upgMedbayMedic 0 upgEndT 13
+	var exactly|jump upgMedbayShaman 0 upgEndT 13
+	var exactly|jump upgCovGhost 0 upgEndT 13
+	var exactly|jump upgMacVulture 0 upgEndT 13
+	var exactly|jump upgMacTank 0 upgEndT 13
+	var exactly|jump upgConWraith 0 upgEndT 13
+	var exactly|jump upgConDropship 0 upgEndT 13
+	var exactly|jump upgConWyvern 0 upgEndT 13
+	var exactly|jump upgSciVessel 0 upgEndT 13
+	var exactly|jump upgSciAzazel 0 upgEndT 13
+	var exactly|jump upgPhysGen 0 upgEndT 13
+	var set upgEndVar 1 13
+	stop
+	
+	:tUpgGen
+	var exactly|jump upgEndVar 1 stp 13
+	wait 240
+	bring_jump 13 AtLeast_Multi 1 engineering_bay Loc.63 upgEngInfArmorCheck
+	bring_jump 13 AtLeast_Multi 1 academy Loc.63 upgAcadGenCheck
+	bring_jump 13 AtLeast_Multi 1 armory Loc.63 upgArmVehArmorCheck
+	bring_jump 13 AtLeast_Multi 1 armory Loc.63 upgEngInfWeaponCheck
+	bring_jump 13 AtLeast_Multi 1 medbay Loc.63 upgMedbayMedicCheck
+	bring_jump 13 AtLeast_Multi 1 machine_shop Loc.63 upgMacTankCheck
+	bring_jump 13 AtLeast_Multi 1 machine_shop Loc.63 upgArmVehWeaponCheck
+	bring_jump 13 AtLeast_Multi 1 science_facility Loc.63 upgSciAzazelCheck
+	bring_jump 13 AtLeast_Multi 1 science_facility Loc.63 upgMacVultureCheck
+	bring_jump 13 AtLeast_Multi 1 science_facility Loc.63 upgAcadFirebatCheck
+	bring_jump 13 AtLeast_Multi 2 engineering_bay Loc.63 upgEngUtilityCheck
+	bring_jump 13 AtLeast_Multi 1 covert_ops Loc.63 upgCovGhostCheck
+	bring_jump 13 AtLeast_Multi 1 starport Loc.63 upgArmShipArmorCheck
+	bring_jump 13 AtLeast_Multi 1 control_tower Loc.63 upgConDropshipCheck
+	bring_jump 13 AtLeast_Multi 2 starport Loc.63 upgConWraithCheck
+	bring_jump 13 AtLeast_Multi 2 starport Loc.63 upgConWyvernCheck
+	bring_jump 13 AtLeast_Multi 2 starport Loc.63 upgArmShipWeaponCheck
+	bring_jump 13 AtLeast_Multi 1 physics_lab Loc.63 upgPhysGenCheck
+	goto tUpgGen
+	
+	:tUpgMech
+	var exactly|jump upgEndVar 1 stp 13
+	wait 240
+	bring_jump 13 AtLeast_Multi 1 armory Loc.63 upgArmVehWeaponCheck
+	bring_jump 13 AtLeast_Multi 1 machine_shop Loc.63 upgMacVultureCheck
+	bring_jump 13 AtLeast_Multi 2 armory Loc.63 upgMacTankCheck
+	bring_jump 13 AtLeast_Multi 2 armory Loc.63 upgArmVehArmorCheck
+	bring_jump 13 AtLeast_Multi 1 science_facility Loc.63 upgSciVesselCheck
+	bring_jump 13 AtLeast_Multi 1 academy Loc.63 upgAcadGenCheck
+	bring_jump 13 AtLeast_Multi 3 armory Loc.63 upgArmShipArmorCheck
+	bring_jump 13 AtLeast_Multi 1 engineering_bay Loc.63 upgEngInfArmorCheck
+	bring_jump 13 AtLeast_Multi 1 engineering_bay Loc.63 upgAcadCyprianCheck
+	bring_jump 13 AtLeast_Multi 1 medbay Loc.63 upgEngUtilityCheck
+	bring_jump 13 AtLeast_Multi 1 medbay Loc.63 upgMedbayShamanCheck
+	bring_jump 13 AtLeast_Multi 1 control_tower Loc.63 upgConDropshipCheck
+	bring_jump 13 AtLeast_Multi 1 control_tower Loc.63 upgArmShipWeaponCheck
+	bring_jump 13 AtLeast_Multi 2 engineering_bay|armory Loc.63 upgEngInfWeaponCheck
+	bring_jump 13 AtLeast_Multi 1 physics_lab Loc.63 upgPhysGenCheck
+	bring_jump 13 AtLeast_Multi 2 control_tower Loc.63 upgConWraithCheck
+	bring_jump 13 AtLeast_Multi 2 control_tower Loc.63 upgConWyvernCheck
+	goto tUpgMech
+	
+	:tUpgBio
+	var exactly|jump upgEndVar 1 stp 13
+	wait 240
+	bring_jump 13 AtLeast_Multi 1 engineering_bay Loc.63 upgEngInfWeaponCheck
+	bring_jump 13 AtLeast_Multi 2 engineering_bay Loc.63 upgEngInfArmorCheck
+	bring_jump 13 AtLeast_Multi 2 engineering_bay Loc.63 upgEngUtilityCheck
+	bring_jump 13 AtLeast_Multi 1 academy Loc.63 upgAcadGenCheck
+	bring_jump 13 AtLeast_Multi 2 engineering_bay Loc.63 upgAcadFirebatCheck
+	bring_jump 13 AtLeast_Multi 1 medbay Loc.63 upgMedbayMedicCheck
+	bring_jump 13 AtLeast_Multi 1 covert_ops Loc.63 upgCovGhostCheck
+	bring_jump 13 AtLeast_Multi 1 science_facility Loc.63 upgSciAzazelCheck
+	bring_jump 13 AtLeast_Multi 1 factory Loc.63 upgArmVehArmorCheck
+	bring_jump 13 AtLeast_Multi 2 factory|armory Loc.63 upgArmVehWeaponCheck
+	bring_jump 13 AtLeast_Multi 1 starport Loc.63 upgArmShipArmorCheck
+	bring_jump 13 AtLeast_Multi 2 starport Loc.63 upgArmShipWeaponCheck
+	bring_jump 13 AtLeast_Multi 1 control_tower Loc.63 upgConDropshipCheck
+	bring_jump 13 AtLeast_Multi 2 starport Loc.63 upgConWraithCheck
+	bring_jump 13 AtLeast_Multi 2 starport Loc.63 upgConWyvernCheck
+	bring_jump 13 AtLeast_Multi 1 physics_lab Loc.63 upgPhysGenCheck
+	goto tUpgBio
+	
+	:tUpgAir
+	var exactly|jump upgEndVar 1 stp 13
+	wait 240
+	bring_jump 13 AtLeast_Multi 1 armory Loc.63 upgArmShipWeaponCheck
+	bring_jump 13 AtLeast_Multi 2 armory Loc.63 upgArmShipArmorCheck
+	bring_jump 13 AtLeast_Multi 3 armory Loc.63 upgArmVehArmorCheck
+	bring_jump 13 AtLeast_Multi 1 control_tower Loc.63 upgConWraithCheck
+	bring_jump 13 AtLeast_Multi 2 control_tower Loc.63 upgConDropshipCheck
+	bring_jump 13 AtLeast_Multi 3 control_tower Loc.63 upgConWyvernCheck
+	bring_jump 13 AtLeast_Multi 1 physics_lab Loc.63 upgPhysGenCheck
+	bring_jump 13 AtLeast_Multi 1 engineering_bay Loc.63 upgEngInfArmorCheck
+	bring_jump 13 AtLeast_Multi 2 engineering_bay Loc.63 upgEngInfWeaponCheck
+	bring_jump 13 AtLeast_Multi 2 engineering_bay Loc.63 upgEngUtilityCheck
+	bring_jump 13 AtLeast_Multi 1 science_facility Loc.63 upgSciVesselCheck
+	bring_jump 13 AtLeast_Multi 1 medbay Loc.63 upgMedbayMedicCheck
+	bring_jump 13 AtLeast_Multi 1 academy Loc.63 upgAcadGenCheck
+	bring_jump 13 AtLeast_Multi 1 academy Loc.63 upgAcadCyprianCheck
+	bring_jump 13 AtLeast_Multi 3 armory|factory Loc.63 upgArmVehWeaponCheck
+	bring_jump 13 AtLeast_Multi 1 machine_shop Loc.63 upgMacTankCheck
+	bring_jump 13 AtLeast_Multi 2 machine_shop Loc.63 upgMacVultureCheck
+	goto tUpgAir
+	
+	:upgEngUtilityCheck
+	var exactly|jump upgEngUtility 1 stp 13
+	var set upgEngUtility 1 13
+	
+	:upgEngUtility
+	wait 12
+	notowns_jump engineering_bay upgEngUtility
+	notowns_jump science_facility upgEngUtility
+	call wUpgradeDef
+	extupgrade 1 sequester_pods 88
+	wait 4500
+	wait_upgrades
+	upgrade_queue 1 fusion_sealer 88
+	upgrade_jump 13 AtLeast_Wait 18 1 blank
+	call wUpgradeDef
+	extupgrade 1 comsat_mana 88
+	goto wUpgrade
+	
+	:upgEngInfArmorCheck
+	var exactly|jump upgEngInfArmor 1 stp 13
+	var set upgEngInfArmor 1 13
+	
+	:upgEngInfArmor
+	wait 12
+	notowns_jump engineering_bay upgEngInfArmor
+	call wUpgradeDef
+	upgrade_queue 1 t_infantry_armor 88
+	upgrade_jump 13 AtLeast_Wait 0 1 blank
+	wait 120
+	call wUpgradeDef
+	upgrade_queue 2 t_infantry_armor 88
+	upgrade_jump 13 AtLeast_Wait 0 2 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 3 t_infantry_armor 88
+	upgrade_jump 13 AtLeast_Wait 0 3 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 4 t_infantry_armor 88
+	upgrade_jump 13 AtLeast_Wait 0 4 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 5 t_infantry_armor 88
+	goto wUpgrade
+	
+	:upgEngInfWeaponCheck
+	var exactly|jump upgEngInfWeapon 1 stp 13
+	var set upgEngInfWeapon 1 13
+	
+	:upgEngInfWeapon
+	wait 12
+	notowns_jump engineering_bay upgEngInfWeapon
+	call wUpgradeDef
+	upgrade_queue 1 t_infantry_weapon 88
+	upgrade_jump 13 AtLeast_Wait 7 1 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 2 t_infantry_weapon 88
+	upgrade_jump 13 AtLeast_Wait 7 2 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 3 t_infantry_weapon 88
+	upgrade_jump 13 AtLeast_Wait 7 3 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 4 t_infantry_weapon 88
+	upgrade_jump 13 AtLeast_Wait 7 4 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 5 t_infantry_weapon 88
+	goto wUpgrade
+	
+	:upgAcadGenCheck
+	var exactly|jump upgAcadGen 1 stp 13
+	var set upgAcadGen 1 13
+	
+	:upgAcadGen
+	wait 12
+	notowns_jump academy upgAcadGen
+	call wUpgradeDef
+	upgrade_queue 1 marine_range 88
+	upgrade_jump 13 AtLeast_Wait 16 1 blank
+	wait 120
+	call wUpgradeDef
+	tech stim_packs 88
+	tech_jump 13 AtLeast_Wait 0 1 blank
+	stop
+	
+	:upgAcadFirebatCheck
+	var exactly|jump upgAcadFirebat 1 stp 13
+	var set upgAcadFirebat 1 13
+	
+	:upgAcadFirebat
+	wait 12
+	notowns_jump academy upgAcadFirebat
+	notowns_jump science_facility upgAcadFirebat
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 1 apollyoid_adhesive 88
+	goto wUpgrade
+	
+	:upgAcadCyprianCheck
+	var exactly|jump upgAcadCyprian 1 stp 13
+	var set upgAcadCyprian 1 13
+	
+	:upgAcadCyprian
+	wait 12
+	notowns_jump academy upgAcadCyprian
+	wait 60
+	call wUpgradeDef
+	extupgrade 1 escalate_cyprian 88
+	wait 4500
+	replace_unit firebat cyprian
+	wait 240
+	call wUpgradeDef
+	tech safety_off 88
+	tech_jump 13 AtLeast_Wait 26 1 blank
+	multirun ioSafety
+	wait 240
+	call wUpgradeDef
+	extupgrade 1 plasteel_servos 88
+	goto wUpgrade
+	
+	:upgMedbayMedicCheck
+	var exactly|jump upgMedbayMedic 1 stp 13
+	var set upgMedbayMedic 1 13
+	
+	:upgMedbayMedic
+	wait 12
+	notowns_jump medbay upgMedbayMedic
+	wait 360
+	call wUpgradeDef
+	upgrade_queue 1 medic_mana 88
+	upgrade_jump 13 AtLeast_Wait 51 1 blank
+	wait 720
+	call wUpgradeDef
+	tech optical_flare 88
+	tech_jump 13 AtLeast_Wait 30 1 blank
+	multirun ioFlare
+	
+	:upgMedbayAdr
+	wait 12
+	notowns_jump science_facility upgMedbayAdr
+	call wUpgradeDef
+	extupgrade 1 adrenaline_packs 88
+	goto wUpgrade
+	
+	:upgMedbayShamanCheck
+	var exactly|jump upgMedbayShaman 1 stp 13
+	var set upgMedbayShaman 1 13
+	
+	:upgMedbayShaman
+	wait 12
+	notowns_jump medbay upgMedbayShaman
+	wait 360
+	call wUpgradeDef
+	extupgrade 1 escalate_shaman 88
+	wait 4500
+	replace_unit medic shaman
+	wait 240
+	
+	:upgMedbayShaman2
+	wait 12
+	notowns_jump science_facility upgMedbayShaman2
+	call wUpgradeDef
+	extupgrade 1 shaman_mana 88
+	wait 4500
+	call wUpgradeDef
+	extupgrade 1 overcharge 88
+	wait 4500
+	goto upgMedbayAdr
+	
+	:upgCovGhostCheck
+	var exactly|jump upgCovGhost 1 stp 13
+	var set upgCovGhost 1 13
+	
+	:upgCovGhost
+	wait 12
+	notowns_jump covert_ops upgCovGhost
+	notowns_jump science_facility upgCovGhost
+	wait 720
+	call wUpgradeDef
+	tech lockdown 88
+	tech_jump 13 AtLeast_Wait 1 1 blank
+	multirun ioLockdown
+	wait 360
+	call wUpgradeDef
+	upgrade_queue 1 ghost_mana 88
+	upgrade_jump 13 AtLeast_Wait 21 1 blank
+	wait 360
+	call wUpgradeDef
+	extupgrade 1 somatic_implants 88
+	wait 2500
+	wait_upgrades
+	call wUpgradeDef
+	extupgrade 1 augustgrads_revenge 88
+	goto wUpgrade
+	
+	:upgArmVehWeaponCheck
+	var exactly|jump upgArmVehWeapon 1 stp 13
+	var set upgArmVehWeapon 1 13
+	
+	:upgArmVehWeapon
+	wait 12
+	notowns_jump armory upgArmVehWeapon
+	call wUpgradeDef
+	upgrade_queue 1 t_vehicle_weapon 88
+	upgrade_jump 13 AtLeast_Wait 8 1 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 2 t_vehicle_weapon 88
+	upgrade_jump 13 AtLeast_Wait 8 2 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 3 t_vehicle_weapon 88
+	upgrade_jump 13 AtLeast_Wait 8 3 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 4 t_vehicle_weapon 88
+	upgrade_jump 13 AtLeast_Wait 8 4 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 5 t_vehicle_weapon 88
+	goto wUpgrade
+	
+	:upgArmVehArmorCheck
+	var exactly|jump upgArmVehArmor 1 stp 13
+	var set upgArmVehArmor 1 13
+	
+	:upgArmVehArmor
+	wait 12
+	notowns_jump armory upgArmVehArmor
+	call wUpgradeDef
+	upgrade_queue 1 t_vehicle_plating 88
+	upgrade_jump 13 AtLeast_Wait 1 1 blank
+	wait 60
+	call wUpgradeDef
+	upgrade_queue 2 t_vehicle_plating 88
+	upgrade_jump 13 AtLeast_Wait 1 2 blank
+	wait 120
+	call wUpgradeDef
+	upgrade_queue 3 t_vehicle_plating 88
+	upgrade_jump 13 AtLeast_Wait 1 3 blank
+	wait 120
+	call wUpgradeDef
+	upgrade_queue 4 t_vehicle_plating 88
+	upgrade_jump 13 AtLeast_Wait 1 4 blank
+	wait 120
+	call wUpgradeDef
+	upgrade_queue 5 t_vehicle_plating 88
+	goto wUpgrade
+	
+	:upgArmShipWeaponCheck
+	var exactly|jump upgArmShipWeapon 1 stp 13
+	var set upgArmShipWeapon 1 13
+	
+	:upgArmShipWeapon
+	wait 12
+	notowns_jump armory upgArmShipWeapon
+	deaths 13 Exactly 1 stasis_chamber upgArmShipWeapon2
+	call wUpgradeDef
+	upgrade_queue 1 t_ship_weapon 88
+	
+	:upgArmShipWeapon2
+	upgrade_jump 13 AtLeast_Wait 9 1 blank
+	wait 960
+	call wUpgradeDef
+	upgrade_queue 2 t_ship_weapon 88
+	upgrade_jump 13 AtLeast_Wait 9 2 blank
+	wait 960
+	call wUpgradeDef
+	upgrade_queue 3 t_ship_weapon 88
+	upgrade_jump 13 AtLeast_Wait 9 3 blank
+	wait 960
+	call wUpgradeDef
+	upgrade_queue 4 t_ship_weapon 88
+	upgrade_jump 13 AtLeast_Wait 9 4 blank
+	wait 960
+	call wUpgradeDef
+	upgrade_queue 5 t_ship_weapon 88
+	goto wUpgrade
+	
+	:upgArmShipArmorCheck
+	var exactly|jump upgArmShipArmor 1 stp 13
+	var set upgArmShipArmor 1 13
+	
+	:upgArmShipArmor
+	wait 12
+	notowns_jump armory upgArmShipArmor
+	call wUpgradeDef
+	upgrade_queue 1 t_ship_plating 88
+	upgrade_jump 13 AtLeast_Wait 2 1 blank
+	wait 960
+	call wUpgradeDef
+	upgrade_queue 2 t_ship_plating 88
+	upgrade_jump 13 AtLeast_Wait 2 2 blank
+	wait 960
+	call wUpgradeDef
+	upgrade_queue 3 t_ship_plating 88
+	upgrade_jump 13 AtLeast_Wait 2 3 blank
+	wait 960
+	call wUpgradeDef
+	upgrade_queue 4 t_ship_plating 88
+	upgrade_jump 13 AtLeast_Wait 2 4 blank
+	wait 960
+	call wUpgradeDef
+	upgrade_queue 5 t_ship_plating 88
+	goto wUpgrade
+	
+	:upgMacVultureCheck
+	var exactly|jump upgMacVulture 1 stp 13
+	var set upgMacVulture 1 13
+	
+	:upgMacVulture
+	wait 12
+	notowns_jump machine_shop upgMacVulture
+	wait 60
+	call wUpgradeDef
+	tech spider_mines 88
+	tech_jump 13 AtLeast_Wait 3 1 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 1 vulture_speed 88
+	goto wUpgrade
+	
+	:upgMacTankCheck
+	var exactly|jump upgMacTank 1 stp 13
+	var set upgMacTank 1 13
+	
+	:upgMacTank
+	wait 12
+	notowns_jump machine_shop upgMacTank
+	call wUpgradeDef
+	tech siege_mode 88
+	tech_jump 13 AtLeast_Wait 5 1 blank
+	stop
+	
+	:upgConWraithCheck
+	var exactly|jump upgConWraith 1 stp 13
+	var set upgConWraith 1 13
+	
+	:upgConWraith
+	wait 12
+	notowns_jump control_tower upgConWraith
+	deaths 13 Exactly 1 stasis_chamber upgConWraith2
+	wait 60
+	call wUpgradeDef
+	tech cloaking_field 88
+	
+	:upgConWraith2
+	tech_jump 13 AtLeast_Wait 9 1 blank
+	call wUpgradeDef
+	extupgrade 1 capacitors 88
+	wait 2500
+	wait_upgrades
+	call wUpgradeDef
+	upgrade_queue 1 wraith_mana 88
+	goto wUpgrade
+	
+	:upgConDropshipCheck
+	var exactly|jump upgConDropship 1 stp 13
+	var set upgConDropship 1 13
+	
+	:upgConDropship
+	wait 12
+	notowns_jump control_tower upgConDropship
+	call wUpgradeDef
+	extupgrade 1 passenger_insurance 88
+	wait 4500
+	call wUpgradeDef
+	extupgrade 1 hotdrop 88
+	goto wUpgrade
+	
+	:upgConWyvernCheck
+	var exactly|jump upgConWyvern 1 stp 13
+	var set upgConWyvern 1 13
+	
+	:upgConWyvern
+	wait 12
+	notowns_jump control_tower upgConWyvern
+	call wUpgradeDef
+	#extupgrade 1 reverse_thrust 88
+	goto wUpgrade
+	
+	:upgPhysGenCheck
+	var exactly|jump upgPhysGen 1 stp 13
+	var set upgPhysGen 1 13
+	
+	:upgPhysGen
+	wait 12
+	notowns_jump physics_lab upgPhysGen
+	call wUpgradeDef
+	extupgrade 1 fore_castle 88
+	wait 4500
+	wait_upgrades
+	call wUpgradeDef
+	tech yamato_gun 88
+	tech_jump 13 AtLeast_Wait 8 1 blank
+	multirun ioYamato
+	call wUpgradeDef
+	upgrade_queue 1 battlecruiser_mana 88
+	upgrade_jump 13 AtLeast_Wait 23 1 blank
+	call wUpgradeDef
+	extupgrade 1 umojan_batteries 88
+	goto wUpgrade
+	
+	:upgSciVesselCheck
+	var exactly|jump upgSciVessel 1 stp 13
+	var set upgSciVessel 1 13
+	
+	:upgSciVessel
+	wait 12
+	notowns_jump science_facility upgSciVessel
+	notowns_jump science_vessel upgSciVessel
+	multirun ioIrradiate
+	wait 240
+	call wUpgradeDef
+	#exttech observance 88
+	multirun ioObservance
+	call wUpgradeDef
+	upgrade_queue 1 science_vessel_mana 88
+	upgrade_jump 13 AtLeast_Wait 19 1 blank
+	wait 720
+	call wUpgradeDef
+	extupgrade 1 radiation_shockwave 88
+	goto wUpgrade
+	
+	:upgSciAzazelCheck
+	var exactly|jump upgSciAzazel 1 stp 13
+	var set upgSciAzazel 1 13
+	
+	:upgSciAzazel
+	wait 12
+	notowns_jump science_facility upgSciAzazel
+	multirun ioMatrix
+	wait 240
+	call wUpgradeDef
+	extupgrade 1 escalate_azazel 88
+	wait 4500
+	replace_unit science_vessel azazel
+	call wUpgradeDef
+	#exttech sublime_shepherd 88
+	multirun ioShepherd
+	call wUpgradeDef
+	extupgrade 1 azazel_mana 88
+	wait 4500
+	extupgrade 1 innervating_matrices 88
+	
+	:wUpgrade
+	wait 480
+	wait_upgrades
+	stop
+	
+	:ioComsat
+	wait 12
+	notowns_jump comsat_station ioComsat
+	stop
+	
+	:ioFlare
+	stop
+	
+	:ioMedstims
+	wait 12
+	notowns_jump shaman ioMedstims
+	idle_tactics action ActivateMedstims shaman IfSelf(Hp(GreaterThanPercent 25))&IfSelf(Energy(GreaterThanPercent 10))&IfInRange(13 AtLeast 2 scv|marine|firebat|cyprian|medic|ghost 96 Hp(LessThanPercent 80))
+	idle_tactics action ActivateMedstims shaman IfSelf(Hp(GreaterThanPercent 25))&IfSelf(Energy(GreaterThanPercent 10))&IfInRange(15 AtLeast 2 scv|marine|firebat|cyprian|medic|ghost 96 Hp(LessThanPercent 80))
+	idle_tactics action DeactivateMedstims shaman IfSelf(Hp(LessThanPercent 20))|IfSelf(Energy(LessThanPercent 5))|IfInRange(17 AtMost 1 scv|marine|firebat|cyprian|medic|ghost 96)
+	stop
+	
+	:ioSafety
+	wait 12
+	notowns_jump cyprian ioSafety
+	idle_tactics action SafetyOff cyprian IfSelf(Hp(GreaterThanPercent 15))&IfInRange(14 AtLeast 2 Group_Men 64)
+	idle_tactics action SafetyOn cyprian IfSelf(Hp(LessThanPercent 15))|IfInRange(14 AtMost 1 Group_Men 64)
+	stop
+	
+	:ioLockdown
+	idle_orders 115 0 1 ghost 1280 Group_Men 85 WithoutSpellEffects(lockdown)|RandomRate(24 120)|InCombat|UnitFlags(Mechanical)
+	stop
+	
+	:ioIrradiate
+	idle_orders 143 0 2 science_vessel 960 mutalisk 80 WithoutSpellEffects(irradiate)|RandomRate(24 120)|Count(AtLeast 2 96 14)|InCombat
+	idle_orders 143 0 1 science_vessel 960 zergling|hydralisk|vorvaling|basilisk|guardian 80 WithoutSpellEffects(irradiate)|RandomRate(60 240)|Count(AtLeast 2 96 14)|InCombat
+	idle_orders 143 0 1 science_vessel 1200 drone|overlord 80 WithoutSpellEffects(irradiate)|RandomRate(240 520)|Hp(LessThan 120)|Self(Energy(GreaterThanPercent 50))
+	idle_orders 143 0 1 science_vessel 960 queen 80 WithoutSpellEffects(irradiate)|RandomRate(60 240)|Energy(GreaterThan 125)|Targeting(Own|Ally)
+	idle_orders 143 0 1 science_vessel 640 Group_Men 90 Targeting(OtherUnit)|UnitFlags(Organic)|Deathrattle
+	stop
+	
+	:ioObservance
+	stop
+	
+	:ioMatrix
+	idle_orders 141 60 1 science_vessel 1920 siege_tank|goliath|paladin|science_vessel|azazel|battlecruiser|archon|reaver|carrier|basilisk|lurker|guardian|ultralisk|k_screamer 80 Own|Allied|NotEnemies|InCombat
+	idle_orders 141 60 1 science_vessel 1920 firebat|ghost|zealot|legionnaire|high_templar|dark_templar|archon|hydralisk|gorgoleth|devourer|defiler 75 Own|Allied|NotEnemies|InCombat
+	idle_orders 141 60 1 science_vessel 1920 ghost 90 Own|Allied|NotEnemies|InCombat|Order(126)
+	stop
+	
+	:ioShepherd
+	stop
+	
+	:ioYamato
+	idle_orders 113 0 1 battlecruiser 1440 missile_turret|spore_colony|photon_cannon 75 RandomRate(180 360)|InCombat
+	idle_orders 113 0 1 battlecruiser 1440 siege_tank|paladin|science_vessel|azazel|sunken_colony|guardian|devourer|defiler|ultralisk|k_screamer|archon|reaver|carrier 75 RandomRate(180 360)|InCombat
+	idle_orders 113 0 1 battlecruiser 1080 battlecruiser|arbiter 75 RandomRate(180 360)
+	stop
+	
+	:tTown
+	multirun mainWorker
+	multirun mainTransport
+	build 1 command_center 90
+	wait_build 1 command_center
+	multirun buildOrder
+	bring_jump 13 AtLeast_Wait 1 barracks Loc.63 blank
+	wait 120
+	multirun addBunker
+	bring_jump 13 AtLeast_Wait 1 engineering_bay Loc.63 blank
+	multirun addTurret
+	bring_jump 13 AtLeast_Wait 1 academy Loc.63 blank
+	deaths 13 Exactly 2 crashed_battle tTownNuke
+	build 1 comsat_station 66
+	goto idle
+	
+	:tTownNuke
+	wait 12
+	notowns_jump armory tTownNuke
+	notowns_jump academy tTownNuke
+	resources 13 AtMost Any 199 tTownNuke
+	build 1 nuclear_silo 66
+	goto idle
+	
+	:mainWorkerStart
+	var add miningCount 1 13
+	
+	:mainWorker
+	wait 12
+	bring_jump 13 AtLeast 90 scv Loc.63 mainWorker
+	var exactly|wait cutWorker 0 13
+	resarea_jump 255 AtMost 255 Ore 600 mainWorkerLowStart
+	local_jump 255 AtLeast 24 scv mainWorker
+	max_workers 28
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 scv command_center 255 Local Loc.63 80
+	wait 300
+	goto mainWorker
+	
+	:mainWorkerLowStart
+	var subtract miningCount 1 13
+	
+	:mainWorkerLow
+	wait 12
+	resarea_jump 255 AtLeast 255 Ore 6000 mainWorkerStart
+	max_workers 6
+	local_jump 255 AtLeast 6 scv mainWorkerLow
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 scv command_center 255 Local Loc.63 80
+	wait 300
+	goto mainWorkerLow
+	
+	:mainTransport
+	multirun mainTransportOn
+	
+	:mainTransportLoop
+	wait 12
+	bring_jump 13 Exactly 0 control_tower Loc.63 mainTransport
+	bring_jump 13 AtMost 5 dropship Loc.63 mainTransport
+	resources 13 AtMost Any 350 mainTransport
+	call wWorkerDef
+	queue 1 dropship starport 255 Global Loc.63 75
+	wait 2440
+	goto mainTransportLoop
+	
+	:mainTransportOn
+	bring_jump 13 AtLeast_Wait 1 control_tower|physics_lab|dropship Loc.63 blank
+	check_transports
+	stop
+	
+	:tExpand
+	wait 12
+	bring_jump 13 AtLeast 90 scv Loc.63 tExpand
+	var exactly|wait canExpand 1 13
+	call wUpgradeDef
+	expand 9 expRandTown
+	wait 2920
+	goto tExpand
+	
+	:expRandTown
+	call initTown
+	build 1 command_center 90
+	multirun expWorker
+	wait_build 1 command_center
+	multirun expCount
+	multirun addTurret
+	wait 360
+	multirun addBunker
+	wait_buildstart 10 scv
+	multirun addProd
+	wait 720
+	multirun buildOrderExp
+	notowns_jump covert_ops expRandComsat
+	random_jump 128 expRandComsat
+	build 1 nuclear_silo 66
+	goto idle
+	
+	:expRandComsat
+	build 1 comsat_station 66
+	goto idle
+	
+	:expCount
+	wait 12
+	local_jump 255 Exactly 0 command_center expCount
+	town_state 255 persist true
+	var add townCount 1 13
+	local_jump 255 Exactly_Wait 0 command_center blank
+	var subtract townCount 1 13
+	town_state 255 persist false
+	goto expCount
+	
+	:expWorker
+	max_workers 2
+	get_oldpeons 1
+	build 1 scv 98
+	wait_buildstart 1 command_center
+	build 2 scv 98
+	wait_build 1 command_center
+	max_workers 18
+	get_oldpeons 6
+	goto expWorkerStd
+	
+	:expWorkerStd
+	wait 12
+	bring_jump 13 AtLeast 90 scv Loc.63 expWorkerStd
+	resarea_jump 255 AtMost 255 Ore 600 expWorkerLow
+	max_workers 28
+	wait 300
+	local_jump 255 AtLeast 18 scv expWorkerStd
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 scv command_center 255 Local Loc.63 80
+	goto expWorkerStd
+	
+	:expWorkerLow
+	resarea_jump 255 AtLeast 255 Ore 6000 expWorkerStd
+	max_workers 6
+	wait 300
+	local_jump 255 AtLeast 6 scv expWorkerLow
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 scv command_center 255 Local Loc.63 80
+	goto expWorkerLow
+	
+	:buildBool
+	var set cutWorker 0 13
+	var set canExpand 1 13
+	var set canAttack 1 13
+	var set canUpgrade 1 13
+	var set canStatic 1 13
+	var set buildGas 1 13
+	var set buildSupply 1 13
+	return
+	
+	:buildOrder
+	deaths 13 Exactly 3 crashed_battle buildOrderAir
+	deaths 13 Exactly 2 crashed_battle buildOrderBio
+	deaths 13 Exactly 1 crashed_battle buildOrderMech
+	
+	:buildOrderGen
+	deaths 13 Exactly 1 stasis_chamber buildGen8RaxMech
+	deaths 13 Exactly 2 stasis_chamber buildGen12CC
+	deaths 13 Exactly 3 stasis_chamber buildGenTenTenTen
+	deaths 13 Exactly 4 stasis_chamber buildGenBBS
+	
+	:buildGen8RaxMech
+	wait_buildstart 8 scv
+	build 1 barracks 66
+	wait_buildstart 1 barracks
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_build 1 barracks
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 60
+	var set buildSupply 1 13
+	wait 120
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 240
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 240
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 240
+	queue 1 marine barracks 255 Local Loc.63 80
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 command_center Loc.63 blank
+	var set canExpand 0 13
+	var set canAttack 1 13
+	wait 240
+	build 1 refinery 66
+	wait_build 1 refinery
+	build 1 armory 66
+	wait_build 1 armory
+	build 2 factory 66
+	wait_buildstart 2 factory
+	multirun addProd
+	goto buildGenFin
+	
+	:buildGen12CC
+	wait_buildstart 8 scv
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait 300
+	build 1 barracks 66
+	wait_buildstart 1 barracks
+	wait 900
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	wait 720
+	var set buildSupply 1 13
+	bring_jump 13 AtLeast_Wait 2 command_center Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	var set canStatic 1 13
+	wait 60
+	build 1 armory 66
+	wait_buildstart 1 armory
+	build 2 barracks 66
+	wait_buildstart 2 barracks
+	build 2 factory 66
+	wait_buildstart 2 factory
+	build 1 starport 66
+	wait_build 1 factory
+	build 1 machine_shop 66
+	wait_buildstart 1 machine_shop
+	multirun addProd
+	goto buildGenFin
+	
+	:buildGenTenTenTen
+	wait_buildstart 10 scv
+	var set cutWorker 1 13
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_buildstart 1 supply_depot
+	build 1 barracks 66
+	wait_buildstart 1 barracks
+	build 1 refinery 66
+	wait_buildstart 1 refinery
+	var set cutWorker 0 13
+	wait 300
+	var set buildSupply 1 13
+	build 2 barracks 66
+	wait_buildstart 2 barracks
+	build 1 armory 66
+	wait_buildstart 1 armory
+	build 1 academy 66
+	wait_buildstart 1 academy
+	build 1 engineering_bay 66
+	wait_buildstart 1 engineering_bay
+	build 1 factory 66
+	wait_buildstart 1 factory
+	build 1 starport 66
+	wait_buildstart 1 starport
+	multirun addProd
+	goto buildGenFin
+	
+	:buildGenBBS
+	wait_buildstart 8 scv
+	var set cutWorker 1 13
+	build 1 barracks 66
+	wait_buildstart 1 barracks
+	build 2 barracks 66
+	wait_buildstart 2 barracks
+	var set cutWorker 0 13
+	wait 300
+	var set cutWorker 1 13
+	build 1 supply_depot 66
+	wait_build 1 barracks
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait_build 1 supply_depot
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	var set cutWorker 0 13
+	wait 300
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	var set buildSupply 1 13
+	wait 300
+	var set canAttack 1 13
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 command_center Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	var set canStatic 1 13
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	build 1 refinery 66
+	wait_buildstart 1 refinery
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 240
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 240
+	build 1 armory 66
+	wait 60
+	build 1 academy 66
+	wait 240
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
+	build 1 engineering_bay 66
+	var set buildGas 1 13
+	wait 240
+	build 1 factory 66
+	wait_buildstart 1 factory
+	upgrade_queue 1 t_infantry_weapon 88
+	build 1 machine_shop 66
+	wait_buildstart 1 machine_shop
+	tech siege_mode 88
+	build 2 factory 66
+	wait_buildstart 2 factory
+	build 2 machine_shop 66
+	multirun addProd
+	
+	:buildGenFin
+	call buildBool
+	bring_jump 13 AtLeast_Wait 2 command_center Loc.63 blank
+	build 2 engineering_bay 66
+	wait_buildstart 2 engineering_bay
+	build 1 covert_ops 66
+	call wSci
+	wait_buildstart 1 science_facility
+	build 2 armory 66
+	wait_buildstart 2 armory
+	call wStarport
+	wait_buildstart 1 starport
+	build 3 armory 66
+	build 1 control_tower 66
+	stop
+	
+	:buildOrderMech
+	deaths 13 Exactly 1 stasis_chamber buildMechTankTiming
+	deaths 13 Exactly 2 stasis_chamber buildMechTankWraith
+	deaths 13 Exactly 3 stasis_chamber buildMech2FactVult
+	
+	:buildMechTankTiming
+	wait_buildstart 8 scv
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_build 1 supply_depot
+	build 1 refinery 66
+	wait_build 1 refinery
+	build 1 armory 66
+	wait_buildstart 13 scv
+	#max_build 255 supply_depot 2
+	build 2 supply_depot 66
+	wait_build 1 armory
+	build 1 factory 66
+	wait_buildstart 1 factory
+	upgrade_queue 1 t_vehicle_weapon 88
+	wait 60
+	build 2 factory 66
+	wait_build 1 factory
+	build 1 machine_shop 66
+	wait_buildstart 1 machine_shop
+	var set canStatic 1 13
+	wait_build 1 machine_shop
+	tech siege_mode 66
+	wait_build 2 factory
+	build 2 machine_shop 66
+	wait_build 2 machine_shop
+	queue 2 siege_tank factory 255 Local Loc.63 80
+	wait 360
+	var set canAttack 1 13
+	build 1 barracks 66
+	wait_buildstart 1 barracks
+	multirun addProd
+	goto buildMechFin
+	
+	:buildMechTankWraith
+	wait_buildstart 8 scv
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_build 1 supply_depot
+	build 1 refinery 66
+	wait_build 1 refinery
+	build 1 armory 66
+	wait 300
+	#max_build 255 supply_depot 2
+	build 2 supply_depot 66
+	wait_build 1 armory
+	build 1 factory 66
+	wait_buildstart 1 factory
+	upgrade_queue 1 t_vehicle_weapon 88
+	wait 60
+	build 1 starport 66
+	wait_buildstart 1 starport
+	var set buildSupply 1 13
+	wait_build 1 factory
+	build 1 machine_shop 66
+	wait_buildstart 1 machine_shop
+	build 1 barracks 66
+	wait 24
+	var set canStatic 1 13
+	wait_build 1 starport
+	queue 1 wraith starport 255 Local Loc.63 80
+	wait 60
+	build 1 control_tower 66
+	wait_build 1 machine_shop
+	queue 1 siege_tank factory 255 Local Loc.63 80
+	wait_buildstart 1 control_tower
+	var set canAttack 1 13
+	multirun addProd
+	goto buildMechFin
+	
+	:buildMech2FactVult
+	wait_buildstart 8 scv
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_build 1 supply_depot
+	build 1 refinery 66
+	wait_build 1 refinery
+	build 1 armory 66
+	wait 300
+	#max_build 255 supply_depot 2
+	build 2 supply_depot 66
+	wait_build 1 armory
+	build 2 factory 66
+	wait_buildstart 2 factory
+	upgrade_queue 1 t_vehicle_weapon 88
+	wait 60
+	var set buildSupply 1 13
+	wait_build 1 factory
+	queue 1 vulture factory 255 Local Loc.63 80
+	wait_build 2 factory
+	queue 1 vulture factory 255 Local Loc.63 80
+	wait 240
+	var set canAttack 1 13
+	build 1 machine_shop 66
+	build 1 barracks 66
+	wait_buildstart 1 machine_shop
+	wait_buildstart 1 barracks
+	multirun addProd
+	
+	:buildMechFin
+	call buildBool
+	bring_jump 13 AtLeast_Wait 2 command_center Loc.63 blank
+	call wSci
+	wait 360
+	call wAcad
+	wait_buildstart 1 academy
+	build 3 armory 66
+	wait 240
+	call wEng
+	stop
+	
+	:buildOrderBio
+	deaths 13 Exactly 1 stasis_chamber buildBio8Rax
+	deaths 13 Exactly 2 stasis_chamber buildBio3RaxM&M
+	deaths 13 Exactly 3 stasis_chamber buildBio3RaxNuke
+	deaths 13 Exactly 4 stasis_chamber buildBio4RaxPressure
+	
+	:buildBio8Rax
+	wait_buildstart 8 scv
+	build 1 barracks 66
+	wait_buildstart 1 barracks
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_buildstart 1 supply_depot
+	build 2 barracks 66
+	wait_buildstart 2 barracks
+	build 1 refinery 66
+	wait_buildstart 1 refinery
+	wait 60
+	queue 2 marine barracks 255 Local Loc.63 80
+	wait 60
+	build 1 academy 66
+	wait_buildstart 1 academy
+	var set buildSupply 1 13
+	wait 60
+	wait_build 2 barracks
+	build 1 medbay 66
+	wait_buildstart 1 medbay
+	build 1 engineering_bay 66
+	wait_build 1 academy
+	var set canAttack 1 13
+	upgrade_queue 1 marine_range 88
+	wait_build 1 engineering_bay
+	upgrade_queue 1 t_infantry_armor 88
+	multirun addProd
+	goto buildBioFin
+	
+	:buildBio3RaxM&M
+	wait_buildstart 9 scv
+	build 1 supply_depot 66
+	wait 300
+	build 1 barracks 66
+	wait 300
+	build 2 barracks 66
+	wait 300
+	build 2 supply_depot 66
+	wait_build 1 barracks
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	build 1 refinery 66
+	wait_buildstart 1 refinery
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	queue 1 marine barracks 255 Local Loc.63 80
+	build 3 supply_depot 66
+	wait_buildstart 3 supply_depot
+	queue 1 marine barracks 255 Local Loc.63 80
+	build 1 medbay 66
+	wait 300
+	var set cutWorker 1 13
+	build 3 barracks 66
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait_buildstart 3 barracks
+	build 1 academy 66
+	wait_buildstart 1 academy
+	queue 1 medic barracks 255 Local Loc.63 80
+	queue 1 marine barracks 255 Local Loc.63 80
+	build 4 supply_depot 66
+	wait_buildstart 4 supply_depot
+	queue 1 medic barracks 255 Local Loc.63 80
+	queue 1 marine barracks 255 Local Loc.63 80
+	build 2 medbay 66
+	wait_buildstart 2 medbay
+	queue 1 marine barracks 255 Local Loc.63 80
+	queue 1 medic barracks 255 Local Loc.63 80
+	build 5 supply_depot 66
+	wait_buildstart 5 supply_depot
+	tech stim_packs 88
+	queue 1 scv command_center 255 Local Loc.63 80
+	queue 1 firebat barracks 255 Local Loc.63 80
+	queue 1 firebat barracks 255 Local Loc.63 80
+	queue 1 marine barracks 255 Local Loc.63 80
+	build 1 engineering_bay 66
+	wait_buildstart 1 engineering_bay
+	build 1 comsat_station 66
+	wait_buildstart 1 comsat_station
+	var set buildSupply 1 13
+	queue 1 medic barracks 255 Local Loc.63 80
+	queue 1 marine barracks 255 Local Loc.63 80
+	queue 1 marine barracks 255 Local Loc.63 80
+	upgrade_queue 1 marine_range 66
+	upgrade_queue 1 t_infantry_weapon 66
+	multirun addProd
+	goto buildBioFin
+	
+	:buildBio3RaxNuke
+	wait_build 8 scv
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_buildstart 1 supply_depot
+	build 1 barracks 66
+	wait_buildstart 1 barracks
+	build 1 refinery 66
+	wait_buildstart 1 refinery
+	wait 60
+	var set buildSupply 1 13
+	wait_build 1 barracks
+	build 1 academy 66
+	wait_buildstart 1 academy
+	build 1 armory 66
+	wait_buildstart 1 armory
+	build 2 barracks 66
+	wait_buildstart 2 barracks
+	build 3 barracks 66
+	wait_build 1 armory
+	build 1 covert_ops 66
+	wait_buildstart 1 covert_ops
+	build 1 nuclear_silo 66
+	wait_buildstart 1 nuclear_silo
+	build 1 engineering_bay 66
+	wait_build 1 covert_ops
+	queue 1 ghost barracks 255 Local Loc.63 80
+	build 2 covert_ops 66
+	wait_buildstart 2 covert_ops
+	queue 1 ghost barracks 255 Local Loc.63 80
+	multirun addProd
+	goto buildBioFin
+	
+	:buildBio4RaxPressure
+	wait_buildstart 9 scv
+	build 1 supply_depot 66
+	wait 300
+	build 1 barracks 66
+	wait 300
+	build 2 barracks 66
+	wait 300
+	build 2 supply_depot 66
+	wait 300
+	build 3 barracks 66
+	wait 300
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	queue 1 marine barracks 255 Local Loc.63 80
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	build 3 supply_depot 66
+	queue 1 marine barracks 255 Local Loc.63 80
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	queue 1 marine barracks 255 Local Loc.63 80
+	queue 1 marine barracks 255 Local Loc.63 80
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	var set buildSupply 1 13
+	build 4 barracks 66
+	wait_buildstart 4 barracks
+	build 1 engineering_bay 66
+	wait 60
+	build 1 medbay 66
+	wait 60
+	build 1 academy 66
+	wait 60
+	multirun addProd
+	
+	:buildBioFin
+	call buildBool
+	call wArm
+	wait_buildstart 1 armory
+	bring_jump 13 AtLeast_Wait 2 command_center Loc.63 blank
+	wait 240
+	build 1 medbay 66
+	wait_build 1 armory
+	build 1 covert_ops 66
+	build 2 engineering_bay 66
+	wait 240
+	call wSci
+	wait 240
+	call wFact
+	wait 240
+	call wStarport
+	stop
+	
+	:buildOrderAir
+	deaths 13 Exactly 1 stasis_chamber buildAir2PortWraith
+	deaths 13 Exactly 2 stasis_chamber buildAirDon
+	deaths 13 Exactly 3 stasis_chamber buildAirRax
+	
+	:buildAir2PortWraith
+	wait_buildstart 8 scv
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_build 1 supply_depot
+	build 1 refinery 66
+	wait_buildstart 1 refinery
+	build 1 barracks 66
+	wait_buildstart 1 barracks
+	wait 300
+	#max_build 255 supply_depot 2
+	build 2 supply_depot 66
+	wait_buildstart 2 supply_depot
+	build 1 armory 66
+	wait 60
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait_build 1 armory
+	build 2 starport 66
+	wait_buildstart 2 starport
+	upgrade_queue 1 t_ship_weapon 88
+	var set buildSupply 1 13
+	wait 60
+	queue 1 marine barracks 255 Local Loc.63 80
+	var set canStatic 1 13
+	wait 60
+	wait_build 1 starport
+	queue 1 wraith starport 255 Local Loc.63 80
+	wait_build 2 starport
+	build 1 control_tower 66
+	wait_buildstart 1 control_tower
+	queue 1 wraith starport 255 Local Loc.63 80
+	multirun addProd
+	wait_build 1 control_tower
+	tech cloaking_field 88
+	goto buildAirFin
+	
+	:buildAirDon
+	wait_buildstart 8 scv
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_build 1 supply_depot
+	build 1 refinery 66
+	wait_build 1 refinery
+	build 1 armory 66
+	wait 300
+	#max_build 255 supply_depot 2
+	build 2 supply_depot 66
+	wait_build 1 armory
+	build 1 starport 66
+	wait_buildstart 1 starport
+	upgrade_queue 1 t_ship_weapon 88
+	var set buildSupply 1 13
+	wait 60
+	build 1 science_facility 66
+	wait_buildstart 1 science_facility
+	build 2 starport 66
+	wait_buildstart 2 starport
+	build 1 barracks 66
+	wait_build 1 science_facility
+	build 2 physics_lab 66
+	wait_build 1 physics_lab
+	queue 2 battlecruiser starport 255 Local Loc.63 80
+	wait 240
+	multirun addProd
+	goto buildAirFin
+	
+	:buildAirRax
+	wait_buildstart 8 scv
+	#max_build 255 supply_depot 1
+	build 1 supply_depot 66
+	wait_build 1 supply_depot
+	build 1 refinery 66
+	wait_buildstart 1 refinery
+	build 1 barracks 66
+	wait_buildstart 1 barracks
+	wait 300
+	#max_build 255 supply_depot 2
+	build 2 supply_depot 66
+	wait_buildstart 2 supply_depot
+	build 1 armory 66
+	wait 60
+	queue 1 marine barracks 255 Local Loc.63 80
+	wait 300
+	var set canStatic 1 13
+	wait_build 1 armory
+	build 1 starport 66
+	wait_buildstart 1 starport
+	upgrade_queue 1 t_ship_weapon 88
+	var set buildSupply 1 13
+	wait 60
+	build 2 barracks 66
+	wait_buildstart 2 barracks
+	build 3 barracks 66
+	wait_build 1 starport
+	queue 3 wraith starport 255 Local Loc.63 80
+	wait_build 3 barracks
+	build 1 medbay 66
+	wait_buildstart 1 medbay
+	multirun addProd
+	
+	:buildAirFin
+	call buildBool
+	bring_jump 13 AtLeast_Wait 2 command_center Loc.63 blank
+	wait 360
+	call wAcad
+	wait 240
+	call wSci
+	wait 240
+	call wEng
+	wait 240
+	build 2 armory 66
+	wait 480
+	build 2 engineering_bay 66
+	wait 720
+	build 3 armory 66
+	stop
+	
+	:buildOrderExp
+	bring_jump 13 AtLeast_Wait 1 barracks Loc.63 blank
+	call wArm
+	wait 600
+	call wEng
+	wait 600
+	call wAcad
+	bring_jump 13 AtLeast_Wait 1 armory Loc.63 blank
+	call wSci
+	stop
+	
+	:wRef
+	wait 12
+	resarea_jump 255 Exactly 255 Gas 0 blankReturn
+	resources 13 AtMost Ore 99 wRef
+	build 1 refinery 65
+	return
+	
+	:wBarracks
+	wait 12
+	notowns_jump command_center wBarracks
+	resources 13 AtMost Ore 149 wBarracks
+	add_build 255 barracks 1 99 66
+	return
+	
+	:wEng
+	wait 12
+	notowns_jump command_center wEng
+	resources 13 AtMost Ore 124 wEng
+	bring_jump 13 AtLeast 2 engineering_bay Loc.63 wEng2
+	call wUpgradeDef
+	add_build 255 engineering_bay 1 2 66
+	return
+	
+	:wEng2
+	player_need 1 engineering_bay
+	return
+	
+	:wAcad
+	wait 12
+	notowns_jump barracks wAcad
+	resources 13 AtMost Ore 149 wAcad
+	bring_jump 13 AtLeast 1 academy Loc.63 wAcad2
+	call wUpgradeDef
+	add_build 255 academy 1 1 66
+	return
+	
+	:wAcad2
+	player_need 1 academy
+	return
+	
+	:wArm
+	wait 12
+	notowns_jump command_center wArm
+	resources 13 AtMost Any 99 wArm
+	bring_jump 13 AtLeast 4 armory Loc.63 wArm2
+	call wUpgradeDef
+	add_build 255 armory 1 3 66
+	return
+	
+	:wArm2
+	player_need 1 armory
+	return
+	
+	:wFact
+	wait 12
+	notowns_jump armory wFact
+	resources 13 AtMost Ore 199 wFact
+	resources 13 AtMost Gas 99 wFact
+	add_build 255 factory 1 99 66
+	return
+	
+	:wStarport
+	wait 12
+	notowns_jump armory wStarport
+	resources 13 AtMost Ore 149 wStarport
+	resources 13 AtMost Gas 149 wStarport
+	add_build 255 starport 1 99 66
+	return
+	
+	:wSci
+	wait 12
+	notowns_jump armory wSci
+	resources 13 AtMost Ore 99 wSci
+	resources 13 AtMost Gas 149 wSci
+	bring_jump 13 AtLeast 1 science_facility Loc.63 wSci2
+	call wUpgradeDef
+	add_build 255 science_facility 1 1 66
+	return
+	
+	:wSci2
+	player_need 1 science_facility
+	return
+	
+	:addBunker
+	var exactly|wait canStatic 1 13
+	wait 12
+	notowns_jump barracks addBunker
+	call wUpgradeDef
+	resources 13 AtLeast_Call Ore 125 addBunkerCheck
+	wait 720
+	goto addBunker
+	
+	:addBunkerCheck
+	add_build 255 bunker 1 1
+	local_jump 255 AtLeast 1 bunker addReturn
+	place_guard marine 0
+	place_guard marine 0
+	place_guard marine 1
+	place_guard firebat 0
+	goto addReturn
+	
+	:addTurret
+	wait 12
+	notowns_jump engineering_bay addTurret
+	call wUpgradeDef
+	resources 13 AtLeast_Call Ore 125 addTurretCheck
+	wait 480
+	goto addTurret
+	
+	:addTurretCheck
+	local_jump 255 AtLeast 3 missile_turret addTurretCheck2
+	add_build 255 missile_turret 1 3 64
+	goto addReturn
+	
+	:addTurretCheck2
+	var exactly|jump underAttack 0 ret 13
+	local_jump 255 AtLeast 5 missile_turret addReturn
+	add_build 255 missile_turret 1 5 64
+	goto addReturn
+	
+	:addProd
+	var atleast|wait townCount 1 13
+	local_jump 255 AtLeast_Wait 1 command_center blank
+	deaths 13 Exactly 1 crashed_battle addProdMech
+	deaths 13 Exactly 2 crashed_battle addProdBio
+	deaths 13 Exactly 3 crashed_battle addProdAir
+	
+	:addProdGen
+	wait 720
+	resources 13 AtLeast_Wait Ore 300 blank
+	call wUpgradeDef
+	deaths 13 Set 0 psi_disrupter blank
+	resources 13 AtLeast_Call Any 400 addFactoryCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdGen
+	resources 13 AtLeast_Call Any 300 addStarportCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdGen
+	resources 13 AtLeast_Call Ore 300 addBarracksCheck
+	goto addProdGen
+	
+	:addProdMech
+	wait 720
+	resources 13 AtLeast_Wait Ore 300 blank
+	call wUpgradeDef
+	deaths 13 Set 0 psi_disrupter blank
+	resources 13 AtLeast_Call Any 400 addFactoryCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdMech
+	resources 13 AtLeast_Call Ore 300 addBarracksCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdMech
+	resources 13 AtLeast_Call Any 300 addStarportCheck
+	goto addProdMech
+	
+	:addProdBio
+	wait 720
+	resources 13 AtLeast_Wait Ore 300 blank
+	call wUpgradeDef
+	deaths 13 Set 0 psi_disrupter blank
+	resources 13 AtLeast_Call Ore 300 addBarracksCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdBio
+	resources 13 AtLeast_Call Any 300 addStarportCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdBio
+	resources 13 AtLeast_Call Any 400 addFactoryCheck
+	goto addProdBio
+	
+	:addProdAir
+	wait 720
+	resources 13 AtLeast_Wait Ore 300 blank
+	call wUpgradeDef
+	deaths 13 Set 0 psi_disrupter blank
+	resources 13 AtLeast_Call Any 300 addStarportCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdAir
+	resources 13 AtLeast_Call Ore 300 addBarracksCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdAir
+	resources 13 AtLeast_Call Any 400 addFactoryCheck
+	goto addProdAir
+	
+	:addBarracksCheck
+	wait 12
+	notowns_jump command_center addBarracksCheck
+	resources 13 AtMost Ore 149 addBarracksCheck
+	resarea_jump 255 AtLeast 255 Ore 12000 addBarracksMax
+	resarea_jump 255 AtLeast 255 Ore 6000 addBarracksMed
+	
+	:addBarracksMin
+	deaths 13 Exactly 1 crashed_battle addBarracksMinMech
+	deaths 13 Exactly 2 crashed_battle addBarracksMinBio
+	deaths 13 Exactly 3 crashed_battle addBarracksMinAir
+	local_jump 255 AtLeast 2 barracks addReturn
+	add_build 255 barracks 1 2 66
+	add_build 255 medbay 1 1 66
+	goto addProdSuccess
+	
+	:addBarracksMinMech
+	local_jump 255 AtLeast 1 barracks addReturn
+	add_build 255 barracks 1 1 66
+	goto addProdSuccess
+	
+	:addBarracksMinBio
+	local_jump 255 AtLeast 2 barracks addReturn
+	add_build 255 barracks 1 2 66
+	local_jump 255 AtLeast 1 medbay addBarracksMinBio2
+	add_build 255 medbay 1 1 66
+	goto addProdSuccess
+	
+	:addBarracksMinBio2
+	add_build 255 covert_ops 1 1 66
+	goto addProdSuccess
+	
+	:addBarracksMinAir
+	local_jump 255 AtLeast 1 barracks addReturn
+	add_build 255 barracks 1 1 66
+	local_jump 255 AtLeast 1 medbay|covert_ops addProdSuccess
+	random_jump 128 addBarracksMinAir2
+	add_build 255 medbay 1 1 66
+	goto addProdSuccess
+	
+	:addBarracksMinAir2
+	add_build 255 covert_ops 1 1 66
+	goto addProdSuccess
+	
+	:addBarracksMax
+	deaths 13 Exactly 1 crashed_battle addBarracksMaxMech
+	deaths 13 Exactly 2 crashed_battle addBarracksMaxBio
+	deaths 13 Exactly 3 crashed_battle addBarracksMaxAir
+	local_jump 255 AtLeast 6 barracks addReturn
+	add_build 255 barracks 1 6 66
+	local_jump 255 AtLeast 4 medbay|covert_ops addProdSuccess
+	local_jump 255 AtLeast 2 medbay addBarracksMaxGen2
+	random_jump 128 addBarracksMaxGen2
+	
+	:addBarracksMaxGen
+	add_build 255 medbay 1 2 66
+	goto addProdSuccess
+	
+	:addBarracksMaxGen2
+	local_jump 255 AtLeast 2 covert_ops addBarracksMaxGen
+	add_build 255 covert_ops 1 2 66
+	goto addProdSuccess
+	
+	:addBarracksMaxMech
+	local_jump 255 AtLeast 3 barracks addReturn
+	add_build 255 barracks 1 3 66
+	add_build 255 medbay 1 1 66
+	goto addProdSuccess
+	
+	:addBarracksMaxBio
+	local_jump 255 AtLeast 8 barracks addReturn
+	add_build 255 barracks 1 8 66
+	local_jump 255 AtLeast 6 medbay|covert_ops addProdSuccess
+	local_jump 255 AtLeast 3 medbay addBarracksMaxBio3
+	random_jump 128 addBarracksMaxBio3
+	
+	:addBarracksMaxBio2
+	add_build 255 medbay 1 3 66
+	goto addProdSuccess
+	
+	:addBarracksMaxBio3
+	local_jump 255 AtLeast 3 covert_ops addBarracksMaxBio2
+	add_build 255 covert_ops 1 3 66
+	goto addProdSuccess
+	
+	:addBarracksMaxAir
+	local_jump 255 AtLeast 4 barracks addReturn
+	add_build 255 barracks 1 4 66
+	local_jump 255 AtLeast 2 medbay|covert_ops addProdSuccess
+	local_jump 255 AtLeast 1 medbay addBarracksMaxAir3
+	random_jump 128 addBarracksMaxAir3
+	
+	:addBarracksMaxAir2
+	add_build 255 medbay 1 1 66
+	goto addProdSuccess
+	
+	:addBarracksMaxAir3
+	local_jump 255 AtLeast 1 covert_ops addBarracksMaxAir2
+	add_build 255 covert_ops 1 1 66
+	goto addProdSuccess
+	
+	:addBarracksMed
+	deaths 13 Exactly 1 crashed_battle addBarracksMinBio
+	deaths 13 Exactly 2 crashed_battle addBarracksMedBio
+	deaths 13 Exactly 3 crashed_battle addBarracksMinBio
+	goto addBarracksMaxAir
+	
+	:addBarracksMedBio
+	local_jump 255 AtLeast 5 barracks addReturn
+	add_build 255 barracks 1 5 66
+	local_jump 255 AtLeast 3 medbay|covert_ops addProdSuccess
+	local_jump 255 AtLeast 2 medbay addBarracksMedBio3
+	
+	:addBarracksMedBio2
+	add_build 255 medbay 1 2 66
+	goto addProdSuccess
+	
+	:addBarracksMedBio3
+	local_jump 255 AtLeast 2 covert_ops addBarracksMedBio2
+	add_build 255 covert_ops 1 2 66
+	goto addProdSuccess
+	
+	:addFactoryCheck
+	wait 12
+	notowns_jump armory addFactoryCheck
+	resources 13 AtMost Ore 199 addFactoryCheck
+	resources 13 AtMost Gas 99 addFactoryCheck
+	resarea_jump 255 AtLeast 255 Ore 12000 addFactoryMax
+	resarea_jump 255 AtLeast 255 Ore 6000 addFactoryMed
+	
+	:addFactoryMin
+	deaths 13 Exactly 1 crashed_battle addFactoryMinMech
+	deaths 13 Exactly 3 crashed_battle addFactoryMinAir
+	local_jump 255 AtLeast 1 factory addReturn
+	add_build 255 factory 1 1 66
+	add_build 255 machine_shop 1 1 66
+	goto addProdSuccess
+	
+	:addFactoryMinMech
+	local_jump 255 AtLeast 2 factory addReturn
+	add_build 255 factory 1 2 66
+	add_build 255 machine_shop 1 1 66
+	goto addProdSuccess
+	
+	:addFactoryMinAir
+	local_jump 255 AtLeast 1 factory addReturn
+	add_build 255 factory 1 1 66
+	goto addProdSuccess
+	
+	:addFactoryMax
+	deaths 13 Exactly 1 crashed_battle addFactoryMaxMech
+	deaths 13 Exactly 2 crashed_battle addFactoryMaxBio
+	deaths 13 Exactly 3 crashed_battle addFactoryMaxAir
+	local_jump 255 AtLeast 5 factory addReturn
+	add_build 255 factory 1 5 66
+	add_build 255 machine_shop 1 3 66
+	goto addProdSuccess
+	
+	:addFactoryMaxMech
+	local_jump 255 AtLeast 6 factory addReturn
+	add_build 255 factory 1 6 66
+	add_build 255 machine_shop 1 4 66
+	goto addProdSuccess
+	
+	:addFactoryMaxBio
+	local_jump 255 AtLeast 4 factory addReturn
+	add_build 255 factory 1 4 66
+	add_build 255 machine_shop 1 2 66
+	goto addProdSuccess
+	
+	:addFactoryMaxAir
+	local_jump 255 AtLeast 3 factory addReturn
+	add_build 255 factory 1 3 66
+	add_build 255 machine_shop 1 1 66
+	goto addProdSuccess
+	
+	:addFactoryMed
+	deaths 13 Exactly 1 crashed_battle addFactoryMedMech
+	deaths 13 Exactly 2 crashed_battle addFactoryMedBio
+	deaths 13 Exactly 3 crashed_battle addFactoryMedAir
+	local_jump 255 AtLeast 3 factory addReturn
+	add_build 255 factory 1 3 66
+	add_build 255 machine_shop 1 2 66
+	goto addProdSuccess
+	
+	:addFactoryMedMech
+	local_jump 255 AtLeast 3 factory addReturn
+	add_build 255 factory 1 3 66
+	add_build 255 machine_shop 1 2 66
+	goto addProdSuccess
+	
+	:addFactoryMedBio
+	local_jump 255 AtLeast 2 factory addReturn
+	add_build 255 factory 1 2 66
+	add_build 255 machine_shop 1 2 66
+	goto addProdSuccess
+	
+	:addFactoryMedAir
+	local_jump 255 AtLeast 2 factory addReturn
+	add_build 255 factory 1 2 66
+	add_build 255 machine_shop 1 1 66
+	goto addProdSuccess
+	
+	:addStarportCheck
+	wait 12
+	notowns_jump armory addStarportCheck
+	resources 13 AtMost Ore 149 addStarportCheck
+	resources 13 AtMost Gas 99 addStarportCheck
+	resarea_jump 255 AtLeast 255 Ore 12000 addStarportMax
+	resarea_jump 255 AtLeast 255 Ore 6000 addStarportMed
+	
+	:addStarportMin
+	deaths 13 Exactly 1 crashed_battle addStarportMinMech
+	deaths 13 Exactly 3 crashed_battle addStarportMinAir
+	local_jump 255 AtLeast 1 starport addReturn
+	add_build 255 starport 1 1 66
+	deaths 13 Exactly 2 crashed_battle addProdSuccess
+	add_build 255 control_tower 1 1 66
+	deaths 13 Set 1 psi_disrupter blank
+	goto addProdSuccess
+	
+	:addStarportMinMech
+	local_jump 255 AtLeast 1 starport addReturn
+	add_build 255 starport 1 1 66
+	local_jump 255 AtLeast 1 control_tower|physics_lab addProdSuccess
+	random_jump 85 addStarportMinMech2
+	add_build 255 control_tower 1 1 66
+	goto addProdSuccess
+	
+	:addStarportMinMech2
+	add_build 255 physics_lab 1 1 66
+	goto addProdSuccess
+	
+	:addStarportMinAir
+	local_jump 255 AtLeast 2 starport addReturn
+	add_build 255 starport 1 2 66
+	local_jump 255 AtLeast 2 control_tower|physics_lab addProdSuccess
+	random_jump 85 addStarportMinAir3
+	
+	:addStarportMinAir2
+	add_build 255 control_tower 1 2 66
+	goto addProdSuccess
+	
+	:addStarportMinAir3
+	local_jump 255 AtLeast 1 physics_lab addStarportMinAir2
+	add_build 255 physics_lab 1 1 66
+	goto addProdSuccess
+	
+	:addStarportMax
+	deaths 13 Exactly 1 crashed_battle addStarportMaxMech
+	deaths 13 Exactly 2 crashed_battle addStarportMaxBio
+	deaths 13 Exactly 3 crashed_battle addStarportMaxAir
+	local_jump 255 AtLeast 4 starport addReturn
+	add_build 255 starport 1 4 66
+	local_jump 255 AtLeast 3 control_tower|physics_lab addProdSuccess
+	random_jump 85 addStarportMaxGen3
+	
+	:addStarportMaxGen2
+	add_build 255 control_tower 1 2 66
+	goto addProdSuccess
+	
+	:addStarportMaxGen3
+	local_jump 255 AtLeast 1 physics_lab addStarportMaxGen2
+	add_build 255 physics_lab 1 1 66
+	goto addProdSuccess
+	
+	:addStarportMaxMech
+	local_jump 255 AtLeast 2 starport addReturn
+	add_build 255 starport 1 2 66
+	add_build 255 control_tower 1 2 66
+	goto addProdSuccess
+	
+	:addStarportMaxBio
+	local_jump 255 AtLeast 3 starport addReturn
+	add_build 255 starport 1 3 66
+	local_jump 255 AtLeast 2 control_tower|physics_lab addProdSuccess
+	random_jump 85 addStarportMaxBio3
+	
+	:addStarportMaxBio2
+	add_build 255 control_tower 1 2 66
+	goto addProdSuccess
+	
+	:addStarportMaxBio3
+	local_jump 255 AtLeast 1 physics_lab addStarportMaxBio2
+	add_build 255 physics_lab 1 1 66
+	goto addProdSuccess
+	
+	:addStarportMaxAir
+	local_jump 255 AtLeast 5 starport addReturn
+	add_build 255 starport 1 5 66
+	local_jump 255 AtLeast 4 control_tower|physics_lab addProdSuccess
+	random_jump 85 addStarportMaxAir3
+	
+	:addStarportMaxAir2
+	add_build 255 control_tower 1 4 66
+	goto addProdSuccess
+	
+	:addStarportMaxAir3
+	local_jump 255 AtLeast 2 physics_lab addStarportMaxAir2
+	add_build 255 physics_lab 1 2 66
+	goto addProdSuccess
+	
+	:addStarportMed
+	deaths 13 Exactly 1 crashed_battle addStarportMedMech
+	deaths 13 Exactly 2 crashed_battle addStarportMedBio
+	deaths 13 Exactly 3 crashed_battle addStarportMedAir
+	local_jump 255 AtLeast 3 starport addReturn
+	add_build 255 starport 1 2 66
+	add_build 255 control_tower 1 1 66
+	goto addProdSuccess
+	
+	:addStarportMedMech
+	local_jump 255 AtLeast 2 starport addReturn
+	add_build 255 starport 1 2 66
+	add_build 255 control_tower 1 1 66
+	goto addProdSuccess
+	
+	:addStarportMedBio
+	local_jump 255 AtLeast 3 starport addReturn
+	add_build 255 starport 1 3 66
+	local_jump 255 AtLeast 3 control_tower|physics_lab addProdSuccess
+	random_jump 85 addStarportMedBio3
+	
+	:addStarportMedBio2
+	add_build 255 control_tower 1 2 66
+	goto addProdSuccess
+	
+	:addStarportMedBio3
+	local_jump 255 AtLeast 1 physics_lab addStarportMedBio2
+	add_build 255 physics_lab 1 1 66
+	goto addProdSuccess
+	
+	:addStarportMedAir
+	local_jump 255 AtLeast 4 starport addReturn
+	add_build 255 starport 1 4 66
+	local_jump 255 AtLeast 4 control_tower|physics_lab addProdSuccess
+	random_jump 85 addStarportMedAir3
+	
+	:addStarportMedAir2
+	add_build 255 control_tower 1 4 66
+	goto addProdSuccess
+	
+	:addStarportMedAir3
+	local_jump 255 AtLeast 1 physics_lab addStarportMedAir2
+	add_build 255 physics_lab 1 1 66
+	
+	:addProdSuccess
+	deaths 13 Set 1 psi_disrupter blank
+	
+	:addReturn
+	wait 24
+	return
+	
+	:tScale
+	bring_jump 13 AtLeast_Wait 2 barracks|factory|starport Loc.63 blank
+	deaths 13 Exactly 1 crashed_battle tScaleExp
+	deaths 13 Exactly 2 crashed_battle tScaleAtk
+	random_jump 128 tScaleAtk
+	
+	:tScaleExp
+	var exactly|wait canAttack 1 13
+	wait 360
+	call atkGen
+	wait 720
+	goto tLoopA
+	
+	:tScaleAtk
+	var exactly|wait canAttack 1 13
+	wait 480
+	call atkGen
+	wait 720
+	
+	:tLoopA
+	bring_jump 13 AtLeast 10 Group_Factories Loc.63 tLoopC
+	bring_jump 13 AtLeast 7 Group_Factories Loc.63 tLoopB
+	call atkGen
+	wait 480
+	goto tLoopA
+	
+	:tLoopB
+	call atkGen
+	wait 360
+	random_jump 85 tLoopB
+	wait 240
+	goto tLoopA
+	
+	:tLoopC
+	call atkGen
+	wait 240
+	goto tLoopA
+	
+	:atkGen
+	call addRand
+	attack_prepare
+	call atkPrep
+	return
+	
+	:atkPrep
+	attack_do
+	wait 500
+	quick_attack
+	attack_clear
+	clear_queues train Any 13
+	return
+	
+	:addRand
+	call wAttack
+	deaths 13 Exactly 1 crashed_battle addRandMech
+	deaths 13 Exactly 2 crashed_battle addRandBio
+	deaths 13 Exactly 3 crashed_battle addRandAir
+	
+	:addRandGenRelative
+	random_jump 28 addRandGen
+	random_jump 85 addRandGenRelative2
+	random_jump 128 addRandGenRelative3
+	bring_jump 13 AtLeast 6 factory Loc.63 addRandMech
+	bring_jump 13 AtLeast 6 barracks Loc.63 addRandBio
+	bring_jump 13 AtLeast 6 starport Loc.63 addRandAir
+	goto addMix
+	
+	:addRandGenRelative2
+	bring_jump 13 AtLeast 6 barracks Loc.63 addRandBio
+	bring_jump 13 AtLeast 6 starport Loc.63 addRandAir
+	bring_jump 13 AtLeast 6 factory Loc.63 addRandMech
+	goto addMix
+	
+	:addRandGenRelative3
+	bring_jump 13 AtLeast 6 starport Loc.63 addRandAir
+	bring_jump 13 AtLeast 6 factory Loc.63 addRandMech
+	bring_jump 13 AtLeast 6 barracks Loc.63 addRandBio
+	goto addMix
+	
+	:addRandGen
+	random_jump 128 addMech
+	random_jump 104 addInfMech
+	goto addMix
+	
+	:addRandMech
+	random_jump 85 addRandMechRelative
+	goto addMech
+	
+	:addRandMechRelative
+	bring_jump 13 AtLeast 5 starport Loc.63 addMechAir
+	bring_jump 13 AtLeast 5 barracks Loc.63 addInfMech
+	goto addMech
+	
+	:addRandBio
+	random_jump 85 addRandBioRelative
+	goto addInf
+	
+	:addRandBioRelative
+	bring_jump 13 AtLeast 5 factory Loc.63 addInfMech
+	bring_jump 13 AtLeast 5 starport Loc.63 addInfAir
+	goto addInf
+	
+	:addRandAir
+	random_jump 85 addRandAirRelative
+	goto addAir
+	
+	:addRandAirRelative
+	bring_jump 13 AtLeast 5 barracks Loc.63 addInfAir
+	bring_jump 13 AtLeast 5 factory Loc.63 addMechAir
+	goto addAir
+	
+	:addMix
+	attack_add 2 vulture
+	attack_add 3 marine
+	attack_add 1 siege_tank
+	attack_add 1 firebat
+	attack_add 1 medic
+	attack_add 1 goliath
+	attack_add 1 science_vessel
+	attack_add_relative vulture factory 3
+	attack_add_relative marine barracks 3.25
+	attack_add_relative siege_tank machine_shop 4
+	attack_add_relative firebat barracks 1
+	attack_add_relative medic medbay 1.5
+	attack_add_relative goliath factory 2
+	attack_add_relative science_vessel control_tower 0.33
+	queue_relative vulture factory 1 factory 255 Global 63 99
+	queue_relative marine barracks 1 barracks 255 Global 63 99
+	queue_relative siege_tank machine_shop 1 factory 255 Global 63 99
+	queue_relative firebat barracks 0.5 barracks 255 Global 63 99
+	queue_relative medic medbay 0.75 barracks 255 Global 63 99
+	queue_relative goliath factory 1 factory 255 Global 63 99
+	queue_relative science_vessel control_tower 0.25 starport 255 Global 63 99
+	return
+	
+	:addInf
+	attack_add 5 marine
+	attack_add 2 firebat
+	attack_add 2 medic
+	attack_add 1 azazel
+	attack_add 2 ghost
+	attack_add 1 vulture
+	attack_add_relative marine barracks 3
+	attack_add_relative firebat barracks 1.5
+	attack_add_relative medic medbay 2
+	attack_add_relative azazel control_tower 0.33
+	attack_add_relative ghost covert_ops 2
+	attack_add_relative vulture factory 2
+	queue_relative marine barracks 1.5 barracks 255 Global 63 99
+	queue_relative firebat barracks 0.75 barracks 255 Global 63 99
+	queue_relative medic medbay 1 barracks 255 Global 63 99
+	queue_relative azazel control_tower 0.5 starport 255 Global 63 99
+	queue_relative ghost covert_ops 1 barracks 255 Global 63 99
+	queue_relative vulture factory 1 factory 255 Global 63 99
+	return
+	
+	:addMech
+	attack_add 3 vulture
+	attack_add 2 siege_tank
+	attack_add 2 goliath
+	attack_add 2 marine
+	attack_add 1 science_vessel
+	attack_add 1 medic
+	attack_add_relative vulture factory 4
+	attack_add_relative siege_tank machine_shop 4
+	attack_add_relative goliath factory 2
+	attack_add_relative marine barracks 4.5
+	attack_add_relative science_vessel control_tower 0.33
+	attack_add_relative medic medbay 1.5
+	attack_add_relative firebat barracks 1.5
+	attack_add_relative wraith starport 2.5
+	queue_relative vulture factory 1 factory 255 Global 63 99
+	queue_relative siege_tank machine_shop 1 factory 255 Global 63 99
+	queue_relative goliath factory 1 factory 255 Global 63 99
+	queue_relative marine barracks 1 barracks 255 Global 63 99
+	queue_relative science_vessel control_tower 0.25 starport 255 Global 63 99
+	queue_relative medic medbay 0.75 barracks 255 Global 63 99
+	queue_relative wraith starport 1.25 starport 255 Global 63 99
+	return
+	
+	:addAir
+	attack_add 3 wraith
+	attack_add 1 science_vessel
+	#attack_add 1 wyvern
+	attack_add 1 battlecruiser
+	attack_add 2 marine
+	attack_add 1 goliath
+	attack_add 1 ghost
+	attack_add_relative wraith starport 3
+	attack_add_relative science_vessel control_tower 0.33
+	#attack_add_relative wyvern control_tower 0.5
+	attack_add_relative battlecruiser physics_lab 1.5
+	attack_add_relative marine barracks 3
+	attack_add_relative goliath factory 2
+	attack_add_relative medic medbay 1
+	attack_add_relative ghost covert_ops 1
+	queue_relative wraith starport 1.5 starport 255 Global 63 99
+	queue_relative science_vessel control_tower 0.25 starport 255 Global 63 99
+	#queue_relative wyvern control_tower 0.5 starport 255 Global 63 99
+	queue_relative battlecruiser physics_lab 1 starport 255 Global 63 99
+	queue_relative marine barracks 1.5 barracks 255 Global 63 99
+	queue_relative goliath factory 1 factory 255 Global 63 99
+	queue_relative medic medbay 0.5 barracks 255 Global 63 99
+	queue_relative ghost covert_ops 0.5 barracks 255 Global 63 99
+	return
+	
+	:addInfMech
+	attack_add 2 siege_tank
+	attack_add 1 goliath
+	attack_add 1 science_vessel
+	attack_add 4 marine
+	attack_add 1 firebat
+	attack_add 1 medic
+	attack_add 1 ghost
+	attack_add_relative siege_tank machine_shop 3
+	attack_add_relative goliath factory 2
+	attack_add_relative science_vessel control_tower 0.33
+	attack_add_relative marine barracks 4
+	attack_add_relative firebat barracks 1.5
+	attack_add_relative medic medbay 1.5
+	attack_add_relative ghost covert_ops 2
+	attack_add_relative wraith starport 1.5
+	queue_relative siege_tank machine_shop 1.5 factory 255 Global 63 99
+	queue_relative goliath factory 1 factory 255 Global 63 99
+	queue_relative science_vessel control_tower 0.25 starport 255 Global 63 99
+	queue_relative marine barracks 2 barracks 255 Global 63 99
+	queue_relative firebat barracks 0.75 barracks 255 Global 63 99
+	queue_relative medic medbay 0.75 barracks 255 Global 63 99
+	queue_relative ghost covert_ops 1 barracks 255 Global 63 99
+	return
+	
+	:addInfAir
+	attack_add 3 marine
+	attack_add 2 wraith
+	attack_add 1 medic
+	attack_add 1 ghost
+	attack_add 1 science_vessel
+	attack_add 1 firebat
+	#attack_add 1 wyvern
+	attack_add 1 battlecruiser
+	attack_add_relative marine barracks 3
+	attack_add_relative wraith starport 2.5
+	attack_add_relative medic medbay 1.5
+	attack_add_relative ghost covert_ops 2
+	attack_add_relative science_vessel control_tower 0.33
+	#attack_add_relative wyvern control_tower 0.5
+	attack_add_relative firebat barracks 1
+	attack_add_relative battlecruiser physics_lab 1.5
+	queue_relative marine barracks 1.5 barracks 255 Global 63 99
+	queue_relative wraith starport 1.25 starport 255 Global 63 99
+	queue_relative medic medbay 0.75 barracks 255 Global 63 99
+	queue_relative ghost covert_ops 1 barracks 255 Global 63 99
+	queue_relative science_vessel control_tower 0.25 starport 255 Global 63 99
+	#queue_relative wyvern control_tower 0.5 starport 255 Global 63 99
+	queue_relative firebat barracks 0.5 barracks 255 Global 63 99
+	queue_relative battlecruiser physics_lab 1 starport 255 Global 63 99
+	return
+	
+	:addMechAir
+	attack_add 5 wraith
+	attack_add 4 siege_tank
+	attack_add 2 vulture
+	attack_add 1 science_vessel
+	attack_add 2 marine
+	attack_add 1 goliath
+	attack_add 1 medic
+	attack_add_relative wraith starport 4
+	attack_add_relative siege_tank machine_shop 4.5
+	attack_add_relative vulture factory 2.5
+	attack_add_relative science_vessel control_tower 0.33
+	attack_add_relative marine barracks 4
+	attack_add_relative goliath factory 1
+	attack_add_relative medic medbay 1
+	queue_relative wraith starport 2 starport 255 Global 63 99
+	queue_relative siege_tank machine_shop 2.25 factory 255 Global 63 99
+	queue_relative vulture factory 1.25 factory 255 Global 63 99
+	queue_relative science_vessel control_tower 0.25 starport 255 Global 63 99
+	queue_relative marine barracks 2 barracks 255 Global 63 99
+	queue_relative goliath factory 0.5 factory 255 Global 63 99
+	queue_relative medic medbay 0.5 barracks 255 Global 63 99
+	return 

@@ -1,0 +1,2985 @@
+script_name Zerg Expansion Custom Level
+script_id ZMCx
+
+	unstart_campaign
+	wait 1
+	start_town
+	set_free_id
+	wait 1
+	default_min 1
+	defaultbuild_off
+	wait 1
+	aicontrol dont_build_gas
+	aicontrol unit_mover_enabled
+	aicontrol dont_focus_disabled
+	under_attack 0
+	transports_off
+	guard_all
+	max_force 3000
+	help_iftrouble
+	idle_orders DisableBuiltin 0 0 0 0 0 0 0
+	town_state 255 persist true
+	set_var_local blank stp 13
+	set_var_local blankReturn ret 13
+	set_var_local zUpgEnd upgEndZ 13
+	set_var_local wWorkerDef wWorker 13
+	var set townCount 1 13
+	var set miningCount 1 13
+	var set underAttack 0 13
+	var set cutWorker 0 13
+	var set cutWorkerAll 0 13
+	var set canExpand 0 13
+	var set canAttack 0 13
+	var set canUpgrade 0 13
+	var set canStatic 0 13
+	var set buildGas 0 13
+	var set buildSupply 0 13
+	queue 1 drone larva 255 Local Loc.63 80
+	multirun uAttack
+	multirun wResource
+	multirun wGas
+	multirun wSupply
+	multirun zTown
+	multirun zMax
+	multirun zDef
+	multirun zUpg
+	multirun zExpand
+	multirun zScale
+	
+	:slcPers
+	deaths 13 AtLeast 1 crashed_battle dbgPers
+	deaths 13 Randomize 4 crashed_battle blank
+	
+	:dbgPers
+	deaths 13 Exactly 1 crashed_battle dbgPers1
+	deaths 13 Exactly 2 crashed_battle dbgPers2
+	deaths 13 Exactly 3 crashed_battle dbgPers3
+	print <32>HYDRA<32>Zerg<32>AI<32>personality<32>0:<32>General
+	deaths 13 AtLeast 1 stasis_chamber dbgBuild
+	deaths 13 Randomize 4 stasis_chamber blank
+	goto dbgBuild
+	
+	:dbgPers1
+	print <32>HYDRA<32>Zerg<32>AI<32>personality<32>1:<32>Connor
+	deaths 13 AtLeast 1 stasis_chamber dbgBuild
+	deaths 13 Randomize 4 stasis_chamber blank
+	goto dbgBuild
+	
+	:dbgPers2
+	print <32>HYDRA<32>Zerg<32>AI<32>personality<32>2:<32>Swarm
+	deaths 13 AtLeast 1 stasis_chamber dbgBuild
+	deaths 13 Randomize 4 stasis_chamber blank
+	goto dbgBuild
+	
+	:dbgPers3
+	print <32>HYDRA<32>Zerg<32>AI<32>personality<32>3:<32>Air
+	deaths 13 AtLeast 1 stasis_chamber dbgBuild
+	deaths 13 Randomize 4 stasis_chamber blank
+	goto dbgBuild
+	
+	:dbgBuild
+	deaths 13 Exactly 1 stasis_chamber dbgBuild1
+	deaths 13 Exactly 2 stasis_chamber dbgBuild2
+	deaths 13 Exactly 3 stasis_chamber dbgBuild3
+	deaths 13 Exactly 4 stasis_chamber dbgBuild4
+	goto idle
+	
+	:dbgBuild1
+	deaths 13 Exactly 1 crashed_battle dbgBuild1Connor
+	deaths 13 Exactly 2 crashed_battle dbgBuild1Swarm
+	deaths 13 Exactly 3 crashed_battle dbgBuild1Air
+	
+	:dbgBuild1Gen
+	print Zerg<32>General<32>build<32>1:<32>2HatchHive
+	goto idle
+	
+	:dbgBuild1Connor
+	print Zerg<32>Connor<32>build<32>1:<32>3HatchHydra
+	goto idle
+	
+	:dbgBuild1Swarm
+	print Zerg<32>Swarm<32>build<32>1:<32>3HatchFlood
+	goto idle
+	
+	:dbgBuild1Air
+	print Zerg<32>Air<32>build<32>1:<32>3HatchMutaLing
+	goto idle
+	
+	:dbgBuild2
+	deaths 13 Exactly 1 crashed_battle dbgBuild2Connor
+	deaths 13 Exactly 2 crashed_battle dbgBuild2Swarm
+	deaths 13 Exactly 3 crashed_battle dbgBuild2Air
+	
+	:dbgBuild2Gen
+	print Zerg<32>General<32>build<32>2:<32>2HatchVorv
+	goto idle
+	
+	:dbgBuild2Connor
+	print Zerg<32>Connor<32>build<32>2:<32>2HatchLurker
+	goto idle
+	
+	:dbgBuild2Swarm
+	print Zerg<32>Swarm<32>build<32>2:<32>3HatchUltra
+	goto idle
+	
+	:dbgBuild2Air
+	print Zerg<32>Air<32>build<32>2:<32>2HatchMutaGuard
+	goto idle
+	
+	:dbgBuild3
+	deaths 13 Exactly 1 crashed_battle dbgBuild3Connor
+	deaths 13 Exactly 2 crashed_battle dbgBuild3Swarm
+	deaths 13 Exactly 3 crashed_battle dbgBuild3Air
+	
+	:dbgBuild3Gen
+	print Zerg<32>General<32>build<32>3:<32>3HatchHydraQueen
+	goto idle
+	
+	:dbgBuild3Connor
+	print Zerg<32>Connor<32>build<32>3:<32>2HatchHydraLing
+	goto idle
+	
+	:dbgBuild3Swarm
+	print Zerg<32>Swarm<32>build<32>3:<32>9Pool
+	goto idle
+	
+	:dbgBuild3Air
+	print Zerg<32>Air<32>build<32>3:<32>2HatchMuta
+	goto idle
+	
+	:dbgBuild4
+	deaths 13 Exactly 1 crashed_battle idle
+	deaths 13 Exactly 2 crashed_battle dbgBuild4Swarm
+	deaths 13 Exactly 3 crashed_battle idle
+	goto idle
+	
+	:dbgBuild4Swarm
+	print Zerg<32>Swarm<32>build<32>3:<32>3HatchHive
+	
+	:idle
+	wait 25500
+	goto idle
+	
+	:blank
+	stop
+	
+	:blankReturn
+	return
+	
+	:initTown
+	start_town
+	wait 1
+	set_free_id
+	return
+	
+	:uAttack
+	wait 12
+	comparison player_combat 17 13 63 True Wait Any Group_Buildings|drone
+	var set underAttack 1 13
+	comparison player_combat 17 13 63 False Wait Any Group_Buildings|drone
+	wait 240
+	var set underAttack 0 13
+	goto uAttack
+	
+	:wAttack
+	wait 24
+	bring_jump 13 AtMost 12 drone Loc.63 wAttack
+	bring_jump 13 AtMost 2 larva Loc.63 wAttack
+	resources 13 AtLeast Any 999 blankReturn
+	bring_jump 13 AtLeast 10 Group_Factories Loc.63 blankReturn
+	var exactly|WaitFor(360) underAttack 0 13
+	resources 13 AtMost Ore 199 wAttack
+	#print wAttack<32>return
+	return
+	
+	:wResource
+	resources 13 AtLeast_Wait Ore 500 blank
+	wait 240
+	aicontrol dont_wait_request_resources
+	resources 13 AtMost_Wait Ore 499 blank
+	wait 240
+	aicontrol wait_request_resources
+	goto wResource
+	
+	:wGas
+	var exactly|wait buildGas 1 13
+	aicontrol build_gas
+	stop
+	
+	:wSupply
+	multirun wSupply2
+	define_max 255 overlord
+	var exactly|wait buildSupply 1 13
+	goto wSupply3
+	
+	:wSupply2
+	deaths 13 AtLeast_Wait 1 overlord blank
+	var exactly|jump buildSupply 1 stp 13
+	
+	:wSupply3
+	farms_timing
+	queue 1 overlord larva 255 Global Loc.63 80
+	define_max 254 overlord
+	stop
+	
+	:wWorkerDef
+	wait 12
+	bring_jump 13 AtLeast 10 larva Loc.63 blankReturn
+	var exactly|WaitFor(360) underAttack 0 13
+	return
+	
+	:wUpgradeDef
+	wait 12
+	resources 13 AtLeast Any 399 blankReturn
+	var exactly|WaitFor(360) underAttack 0 13
+	resources 13 AtMost Any 199 wUpgradeDef
+	return
+	
+	:zMax
+	define_max 80 drone
+	define_max 200 zergling
+	define_max 80 vorvaling
+	define_max 64 hydralisk
+	define_max 48 basilisk
+	define_max 42 lurker
+	define_max 64 mutalisk
+	define_max 42 scourge
+	define_max 24 queen
+	define_max 42 guardian
+	define_max 36 gorgoleth
+	define_max 36 devourer
+	define_max 26 defiler
+	define_max 52 ultralisk
+	define_max 36 k_screamer
+	define_max 12 ab_zergling
+	define_max 12 ab_hydralisk
+	define_max 12 ab_mutalisk
+	define_max 12 ab_queen
+	define_max 12 ab_defiler
+	define_max 12 ab_ultralisk
+	stop
+	
+	:zDef
+	call zDefUse
+	var exactly|WaitFor(480) underAttack 1 13
+	call zDefGBuild
+	call zDefABuild
+	wait 360
+	var exactly|wait underAttack 0 13
+	defenseclear_gg
+	defenseclear_aa
+	defenseclear_ag
+	goto zDef
+	
+	:zDefGBuild
+	deaths 13 Exactly 1 crashed_battle zDefGBuildConnor
+	deaths 13 Exactly 2 crashed_battle zDefGBuildSwarm
+	deaths 13 Exactly 3 crashed_battle zDefGBuildAir
+	
+	:zDefGBuildGen
+	deaths 13 AtLeast 1 raynor_marine zDefGBuildGen2
+	deaths 13 Add 1 raynor_marine blank
+	defensebuild_gg 4 zergling
+	defensebuild_gg 2 vorvaling
+	defensebuild_gg 1 hydralisk
+	defensebuild_gg 1 lurker
+	defensebuild_gg 2 mutalisk
+	defensebuild_gg 1 queen
+	defensebuild_gg 1 gorgoleth
+	defensebuild_gg 1 ultralisk
+	#defensebuild_gg 1 k_screamer
+	return
+	
+	:zDefGBuildGen2
+	deaths 13 Set 0 raynor_marine blank
+	defensebuild_gg 2 zergling
+	defensebuild_gg 1 vorvaling
+	defensebuild_gg 2 hydralisk
+	defensebuild_gg 1 basilisk
+	defensebuild_gg 1 mutalisk
+	defensebuild_gg 1 guardian
+	defensebuild_gg 1 ultralisk
+	return
+	
+	:zDefGBuildConnor
+	deaths 13 AtLeast 1 raynor_marine zDefGBuildConnor2
+	deaths 13 Add 1 raynor_marine blank
+	defensebuild_gg 1 zergling
+	defensebuild_gg 1 vorvaling
+	defensebuild_gg 3 hydralisk
+	defensebuild_gg 1 basilisk
+	defensebuild_gg 1 lurker
+	defensebuild_gg 1 ultralisk
+	defensebuild_gg 1 mutalisk
+	return
+	
+	:zDefGBuildConnor2
+	deaths 13 Set 0 raynor_marine blank
+	defensebuild_gg 1 zergling
+	defensebuild_gg 3 hydralisk
+	defensebuild_gg 2 basilisk
+	defensebuild_gg 1 queen
+	defensebuild_gg 1 guardian
+	defensebuild_gg 1 defiler
+	return
+	
+	:zDefGBuildSwarm
+	deaths 13 AtLeast 1 raynor_marine zDefGBuildSwarm2
+	deaths 13 Add 1 raynor_marine blank
+	defensebuild_gg 6 zergling
+	defensebuild_gg 2 vorvaling
+	defensebuild_gg 1 hydralisk
+	defensebuild_gg 1 ultralisk
+	defensebuild_gg 2 mutalisk
+	defensebuild_gg 1 queen
+	return
+	
+	:zDefGBuildSwarm2
+	deaths 13 Set 0 raynor_marine blank
+	defensebuild_gg 4 zergling
+	defensebuild_gg 1 vorvaling
+	defensebuild_gg 1 hydralisk
+	defensebuild_gg 1 basilisk
+	defensebuild_gg 1 mutalisk
+	defensebuild_gg 1 guardian
+	defensebuild_gg 1 defiler
+	return
+	
+	:zDefGBuildAir
+	deaths 13 AtLeast 1 raynor_marine zDefGBuildAir2
+	deaths 13 Add 1 raynor_marine blank
+	defensebuild_gg 2 zergling
+	defensebuild_gg 1 vorvaling
+	defensebuild_gg 3 mutalisk
+	defensebuild_gg 1 guardian
+	defensebuild_gg 1 defiler
+	defensebuild_gg 1 hydralisk
+	return
+	
+	:zDefGBuildAir2
+	deaths 13 Set 0 raynor_marine blank
+	defensebuild_gg 4 zergling
+	defensebuild_gg 2 vorvaling
+	defensebuild_gg 2 mutalisk
+	defensebuild_gg 1 ultralisk
+	defensebuild_gg 1 guardian
+	defensebuild_gg 1 queen
+	return
+	
+	:zDefABuild
+	deaths 13 Exactly 1 crashed_battle zDefABuildConnor
+	deaths 13 Exactly 2 crashed_battle zDefABuildSwarm
+	deaths 13 Exactly 3 crashed_battle zDefABuildAir
+	
+	:zDefABuildGen
+	defensebuild_ag 2 hydralisk
+	defensebuild_ag 1 mutalisk
+	defensebuild_ag 1 scourge
+	defensebuild_ag 1 gorgoleth
+	defensebuild_ag 1 devourer
+	defensebuild_aa 2 hydralisk
+	defensebuild_aa 1 mutalisk
+	defensebuild_aa 1 scourge
+	defensebuild_aa 1 gorgoleth
+	defensebuild_aa 1 devourer
+	return
+	
+	:zDefABuildConnor
+	defensebuild_ag 3 hydralisk
+	defensebuild_ag 1 mutalisk
+	defensebuild_ag 1 scourge
+	defensebuild_aa 3 hydralisk
+	defensebuild_aa 1 mutalisk
+	defensebuild_aa 1 scourge
+	random_jump 160 blankReturn
+	defensebuild_ag 1 defiler
+	defensebuild_aa 1 defiler
+	return
+	
+	:zDefABuildSwarm
+	defensebuild_ag 2 hydralisk
+	defensebuild_ag 2 mutalisk
+	#defensebuild_ag 1 gorgoleth
+	defensebuild_ag 1 devourer
+	defensebuild_ag 2 scourge
+	defensebuild_aa 2 hydralisk
+	defensebuild_aa 2 mutalisk
+	#defensebuild_aa 1 gorgoleth
+	defensebuild_aa 1 devourer
+	defensebuild_aa 2 scourge
+	return
+	
+	:zDefABuildAir
+	defensebuild_ag 1 hydralisk
+	defensebuild_ag 3 mutalisk
+	defensebuild_ag 2 scourge
+	defensebuild_ag 1 devourer
+	defensebuild_aa 1 hydralisk
+	defensebuild_aa 3 mutalisk
+	defensebuild_aa 2 scourge
+	defensebuild_aa 1 devourer
+	return
+	
+	:zDefUse
+	defenseuse_gg 4 zergling
+	defenseuse_gg 2 vorvaling
+	defenseuse_gg 2 hydralisk
+	defenseuse_gg 1 basilisk
+	defenseuse_gg 1 lurker
+	defenseuse_gg 2 mutalisk
+	defenseuse_gg 1 gorgoleth
+	defenseuse_gg 1 guardian
+	defenseuse_gg 1 ultralisk
+	defenseuse_gg 1 ab_zergling
+	defenseuse_gg 1 ab_hydralisk
+	defenseuse_gg 1 ab_mutalisk
+	defenseuse_gg 1 ab_ultralisk
+	defenseuse_ag 2 hydralisk
+	defenseuse_ag 1 mutalisk
+	defenseuse_ag 2 scourge
+	defenseuse_ag 1 gorgoleth
+	defenseuse_ag 1 devourer
+	defenseuse_ag 1 ab_hydralisk
+	defenseuse_ag 1 ab_mutalisk
+	defenseuse_aa 2 hydralisk
+	defenseuse_aa 1 mutalisk
+	defenseuse_aa 2 scourge
+	defenseuse_aa 1 gorgoleth
+	defenseuse_aa 1 devourer
+	defenseuse_aa 1 ab_hydralisk
+	defenseuse_aa 1 ab_mutalisk
+	return
+	
+	:zUpg
+	var set metastasis 0 13
+	var set upgSpawnZerg 0 13
+	var set upgSpawnVorv 0 13
+	var set upgEvoMelee 0 13
+	var set upgEvoMissile 0 13
+	var set upgEvoArmor 0 13
+	var set upgEvoUtility 0 13
+	var set upgDenHydra 0 13
+	var set upgLair 0 13
+	var set upgDenBasilisk 0 13
+	var set upgDenLurker 0 13
+	var set upgSpireAttack 0 13
+	var set upgSpireArmor 0 13
+	var set upgGuard 0 13
+	var set upgDevourer 0 13
+	var set upgGorg 0 13
+	var set upgQueen 0 13
+	var set upgDefiler 0 13
+	var set upgUltra 0 13
+	var set upgEndVar 0 13
+	multirun ioParasite
+	multirun ioSwarm
+	var exactly|wait canUpgrade 1 13
+	multirun zUpgEnd
+	deaths 13 Exactly 1 crashed_battle zUpgConnor
+	deaths 13 Exactly 2 crashed_battle zUpgSwarm
+	deaths 13 Exactly 3 crashed_battle zUpgAir
+	goto zUpgGen
+	
+	:zUpgEnd
+	wait 12
+	var exactly|jump upgSpawnZerg 0 upgEndZ 13
+	var exactly|jump upgSpawnVorv 0 upgEndZ 13
+	var exactly|jump upgEvoMelee 0 upgEndZ 13
+	var exactly|jump upgEvoMissile 0 upgEndZ 13
+	var exactly|jump upgEvoArmor 0 upgEndZ 13
+	var exactly|jump upgEvoUtility 0 upgEndZ 13
+	var exactly|jump upgDenHydra 0 upgEndZ 13
+	var exactly|jump upgLair 0 upgEndZ 13
+	var exactly|jump upgDenBasilisk 0 upgEndZ 13
+	var exactly|jump upgDenLurker 0 upgEndZ 13
+	var exactly|jump upgSpireAttack 0 upgEndZ 13
+	var exactly|jump upgSpireArmor 0 upgEndZ 13
+	var exactly|jump upgQueen 0 upgEndZ 13
+	var exactly|jump upgGorg 0 upgEndZ 13
+	var exactly|jump upgGuard 0 upgEndZ 13
+	var exactly|jump upgDevourer 0 upgEndZ 13
+	var exactly|jump upgDefiler 0 upgEndZ 13
+	var exactly|jump upgUltra 0 upgEndZ 13
+	var set upgEndVar 1 13
+	stop
+	
+	:zUpgGen
+	var exactly|jump upgEndVar 1 stp 13
+	wait 240
+	bring_jump 13 AtLeast_Multi 1 spawning_pool Loc.63 upgSpawnZergCheck
+	bring_jump 13 AtLeast_Multi 1 evolution_chamber|mutation_pit Loc.63 upgSpawnVorvCheck
+	bring_jump 13 AtLeast_Multi 1 evolution_chamber|mutation_pit Loc.63 upgEvoMissileCheck
+	bring_jump 13 AtLeast_Multi 2 evolution_chamber|mutation_pit Loc.63 upgEvoArmorCheck
+	bring_jump 13 AtLeast_Multi 3 evolution_chamber|mutation_pit Loc.63 upgEvoMeleeCheck
+	bring_jump 13 AtLeast_Multi 4 evolution_chamber|mutation_pit|hive Loc.63 upgEvoUtilityCheck
+	bring_jump 13 AtLeast_Multi 1 hydralisk_den Loc.63 upgDenHydraCheck
+	bring_jump 13 AtLeast_Multi 1 lurker_den Loc.63 upgDenLurkerCheck
+	bring_jump 13 AtLeast_Multi 1 basilisk_den Loc.63 upgDenBasiliskCheck
+	bring_jump 13 AtLeast_Multi 1 lair Loc.63 upgLairCheck
+	bring_jump 13 AtLeast_Multi 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireArmorCheck
+	bring_jump 13 AtLeast_Multi 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt|hive Loc.63 upgSpireAttackCheck
+	bring_jump 13 AtLeast_Multi 1 gorgoleth_apiary Loc.63 upgGorgCheck
+	bring_jump 13 AtLeast_Multi 1 guardian_roost Loc.63 upgGuardCheck
+	bring_jump 13 AtLeast_Multi 1 devourer_haunt Loc.63 upgDevourerCheck
+	bring_jump 13 AtLeast_Multi 1 queen_nest Loc.63 upgQueenCheck
+	bring_jump 13 AtLeast_Multi 1 defiler_mound Loc.63 upgDefilerCheck
+	bring_jump 13 AtLeast_Multi 1 ultralisk_cavern Loc.63 upgUltraCheck
+	goto zUpgGen
+	
+	:zUpgConnor
+	var exactly|jump upgEndVar 1 stp 13
+	wait 240
+	bring_jump 13 AtLeast_Multi 1 lair Loc.63 upgSpawnZergCheck
+	bring_jump 13 AtLeast_Multi 1 hydralisk_den Loc.63 upgDenHydraCheck
+	bring_jump 13 AtLeast_Multi 1 evolution_chamber|mutation_pit Loc.63 upgEvoMissileCheck
+	bring_jump 13 AtLeast_Multi 2 evolution_chamber|mutation_pit Loc.63 upgEvoArmorCheck
+	bring_jump 13 AtLeast_Multi 3 evolution_chamber|mutation_pit Loc.63 upgEvoMeleeCheck
+	bring_jump 13 AtLeast_Multi 4 evolution_chamber|mutation_pit|hive Loc.63 upgEvoUtilityCheck
+	bring_jump 13 AtLeast_Multi 1 lair Loc.63 upgLairCheck
+	bring_jump 13 AtLeast_Multi 1 basilisk_den Loc.63 upgDenBasiliskCheck
+	bring_jump 13 AtLeast_Multi 1 lurker_den Loc.63 upgDenLurkerCheck
+	bring_jump 13 AtLeast_Multi 1 queen_nest Loc.63 upgQueenCheck
+	bring_jump 13 AtLeast_Multi 1 defiler_mound Loc.63 upgDefilerCheck
+	bring_jump 13 AtLeast_Multi 1 ultralisk_cavern Loc.63 upgUltraCheck
+	bring_jump 13 AtLeast_Multi 1 spire Loc.63 upgSpireAttackCheck
+	bring_jump 13 AtLeast_Multi 2 spire|guardian_roost Loc.63 upgSpireArmorCheck
+	bring_jump 13 AtLeast_Multi 1 gorgoleth_apiary Loc.63 upgGorgCheck
+	bring_jump 13 AtLeast_Multi 1 guardian_roost Loc.63 upgGuardCheck
+	bring_jump 13 AtLeast_Multi 1 devourer_haunt Loc.63 upgDevourerCheck
+	goto zUpgConnor
+	
+	:zUpgSwarm
+	var exactly|jump upgEndVar 1 stp 13
+	wait 240
+	bring_jump 13 AtLeast_Multi 1 spawning_pool Loc.63 upgSpawnZergCheck
+	bring_jump 13 AtLeast_Multi 1 evolution_chamber|mutation_pit Loc.63 upgSpawnVorvCheck
+	bring_jump 13 AtLeast_Multi 1 evolution_chamber|mutation_pit Loc.63 upgEvoMeleeCheck
+	bring_jump 13 AtLeast_Multi 2 evolution_chamber|mutation_pit Loc.63 upgEvoArmorCheck
+	bring_jump 13 AtLeast_Multi 3 evolution_chamber|mutation_pit Loc.63 upgEvoUtilityCheck
+	bring_jump 13 AtLeast_Multi 4 evolution_chamber|mutation_pit Loc.63 upgEvoMissileCheck
+	bring_jump 13 AtLeast_Multi 1 hydralisk_den Loc.63 upgDenHydraCheck
+	bring_jump 13 AtLeast_Multi 1 lurker_den Loc.63 upgDenLurkerCheck
+	bring_jump 13 AtLeast_Multi 1 basilisk_den Loc.63 upgDenBasiliskCheck
+	bring_jump 13 AtLeast_Multi 1 lair Loc.63 upgLairCheck
+	bring_jump 13 AtLeast_Multi 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireAttackCheck
+	bring_jump 13 AtLeast_Multi 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireArmorCheck
+	bring_jump 13 AtLeast_Multi 1 queen_nest Loc.63 upgQueenCheck
+	bring_jump 13 AtLeast_Multi 1 defiler_mound Loc.63 upgDefilerCheck
+	bring_jump 13 AtLeast_Multi 1 ultralisk_cavern Loc.63 upgUltraCheck
+	bring_jump 13 AtLeast_Multi 1 gorgoleth_apiary Loc.63 upgGorgCheck
+	bring_jump 13 AtLeast_Multi 1 guardian_roost Loc.63 upgGuardCheck
+	bring_jump 13 AtLeast_Multi 1 devourer_haunt Loc.63 upgDevourerCheck
+	goto zUpgSwarm
+	
+	:zUpgAir
+	var exactly|jump upgEndVar 1 stp 13
+	wait 240
+	bring_jump 13 AtLeast_Multi 1 spawning_pool Loc.63 upgSpawnZergCheck
+	bring_jump 13 AtLeast_Multi 1 evolution_chamber|mutation_pit Loc.63 upgSpawnVorvCheck
+	bring_jump 13 AtLeast_Multi 1 evolution_chamber|mutation_pit Loc.63 upgEvoMeleeCheck
+	bring_jump 13 AtLeast_Multi 2 evolution_chamber|mutation_pit Loc.63 upgEvoArmorCheck
+	bring_jump 13 AtLeast_Multi 3 evolution_chamber|mutation_pit Loc.63 upgEvoMissileCheck
+	bring_jump 13 AtLeast_Multi 4 evolution_chamber|mutation_pit|hive Loc.63 upgEvoUtilityCheck
+	bring_jump 13 AtLeast_Multi 1 hydralisk_den Loc.63 upgDenHydraCheck
+	bring_jump 13 AtLeast_Multi 1 lurker_den Loc.63 upgDenLurkerCheck
+	bring_jump 13 AtLeast_Multi 1 basilisk_den Loc.63 upgDenBasiliskCheck
+	bring_jump 13 AtLeast_Multi 1 lair Loc.63 upgLairCheck
+	bring_jump 13 AtLeast_Multi 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireArmorCheck
+	bring_jump 13 AtLeast_Multi 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireAttackCheck
+	bring_jump 13 AtLeast_Multi 1 queen_nest Loc.63 upgQueenCheck
+	bring_jump 13 AtLeast_Multi 1 defiler_mound Loc.63 upgDefilerCheck
+	bring_jump 13 AtLeast_Multi 1 ultralisk_cavern Loc.63 upgUltraCheck
+	bring_jump 13 AtLeast_Multi 1 gorgoleth_apiary Loc.63 upgGorgCheck
+	bring_jump 13 AtLeast_Multi 1 guardian_roost Loc.63 upgGuardCheck
+	bring_jump 13 AtLeast_Multi 1 devourer_haunt Loc.63 upgDevourerCheck
+	goto zUpgAir
+	
+	:upgSpawnZergCheck
+	var exactly|jump upgSpawnZerg 1 stp 13
+	var set upgSpawnZerg 1 13
+	
+	:upgSpawnZerg
+	wait 12
+	notowns_jump spawning_pool upgSpawnZerg
+	wait 60
+	call wUpgradeDef
+	upgrade_queue 1 zergling_speed 88
+	upgrade_jump 13 AtLeast_Wait 27 1 blank
+	
+	:upgSpawnZerg2
+	wait 12
+	notowns_jump hive upgSpawnZerg2
+	call wUpgradeDef
+	upgrade_queue 1 zergling_attack 88
+	goto wUpgrade
+	
+	:upgSpawnVorvCheck
+	var exactly|jump upgSpawnVorv 1 stp 13
+	var set upgSpawnVorv 1 13
+	
+	:upgSpawnVorv
+	wait 12
+	notowns_jump spawning_pool upgSpawnVorv
+	wait 60
+	call wUpgradeDef
+	extupgrade 1 adrenal_surge 88
+	goto wUpgrade
+	
+	:upgEvoMeleeCheck
+	var exactly|jump upgEvoMelee 1 stp 13
+	var set upgEvoMelee 1 13
+	
+	:upgEvoMelee
+	wait 12
+	notowns_jump evolution_chamber upgEvoMelee
+	call wUpgradeDef
+	upgrade_queue 1 z_melee_attack 88
+	upgrade_jump 13 AtLeast_Wait 10 1 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 2 z_melee_attack 88
+	upgrade_jump 13 AtLeast_Wait 10 2 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 3 z_melee_attack 88
+	upgrade_jump 13 AtLeast_Wait 10 3 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 4 z_melee_attack 88
+	upgrade_jump 13 AtLeast_Wait 10 4 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 5 z_melee_attack 88
+	goto wUpgrade
+	
+	:upgEvoMissileCheck
+	var exactly|jump upgEvoMissile 1 stp 13
+	var set upgEvoMissile 1 13
+	
+	:upgEvoMissile
+	wait 12
+	notowns_jump evolution_chamber upgEvoMissile
+	wait 60
+	call wUpgradeDef
+	upgrade_queue 1 z_missile_attack 88
+	upgrade_jump 13 AtLeast_Wait 11 1 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 2 z_missile_attack 88
+	upgrade_jump 13 AtLeast_Wait 11 2 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 3 z_missile_attack 88
+	upgrade_jump 13 AtLeast_Wait 11 3 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 4 z_missile_attack 88
+	upgrade_jump 13 AtLeast_Wait 11 4 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 5 z_missile_attack 88
+	goto wUpgrade
+	
+	:upgEvoArmorCheck
+	var exactly|jump upgEvoArmor 1 stp 13
+	var set upgEvoArmor 1 13
+	
+	:upgEvoArmor
+	wait 12
+	notowns_jump evolution_chamber upgEvoArmor
+	call wUpgradeDef
+	upgrade_queue 1 z_carapace 88
+	upgrade_jump 13 AtLeast_Wait 3 1 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 2 z_carapace 88
+	upgrade_jump 13 AtLeast_Wait 3 2 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 3 z_carapace 88
+	upgrade_jump 13 AtLeast_Wait 3 3 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 4 z_carapace 88
+	upgrade_jump 13 AtLeast_Wait 3 4 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 5 z_carapace 88
+	goto wUpgrade
+	
+	:upgEvoUtilityCheck
+	var exactly|jump upgEvoUtility 1 stp 13
+	var set upgEvoUtility 1 13
+	
+	:upgEvoUtility
+	wait 12
+	notowns_jump evolution_chamber upgEvoUtility
+	call wUpgradeDef
+	extupgrade 1 tendril_amitosis 88
+	wait 4500
+	wait_upgrades
+	upgrade_queue 1 rapid_reconstitution 88
+	goto wUpgrade
+	
+	:upgDenHydraCheck
+	var exactly|jump upgDenHydra 1 stp 13
+	var set upgDenHydra 1 13
+	
+	:upgDenHydra
+	wait 12
+	notowns_jump hydralisk_den upgDenHydra
+	wait 60
+	call wUpgradeDef
+	upgrade_queue 1 hydralisk_speed 88
+	upgrade_jump 13 AtLeast_Wait 29 1 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 1 hydralisk_range 88
+	goto wUpgrade
+	
+	:upgDenBasiliskCheck
+	var exactly|jump upgDenBasilisk 1 stp 13
+	var set upgDenBasilisk 1 13
+	
+	:upgDenBasilisk
+	wait 12
+	notowns_jump basilisk_den upgDenBasilisk
+	call wUpgradeDef
+	extupgrade 1 corrosive_dispersion 88
+	wait 4500
+	wait_upgrades
+	
+	:upgDenBasilisk2
+	wait 12
+	notowns_jump hive upgDenBasilisk2
+	call wUpgradeDef
+	extupgrade 1 caustic_fission 88
+	goto wUpgrade
+	
+	:upgDenLurkerCheck
+	var exactly|jump upgDenLurker 1 stp 13
+	var set upgDenLurker 1 13
+	
+	:upgDenLurker
+	wait 12
+	notowns_jump lurker_den upgDenLurker
+	notowns_jump hive upgDenLurker
+	call wUpgradeDef
+	extupgrade 1 tectonic_claws 88
+	goto wUpgrade
+	
+	:upgLairCheck
+	var exactly|jump upgLair 1 stp 13
+	var set upgLair 1 13
+	
+	:upgLair
+	wait 12
+	bring_jump 13 Exactly 0 lair|hive Loc.63 upgLair
+	wait 240
+	deaths 13 Exactly 2 crashed_battle upgLair2
+	wait 7200
+	
+	:upgLair2
+	call wUpgradeDef
+	upgrade_queue 1 overlord_capacity 88
+	upgrade_jump 13 AtLeast_Wait 24 1 blank
+	check_transports
+	call wUpgradeDef
+	upgrade_queue 1 overlord_sight 88
+	goto wUpgrade
+	
+	:upgSpireAttackCheck
+	var exactly|jump upgSpireAttack 1 stp 13
+	var set upgSpireAttack 1 13
+	
+	:upgSpireAttack
+	wait 12
+	bring_jump 13 Exactly 0 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireAttack
+	call wUpgradeDef
+	upgrade_queue 1 z_flyer_attack 88
+	upgrade_jump 13 AtLeast_Wait 12 1 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 2 z_flyer_attack 88
+	upgrade_jump 13 AtLeast_Wait 12 2 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 3 z_flyer_attack 88
+	upgrade_jump 13 AtLeast_Wait 12 3 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 4 z_flyer_attack 88
+	upgrade_jump 13 AtLeast_Wait 12 4 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 5 z_flyer_attack 88
+	goto wUpgrade
+	
+	:upgSpireArmorCheck
+	var exactly|jump upgSpireArmor 1 stp 13
+	var set upgSpireArmor 1 13
+	
+	:upgSpireArmor
+	wait 12
+	bring_jump 13 Exactly 0 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireArmor
+	call wUpgradeDef
+	upgrade_queue 1 z_flyer_carapace 88
+	upgrade_jump 13 AtLeast_Wait 4 1 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 2 z_flyer_carapace 88
+	upgrade_jump 13 AtLeast_Wait 4 2 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 3 z_flyer_carapace 88
+	upgrade_jump 13 AtLeast_Wait 4 3 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 4 z_flyer_carapace 88
+	upgrade_jump 13 AtLeast_Wait 4 4 blank
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 5 z_flyer_carapace 88
+	goto wUpgrade
+	
+	:upgQueenCheck
+	var exactly|jump upgQueen 1 stp 13
+	var set upgQueen 1 13
+	
+	:upgQueen
+	wait 12
+	notowns_jump queen_nest upgQueen
+	wait 60
+	call wUpgradeDef
+	tech spawn_broodling 88
+	tech_jump 13 AtLeast_Wait 13 1 blank
+	multirun ioBroodling
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 1 queen_mana 88
+	upgrade_jump 13 AtLeast_Wait 31 1 blank
+	
+	:upgQueen2
+	wait 12
+	notowns_jump hive upgQueen2
+	call wUpgradeDef
+	tech ensnare 88
+	tech_jump 13 AtLeast_Wait 17 1 blank
+	stop
+	
+	:upgGorgCheck
+	var exactly|jump upgGorg 1 stp 13
+	var set upgGorg 1 13
+	
+	:upgGorg
+	wait 12
+	notowns_jump gorgoleth_apiary upgGorg
+	wait 240
+	call wUpgradeDef
+	extupgrade 1 ravening_mandible 88
+	wait 4500
+	wait_upgrades
+	call wUpgradeDef
+	extupgrade 1 vital_encephalon 88
+	goto wUpgrade
+	
+	:upgGuardCheck
+	var exactly|jump upgGuard 1 stp 13
+	var set upgGuard 1 13
+	
+	:upgGuard
+	stop
+	
+	:upgDevourerCheck
+	var exactly|jump upgDevourer 1 stp 13
+	var set upgDevourer 1 13
+	
+	:upgDevourer
+	stop
+	
+	:upgUltraCheck
+	var exactly|jump upgUltra 1 stp 13
+	var set upgUltra 1 13
+	
+	:upgUltra
+	wait 12
+	notowns_jump ultralisk_cavern upgUltra
+	wait 60
+	call wUpgradeDef
+	extupgrade 1 saber_siphon 88
+	wait 4500
+	wait_upgrades
+	call wUpgradeDef
+	extupgrade 1 kaiser_rampage 88
+	goto wUpgrade
+	
+	:upgDefilerCheck
+	var exactly|jump upgDefiler 1 stp 13
+	var set upgDefiler 1 13
+	
+	:upgDefiler
+	wait 12
+	notowns_jump defiler_mound upgDefiler
+	wait 60
+	call wUpgradeDef
+	tech plague 88
+	tech_jump 13 AtLeast_Wait 15 1 blank
+	multirun ioPlague
+	wait 240
+	call wUpgradeDef
+	tech consume 88
+	tech_jump 13 AtLeast_Wait 16 1 blank
+	multirun ioConsume
+	wait 240
+	call wUpgradeDef
+	upgrade_queue 1 defiler_mana 88
+	upgrade_jump 13 AtLeast_Wait 32 1 blank
+	wait 60
+	call wUpgradeDef
+	extupgrade 1 metastasis 88
+	wait 4500
+	var set metastasis 1 13
+	
+	:wUpgrade
+	wait 480
+	wait_upgrades
+	stop
+	
+	:ioParasite
+	idle_orders 120 0 1 queen 2880 Group_Men 80 RandomRate(480 1280)|WithoutSpellEffects(Parasite)|UnitFlags(Mechanical)|Self(Energy(GreaterThan 150))
+	idle_orders 120 0 1 queen 2880 dropship|shuttle|overlord 70 RandomRate(480 1280)|WithoutSpellEffects(Parasite)|Self(Energy(GreaterThan 150))
+	stop
+	
+	:ioBroodling
+	deaths 13 Exactly 0 crashed_battle ioBroodling2
+	deaths 13 Exactly 2 crashed_battle ioBroodling2
+	deaths 13 AtLeast 4 crashed_battle ioBroodling2
+	idle_orders 121 0 1 queen 1080 shaman|siege_tank|t_siege_mode|goliath|paladin|dragoon|hierophant|high_templar|dark_templar|basilisk|lurker|ultralisk|k_screamer|defiler|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler 80 RandomRate(120 240)|Hp(GreaterThanPercent 40)|InCombat
+	idle_orders 121 0 1 queen 1080 Group_Men 65 RandomRate(240 360)|Hp(GreaterThanPercent 40)|InCombat|Self(Energy(GreaterThanPercent 40))
+	stop
+	
+	:ioBroodling2
+	idle_orders 121 0 1 queen 1080 Group_Men 65 RandomRate(120 240)|Hp(GreaterThanPercent 40)|InCombat
+	idle_orders 121 1 1 queen 1080 Group_Men 99 Deathrattle|Targeting(OtherUnit)
+	stop
+	
+	:ioSwarm
+	idle_orders 119 0 1 defiler 720 firebat|cyprian|zealot|legionnaire|dark_templar|archon|reaver|zergling|vorvaling|ultralisk|infested_terran 50 Own|Allied|NotEnemies|RandomRate(120 240)|Self(Energy(GreaterThanPercent 125))|Hp(GreaterThanPercent 30)|InCombat
+	stop
+	
+	:ioPlague
+	idle_orders 144 0 1 defiler 1080 medic|shaman|siege_tank|goliath|paladin|wraith|wyvern|dropship|science_vessel|dragoon|hierophant|reaver|scout|shuttle|hydralisk|basilisk|lurker|mutalisk|guardian|gorgoleth|devourer|ultralisk|k_screamer|defiler|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler 75 RandomRate(120 360)|Hp(GreaterThanPercent 40)|Count(AtLeast 2 96 14)|WithoutSpellEffects(Plague)
+	idle_orders 144 0 1 defiler 1080 Group_Men 70 RandomRate(120 360)|Hp(GreaterThanPercent 40)|Count(AtLeast 2 96 14)|WithoutSpellEffects(Plague)
+	idle_orders 144 1 1 defiler 1080 Group_Men 99 Deathrattle|Targeting(OtherUnit)
+	var exactly|wait metastasis 1 13
+	wait 2880
+	idle_orders 144 0 1 defiler 720 firebat|zealot|legionnaire|zergling|vorvaling|infested_terran 85 RandomRate(120 360)|InCombat|Own|Allied|NotEnemies|WithoutSpellEffects(Plague)
+	stop
+	
+	:ioConsume
+	idle_orders 145 60 1 defiler 480 zergling|vorvaling 45 Own|Allied|NotEnemies|Self(Energy(LessThan 75))
+	stop
+	
+	:zTown
+	multirun mainWorker
+	build 1 hatchery 90
+	wait_build 1 hatchery
+	multirun buildOrder
+	bring_jump 13 AtLeast_Wait 1 spawning_pool Loc.63 blank
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	multirun addSunken
+	bring_jump 13 AtLeast_Wait 1 evolution_chamber|mutation_pit Loc.63 blank
+	multirun addSpore
+	bring_jump 13 AtLeast_Wait 1 lair Loc.63 blank
+	#multirun addChasmal
+	goto idle
+	
+	:mainWorkerStart
+	var add miningCount 1 13
+	
+	:mainWorker
+	wait 12
+	bring_jump 13 AtLeast 80 drone Loc.63 mainWorker
+	resarea_jump 255 AtMost 255 Ore 600 mainWorkerLowStart
+	var exactly|wait cutWorker 0 13
+	var exactly|WaitFor(360) cutWorkerAll 0 13
+	var exactly|wait underAttack 0 13
+	local_jump 255 AtLeast_Wait 1 hatchery|lair|hive blank
+	local_jump 255 AtLeast_Wait 1 larva blank
+	bring_jump 13 AtLeast 5 hatchery|lair|hive Loc.63 mainWorkerMax
+	bring_jump 13 AtLeast 3 hatchery|lair|hive Loc.63 mainWorkerMed
+	bring_jump 13 AtLeast 2 hatchery|lair|hive Loc.63 mainWorkerMin
+	
+	:mainWorkerEarly
+	local_jump 255 AtLeast 12 drone mainWorker
+	max_workers 12
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 drone larva 255 Local Loc.63 80
+	wait 120
+	goto mainWorker
+	
+	:mainWorkerMin
+	wait 12
+	max_workers 12
+	local_jump 255 AtLeast 12 drone mainWorker
+	local_jump 255 AtMost 1 larva mainWorker
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 drone larva 255 Local Loc.63 80
+	wait 120
+	goto mainWorker
+	
+	:mainWorkerMed
+	wait 12
+	max_workers 16
+	local_jump 255 AtLeast 16 drone mainWorker
+	local_jump 255 AtMost 3 larva mainWorker
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 drone larva 255 Local Loc.63 80
+	wait 120
+	goto mainWorker
+	
+	:mainWorkerMax
+	wait 12
+	max_workers 22
+	local_jump 255 AtLeast 22 drone mainWorker
+	local_jump 255 AtMost 5 larva mainWorker
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 drone larva 255 Local Loc.63 80
+	wait 120
+	goto mainWorker
+	
+	:mainWorkerLowStart
+	var subtract miningCount 1 13
+	
+	:mainWorkerLow
+	wait 12
+	resarea_jump 255 AtLeast 255 Ore 6000 mainWorker
+	max_workers 6
+	local_jump 255 AtLeast 6 drone mainWorkerLow
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 drone larva 255 Local Loc.63 80
+	wait 120
+	goto mainWorkerLow
+	
+	:zExpand
+	wait 12
+	bring_jump 13 AtLeast 80 drone Loc.63 zExpand
+	var exactly|wait canExpand 1 13
+	bring_jump 13 AtLeast 4 hatchery|lair|hive Loc.63 zExpandB
+	call wUpgradeDef
+	expand 9 expRandTown
+	wait 2920
+	goto zExpand
+	
+	:zExpandB
+	call wUpgradeDef
+	expand 9 expRandTown
+	wait 7200
+	goto zExpand
+	
+	:expRandTown
+	call initTown
+	build 1 hatchery 90
+	multirun expWorker
+	wait_build 1 hatchery
+	multirun expCount
+	multirun addSunken
+	wait 360
+	multirun addSpore
+	wait_buildstart 10 drone
+	multirun addProd
+	wait 720
+	#multirun addChasmal
+	wait 1440
+	multirun buildOrderExp
+	goto idle
+	
+	:expCount
+	wait 12
+	local_jump 255 Exactly 0 hatchery|lair|hive expCount
+	town_state 255 persist true
+	var add townCount 1 13
+	local_jump 255 Exactly_Wait 0 hatchery|lair|hive blank
+	var subtract townCount 1 13
+	town_state 255 persist false
+	goto expCount
+	
+	:expWorker
+	max_workers 2
+	get_oldpeons 1
+	build 1 drone 98
+	wait_buildstart 1 hatchery
+	build 2 drone 98
+	wait_build 1 hatchery
+	get_oldpeons 6
+	goto expWorkerStd
+	
+	:expWorkerStd
+	wait 12
+	bring_jump 13 AtLeast 80 drone Loc.63 expWorkerStd
+	var exactly|WaitFor(360) cutWorkerAll 0 13
+	bring_jump 13 AtLeast 5 hatchery|lair|hive Loc.63 expWorkerMax
+	bring_jump 13 AtLeast 3 hatchery|lair|hive Loc.63 expWorkerMed
+	resarea_jump 255 AtMost 255 Ore 600 expWorkerLow
+	max_workers 10
+	wait 300
+	local_jump 255 AtLeast 10 drone expWorkerStd
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 drone larva 255 Local Loc.63 80
+	goto expWorkerStd
+	
+	:expWorkerMed
+	resarea_jump 255 AtMost 255 Ore 600 expWorkerLow
+	max_workers 14
+	wait 300
+	local_jump 255 AtLeast 14 drone expWorkerStd
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 drone larva 255 Local Loc.63 80
+	goto expWorkerStd
+	
+	:expWorkerMax
+	resarea_jump 255 AtMost 255 Ore 600 expWorkerLow
+	max_workers 18
+	wait 300
+	local_jump 255 AtLeast 18 drone expWorkerStd
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 drone larva 255 Local Loc.63 80
+	goto expWorkerStd
+	
+	:expWorkerLow
+	resarea_jump 255 AtLeast 255 Ore 6000 expWorkerStd
+	max_workers 6
+	wait 300
+	local_jump 255 AtLeast 6 drone expWorkerLow
+	resources 13 AtLeast_Wait Ore 50 blank
+	call wWorkerDef
+	queue 1 drone larva 255 Local Loc.63 80
+	goto expWorkerLow
+	
+	:buildBool
+	var set cutWorker 0 13
+	var set canExpand 1 13
+	var set canAttack 1 13
+	var set canUpgrade 1 13
+	var set canStatic 1 13
+	var set buildGas 1 13
+	var set buildSupply 1 13
+	return
+	
+	:buildOrder
+	deaths 13 Exactly 1 crashed_battle buildOrderConnor
+	deaths 13 Exactly 2 crashed_battle buildOrderSwarm
+	deaths 13 Exactly 3 crashed_battle buildOrderAir
+	
+	:buildOrderGen
+	deaths 13 Exactly 1 stasis_chamber buildGen2HatchHive
+	deaths 13 Exactly 2 stasis_chamber buildGen2HatchVorv
+	deaths 13 Exactly 3 stasis_chamber buildGen3HatchHydraQueen
+	
+	:buildGen2HatchHive
+	wait_buildstart 9 drone
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 60
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	queue 1 overlord larva 255 Global Loc.63 80
+	bring_jump 13 AtLeast_Wait 2 overlord Loc.63 blank
+	build 1 extractor 66
+	wait_buildstart 1 extractor
+	bring_jump 13 AtLeast_Wait 13 drone Loc.63 blank
+	var set buildSupply 1 13
+	wait_build 1 spawning_pool
+	var set canStatic 1 13
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 15 drone Loc.63 blank
+	build 1 lair 66
+	wait_buildstart 1 lair
+	upgrade_queue 1 zergling_speed 88
+	var set canAttack 1 13
+	var set buildGas 1 13
+	wait 240
+	build 1 evolution_chamber 66
+	wait_buildstart 1 evolution_chamber
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	upgrade_queue 1 z_carapace 88
+	wait_build 1 lair
+	build 1 queen_nest 66
+	wait_buildstart 1 queen_nest
+	build 2 hatchery 72
+	wait_buildstart 2 hatchery
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait_build 1 queen_nest
+	build 1 hive 82
+	wait_buildstart 1 hive
+	goto addProd
+	
+	:buildGen2HatchVorv
+	wait_buildstart 9 drone
+	queue 1 overlord larva 255 Global Loc.63 80
+	bring_jump 13 AtLeast_Wait 2 overlord Loc.63 blank
+	wait_buildstart 11 drone
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 60
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	build 1 extractor 66
+	wait_buildstart 1 extractor
+	bring_jump 13 AtLeast_Wait 13 drone Loc.63 blank
+	var set buildSupply 1 13
+	wait_build 1 spawning_pool
+	upgrade_queue 1 zergling_speed 88
+	wait 24
+	var set canStatic 1 13
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 15 drone Loc.63 blank
+	build 1 lair 66
+	wait_buildstart 1 lair
+	var set canAttack 1 13
+	var set buildGas 1 13
+	wait 240
+	build 1 evolution_chamber 66
+	wait_buildstart 1 evolution_chamber
+	#build 1 vorval_pond 66
+	#wait_buildstart 1 vorval_pond
+	build 2 hatchery 72
+	wait_buildstart 2 hatchery
+	build 2 evolution_chamber 66
+	wait_build 1 evolution_chamber
+	upgrade_queue 1 z_melee_attack 88
+	wait_buildstart 2 evolution_chamber
+	multirun addProd
+	wait_build 2 evolution_chamber
+	upgrade_queue 1 z_carapace 88
+	goto buildGenFin
+	
+	:buildGen3HatchHydraQueen
+	wait_buildstart 9 drone
+	queue 1 overlord larva 255 Global Loc.63 80
+	build 1 spawning_pool 66
+	wait_buildstart 11 drone
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set canExpand 0 13
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 drone larva 255 Local Loc.63 80
+	wait_build 1 spawning_pool
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 60
+	var set cutWorker 0 13
+	bring_jump 13 AtLeast_Wait 12 drone Loc.63 blank
+	var set buildSupply 1 13
+	build 1 extractor 66
+	wait_buildstart 1 extractor
+	var set canStatic 1 13
+	wait 300
+	var set canAttack 1 13
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 3 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait_build 1 extractor
+	build 1 hydralisk_den 66
+	wait_buildstart 1 hydralisk_den
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	build 1 lair 76
+	wait_buildstart 1 lair
+	var set buildGas 1 13
+	build 1 evolution_chamber 66
+	wait_build 1 hydralisk_den
+	upgrade_queue 1 hydralisk_speed 88
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait_build 1 evolution_chamber
+	upgrade_queue 1 z_missile_attack 88
+	wait_build 1 lair
+	upgrade_queue 1 hydralisk_range 88
+	build 1 queen_nest 66
+	wait_buildstart 1 queen_nest
+	build 2 evolution_chamber 66
+	wait_build 2 evolution_chamber
+	upgrade_queue 1 z_carapace 88
+	wait_build 1 queen_nest
+	multirun addProd
+	
+	:buildGenFin
+	call buildBool
+	call wEvo
+	call wHydra
+	bring_jump 13 AtLeast_Wait 1 hydralisk_den|basilisk_den|lurker_den Loc.63 blank
+	wait 480
+	call wSpire
+	wait 240
+	call wLurk
+	wait 480
+	call wEvo
+	wait 480
+	call wQueen
+	bring_jump 13 AtLeast_Wait 1 queen_nest Loc.63 blank
+	call wHive
+	bring_jump 13 AtLeast_Wait 1 hive Loc.63 blank
+	call wUltra
+	wait 240
+	call wDefiler
+	bring_jump 13 AtLeast_Wait 1 defiler_mound Loc.63 blank
+	call wGuard
+	wait 480
+	call wSpire
+	wait 960
+	call wBas
+	wait 2400
+	call wDevo
+	wait 2400
+	#call wSpire
+	#call wGorg
+	stop
+	
+	:buildOrderConnor
+	deaths 13 Exactly 1 stasis_chamber buildConnor3HatchHydra
+	deaths 13 Exactly 2 stasis_chamber buildConnor2HatchLurker
+	deaths 13 Exactly 3 stasis_chamber buildConnor2HatchHydraLing
+	
+	:buildConnor3HatchHydra
+	wait_buildstart 9 drone
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	wait 300
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	queue 1 overlord larva 255 Local Loc.63 80
+	wait_build 1 spawning_pool
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set canStatic 1 13
+	wait 300
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 3 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	build 1 extractor 66
+	wait 600
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 900
+	build 1 hydralisk_den 66
+	wait 900
+	queue 1 overlord larva 255 Global Loc.63 80
+	upgrade_queue 1 hydralisk_speed 88
+	bring_jump 13 AtLeast_Wait 21 drone Loc.63 blank
+	queue 1 overlord larva 255 Global Loc.63 80
+	build 1 evolution_chamber 66
+	bring_jump 13 AtLeast_Wait 25 drone Loc.63 blank
+	var set buildGas 1 13
+	var set buildSupply 1 13
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	build 2 hatchery 72
+	multirun addProd
+	goto buildConnorFin
+	
+	:buildConnor2HatchLurker
+	wait_buildstart 9 drone
+	queue 1 overlord larva 255 Global Loc.63 80
+	bring_jump 13 AtLeast_Wait 2 overlord Loc.63 blank
+	wait 600
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 60
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	build 1 extractor 66
+	wait 300
+	var set buildSupply 1 13
+	wait_build 1 spawning_pool
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set canStatic 1 13
+	wait 600
+	build 1 lair 66
+	wait_buildstart 1 lair
+	var set buildGas 1 13
+	build 1 hydralisk_den 66
+	wait_build 1 lair
+	build 1 lurker_den 66
+	wait_buildstart 1 lurker_den
+	build 1 evolution_chamber 66
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	wait_build 1 evolution_chamber
+	upgrade_queue 1 missile_attack 88
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait_build 1 lurker_den
+	do_morph 3 lurker
+	wait 60
+	do_morph 3 lurker
+	wait 60
+	do_morph 3 lurker
+	wait 360
+	upgrade_queue 1 hydralisk_speed 88
+	multirun addProd
+	goto buildConnorFin
+	
+	:buildConnor2HatchHydraLing
+	wait_buildstart 9 drone
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set canExpand 0 13
+	var set cutWorker 0 13
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	var set cutWorker 1 13
+	queue 1 overlord larva 255 Global Loc.63 80
+	var set cutWorker 0 13
+	wait_build 1 spawning_pool
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set canStatic 1 13
+	wait 300
+	build 2 hatchery 72
+	wait_buildstart 2 hatchery
+	build 1 extractor 66
+	wait_buildstart 1 extractor
+	var set buildSupply 1 13
+	wait_build 1 extractor
+	build 1 hydralisk_den 66
+	wait_buildstart 1 hydralisk_den
+	upgrade_queue 1 zergling_speed 88
+	wait_build 1 hydralisk_den
+	upgrade_queue 1 hydralisk_speed 88
+	wait 240
+	build 1 evolution_chamber 66
+	wait_buildstart 1 evolution_chamber
+	var set buildGas 1 13
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait_build 1 evolution_chamber
+	upgrade_queue 1 z_carapace 88
+	multirun addProd
+	
+	:buildConnorFin
+	call buildBool
+	bring_jump 13 AtLeast_Wait 1 evolution_chamber Loc.63 blank
+	call wLair
+	wait 240
+	call wHatch
+	wait 240
+	call wEvo
+	wait 480
+	call wBas
+	wait 480
+	call wEvo
+	wait 240
+	call wQueen
+	wait 360
+	call wHive
+	wait 240
+	player_need 2 hydralisk_den
+	wait 480
+	call wLurk
+	wait 240
+	call wDefiler
+	wait 360
+	call wUltra
+	wait 2400
+	call wSpire
+	call wSpire
+	wait 720
+	call wGuard
+	wait 360
+	#call wGorg
+	#wait 2400
+	#call wSpire
+	call wDevo
+	stop
+	
+	:buildOrderSwarm
+	deaths 13 Exactly 1 stasis_chamber buildSwarm3HatchFlood
+	deaths 13 Exactly 2 stasis_chamber buildSwarm3HatchUltra
+	deaths 13 Exactly 3 stasis_chamber buildSwarm9Pool
+	deaths 13 Exactly 4 stasis_chamber buildSwarm3HatchHive
+	
+	:buildSwarm3HatchFlood
+	wait_buildstart 9 drone
+	queue 1 overlord larva 255 Global Loc.63 80
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	wait 300
+	build 1 extractor 66
+	wait_build 1 spawning_pool
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	upgrade_queue 1 zergling_speed 88
+	wait_buildstart 10 drone
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	var set buildSupply 1 13
+	var set canStatic 1 13
+	wait 24
+	build 1 evolution_chamber 66
+	wait_buildstart 1 evolution_chamber
+	build 1 lair 76
+	wait_buildstart 1 lair
+	wait 240
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait_build 1 evolution_chamber
+	upgrade_queue 1 z_carapace 88
+	wait 240
+	build 2 hatchery 72
+	wait_buildstart 2 hatchery
+	upgrade_queue 1 overlord_capacity 88
+	var set canAttack 1 13
+	build 2 evolution_chamber 66
+	wait_buildstart 2 evolution_chamber
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	upgrade_queue 1 z_melee_attack 88
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 4 hatchery|lair|hive Loc.63 blank
+	multirun addProd
+	goto buildSwarmFin
+	
+	:buildSwarm3HatchUltra
+	wait_buildstart 9 drone
+	var set cutWorker 1 13
+	queue 1 overlord larva 255 Local Loc.63 80
+	wait 24
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set canExpand 0 13
+	var set cutWorker 0 13
+	wait 600
+	build 1 spawning_pool 66
+	wait 24
+	build 1 extractor 66
+	wait 1500
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	build 1 lair 76
+	wait 24
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	var set canStatic 1 13
+	var set canAttack 1 13
+	wait 300
+	upgrade_queue 1 zergling_speed 88
+	wait 1200
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	build 1 evolution_chamber 66
+	wait 1200
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 3 hatchery|lair|hive Loc.63 blank
+	upgrade_queue 1 z_carapace 88
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 300
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 900
+	build 1 queen_nest 66
+	wait 24
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	var set buildGas 1 13
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 600
+	build 2 evolution_chamber 66
+	wait 300
+	build 1 hive 82
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 600
+	upgrade_queue 1 z_melee_attack 88
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 1800
+	build 2 hatchery 72
+	wait 24
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 900
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	build 1 ultralisk_cavern 66
+	wait 24
+	build 1 spire 66
+	upgrade_queue 2 z_carapace 88
+	wait 24
+	upgrade_queue 1 zergling_attack 88
+	multirun addProd
+	goto buildSwarmFin
+	
+	:buildSwarm9Pool
+	wait_buildstart 9 drone
+	var set cutWorker 1 13
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	var set cutWorker 0 13
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	build 1 extractor 66
+	wait_build 1 spawning_pool
+	upgrade_queue 1 zergling_speed 88
+	var set cutWorker 1 13
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set buildSupply 1 13
+	wait 300
+	var set canAttack 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	var set canStatic 1 13
+	wait 24
+	build 1 evolution_chamber 66
+	wait_buildstart 1 evolution_chamber
+	build 1 lair 76
+	wait_buildstart 1 lair
+	build 2 hatchery 72
+	wait_buildstart 2 hatchery
+	upgrade_queue 1 z_melee_attack 88
+	build 2 evolution_chamber 66
+	wait_buildstart 2 evolution_chamber
+	upgrade_queue 1 z_carapace 88
+	multirun addProd
+	goto buildSwarmFin
+	
+	:buildSwarm3HatchHive
+	wait_buildstart 9 drone
+	var set cutWorker 1 13
+	queue 1 overlord larva 255 Local Loc.63 80
+	wait 24
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set canExpand 0 13
+	var set cutWorker 0 13
+	wait 600
+	build 1 spawning_pool 66
+	wait 24
+	build 1 extractor 66
+	wait 1500
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	build 1 lair 76
+	wait 24
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	var set canStatic 1 13
+	var set canAttack 1 13
+	wait 300
+	upgrade_queue 1 zergling_speed 88
+	wait 1200
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	build 1 evolution_chamber 66
+	wait 1200
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 3 hatchery|lair|hive Loc.63 blank
+	upgrade_queue 1 z_carapace 88
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 300
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 1200
+	build 2 evolution_chamber 66
+	wait 24
+	var set buildGas 1 13
+	wait 24
+	build 1 queen_nest 66
+	wait 24
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	upgrade_queue 1 z_melee_attack 88
+	wait 24
+	upgrade_queue 2 z_carapace 88
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	build 1 hive 82
+	wait 1800
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	build 1 ultralisk_cavern 66
+	wait 24
+	build 2 hatchery 72
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	multirun addProd
+	goto buildSwarmFin
+	
+	:buildSwarmFin
+	call buildBool
+	wait 240
+	call wSpire
+	wait 720
+	call wQueen
+	call wHydra
+	wait 560
+	call wEvo
+	wait 560
+	call wHive
+	wait 240
+	call wLurk
+	wait 720
+	call wSpire
+	wait 240
+	call wDefiler
+	call wUltra
+	wait 720
+	call wGuard
+	wait 2400
+	player_need 2 hydralisk_den
+	call wBas
+	wait 2400
+	call wSpire
+	call wDevo
+	wait 2400
+	call wSpire
+	call wGorg
+	stop
+	
+	:buildOrderAir
+	deaths 13 Exactly 1 stasis_chamber buildAir3HatchMutaLing
+	deaths 13 Exactly 2 stasis_chamber buildAir2HatchMutaGuard
+	deaths 13 Exactly 3 stasis_chamber buildAir2HatchMuta
+	
+	:buildAir3HatchMutaLing
+	wait_buildstart 9 drone
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set canExpand 0 13
+	var set cutWorker 0 13
+	wait 300
+	var set cutWorker 1 13
+	queue 1 overlord larva 255 Global Loc.63 80
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	var set cutWorker 0 13
+	wait 600
+	build 1 extractor 66
+	wait 300
+	var set cutWorker 1 13
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set buildSupply 1 13
+	var set canStatic 1 13
+	wait 24
+	build 1 lair 76
+	wait_buildstart 1 lair
+	upgrade_queue 1 zergling_speed 88
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 drone larva 255 Local Loc.63 80
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 3 hatchery|lair|hive Loc.63 blank
+	var set canAttack 1 13
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 240
+	var set buildGas 1 13
+	wait_build 1 lair
+	build 1 spire 66
+	wait_buildstart 1 spire
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	wait_build 1 spire
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 mutalisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 mutalisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 mutalisk larva 255 Global Loc.63 80
+	wait 24
+	upgrade_queue 1 z_flyer_carapace 88
+	multirun addProd
+	goto buildAirFin
+	
+	:buildAir2HatchMutaGuard
+	wait_buildstart 9 drone
+	queue 1 overlord larva 255 Global Loc.63 80
+	bring_jump 13 AtLeast_Wait 2 overlord Loc.63 blank
+	wait 600
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 24
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	build 1 extractor 66
+	wait 600
+	var set buildSupply 1 13
+	wait_build 1 spawning_pool
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set canStatic 1 13
+	wait 900
+	build 1 lair 66
+	wait_buildstart 1 lair
+	upgrade_queue 1 zergling_speed 88
+	var set canAttack 1 13
+	var set buildGas 1 13
+	wait 240
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait_build 1 lair
+	build 1 spire 66
+	wait_buildstart 1 spire
+	build 2 hatchery 72
+	wait_buildstart 2 hatchery
+	build 1 queen_nest 66
+	wait_buildstart 1 queen_nest
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait_build 1 queen_nest
+	build 1 hive 82
+	wait_build 1 spire
+	upgrade_queue 1 z_flyer_carapace 88
+	wait_buildstart 1 hive
+	var set canExpand 1 13
+	build 2 spire 66
+	wait_buildstart 2 spire
+	build 3 hatchery 66
+	wait_build 1 hive
+	build 1 guardian_roost 66
+	wait_buildstart 1 guardian_roost
+	upgrade_queue 1 z_flyer_attack 88
+	multirun addProd
+	goto buildAirFin
+	
+	:buildAir2HatchMuta
+	wait_buildstart 9 drone
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 60
+	build 1 spawning_pool 66
+	wait_buildstart 1 spawning_pool
+	queue 1 overlord larva 255 Global Loc.63 80
+	bring_jump 13 AtLeast_Wait 2 overlord Loc.63 blank
+	build 1 extractor 66
+	wait 600
+	var set buildSupply 1 13
+	wait_build 1 spawning_pool
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set canStatic 1 13
+	wait 600
+	build 1 lair 66
+	wait_buildstart 1 lair
+	upgrade_queue 1 zergling_speed 88
+	var set buildGas 1 13
+	wait 240
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set canAttack 1 13
+	wait_build 1 lair
+	build 1 spire 66
+	wait_buildstart 1 spire
+	build 2 hatchery 72
+	wait_buildstart 2 hatchery
+	build 1 evolution_chamber 66
+	wait_build 1 spire
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 mutalisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 mutalisk larva 255 Global Loc.63 80
+	wait 24
+	bring_jump 13 AtLeast_Wait 1 larva Loc.63 blank
+	queue 1 mutalisk larva 255 Global Loc.63 80
+	wait 24
+	upgrade_queue 1 z_flyer_carapace 88
+	wait_build 1 evolution_chamber
+	upgrade_queue 1 z_carapace 88
+	multirun addProd
+	
+	:buildAirFin
+	call buildBool
+	call wEvo
+	wait 1080
+	call wSpire
+	wait 360
+	call wEvo
+	wait 720
+	call wQueen
+	wait 240
+	call wEvo
+	wait 240
+	call wHive
+	wait 720
+	call wHydra
+	wait 720
+	call wGuard
+	wait 360
+	call wLurk
+	wait 1080
+	call wDevo
+	wait 240
+	call wUltra
+	wait 1080
+	#call wSpire
+	#call wGorg
+	#wait 1440
+	call wDefiler
+	wait 2400
+	player_need 2 hydralisk_den
+	call wBas
+	stop
+	
+	:buildOrderExp
+	bring_jump 13 AtLeast_Wait 1 hatchery|lair|hive Loc.63 blank
+	call wSpawn
+	bring_jump 13 AtLeast_Wait 1 spawning_pool Loc.63 blank
+	call wEvo
+	wait 600
+	call wHydra
+	bring_jump 13 AtLeast_Wait 1 lair|hive Loc.63 blank
+	call wBas
+	wait 600
+	call wLurk
+	wait 600
+	call wSpire
+	wait 600
+	call wQueen
+	bring_jump 13 AtLeast_Wait 1 queen_nest Loc.63 blank
+	call wHive
+	bring_jump 13 AtLeast_Wait 1 hive Loc.63 blank
+	call wGuard
+	wait 600
+	call wDevo
+	wait 600
+	call wDefiler
+	wait 600
+	call wUltra
+	#wait 600
+	#call wGorg
+	stop
+	
+	:wExt
+	wait 12
+	resarea_jump 255 Exactly 255 Gas 0 blankReturn
+	resources 13 AtMost Ore 49 wExt
+	build 1 extractor 65
+	return
+	
+	:wHatch
+	var atleast|wait townCount 1 13
+	wait 12
+	notowns_jump drone wHatch
+	resources 13 AtMost Ore 199 wHatch
+	add_build 255 hatchery 1 99 70
+	return
+	
+	:wSpawn
+	wait 12
+	bring_jump 13 Exactly 0 hatchery|lair|hive Loc.63 wEvo
+	resources 13 AtMost Ore 199 wSpawn
+	bring_jump 13 AtLeast 1 spawning_pool Loc.63 wSpawn2
+	call wUpgradeDef
+	build 1 spawning_pool 66
+	return
+	
+	:wSpawn2
+	player_need 1 spawning_pool
+	return
+	
+	:wEvo
+	wait 12
+	bring_jump 13 Exactly 0 hatchery|lair|hive Loc.63 wEvo
+	resources 13 AtMost Ore 74 wEvo
+	bring_jump 13 AtLeast 4 evolution_chamber|mutation_pit Loc.63 wEvo2
+	call wUpgradeDef
+	add_build 255 evolution_chamber 1 4 66
+	return
+	
+	:wEvo2
+	player_need 1 evolution_chamber
+	return
+	
+	:wHydra
+	wait 12
+	notowns_jump spawning_pool wHydra
+	resources 13 AtMost Ore 99 wHydra
+	resources 13 AtMost Gas 49 wHydra
+	bring_jump 13 AtLeast 1 hydralisk_den|basilisk_den|lurker_den Loc.63 wHydra2
+	call wUpgradeDef
+	build 1 hydralisk_den 66
+	return
+	
+	:wHydra2
+	player_need 1 hydralisk_den
+	return
+	
+	:wLair
+	local_jump 255 AtLeast 1 lair wLair2
+	wait 12
+	notowns_jump spawning_pool wLair
+	resources 13 AtMost Any 99 wLair
+	call wUpgradeDef
+	add_build 255 lair 1 99 76
+	return
+	
+	:wLair2
+	player_need 1 lair
+	return
+	
+	:wSpire
+	wait 12
+	bring_jump 13 Exactly 0 lair|hive Loc.63 wSpire
+	resources 13 AtMost Ore 199 wSpire
+	resources 13 AtMost Gas 149 wSpire
+	bring_jump 13 AtLeast 3 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 wSpire2
+	call wUpgradeDef
+	add_build 255 spire 1 3 66
+	return
+	
+	:wSpire2
+	player_need 1 spire
+	return
+	
+	:wQueen
+	wait 12
+	bring_jump 13 Exactly 0 lair|hive Loc.63 wQueen
+	resources 13 AtMost Ore 149 wQueen
+	resources 13 AtMost Gas 99 wQueen
+	bring_jump 13 AtLeast 1 queen_nest Loc.63 wQueen2
+	call wUpgradeDef
+	build 1 queen_nest 66
+	return
+	
+	:wQueen2
+	player_need 1 queen_nest
+	return
+	
+	:wBas
+	wait 12
+	bring_jump 13 Exactly 0 lair|hive Loc.63 wBas
+	resources 13 AtMost Ore 149 wBas
+	resources 13 AtMost Gas 99 wBas
+	bring_jump 13 AtLeast 1 basilisk_den Loc.63 wBas2
+	call wUpgradeDef
+	build 1 basilisk_den 99
+	return
+	
+	:wBas2
+	player_need 1 basilisk_den
+	return
+	
+	:wLurk
+	wait 12
+	bring_jump 13 Exactly 0 lair|hive Loc.63 wLurk
+	resources 13 AtMost Ore 99 wLurk
+	resources 13 AtMost Gas 149 wLurk
+	bring_jump 13 AtLeast 1 lurker_den Loc.63 wLurk2
+	build 1 lurker_den 66
+	return
+	
+	:wLurk2
+	player_need 1 lurker_den
+	return
+	
+	:wHive
+	wait 12
+	notowns_jump queen_nest wHive
+	resources 13 AtMost Any 149 wHive
+	add_build 255 hive 1 99 82
+	return
+	
+	:wUltra
+	wait 12
+	notowns_jump hive wUltra
+	resources 13 AtMost Any 199 wUltra
+	bring_jump 13 AtLeast 1 ultralisk_cavern Loc.63 wUltra2
+	build 1 ultralisk_cavern 66
+	return
+	
+	:wUltra2
+	player_need 1 ultralisk_cavern
+	return
+	
+	:wDefiler
+	wait 12
+	notowns_jump hive wDefiler
+	resources 13 AtMost Ore 99 wDefiler
+	resources 13 AtMost Gas 149 wDefiler
+	bring_jump 13 AtLeast 1 defiler_mound Loc.63 wDefiler2
+	build 1 defiler_mound 66
+	return
+	
+	:wDefiler2
+	player_need 1 defiler_mound
+	return
+	
+	:wGorg
+	wait 12
+	bring_jump 13 Exactly 0 lair|hive Loc.63 wGorg
+	notowns_jump spire wGorg
+	resources 13 AtMost Ore 99 wGorg
+	resources 13 AtMost Gas 99 wGorg
+	bring_jump 13 AtLeast 1 gorgoleth_apiary Loc.63 wGorg2
+	build 1 gorgoleth_apiary 66
+	return
+	
+	:wGorg2
+	player_need 1 gorgoleth_apiary
+	return
+	
+	:wGuard
+	wait 12
+	notowns_jump hive wGuard
+	notowns_jump spire wGuard
+	resources 13 AtMost Ore 99 wGuard
+	resources 13 AtMost Gas 149 wGuard
+	bring_jump 13 AtLeast 1 guardian_roost Loc.63 wGuard2
+	build 1 guardian_roost 66
+	return
+	
+	:wGuard2
+	player_need 1 guardian_roost
+	return
+	
+	:wDevo
+	wait 12
+	notowns_jump hive wDevo
+	notowns_jump spire wDevo
+	resources 13 AtMost Ore 199 wDevo
+	resources 13 AtMost Gas 99 wDevo
+	bring_jump 13 AtLeast 1 devourer_haunt Loc.63 wDevo2
+	build 1 devourer_haunt 66
+	return
+	
+	:wDevo2
+	player_need 1 devourer_haunt
+	return
+	
+	:addSunken
+	var exactly|wait canStatic 1 13
+	wait 12
+	notowns_jump spawning_pool addSunken
+	resources 13 AtLeast_Call Ore 125 addSunkenCheck
+	wait 960
+	goto addSunken
+	
+	:addSunkenCheck
+	local_jump 255 AtLeast 3 sunken_colony addSunkenCheck2
+	add_build 255 creep_colony 1 5 64
+	add_build 255 sunken_colony 1 3 66
+	goto addReturn
+	
+	:addSunkenCheck2
+	var exactly|jump underAttack 0 ret 13
+	local_jump 255 AtLeast 8 sunken_colony addReturn
+	add_build 255 creep_colony 1 13 64
+	add_build 255 sunken_colony 1 8 66
+	goto addReturn
+	
+	:addSpore
+	wait 12
+	notowns_jump evolution_chamber addSpore
+	resources 13 AtLeast_Call Ore 125 addSporeCheck
+	wait 1280
+	goto addSpore
+	
+	:addSporeCheck
+	local_jump 255 AtLeast 2 spore_colony addSporeCheck2
+	add_build 255 creep_colony 1 5 64
+	add_build 255 spore_colony 1 2 65
+	goto addReturn
+	
+	:addSporeCheck2
+	var exactly|jump underAttack 0 ret 13
+	local_jump 255 AtLeast 5 spore_colony addReturn
+	add_build 255 creep_colony 1 13 64
+	add_build 255 spore_colony 1 5 65
+	goto addReturn
+	
+	:addProd
+	local_jump 255 AtLeast_Wait 1 hatchery|lair|hive blank
+	deaths 13 Exactly 1 crashed_battle addProdConnor
+	deaths 13 Exactly 3 crashed_battle addProdAir
+	
+	:addProdGen
+	wait 720
+	resources 13 AtLeast_Wait Ore 350 blank
+	call wUpgradeDef
+	deaths 13 Set 0 psi_disrupter blank
+	resources 13 AtLeast_Call Ore 350 addHatchCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdGen
+	resources 13 AtLeast_Call Any 400 addLairCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdGen
+	resources 13 AtLeast_Call Any 450 addHiveCheck
+	goto addProdGen
+	
+	:addProdConnor
+	wait 720
+	resources 13 AtLeast_Wait Ore 450 blank
+	call wUpgradeDef
+	deaths 13 Set 0 psi_disrupter blank
+	resources 13 AtLeast_Call Ore 400 addLairCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdGen
+	resources 13 AtLeast_Call Ore 350 addHatchCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdGen
+	resources 13 AtLeast_Call Ore 450 addHiveCheck
+	goto addProdGen
+	
+	:addProdAir
+	wait 720
+	resources 13 AtLeast_Wait Ore 450 blank
+	call wUpgradeDef
+	deaths 13 Set 0 psi_disrupter blank
+	resources 13 AtLeast_Call Ore 450 addHiveCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdGen
+	resources 13 AtLeast_Call Ore 400 addLairCheck
+	deaths 13 AtLeast 1 psi_disrupter addProdGen
+	resources 13 AtLeast_Call Ore 350 addHatchCheck
+	goto addProdGen
+	
+	:addHatchCheck
+	wait 12
+	resources 13 AtMost Ore 299 addHatchCheck
+	resarea_jump 255 AtLeast 255 Ore 12000 addHatchMax
+	resarea_jump 255 AtLeast 255 Ore 6000 addHatchMed
+	
+	:addHatchMin
+	deaths 13 Exactly 2 crashed_battle addHatchMinSwarm
+	deaths 13 Exactly 3 crashed_battle addHatchMinAir
+	
+	:addHatchMinGen
+	local_jump 255 AtLeast 3 hatchery addReturn
+	add_build 255 hatchery 1 3 69
+	goto addProdSuccess
+	
+	:addHatchMinSwarm
+	local_jump 255 AtLeast 4 hatchery addReturn
+	add_build 255 hatchery 1 4 69
+	goto addProdSuccess
+	
+	:addHatchMinAir
+	local_jump 255 AtLeast 2 hatchery addReturn
+	add_build 255 hatchery 1 2 69
+	goto addProdSuccess
+	
+	:addHatchMax
+	deaths 13 Exactly 1 crashed_battle addHatchMaxConnor
+	deaths 13 Exactly 2 crashed_battle addHatchMaxSwarm
+	deaths 13 Exactly 3 crashed_battle addHatchMaxAir
+	
+	:addHatchMaxGen
+	local_jump 255 AtLeast 9 hatchery addReturn
+	add_build 255 hatchery 1 9 69
+	goto addProdSuccess
+	
+	:addHatchMaxConnor
+	local_jump 255 AtLeast 7 hatchery addReturn
+	add_build 255 hatchery 1 7 69
+	goto addProdSuccess
+	
+	:addHatchMaxSwarm
+	local_jump 255 AtLeast 11 hatchery addReturn
+	add_build 255 hatchery 1 11 69
+	goto addProdSuccess
+	
+	:addHatchMaxAir
+	local_jump 255 AtLeast 6 hatchery addReturn
+	add_build 255 hatchery 1 6 69
+	goto addProdSuccess
+	
+	:addHatchMed
+	deaths 13 Exactly 1 crashed_battle addHatchMedConnor
+	deaths 13 Exactly 2 crashed_battle addHatchMedSwarm
+	deaths 13 Exactly 3 crashed_battle addHatchMedAir
+	goto addHatchMaxAir
+	
+	:addHatchMedConnor
+	local_jump 255 AtLeast 5 hatchery addReturn
+	add_build 255 hatchery 1 5 69
+	goto addProdSuccess
+	
+	:addHatchMedSwarm
+	local_jump 255 AtLeast 7 hatchery addReturn
+	add_build 255 hatchery 1 7 69
+	goto addProdSuccess
+	
+	:addHatchMedAir
+	local_jump 255 AtLeast 4 hatchery addReturn
+	add_build 255 hatchery 1 4 69
+	goto addProdSuccess
+	
+	:addLairCheck
+	wait 12
+	notowns_jump spawning_pool addLairCheck
+	notowns_jump hatchery addLairCheck
+	resources 13 AtMost Any 99 addLairCheck
+	resarea_jump 255 AtLeast 255 Ore 12000 addLairMax
+	resarea_jump 255 AtLeast 255 Ore 6000 addLairMed
+	
+	:addLairMin
+	deaths 13 Exactly 3 crashed_battle addLairMinAir
+	
+	:addLairMinGen
+	local_jump 255 AtLeast 1 lair addReturn
+	add_build 255 lair 1 1 72
+	goto addProdSuccess
+	
+	:addLairMinAir
+	local_jump 255 AtLeast 2 lair addReturn
+	add_build 255 lair 1 2 72
+	goto addProdSuccess
+	
+	:addLairMax
+	deaths 13 Exactly 1 crashed_battle addLairMaxConnor
+	deaths 13 Exactly 3 crashed_battle addLairMaxAir
+	
+	:addLairMaxGen
+	local_jump 255 AtLeast 4 lair addReturn
+	add_build 255 lair 1 4 72
+	goto addProdSuccess
+	
+	:addLairMaxConnor
+	local_jump 255 AtLeast 5 lair addReturn
+	add_build 255 lair 1 5 72
+	goto addProdSuccess
+	
+	:addLairMaxAir
+	local_jump 255 AtLeast 6 lair addReturn
+	add_build 255 lair 1 6 72
+	goto addProdSuccess
+	
+	:addLairMed
+	deaths 13 Exactly 1 crashed_battle addLairMedConnor
+	deaths 13 Exactly 3 crashed_battle addLairMedAir
+	
+	:addLairMedGen
+	local_jump 255 AtLeast 2 lair addReturn
+	add_build 255 lair 1 2 72
+	goto addProdSuccess
+	
+	:addLairMedConnor
+	local_jump 255 AtLeast 3 lair addReturn
+	add_build 255 lair 1 3 72
+	goto addProdSuccess
+	
+	:addLairMedAir
+	local_jump 255 AtLeast 4 lair addReturn
+	add_build 255 lair 1 4 72
+	goto addProdSuccess
+	
+	:addHiveCheck
+	wait 12
+	notowns_jump queen_nest addHiveCheck
+	notowns_jump lair addHiveCheck
+	resources 13 AtMost Any 149 addHiveCheck
+	resarea_jump 255 AtLeast 255 Ore 12000 addHiveMax
+	resarea_jump 255 AtLeast 255 Ore 6000 addHiveMed
+	
+	:addHiveMin
+	deaths 13 Exactly 1 crashed_battle addHiveMinConnor
+	deaths 13 Exactly 3 crashed_battle addHiveMinAir
+	goto addReturn
+	
+	:addHiveMinConnor
+	local_jump 255 AtLeast 1 hive addReturn
+	add_build 255 hive 1 1 75
+	goto addProdSuccess
+	
+	:addHiveMinAir
+	local_jump 255 AtLeast 2 hive addReturn
+	add_build 255 hive 1 2 75
+	goto addProdSuccess
+	
+	:addHiveMax
+	deaths 13 Exactly 1 crashed_battle addHiveMaxConnor
+	deaths 13 Exactly 1 crashed_battle addHiveMaxAir
+	goto addReturn
+	
+	:addHiveMaxGen
+	local_jump 255 AtLeast 2 hive addReturn
+	add_build 255 hive 1 2 75
+	goto addProdSuccess
+	
+	:addHiveMaxConnor
+	local_jump 255 AtLeast 3 hive addReturn
+	add_build 255 hive 1 3 75
+	goto addProdSuccess
+	
+	:addHiveMaxAir
+	local_jump 255 AtLeast 6 hive addReturn
+	add_build 255 hive 1 6 75
+	goto addProdSuccess
+	
+	:addHiveMed
+	deaths 13 Exactly 1 crashed_battle addHiveMaxGen
+	deaths 13 Exactly 3 crashed_battle addHiveMedAir
+	
+	:addHiveMedGen
+	local_jump 255 AtLeast 1 hive addReturn
+	add_build 255 hive 1 1 75
+	goto addProdSuccess
+	
+	:addHiveMedAir
+	local_jump 255 AtLeast 4 hive addReturn
+	add_build 255 hive 1 4 75
+	goto addProdSuccess
+	
+	:addProdSuccess
+	deaths 13 Set 1 psi_disrupter blank
+	
+	:addReturn
+	wait 24
+	return
+	
+	:zScale
+	bring_jump 13 AtLeast_Wait 2 hatchery|lair|hive Loc.63 blank
+	deaths 13 Exactly 2 crashed_battle zScaleAtk
+	goto zScaleExp
+	
+	:zScaleAtk
+	var exactly|wait canAttack 1 13
+	wait 240
+	call atkGen
+	wait 240
+	goto zLoopA
+	
+	:zScaleExp
+	var exactly|wait canAttack 1 13
+	wait 360
+	call atkGen
+	wait 720
+	
+	:zLoopA
+	bring_jump 13 AtLeast 8 hatchery|lair|hive Loc.63 zLoopC
+	bring_jump 13 AtLeast 4 hatchery|lair|hive Loc.63 zLoopB
+	var set cutWorkerAll 1 13
+	call atkGen
+	wait 480
+	goto zLoopA
+	
+	:zLoopB
+	call atkGen
+	wait 360
+	random_jump 85 zLoopA
+	wait 240
+	goto zLoopA
+	
+	:zLoopC
+	call atkGen
+	wait 240
+	goto zLoopA
+	
+	:atkGen
+	var set cutWorkerAll 1 13
+	call addRand
+	attack_prepare
+	call atkPrep
+	return
+	
+	:atkPrep
+	attack_do
+	wait 500
+	quick_attack
+	attack_clear
+	clear_queues train Any 13
+	var set cutWorkerAll 0 13
+	return
+	
+	:addRand
+	call wAttack
+	deaths 13 Exactly 1 crashed_battle addRandConnor
+	deaths 13 Exactly 2 crashed_battle addRandSwarm
+	deaths 13 Exactly 3 crashed_battle addRandAir
+	
+	:addRandGenRelative
+	random_jump 28 addRandGen
+	random_jump 85 addRandGenRelative2
+	random_jump 128 addRandGenRelative3
+	bring_jump 13 AtLeast 3 evolution_chamber|mutation_pit Loc.63 addRandSwarm
+	bring_jump 13 AtLeast 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addRandAir
+	bring_jump 13 AtLeast 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addRandConnor
+	goto addMix
+	
+	:addRandGenRelative2
+	bring_jump 13 AtLeast 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addRandConnor
+	bring_jump 13 AtLeast 3 evolution_chamber|mutation_pit Loc.63 addRandSwarm
+	bring_jump 13 AtLeast 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addRandAir
+	goto addMix
+	
+	:addRandGenRelative3
+	bring_jump 13 AtLeast 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addRandAir
+	bring_jump 13 AtLeast 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addRandConnor
+	bring_jump 13 AtLeast 3 evolution_chamber|mutation_pit Loc.63 addRandSwarm
+	goto addMix
+	
+	:addRandGen
+	random_jump 128 addSwarmAir
+	random_jump 104 addConnorSwarm
+	goto addConnorAir
+	
+	:addRandConnor
+	random_jump 85 addRandConnorRelative
+	goto addConnor
+	
+	:addRandSwarm
+	random_jump 85 addRandSwarmRelative
+	goto addSwarm
+	
+	:addRandAir
+	random_jump 85 addRandAirRelative
+	goto addAir
+	
+	:addRandConnorRelative
+	bring_jump 13 AtLeast 3 evolution_chamber|mutation_pit Loc.63 addConnorSwarm
+	bring_jump 13 AtLeast 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addConnorAir
+	goto addConnor
+	
+	:addRandSwarmRelative
+	bring_jump 13 AtLeast 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addConnorSwarm
+	bring_jump 13 AtLeast 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addSwarmAir
+	goto addSwarm
+	
+	:addRandAirRelative
+	bring_jump 13 AtLeast 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addRandConnor
+	bring_jump 13 AtLeast 3 evolution_chamber|mutation_pit Loc.63 addRandSwarm
+	goto addAir
+	
+	:addMix
+	attack_add 4 zergling
+	attack_add 1 vorvaling
+	attack_add 2 hydralisk
+	attack_add 1 lurker
+	attack_rand 0 1 queen
+	attack_rand 0 1 ultralisk
+	attack_rand 0 1 defiler
+	attack_add_relative zergling hatchery 3
+	attack_add_relative vorvaling hatchery 1
+	attack_add_relative hydralisk hatchery|lair 2
+	attack_add_relative lurker lair|hive 2
+	attack_add_relative queen hive 1
+	attack_add_relative ultralisk lair|hive 1
+	attack_add_relative defiler hive 1
+	queue_relative zergling hatchery 1.5 larva 255 Global 63 99
+	queue_relative vorvaling hatchery 0.5 larva 255 Global 63 99
+	queue_relative hydralisk hatchery|lair 1 larva 255 Global 63 99
+	queue_relative lurker lair|hive 1 larva 255 Global 63 99
+	queue_relative queen hive 0.5 larva 255 Global 63 99
+	queue_relative ultralisk lair|hive 0.5 larva 255 Global 63 99
+	queue_relative defiler hive 0.5 larva 255 Global 63 99
+	return
+	
+	:addConnor
+	attack_add 2 zergling
+	attack_add 1 vorvaling
+	attack_add 4 hydralisk
+	attack_add 2 basilisk
+	attack_add 1 lurker
+	attack_add 1 queen
+	attack_rand 0 1 defiler
+	attack_add_relative hydralisk hatchery|lair|hive 3
+	attack_add_relative basilisk lair|hive 2.5
+	attack_add_relative zergling hatchery 2
+	attack_add_relative vorvaling hatchery 0.66
+	attack_add_relative queen lair|hive 2
+	attack_add_relative defiler hive 1.5
+	queue_relative hydralisk hatchery|lair|hive 1.5 larva 255 Global 63 99
+	queue_relative basilisk lair|hive 1.25 larva 255 Global 63 99
+	queue_relative zergling hatchery 1 larva 255 Global 63 99
+	queue_relative vorvaling hatchery 0.33 larva 255 Global 63 99
+	queue_relative queen lair|hive 1 larva 255 Global 63 99
+	queue_relative defiler hive 0.75 larva 255 Global 63 99
+	return
+	
+	:addSwarm
+	attack_add 6 zergling
+	attack_add 2 vorvaling
+	attack_add 1 hydralisk
+	attack_add 1 queen
+	attack_add 1 ultralisk
+	attack_rand 0 1 lurker
+	attack_rand 0 1 defiler
+	attack_add_relative zergling hatchery|lair|hive 4
+	attack_add_relative vorvaling hatchery|lair|hive 1.5
+	attack_add_relative ultralisk lair|hive 2
+	attack_add_relative hydralisk hatchery|lair|hive 1
+	attack_add_relative lurker lair|hive 1
+	attack_add_relative queen lair|hive 1
+	attack_add_relative defiler lair|hive 1.5
+	queue_relative zergling hatchery|lair|hive 2 larva 255 Global 63 99
+	queue_relative vorvaling hatchery|lair|hive 0.75 larva 255 Global 63 99
+	queue_relative ultralisk lair|hive 1 larva 255 Global 63 99
+	queue_relative hydralisk hatchery|lair|hive 0.5 larva 255 Global 63 99
+	queue_relative lurker lair|hive 0.5 larva 255 Global 63 99
+	queue_relative queen lair|hive 0.75 larva 255 Global 63 99
+	queue_relative defiler lair|hive 0.75 larva 255 Global 63 99
+	return
+	
+	:addAir
+	attack_add 4 zergling
+	attack_add 2 vorvaling
+	attack_add 5 mutalisk
+	attack_add 2 guardian
+	#attack_add 1 gorgoleth
+	attack_add 1 devourer
+	attack_rand 0 1 queen
+	attack_add_relative zergling hatchery 8
+	attack_add_relative vorvaling hatchery 2.5
+	attack_add_relative mutalisk lair|hive 2.5
+	attack_add_relative guardian lair|hive 2.5
+	attack_add_relative devourer lair|hive 1.5
+	attack_add_relative queen lair|hive 1.5
+	queue_relative zergling hatchery 4 larva 255 Global 63 99
+	queue_relative vorvaling hatchery 1.25 larva 255 Global 63 99
+	queue_relative mutalisk lair|hive 2.25 larva 255 Global 63 99
+	queue_relative guardian lair|hive 1.25 larva 255 Global 63 99
+	queue_relative devourer lair|hive 0.75 larva 255 Global 63 99
+	queue_relative queen lair|hive 0.75 larva 255 Global 63 99
+	return
+	
+	:addConnorSwarm
+	attack_add 4 zergling
+	attack_add 1 vorvaling
+	attack_add 3 hydralisk
+	attack_add 1 basilisk
+	attack_add 1 lurker
+	attack_add 1 queen
+	attack_rand 0 1 ultralisk
+	attack_rand 0 1 defiler
+	attack_add_relative zergling hatchery|lair 4.5
+	attack_add_relative hydralisk hatchery|lair|hive 3
+	attack_add_relative vorvaling hatchery|lair 1.5
+	attack_add_relative basilisk hatchery|lair|hive 1.5
+	attack_add_relative lurker hatchery|lair|hive 1.5
+	attack_add_relative queen lair|hive 1.5
+	attack_add_relative ultralisk lair|hive 1.5
+	attack_add_relative defiler lair|hive 1
+	queue_relative zergling hatchery|lair 2.25 larva 255 Global 63 99
+	queue_relative hydralisk hatchery|lair|hive 1.5 larva 255 Global 63 99
+	queue_relative vorvaling hatchery|lair 0.75 larva 255 Global 63 99
+	queue_relative basilisk hatchery|lair|hive 0.75 larva 255 Global 63 99
+	queue_relative lurker hatchery|lair|hive 0.75 larva 255 Global 63 99
+	queue_relative queen lair|hive 0.75 larva 255 Global 63 99
+	queue_relative ultralisk lair|hive 0.75 larva 255 Global 63 99
+	queue_relative defiler lair|hive 0.5 larva 255 Global 63 99
+	return
+	
+	:addSwarmAir
+	attack_add 4 zergling
+	attack_add 1 vorvaling
+	attack_add 4 mutalisk
+	attack_add 1 guardian
+	attack_rand 0 1 queen
+	attack_rand 0 1 devourer
+	attack_rand 0 1 ultralisk
+	attack_rand 0 1 defiler
+	attack_add_relative zergling hatchery|lair|hive 3
+	attack_add_relative vorvaling hatchery|lair|hive 1.5
+	attack_add_relative mutalisk hatchery|lair|hive 3
+	attack_add_relative queen lair|hive 0.66
+	attack_add_relative guardian lair|hive 1.5
+	attack_add_relative ultralisk lair|hive 1.5
+	attack_add_relative devourer lair|hive 1
+	attack_add_relative defiler lair|hive 0.66
+	queue_relative zergling hatchery|lair|hive 1.5 larva 255 Global 63 99
+	queue_relative vorvaling hatchery|lair|hive 0.75 larva 255 Global 63 99
+	queue_relative mutalisk hatchery|lair|hive 1.5 larva 255 Global 63 99
+	queue_relative queen lair|hive 0.33 larva 255 Global 63 99
+	queue_relative guardian lair|hive 0.75 larva 255 Global 63 99
+	queue_relative ultralisk lair|hive 0.75 larva 255 Global 63 99
+	queue_relative devourer lair|hive 0.5 larva 255 Global 63 99
+	queue_relative defiler lair|hive 0.33 larva 255 Global 63 99
+	return
+	
+	:addConnorAir
+	attack_add 3 hydralisk
+	attack_add 1 basilisk
+	attack_add 1 lurker
+	attack_add 3 mutalisk
+	attack_add 1 guardian
+	attack_rand 0 1 queen
+	attack_rand 0 1 devourer
+	attack_rand 0 1 defiler
+	attack_add_relative hydralisk hatchery|lair|hive 3.25
+	attack_add_relative mutalisk hatchery|lair|hive 3
+	attack_add_relative basilisk lair|hive 2.5
+	attack_add_relative lurker lair|hive 2.5
+	attack_add_relative guardian lair|hive 2.5
+	attack_add_relative devourer lair|hive 1
+	attack_add_relative queen lair|hive 0.66
+	attack_add_relative defiler lair|hive 0.66
+	queue_relative hydralisk hatchery|lair|hive 1.75 larva 255 Global 63 99
+	queue_relative mutalisk hatchery|lair|hive 1.5 larva 255 Global 63 99
+	queue_relative basilisk lair|hive 1.25 larva 255 Global 63 99
+	queue_relative lurker lair|hive 1.25 larva 255 Global 63 99
+	queue_relative guardian lair|hive 1.25 larva 255 Global 63 99
+	queue_relative devourer lair|hive 0.5 larva 255 Global 63 99
+	queue_relative queen lair|hive 0.33 larva 255 Global 63 99
+	queue_relative defiler lair|hive 0.33 larva 255 Global 63 99
+	return 
