@@ -4,11 +4,7 @@ Thank you for testing Project: HYDRA 2.0!
 
 [Project info](http://pr0nogo.wikidot.com/sc-hydra)
 
-Please send any feedback to me through:
-
-Discord - Pr0nogo#1940
-
-Email - Pronogo@hotmail.com
+Please send any feedback to me through [my discord server](https://discordapp.com/invite/s5SKBmY), [my forum](https://thenofraudsclub.proboards.com), or [my email](mailto:Pronogo@hotmail.com)
 
 # Primer:
 
