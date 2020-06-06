@@ -1293,17 +1293,18 @@ script_id ZMCx
 	goto buildGenFin
 	
 	:buildGen3HatchHydraQueen
-	w_bldstart 9 drone
+	wait 900
 	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
 	bld 1 spawning_pool 66
-	w_bldstart 11 drone
+	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set canExpand 0 13
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 drone larva 255 Local Loc.63 80
-	w_bld 1 spawning_pool
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -1312,49 +1313,51 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
-	wait 60
+	wait 24
 	var set cutWorker 0 13
-	bring 13 AtL_W 12 drone Loc.63 blank
+	wait 600
 	var set buildSupply 1 13
 	bld 1 extractor 66
-	w_bldstart 1 extractor
-	var set canStatic 1 13
 	wait 300
+	var set canStatic 1 13
+	wait 24
 	var set canAttack 1 13
+	wait 24
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
-	w_bld 1 extractor
+	wait 24
 	bld 1 hydralisk_den 66
-	w_bldstart 1 hydralisk_den
+	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	bld 1 lair 76
-	w_bldstart 1 lair
+	wait 300
 	var set buildGas 1 13
 	bld 1 evolution_chamber 66
-	w_bld 1 hydralisk_den
+	wait 300
 	upg_queue 1 hydralisk_speed 88
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
-	w_bld 1 evolution_chamber
+	wait 300
 	upg_queue 1 z_missile_attack 88
-	w_bld 1 lair
+	wait 300
 	upg_queue 1 hydralisk_range 88
+	wait 24
 	bld 1 queen_nest 66
-	w_bldstart 1 queen_nest
+	wait 300
 	bld 2 evolution_chamber 66
-	w_bld 2 evolution_chamber
+	wait 300
 	upg_queue 1 z_carapace 88
-	w_bld 1 queen_nest
+	wait 24
 	multi addProd
 	
 	:buildGenFin
@@ -1789,15 +1792,15 @@ script_id ZMCx
 	goto buildSwarmFin
 	
 	:buildSwarm9Pool
-	w_bldstart 9 drone
+	wait 900
 	var set cutWorker 1 13
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
+	wait 300
 	var set cutWorker 0 13
 	queue 1 overlord larva 255 Global Loc.63 80
 	wait 24
 	bld 1 extractor 66
-	w_bld 1 spawning_pool
+	wait 600
 	upg_queue 1 zergling_speed 88
 	var set cutWorker 1 13
 	bring 13 AtL_W 1 larva Loc.63 blank
@@ -1811,23 +1814,54 @@ script_id ZMCx
 	wait 24
 	var set buildSupply 1 13
 	wait 300
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
 	var set canAttack 1 13
+	wait 300
 	var set canExpand 1 13
 	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
+	wait 24
 	var set canStatic 1 13
 	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
 	bld 1 evolution_chamber 66
-	w_bldstart 1 evolution_chamber
+	wait 300
 	bld 1 lair 76
-	w_bldstart 1 lair
+	wait 600
 	bld 2 hatchery 72
-	w_bldstart 2 hatchery
+	wait 300
 	upg_queue 1 z_melee_attack 88
+	wait 24
 	bld 2 evolution_chamber 66
-	w_bldstart 2 evolution_chamber
+	wait 300
 	upg_queue 1 z_carapace 88
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
 	multi addProd
 	goto buildSwarmFin
 	
@@ -1916,7 +1950,6 @@ script_id ZMCx
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	multi addProd
-	goto buildSwarmFin
 	
 	:buildSwarmFin
 	call buildBool
