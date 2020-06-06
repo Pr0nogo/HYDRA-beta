@@ -18,6 +18,7 @@ script_id ZMCx
 	m_force 3000
 	help
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
+	i_tactics nydus_placement_ai 300 set
 	town_state 255 persist true
 	set_var_local blank stp 13
 	set_var_local blankReturn ret 13
@@ -34,6 +35,7 @@ script_id ZMCx
 	var set canStatic 0 13
 	var set buildGas 0 13
 	var set buildSupply 0 13
+	var set buildDone 0 13
 	var set wRes 0 13
 	queue 1 drone larva 255 Local Loc.63 80
 	multi uAttack
@@ -1085,14 +1087,13 @@ script_id ZMCx
 	w_bld 1 hatchery
 	multi expCount
 	multi addSunken
-	wait 360
+	wait 900
 	multi addSpore
-	w_bldstart 10 drone
-	multi addProd
-	wait 720
-	#multi addChasmal
-	wait 1440
+	var Ex|wait buildDone 1 13
 	multi buildOrderExp
+	wait 900
+	bld 1 nydus_canal 66
+	multi addProd
 	goto idle
 	
 	:expCount
@@ -1166,6 +1167,7 @@ script_id ZMCx
 	var set canStatic 1 13
 	var set buildGas 1 13
 	var set buildSupply 1 13
+	var set buildDone 1 13
 	return
 	
 	:buildOrder
@@ -2225,31 +2227,35 @@ script_id ZMCx
 	
 	:buildOrderExp
 	bring 13 AtL_W 1 hatchery|lair|hive Loc.63 blank
-	call wSpawn
-	bring 13 AtL_W 1 spawning_pool Loc.63 blank
-	call wEvo
+	p_need 1 spawning_pool
 	wait 600
-	call wHydra
-	bring 13 AtL_W 1 lair|hive Loc.63 blank
-	call wBas
+	p_need 1 evolution_chamber
 	wait 600
-	call wLurk
+	p_need 1 hydralisk_den
+	wait 1200
+	p_need 1 lair
 	wait 600
-	call wSpire
+	p_need 1 lurker_den
 	wait 600
-	call wQueen
-	bring 13 AtL_W 1 queen_nest Loc.63 blank
-	call wHive
-	bring 13 AtL_W 1 hive Loc.63 blank
-	call wGuard
+	p_need 2 evolution_chamber
 	wait 600
-	call wDevo
+	p_need 1 spire
 	wait 600
-	call wDefiler
+	p_need 1 queen_nest
 	wait 600
-	call wUltra
-	#wait 600
-	#call wGorg
+	p_need 1 hive
+	wait 300
+	p_need 3 evolution_chamber
+	wait 900
+	p_need 1 guardian_roost
+	wait 600
+	p_need 1 defiler_mound
+	wait 600
+	p_need 1 ultralisk_cavern
+	wait 600
+	p_need 2 spire
+	wait 900
+	p_need 1 devourer_haunt
 	stop
 	
 	:wExt
