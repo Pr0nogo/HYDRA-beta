@@ -34,6 +34,7 @@ script_id TMCx
 	var set canStatic 0 13
 	var set buildGas 0 13
 	var set buildSupply 0 13
+	var set buildDone 0 13
 	var set wRes 0 13
 	queue 1 scv command_center 255 Local Loc.63 80
 	multi uAttack
@@ -1199,10 +1200,11 @@ script_id TMCx
 	multi addTurret
 	wait 360
 	multi addBunker
-	w_bldstart 10 scv
-	multi addProd
-	wait 720
+	var Ex|wait buildDone 1 13
+	wait 300
 	multi buildOrderExp
+	wait 720
+	multi addProd
 	notowns covert_ops expRandComsat
 	rand_j 128 expRandComsat
 	bld 1 nuclear_silo 66
@@ -1263,6 +1265,7 @@ script_id TMCx
 	var set canStatic 1 13
 	var set buildGas 1 13
 	var set buildSupply 1 13
+	var set buildDone 1 13
 	return
 	
 	:buildOrder
@@ -1643,13 +1646,13 @@ script_id TMCx
 	:buildMechFin
 	call buildBool
 	wait 600
-	call wSci
-	wait 360
-	call wAcad
-	w_bldstart 1 academy
-	bld 3 armory 66
+	p_need 1 science_facility
+	wait 300
+	p_need 1 academy
+	wait 300
+	p_need 3 armory
 	wait 240
-	call wEng
+	p_need 1 engineering_bay
 	stop
 	
 	:buildOrderBio
@@ -1954,13 +1957,16 @@ script_id TMCx
 	
 	:buildOrderExp
 	bring 13 AtL_W 1 barracks Loc.63 blank
-	call wArm
+	wait 450
+	p_need 3 armory
 	wait 600
-	call wEng
+	p_need 2 engineering_bay
 	wait 600
-	call wAcad
-	bring 13 AtL_W 1 armory Loc.63 blank
-	call wSci
+	p_need 1 academy
+	wait 900
+	p_need 1 science_facility
+	wait 600
+	p_need 4 armory
 	stop
 	
 	:wRef
