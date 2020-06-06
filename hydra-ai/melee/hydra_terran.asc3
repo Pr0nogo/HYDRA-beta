@@ -1531,30 +1531,113 @@ script_id TMCx
 	goto buildMechFin
 	
 	:buildMech2FactVult
-	w_bldstart 8 scv
+	wait 900
 	bld 1 supply_depot 66
-	w_bld 1 supply_depot
+	wait 24
 	bld 1 refinery 66
-	w_bld 1 refinery
-	bld 1 armory 66
-	wait 300
+	wait 900
 	bld 2 supply_depot 66
-	w_bld 1 armory
+	wait 300
+	bld 1 armory 66
+	wait 600
+	var set cutWorker 1 13
 	bld 2 factory 66
-	w_bldstart 2 factory
+	wait 24
 	upg_queue 1 t_vehicle_weapon 88
-	wait 60
-	var set buildSupply 1 13
-	w_bld 1 factory
-	queue 1 vulture factory 255 Local Loc.63 80
-	w_bld 2 factory
-	queue 1 vulture factory 255 Local Loc.63 80
-	wait 240
-	var set canAttack 1 13
+	var set cutWorker 0 13
+	wait 900
+	bld 3 supply_depot 66
+	wait 24
 	bld 1 machine_shop 66
-	bld 1 barracks 66
-	w_bldstart 1 machine_shop
-	w_bldstart 1 barracks
+	wait 24
+	queue 1 vulture factory 255 Global Loc.63 80
+	wait 300
+	queue 1 vulture factory 255 Global Loc.63 80
+	wait 24
+	queue 1 vulture factory 255 Global Loc.63 80
+	wait 24
+	upg_queue 1 vulture_speed 88
+	wait 600
+	queue 1 vulture factory 255 Global Loc.63 80
+	wait 24
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	wait 600
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	queue 1 vulture factory 255 Global Loc.63 80
+	wait 24
+	var set canAttack 1 13
+	wait 600
+	var set buildSupply 1 13
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	bld 2 machine_shop 66
+	wait 300
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 600
+	upg_queue 2 t_vehicle_weapon 88
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	var set buildGas 1 13
+	wait 1800
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	tech siege_mode 88
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 600
+	bld 3 factory 66
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 600
+	bld 2 armory 66
+	wait 600
+	bld 4 factory 66
+	wait 600
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	bld 3 machine_shop 66
+	wait 600
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	wait 600
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	upg_queue 1 goliath_range 88
+	wait 600
+	upg_queue 1 t_vehicle_plating 88
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	bld 1 science_facility 66
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
 	multi addProd
 	
 	:buildMechFin
