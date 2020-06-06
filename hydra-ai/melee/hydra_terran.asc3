@@ -1748,34 +1748,37 @@ script_id TMCx
 	goto buildBioFin
 	
 	:buildBio3RaxNuke
-	w_bld 8 scv
+	wait 600
 	bld 1 supply_depot 66
-	w_bldstart 1 supply_depot
+	wait 300
 	bld 1 barracks 66
-	w_bldstart 1 barracks
+	wait 24
 	bld 1 refinery 66
-	w_bldstart 1 refinery
-	wait 60
+	wait 24
 	var set buildSupply 1 13
-	w_bld 1 barracks
+	wait 600
 	bld 1 academy 66
-	w_bldstart 1 academy
+	wait 300
 	bld 1 armory 66
-	w_bldstart 1 armory
+	wait 24
 	bld 2 barracks 66
-	w_bldstart 2 barracks
+	wait 300
 	bld 3 barracks 66
-	w_bld 1 armory
+	wait 24
 	bld 1 covert_ops 66
-	w_bldstart 1 covert_ops
+	wait 24
 	bld 1 nuclear_silo 66
-	w_bldstart 1 nuclear_silo
+	wait 600
 	bld 1 engineering_bay 66
-	w_bld 1 covert_ops
+	wait 300
 	queue 1 ghost barracks 255 Local Loc.63 80
+	wait 24
 	bld 2 covert_ops 66
-	w_bldstart 2 covert_ops
+	wait 300
 	queue 1 ghost barracks 255 Local Loc.63 80
+	wait 24
+	bld 2 engineering_bay 66
+	wait 24
 	multi addProd
 	goto buildBioFin
 	
