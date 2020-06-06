@@ -379,7 +379,6 @@ script_id ZMCx
 	defb_ag 1 devourer
 	defb_aa 2 hydralisk
 	defb_aa 1 mutalisk
-	defb_aa 1 scourge
 	defb_aa 1 gorgoleth
 	defb_aa 1 devourer
 	return
@@ -390,7 +389,6 @@ script_id ZMCx
 	defb_ag 1 scourge
 	defb_aa 3 hydralisk
 	defb_aa 1 mutalisk
-	defb_aa 1 scourge
 	rand_j 160 blankReturn
 	defb_ag 1 defiler
 	defb_aa 1 defiler
@@ -401,22 +399,20 @@ script_id ZMCx
 	defb_ag 2 mutalisk
 	#defb_ag 1 gorgoleth
 	defb_ag 1 devourer
-	defb_ag 2 scourge
+	defb_ag 1 scourge
 	defb_aa 2 hydralisk
 	defb_aa 2 mutalisk
 	#defb_aa 1 gorgoleth
 	defb_aa 1 devourer
-	defb_aa 2 scourge
 	return
 	
 	:zDefABuildAir
 	defb_ag 1 hydralisk
 	defb_ag 3 mutalisk
-	defb_ag 2 scourge
+	defb_ag 1 scourge
 	defb_ag 1 devourer
 	defb_aa 1 hydralisk
 	defb_aa 3 mutalisk
-	defb_aa 2 scourge
 	defb_aa 1 devourer
 	return
 	
