@@ -188,7 +188,7 @@ script_id ZMCx
 	bring 13 AtM 2 larva Loc.63 wAttack
 	res 13 AtL Any 999 blankReturn
 	bring 13 AtL 10 Group_Factories Loc.63 blankReturn
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) underAttack 0 13
 	res 13 AtM Ore 199 wAttack
 	#print wAttack<32>return
 	return
@@ -225,13 +225,13 @@ script_id ZMCx
 	:wWorkerDef
 	wait 12
 	bring 13 AtL 10 larva Loc.63 blankReturn
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) underAttack 0 13
 	return
 	
 	:wUpgradeDef
 	wait 12
 	res 13 AtL Any 399 blankReturn
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) underAttack 0 13
 	res 13 AtM Any 199 wUpgradeDef
 	return
 	
@@ -261,7 +261,7 @@ script_id ZMCx
 	
 	:zDef
 	call zDefUse
-	var Ex|WaitFor(480) underAttack 1 13
+	var Ex|WF(480) underAttack 1 13
 	call zDefGBuild
 	call zDefABuild
 	wait 360
@@ -986,7 +986,7 @@ script_id ZMCx
 	w_bld 1 hatchery
 	multi buildOrder
 	bring 13 AtL_W 1 spawning_pool Loc.63 blank
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	multi addSunken
 	bring 13 AtL_W 1 evolution_chamber|mutation_pit Loc.63 blank
 	multi addSpore
@@ -1002,8 +1002,8 @@ script_id ZMCx
 	bring 13 AtL 80 drone Loc.63 mainWorker
 	resarea 255 AtM 255 Ore 600 mainWorkerLowStart
 	var Ex|wait cutWorker 0 13
-	var Ex|WaitFor(360) cutWorkerAll 0 13
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) cutWorkerAll 0 13
+	var Ex|WF(360) underAttack 0 13
 	local 255 AtL_W 1 hatchery|lair|hive blank
 	local 255 AtL_W 1 larva blank
 	bring 13 AtL 5 hatchery|lair|hive Loc.63 mainWorkerMax
@@ -1123,7 +1123,7 @@ script_id ZMCx
 	wait 12
 	bring 13 AtL 80 drone Loc.63 expWorkerStd
 	local 13 Ex 0 larva expWorkerStd
-	var Ex|WaitFor(360) cutWorkerAll 0 13
+	var Ex|WF(360) cutWorkerAll 0 13
 	bring 13 AtL 5 hatchery|lair|hive Loc.63 expWorkerMax
 	bring 13 AtL 3 hatchery|lair|hive Loc.63 expWorkerMed
 	resarea 255 AtM 255 Ore 600 expWorkerLow
@@ -1186,7 +1186,7 @@ script_id ZMCx
 	w_bldstart 9 drone
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	wait 60
@@ -1252,7 +1252,7 @@ script_id ZMCx
 	w_bldstart 11 drone
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	wait 60
@@ -1303,7 +1303,7 @@ script_id ZMCx
 	w_bldstart 11 drone
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 drone larva 255 Local Loc.63 80
@@ -1327,7 +1327,7 @@ script_id ZMCx
 	var set canAttack 1 13
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 3 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	w_bld 1 extractor
@@ -1402,7 +1402,7 @@ script_id ZMCx
 	w_bldstart 9 drone
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	wait 300
 	bld 1 spawning_pool 66
@@ -1422,12 +1422,12 @@ script_id ZMCx
 	wait 300
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 3 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
-	bld 1 extractor 66
-	wait 600
 	queue 1 overlord larva 255 Global Loc.63 80
+	wait 600
+	bld 1 extractor 66
 	wait 900
 	bld 1 hydralisk_den 66
 	wait 900
@@ -1468,7 +1468,7 @@ script_id ZMCx
 	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	wait 60
@@ -1532,7 +1532,7 @@ script_id ZMCx
 	w_bldstart 9 drone
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	var set cutWorker 0 13
 	bld 1 spawning_pool 66
@@ -1651,7 +1651,7 @@ script_id ZMCx
 	w_bldstart 10 drone
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	var set buildSupply 1 13
@@ -1699,7 +1699,7 @@ script_id ZMCx
 	queue 1 overlord larva 255 Local Loc.63 80
 	wait 24
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	var set cutWorker 0 13
 	wait 600
@@ -1731,7 +1731,7 @@ script_id ZMCx
 	wait 1200
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 3 hatchery|lair|hive Loc.63 blank
+	wait 600
 	upg_queue 1 z_carapace 88
 	var set cutWorker 0 13
 	var set canExpand 0 13
@@ -1817,7 +1817,7 @@ script_id ZMCx
 	wait 300
 	var set canAttack 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	var set canStatic 1 13
@@ -1841,7 +1841,7 @@ script_id ZMCx
 	queue 1 overlord larva 255 Local Loc.63 80
 	wait 24
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	var set cutWorker 0 13
 	wait 600
@@ -1873,7 +1873,7 @@ script_id ZMCx
 	wait 1200
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 3 hatchery|lair|hive Loc.63 blank
+	wait 600
 	upg_queue 1 z_carapace 88
 	var set cutWorker 0 13
 	var set canExpand 0 13
@@ -1962,7 +1962,7 @@ script_id ZMCx
 	w_bldstart 9 drone
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	var set cutWorker 0 13
 	wait 300
@@ -1993,7 +1993,7 @@ script_id ZMCx
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 drone larva 255 Local Loc.63 80
 	var set canExpand 1 13
-	bring 13 AtL_W 3 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set canAttack 1 13
 	var set cutWorker 0 13
 	var set canExpand 0 13
@@ -2032,7 +2032,7 @@ script_id ZMCx
 	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	wait 24
@@ -2102,7 +2102,7 @@ script_id ZMCx
 	w_bldstart 9 drone
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	wait 60
@@ -2697,7 +2697,7 @@ script_id ZMCx
 	return
 	
 	:zScale
-	bring 13 AtL_W 2 hatchery|lair|hive Loc.63 blank
+	wait 600
 	dth 13 Ex 2 crashed_battle zScaleAtk
 	goto zScaleExp
 	

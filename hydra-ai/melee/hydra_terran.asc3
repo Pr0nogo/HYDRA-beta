@@ -191,7 +191,7 @@ script_id TMCx
 	bring 13 AtM 1 barracks|factory|starport Loc.63 wAttack
 	bring 13 AtL 10 Group_Factories Loc.63 blankReturn
 	res 13 AtL Any 999 blankReturn
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) underAttack 0 13
 	res 13 AtM Ore 199 wAttack
 	return
 	
@@ -224,13 +224,13 @@ script_id TMCx
 	:wWorkerDef
 	wait 12
 	res 13 AtL Ore 500 blankReturn
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) underAttack 0 13
 	return
 	
 	:wUpgradeDef
 	wait 12
 	res 13 AtL Any 399 blankReturn
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) underAttack 0 13
 	res 13 AtM Any 199 wUpgradeDef
 	return
 	
@@ -257,7 +257,7 @@ script_id TMCx
 	
 	:tDef
 	call tDefUse
-	var Ex|WaitFor(480) underAttack 1 13
+	var Ex|WF(480) underAttack 1 13
 	call tDefGBuild
 	call tDefABuild
 	wait 360
@@ -1294,7 +1294,7 @@ script_id TMCx
 	wait 240
 	queue 1 marine barracks 255 Local Loc.63 80
 	var set canExpand 1 13
-	bring 13 AtL_W 2 command_center Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	var set canAttack 1 13
 	wait 240
@@ -1318,7 +1318,7 @@ script_id TMCx
 	var set canExpand 1 13
 	wait 720
 	var set buildSupply 1 13
-	bring 13 AtL_W 2 command_center Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	var set canStatic 1 13
@@ -1402,7 +1402,7 @@ script_id TMCx
 	wait 300
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 command_center Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	var set canStatic 1 13
@@ -1445,7 +1445,7 @@ script_id TMCx
 	
 	:buildGenFin
 	call buildBool
-	bring 13 AtL_W 2 command_center Loc.63 blank
+	wait 600
 	bld 2 engineering_bay 66
 	w_bldstart 2 engineering_bay
 	bld 1 covert_ops 66
@@ -1559,7 +1559,7 @@ script_id TMCx
 	
 	:buildMechFin
 	call buildBool
-	bring 13 AtL_W 2 command_center Loc.63 blank
+	wait 600
 	call wSci
 	wait 360
 	call wAcad
@@ -1736,7 +1736,7 @@ script_id TMCx
 	call buildBool
 	call wArm
 	w_bldstart 1 armory
-	bring 13 AtL_W 2 command_center Loc.63 blank
+	wait 600
 	wait 240
 	bld 1 medbay 66
 	w_bld 1 armory
@@ -1851,7 +1851,7 @@ script_id TMCx
 	
 	:buildAirFin
 	call buildBool
-	bring 13 AtL_W 2 command_center Loc.63 blank
+	wait 600
 	wait 360
 	call wAcad
 	wait 240

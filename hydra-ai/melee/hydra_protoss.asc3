@@ -185,7 +185,7 @@ script_id PMCx
 	bring 13 AtM 1 gateway|principality|warp_anchor|robotics_facility|robotics_authority|stargate|argosy|starfield Loc.63 wAttack
 	bring 13 AtL 10 Group_Factories Loc.63 blankReturn
 	res 13 AtL Any 999 blankReturn
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) underAttack 0 13
 	res 13 AtM Ore 199 wAttack
 	return
 	
@@ -218,13 +218,13 @@ script_id PMCx
 	:wWorkerDef
 	wait 12
 	res 13 AtL Ore 500 blankReturn
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) underAttack 0 13
 	return
 	
 	:wUpgradeDef
 	wait 12
 	res 13 AtL Any 399 blankReturn
-	var Ex|WaitFor(360) underAttack 0 13
+	var Ex|WF(360) underAttack 0 13
 	res 13 AtM Any 199 wUpgradeDef
 	return
 	
@@ -253,7 +253,7 @@ script_id PMCx
 	
 	:pDef
 	call pDefUse
-	var Ex|WaitFor(240) underAttack 1 13
+	var Ex|WF(240) underAttack 1 13
 	call pDefGBuild
 	call pDefABuild
 	wait 360
@@ -1304,7 +1304,7 @@ script_id PMCx
 	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	var set buildSupply 1 13
 	wait 60
@@ -1324,10 +1324,8 @@ script_id PMCx
 	goto buildGenFin
 	
 	:buildGenNFE
-	w_bldstart 8 probe
-	bld 1 pylon 66
 	wait 600
-	bld 1 gateway 66
+	bld 1 pylon 66
 	wait 600
 	bld 1 assimilator 66
 	wait 300
@@ -1336,63 +1334,69 @@ script_id PMCx
 	bld 2 pylon 66
 	wait 300
 	upg_queue 1 dragoon_range 88
-	wait 600
+	wait 300
 	var set cutWorker 1 13
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	wait 24
 	bld 2 gateway 66
 	wait 24
-	queue 1 dragoon gateway 255 Local Loc.63 80
-	wait 300
+	queue 1 dragoon gateway 255 Global Loc.63 80
+	wait 24
 	bld 3 pylon 66
 	wait 24
 	var set cutWorker 0 13
-	wait 600
-	queue 1 dragoon gateway 255 Local Loc.63 80
 	wait 300
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
+	wait 24
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	var set cutWorker 1 13
+	wait 24
 	bld 3 gateway 66
 	wait 24
+	var set canAttack 1 13
 	bld 4 pylon 66
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	queue 1 dragoon gateway 255 Local Loc.63 80
-	wait 24
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
 	var set cutWorker 0 13
 	wait 600
 	bld 1 robotics_facility 66
-	wait 1200
+	wait 1800
 	var set cutWorker 1 13
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
 	var set canExpand 1 13
-	bring 13 AtL_W 3 nexus Loc.63 blank
+	wait 600
 	var set canExpand 0 13
-	var set buildSupply 1 13
-	bld 1 observatory 66
+	bld 5 pylon 66
+	wait 24
+	bld 1 robotics_support_bay 66
+	wait 24
 	var set cutWorker 0 13
-	queue 1 dragoon gateway 255 Local Loc.63 80
 	wait 24
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
-	queue 1 dragoon gateway 255 Local Loc.63 80
+	queue 1 dragoon gateway 255 Global Loc.63 80
+	wait 24
+	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
 	var set buildGas 1 13
-	wait 24
+	wait 48
 	bld 2 forge 66
-	wait 240
+	wait 600
+	bld 1 observatory 66
+	wait 24
 	multi addProd
 	goto buildGenFin
 	
@@ -1425,7 +1429,7 @@ script_id PMCx
 	
 	:buildGenFin
 	call buildBool
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	bring 13 AtL_W 2 gateway Loc.63 blank
 	call wRoboFac
 	bring 13 AtL_W 1 robotics_facility Loc.63 blank
@@ -1512,7 +1516,7 @@ script_id PMCx
 	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	var set cutWorker 0 13
 	var set buildSupply 1 13
@@ -1548,7 +1552,7 @@ script_id PMCx
 	wait 24
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	wait 300
@@ -1619,7 +1623,7 @@ script_id PMCx
 	:buildRangerFin
 	call buildBool
 	call wGateway
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	bring 13 AtL_W 2 gateway Loc.63 blank
 	call wRoboFac
 	bring 13 AtL_W 1 robotics_facility Loc.63 blank
@@ -1672,7 +1676,7 @@ script_id PMCx
 	wait 240
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	wait 60
 	var set cutWorker 0 13
@@ -1721,7 +1725,7 @@ script_id PMCx
 	bld 1 citadel_of_adun 66
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	bld 1 forge 66
@@ -1751,7 +1755,7 @@ script_id PMCx
 	w_bldstart 1 templar_archives
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	upg_queue 1 zealot_speed 88
@@ -1798,7 +1802,7 @@ script_id PMCx
 	w_bldstart 1 forge
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set canExpand 0 13
 	wait 60
 	bld 1 gateway 66
@@ -1828,7 +1832,7 @@ script_id PMCx
 	w_bldstart 1 gateway
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	bld 1 forge 66
@@ -1879,7 +1883,7 @@ script_id PMCx
 	queue 1 scout stargate 255 Local Loc.63 80
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 2 nexus Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	bld 1 forge 66
