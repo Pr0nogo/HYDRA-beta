@@ -33,6 +33,7 @@ script_id PMCx
 	var set canStatic 0 13
 	var set buildGas 0 13
 	var set buildSupply 0 13
+	var set buildDone 0 13
 	var set wRes 0 13
 	queue 1 probe nexus 255 Local Loc.63 80
 	multi uAttack
@@ -1223,15 +1224,18 @@ script_id PMCx
 	multi expWorker
 	w_bldstart 1 nexus
 	bld 1 pylon 65
-	w_bld 1 pylon
+	wait 600
 	multi addCannon
 	w_bld 1 nexus
 	multi expCount
 	bld 2 pylon 65
-	w_bldstart 10 probe
-	multi addProd
-	wait 2400
+	wait 900
+	bld 3 pylon 65
+	var Ex|wait buildDone 1 13
+	wait 300
 	multi buildOrderExp
+	wait 2400
+	multi addProd
 	goto idle
 	
 	:expCount
@@ -1285,6 +1289,7 @@ script_id PMCx
 	var set canStatic 1 13
 	var set buildGas 1 13
 	var set buildSupply 1 13
+	var set buildDone 1 13
 	return
 	
 	:buildOrder
@@ -1921,19 +1926,19 @@ script_id PMCx
 	
 	:buildOrderExp
 	bring 13 AtL_W 1 gateway|principality|warp_anchor Loc.63 blank
-	call wCyb
-	bring 13 AtL_W 1 cybernetics_core Loc.63 blank
-	call wCit
-	bring 13 AtL_W 1 robotics_facility|robotics_authority Loc.63 blank
-	call wRoboBay
+	p_need 1 cybernetics_core
+	wait 900
+	p_need 1 citadel_of_adun
+	wait 1200
+	p_need 1 robotics_facility
 	wait 600
-	call wObs
-	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
-	call wTemp
-	bring 13 AtL_W 1 stargate|argosy|starfield Loc.63 blank
-	call wFleet
-	bring 13 AtL_W 1 templar_archives Loc.63 blank
-	call wArb
+	p_need 1 templar_archives
+	wait 600
+	p_need 1 observatory
+	wait 900
+	p_need 1 fleet_beacon
+	wait 1200
+	p_need 1 arbiter_tribunal
 	stop
 	
 	:wAss
