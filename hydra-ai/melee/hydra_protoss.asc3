@@ -1124,8 +1124,9 @@ script_id PMCx
 	stop
 	
 	:ioMindControl
-	i_orders 182 0 1 dark_archon 1440 ghost|savant|t_siege_mode|paladin|wyvern|battlecruiser|high_templar|dark_archon|reaver|carrier|starcaller|guardian|devourer|defiler|ultralisk|k_screamer 90 RandomRate(24 120)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)
-	i_orders 182 0 1 dark_archon 1440 medic|shaman|siege_tank|goliath|wraith|dragoon|hierophant|archon|dark_templar|basilisk|lurker|mutalisk|queen 80 RandomRate(24 120)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)
+	i_orders 182 0 1 dark_archon 1440 ghost|savant|t_siege_mode|paladin|wyvern|battlecruiser|high_templar|dark_archon|reaver|carrier|starcaller|guardian|devourer|defiler|ultralisk|k_screamer 90 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 35))
+	i_orders 182 0 1 dark_archon 1440 medic|shaman|siege_tank|goliath|wraith|dragoon|hierophant|archon|dark_templar|basilisk|lurker|mutalisk|queen 75 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 25))
+	i_orders 182 0 1 dark_archon 1440 medic|shaman|siege_tank|goliath|wraith|dragoon|hierophant|archon|dark_templar|basilisk|lurker|mutalisk|queen 60 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 15))
 	i_orders 182 0 1 dark_archon 1440 Group_Men 90 Deathrattle|Targeting(OtherUnit)
 	stop
 	
