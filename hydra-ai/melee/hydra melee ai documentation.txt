@@ -60,7 +60,7 @@ General
 Mech
 1 - Tank Timing (Factory first)		
 2 - Tank Wraith						
-3 - 2Fact Vult						
+3 - 2Fact Vult						♣
 
 Raider
 1 - 8Rax					
@@ -76,7 +76,7 @@ Air
 PROTOSS
 General
 1 - Forge FE						
-2 - Nexus FE						♣
+2 - Nexus FE						* ♣
 3 - 2Gate Robo						
 
 Ranger
