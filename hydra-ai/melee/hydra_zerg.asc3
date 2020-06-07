@@ -33,6 +33,7 @@ script_id ZMCx
 	var set canAttack 0 13
 	var set canUpgrade 0 13
 	var set canStatic 0 13
+	var set canQueue 0 13
 	var set buildGas 0 13
 	var set buildSupply 0 13
 	var set buildDone 0 13
@@ -48,6 +49,7 @@ script_id ZMCx
 	multi zUpg
 	multi zExpand
 	multi zScale
+	multi qMilitary
 	
 	:slcPers
 	dth 13 AtL 1 crashed_battle dbgPers
@@ -222,6 +224,8 @@ script_id ZMCx
 	farms_timing
 	queue 1 overlord larva 255 Global Loc.63 80
 	def_max 254 overlord
+	var Ex|jump canQueue 1 stp 13
+	var set canQueue 1 13
 	stop
 	
 	:wWorkerDef
@@ -1085,6 +1089,7 @@ script_id ZMCx
 	bld 1 hatchery 90
 	multi expWorker
 	w_bld 1 hatchery
+	capt_expand
 	multi expCount
 	multi addSunken
 	wait 900
@@ -1165,6 +1170,7 @@ script_id ZMCx
 	var set canAttack 1 13
 	var set canUpgrade 1 13
 	var set canStatic 1 13
+	var set canQueue 1 13
 	var set buildGas 1 13
 	var set buildSupply 1 13
 	var set buildDone 1 13
@@ -3034,3 +3040,111 @@ script_id ZMCx
 	queue_rel queen lair|hive 0.33 larva 255 Global 63 99
 	queue_rel defiler lair|hive 0.33 larva 255 Global 63 99
 	return 
+	
+	:qMilitary
+	var Ex|wait canQueue 1 13
+	dth 13 Ex 1 crashed_battle qMilitaryConnor
+	dth 13 Ex 2 crashed_battle qMilitarySwarm
+	dth 13 Ex 3 crashed_battle qMilitaryAir
+	
+	:qMilitaryGen
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 spawning_pool Loc.63 qZergling
+	bring 13 AtL_M 1 evolution_chamber Loc.63 qVorvaling
+	bring 13 AtL_M 1 hydralisk_den Loc.63 qHydralisk
+	bring 13 AtL_M 1 lurker_den Loc.63 qLurker
+	bring 13 AtL_M 1 spire Loc.63 qMutalisk
+	wait 480
+	goto qMilitaryGen
+	
+	:qMilitaryConnor
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 hydralisk_den Loc.63 qHydralisk
+	bring 13 AtL_M 1 spawning_pool Loc.63 qZergling
+	bring 13 AtL_M 1 basilisk_den Loc.63 qBasilisk
+	bring 13 AtL_M 1 evolution_chamber Loc.63 qVorvaling
+	wait 480
+	goto qMilitaryConnor
+	
+	:qMilitarySwarm
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 spawning_pool Loc.63 qZergling
+	bring 13 AtL_M 1 evolution_chamber Loc.63 qVorvaling
+	bring 13 AtL_M 1 lurker_den Loc.63 qLurker
+	bring 13 AtL_M 1 hydralisk_den Loc.63 qHydralisk
+	bring 13 AtL_M 1 ultralisk_cavern Loc.63 qUltralisk
+	bring 13 AtL_M 1 spire Loc.63 qMutalisk
+	wait 480
+	goto qMilitarySwarm
+	
+	:qMilitaryAir
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 spire Loc.63 qMutalisk
+	bring 13 AtL_M 1 spawning_pool Loc.63 qZergling
+	bring 13 AtL_M 1 evolution_chamber Loc.63 qVorvaling
+	wait 480
+	goto qMilitaryAir
+	
+	:qZergling
+	notowns spawning_pool blank
+	bring 13 AtL 12 zergling Loc.63 blank
+	bring 13 AtM 2 larva Loc.63 blank
+	res 13 AtM Ore 49 blank
+	queue_rel zergling hatchery|lair|hive 1 larva 255 Global 63 99
+	stop
+	
+	:qVorvaling
+	notowns spawning_pool blank
+	notowns evolution_chamber blank
+	bring 13 AtL 8 vorvaling Loc.63 blank
+	bring 13 AtM 2 larva Loc.63 blank
+	res 13 AtM Ore 74 blank
+	res 13 AtM Gas 24 blank
+	queue_rel zergling hatchery|lair|hive 1 larva 255 Global 63 99
+	queue_rel vorvaling hatchery|lair|hive 1 zergling 255 Global 63 99
+	stop
+	
+	:qHydralisk
+	notowns hydralisk_den blank
+	bring 13 AtL 9 hydralisk Loc.63 blank
+	bring 13 AtM 2 larva Loc.63 blank
+	res 13 AtM Ore 74 blank
+	res 13 AtM Gas 24 blank
+	queue_rel hydralisk hatchery|lair|hive 1 larva 255 Global 63 99
+	stop
+	
+	:qBasilisk
+	notowns basilisk_den blank
+	bring 13 AtL 6 basilisk Loc.63 blank
+	bring 13 AtM 2 larva Loc.63 blank
+	res 13 AtM Ore 124 blank
+	res 13 AtM Gas 99 blank
+	queue_rel hydralisk hatchery|lair|hive 1 larva 255 Global 63 99
+	queue_rel basilisk hatchery|lair|hive 1 hydralisk 255 Global 63 99
+	stop
+	
+	:qLurker
+	notowns lurker_den blank
+	bring 13 AtL 6 lurker Loc.63 blank
+	bring 13 AtM 2 larva Loc.63 blank
+	res 13 AtM Ore 124 blank
+	res 13 AtM Gas 124 blank
+	queue_rel hydralisk hatchery|lair|hive 1 larva 255 Global 63 99
+	queue_rel lurker hatchery|lair|hive 1 hydralisk 255 Global 63 99
+	stop
+	
+	:qMutalisk
+	notowns spire blank
+	bring 13 AtL 8 mutalisk Loc.63 blank
+	bring 13 AtM 2 larva Loc.63 blank
+	res 13 AtM Any 99 blank
+	queue_rel mutalisk hatchery|lair|hive 1 larva 255 Global 63 99
+	stop
+	
+	:qUltralisk
+	notowns ultralisk_cavern blank
+	bring 13 AtL 6 ultralisk Loc.63 blank
+	bring 13 AtM 2 larva Loc.63 blank
+	res 13 AtM Any 199 blank
+	queue_rel ultralisk hatchery|lair|hive 1 larva 255 Global 63 99
+	stop 
