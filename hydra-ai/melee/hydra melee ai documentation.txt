@@ -89,6 +89,7 @@ Templar
 1 - 4Gate							*
 2 - 3Gate Goon						
 3 - 2Gate DT						
+4 - Legion							
 
 Skylord
 1 - Forge FE Corsair				

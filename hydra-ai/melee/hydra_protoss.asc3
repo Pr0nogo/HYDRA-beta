@@ -150,10 +150,15 @@ script_id PMCx
 	
 	:dbgBuild4
 	dth 13 Ex 1 crashed_battle dbgBuild4Ranger
+	dth 13 Ex 2 crashed_battle dbgBuild4Gate
 	goto idle
 	
 	:dbgBuild4Ranger
 	print Protoss<32>Ranger<32>build<32>4:<32>1GateExpo
+	goto idle
+	
+	:dbgBuild4Gate
+	print Protoss<32>Templar<32>build<32>4:<32>Legion
 	
 	:idle
 	wait 25500
@@ -549,6 +554,7 @@ script_id PMCx
 	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybArmorCheck
 	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybWeaponCheck
 	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitZealotCheck
+	bring 13 AtL_M 2 principality Loc.63 upgCitLegionCheck
 	bring 13 AtL_M 1 robotics_support_bay Loc.63 upgRoboReaverCheck
 	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetScoutCheck
 	bring 13 AtL_M 1 templar_archives Loc.63 upgTempTemplarGenCheck
@@ -576,6 +582,7 @@ script_id PMCx
 	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybWeaponCheck
 	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybArmorCheck
 	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitZealotCheck
+	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
 	bring 13 AtL_M 1 robotics_support_bay Loc.63 upgRoboReaverCheck
 	bring 13 AtL_M 1 robotics_support_bay Loc.63 upgRoboShuttleCheck
 	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetScoutCheck
@@ -632,6 +639,7 @@ script_id PMCx
 	bring 13 AtL_M 1 arbiter_tribunal Loc.63 upgArbCheck
 	bring 13 AtL_M 3 gateway|dragoon Loc.63 upgCybStriderCheck
 	bring 13 AtL_M 3 gateway|citadel_of_adun Loc.63 upgCitZealotCheck
+	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
 	bring 13 AtL_M 4 clarion Loc.63 upgRoboClarionCheck
 	bring 13 AtL_M 2 warp_relay Loc.63 upgRoboRelayCheck
 	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
@@ -1651,6 +1659,7 @@ script_id PMCx
 	dth 13 Ex 1 stasis_chamber buildGate4Gate
 	dth 13 Ex 2 stasis_chamber buildGate3GateGoon
 	dth 13 Ex 3 stasis_chamber buildGate2GateDT
+	dth 13 Ex 4 stasis_chamber buildGateLegion
 	
 	:buildGate4Gate
 	wait 600
@@ -1767,6 +1776,63 @@ script_id PMCx
 	bld 1 forge 66
 	wait 600
 	queue 2 dark_templar gateway 255 Local Loc.63 80
+	multi addProd
+	goto buildGateFin
+	
+	:buildGateLegion
+	wait 600
+	bld 1 pylon 66
+	wait 300
+	bld 1 gateway 66
+	wait 300
+	bld 2 gateway 66
+	wait 300
+	bld 2 pylon 66
+	wait 300
+	bld 1 forge 66
+	wait 300
+	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 24
+	bld 1 assimilator 66
+	wait 300
+	bld 1 cybernetics_core 66
+	wait 300
+	bld 3 gateway 66
+	wait 24
+	bld 3 pylon 66
+	wait 300
+	queue 1 zealot gateway 255 Global Loc.63 80
+	wait 24
+	bld 2 principality 66
+	wait 24
+	upg_queue 1 p_ground_weapon 88
+	wait 300
+	bld 4 pylon 66
+	wait 600
+	bld 3 principality 66
+	wait 300
+	bld 1 citadel_of_adun 66
+	wait 300
+	bld 4 gateway 66
+	wait 24
+	var set canAttack 1 13
+	var set buildSupply 1 13
+	wait 600
+	bld 4 principality 66
+	wait 300
+	bld 2 forge 66
+	wait 600
+	bld 1 templar_archives 66
+	wait 600
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	wait 600
+	var set canExpand 0 13
+	var set cutWorker 0 13
+	wait 600
+	bld 6 gateway 66
+	wait 900
+	bld 6 principality 66
 	multi addProd
 	
 	:buildGateFin
