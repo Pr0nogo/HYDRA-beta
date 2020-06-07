@@ -1280,106 +1280,108 @@ script_id TMCx
 	dth 13 Ex 4 stasis_chamber buildGenBBS
 	
 	:buildGen8RaxMech
-	w_bldstart 8 scv
+	wait 600
 	bld 1 barracks 66
-	w_bldstart 1 barracks
+	wait 24
 	bld 1 supply_depot 66
-	w_bld 1 barracks
+	wait 300
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 60
 	var set buildSupply 1 13
 	wait 120
 	queue 1 marine barracks 255 Local Loc.63 80
-	wait 240
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
-	wait 240
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
-	wait 240
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	var set canExpand 1 13
 	wait 600
 	var set canExpand 0 13
 	var set canAttack 1 13
-	wait 240
+	wait 300
 	bld 1 refinery 66
-	w_bld 1 refinery
+	wait 300
 	bld 1 armory 66
-	w_bld 1 armory
+	wait 600
 	bld 2 factory 66
-	w_bldstart 2 factory
+	wait 600
+	bld 1 machine_shop 66
+	wait 300
+	bld 2 machine_shop 66
 	multi addProd
 	goto buildGenFin
 	
 	:buildGen12CC
-	w_bldstart 8 scv
+	wait 600
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 barracks 66
-	w_bldstart 1 barracks
 	wait 900
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	wait 720
+	wait 600
 	var set buildSupply 1 13
 	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	var set canStatic 1 13
-	wait 60
+	wait 24
 	bld 1 armory 66
-	w_bldstart 1 armory
+	wait 24
 	bld 2 barracks 66
-	w_bldstart 2 barracks
+	wait 300
 	bld 2 factory 66
-	w_bldstart 2 factory
+	wait 600
 	bld 1 starport 66
-	w_bld 1 factory
+	wait 300
 	bld 1 machine_shop 66
-	w_bldstart 1 machine_shop
 	multi addProd
 	goto buildGenFin
 	
 	:buildGenTenTenTen
-	w_bldstart 10 scv
+	wait 1200
 	var set cutWorker 1 13
 	bld 1 supply_depot 66
-	w_bldstart 1 supply_depot
+	wait 300
 	bld 1 barracks 66
-	w_bldstart 1 barracks
+	wait 300
 	bld 1 refinery 66
-	w_bldstart 1 refinery
+	wait 24
 	var set cutWorker 0 13
 	wait 300
 	var set buildSupply 1 13
+	wait 24
 	bld 2 barracks 66
-	w_bldstart 2 barracks
+	wait 24
 	bld 1 armory 66
-	w_bldstart 1 armory
+	wait 300
 	bld 1 academy 66
-	w_bldstart 1 academy
+	wait 24
 	bld 1 engineering_bay 66
-	w_bldstart 1 engineering_bay
+	wait 600
 	bld 1 factory 66
-	w_bldstart 1 factory
+	wait 300
 	bld 1 starport 66
-	w_bldstart 1 starport
+	wait 24
 	multi addProd
 	goto buildGenFin
 	
 	:buildGenBBS
-	w_bldstart 8 scv
+	wait 600
 	var set cutWorker 1 13
 	bld 1 barracks 66
-	w_bldstart 1 barracks
+	wait 24
 	bld 2 barracks 66
-	w_bldstart 2 barracks
+	wait 24
 	var set cutWorker 0 13
 	wait 300
 	var set cutWorker 1 13
 	bld 1 supply_depot 66
-	w_bld 1 barracks
+	wait 600
 	queue 1 marine barracks 255 Local Loc.63 80
-	w_bld 1 supply_depot
+	wait 300
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
@@ -1415,51 +1417,51 @@ script_id TMCx
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 24
 	bld 1 refinery 66
-	w_bldstart 1 refinery
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
-	wait 240
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
-	wait 240
+	wait 300
 	bld 1 armory 66
 	wait 60
 	bld 1 academy 66
-	wait 240
+	wait 300
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 24
 	bld 1 engineering_bay 66
+	wait 24
 	var set buildGas 1 13
-	wait 240
+	wait 300
 	bld 1 factory 66
-	w_bldstart 1 factory
+	wait 24
 	upg_queue 1 t_infantry_weapon 88
+	wait 300
 	bld 1 machine_shop 66
-	w_bldstart 1 machine_shop
+	wait 300
 	tech siege_mode 88
 	bld 2 factory 66
-	w_bldstart 2 factory
+	wait 600
 	bld 2 machine_shop 66
 	multi addProd
 	
 	:buildGenFin
 	call buildBool
 	wait 600
-	bld 2 engineering_bay 66
-	w_bldstart 2 engineering_bay
-	bld 1 covert_ops 66
-	call wSci
-	w_bldstart 1 science_facility
-	bld 2 armory 66
-	w_bldstart 2 armory
-	call wStarport
-	w_bldstart 1 starport
+	p_need 2 engineering_bay
+	wait 300
+	p_need 1 covert_ops
+	wait 300
+	p_need 1 science_facility
+	wait 600
+	p_need 2 armory
+	wait 900
 	bld 3 armory 66
-	bld 1 control_tower 66
 	stop
 	
 	:buildOrderMech
@@ -1468,67 +1470,67 @@ script_id TMCx
 	dth 13 Ex 3 stasis_chamber buildMech2FactVult
 	
 	:buildMechTankTiming
-	w_bldstart 8 scv
+	wait 600
 	bld 1 supply_depot 66
-	w_bld 1 supply_depot
+	wait 300
 	bld 1 refinery 66
-	w_bld 1 refinery
+	wait 24
 	bld 1 armory 66
-	w_bldstart 13 scv
+	wait 600
 	bld 2 supply_depot 66
-	w_bld 1 armory
+	wait 300
 	bld 1 factory 66
-	w_bldstart 1 factory
+	wait 24
 	upg_queue 1 t_vehicle_weapon 88
-	wait 60
+	wait 24
 	bld 2 factory 66
-	w_bld 1 factory
+	wait 300
 	bld 1 machine_shop 66
-	w_bldstart 1 machine_shop
+	wait 24
 	var set canStatic 1 13
-	w_bld 1 machine_shop
+	wait 600
 	tech siege_mode 66
-	w_bld 2 factory
+	wait 300
 	bld 2 machine_shop 66
-	w_bld 2 machine_shop
+	wait 600
 	queue 2 siege_tank factory 255 Local Loc.63 80
-	wait 360
+	wait 300
 	var set canAttack 1 13
+	wait 24
 	bld 1 barracks 66
-	w_bldstart 1 barracks
 	multi addProd
 	goto buildMechFin
 	
 	:buildMechTankWraith
-	w_bldstart 8 scv
+	wait 600
 	bld 1 supply_depot 66
-	w_bld 1 supply_depot
+	wait 24
 	bld 1 refinery 66
-	w_bld 1 refinery
-	bld 1 armory 66
 	wait 300
+	bld 1 armory 66
+	wait 24
 	bld 2 supply_depot 66
-	w_bld 1 armory
+	wait 300
 	bld 1 factory 66
-	w_bldstart 1 factory
+	wait 24
 	upg_queue 1 t_vehicle_weapon 88
-	wait 60
+	wait 24
 	bld 1 starport 66
-	w_bldstart 1 starport
+	wait 300
 	var set buildSupply 1 13
-	w_bld 1 factory
+	wait 600
 	bld 1 machine_shop 66
-	w_bldstart 1 machine_shop
+	wait 24
 	bld 1 barracks 66
 	wait 24
 	var set canStatic 1 13
-	w_bld 1 starport
+	wait 600
 	queue 1 wraith starport 255 Local Loc.63 80
-	wait 60
+	wait 24
 	bld 1 control_tower 66
-	w_bld 1 machine_shop
+	wait 300
 	queue 1 siege_tank factory 255 Local Loc.63 80
-	w_bldstart 1 control_tower
+	wait 24
 	var set canAttack 1 13
 	multi addProd
 	goto buildMechFin
@@ -1651,8 +1653,10 @@ script_id TMCx
 	p_need 1 academy
 	wait 300
 	p_need 3 armory
-	wait 240
+	wait 600
 	p_need 1 engineering_bay
+	wait 600
+	p_need 2 engineering_bay
 	stop
 	
 	:buildOrderBio
@@ -1662,36 +1666,35 @@ script_id TMCx
 	dth 13 Ex 4 stasis_chamber buildBio4RaxPressure
 	
 	:buildBio8Rax
-	w_bldstart 8 scv
+	wait 600
 	bld 1 barracks 66
-	w_bldstart 1 barracks
+	wait 300
 	bld 1 supply_depot 66
-	w_bldstart 1 supply_depot
+	wait 300
 	bld 2 barracks 66
-	w_bldstart 2 barracks
+	wait 24
 	bld 1 refinery 66
-	w_bldstart 1 refinery
-	wait 60
+	wait 24
 	queue 2 marine barracks 255 Local Loc.63 80
-	wait 60
+	wait 300
 	bld 1 academy 66
-	w_bldstart 1 academy
+	wait 24
 	var set buildSupply 1 13
-	wait 60
-	w_bld 2 barracks
+	wait 600
 	bld 1 medbay 66
-	w_bldstart 1 medbay
+	wait 24
 	bld 1 engineering_bay 66
-	w_bld 1 academy
+	wait 300
 	var set canAttack 1 13
+	wait 24
 	upg_queue 1 marine_range 88
-	w_bld 1 engineering_bay
+	wait 300
 	upg_queue 1 t_infantry_armor 88
 	multi addProd
 	goto buildBioFin
 	
 	:buildBio3RaxM&M
-	w_bldstart 9 scv
+	wait 900
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 barracks 66
@@ -1699,53 +1702,62 @@ script_id TMCx
 	bld 2 barracks 66
 	wait 300
 	bld 2 supply_depot 66
-	w_bld 1 barracks
+	wait 600
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 300
 	bld 1 refinery 66
-	w_bldstart 1 refinery
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 300
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 300
 	queue 1 marine barracks 255 Local Loc.63 80
 	bld 3 supply_depot 66
-	w_bldstart 3 supply_depot
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	bld 1 medbay 66
 	wait 300
 	var set cutWorker 1 13
 	bld 3 barracks 66
 	queue 1 marine barracks 255 Local Loc.63 80
-	w_bldstart 3 barracks
+	wait 24
 	bld 1 academy 66
-	w_bldstart 1 academy
+	wait 24
 	queue 1 medic barracks 255 Local Loc.63 80
 	queue 1 marine barracks 255 Local Loc.63 80
 	bld 4 supply_depot 66
-	w_bldstart 4 supply_depot
+	wait 24
 	queue 1 medic barracks 255 Local Loc.63 80
 	queue 1 marine barracks 255 Local Loc.63 80
 	bld 2 medbay 66
-	w_bldstart 2 medbay
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	queue 1 medic barracks 255 Local Loc.63 80
 	bld 5 supply_depot 66
-	w_bldstart 5 supply_depot
+	wait 24
 	tech stim_packs 88
+	wait 24
 	queue 1 scv command_center 255 Local Loc.63 80
+	wait 24
 	queue 1 firebat barracks 255 Local Loc.63 80
+	wait 24
 	queue 1 firebat barracks 255 Local Loc.63 80
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	bld 1 engineering_bay 66
-	w_bldstart 1 engineering_bay
+	wait 24
 	bld 1 comsat_station 66
-	w_bldstart 1 comsat_station
+	wait 24
 	var set buildSupply 1 13
+	wait 24
 	queue 1 medic barracks 255 Local Loc.63 80
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
 	upg_queue 1 marine_range 66
+	wait 24
 	upg_queue 1 t_infantry_weapon 66
 	multi addProd
 	goto buildBioFin
@@ -1786,7 +1798,7 @@ script_id TMCx
 	goto buildBioFin
 	
 	:buildBio4RaxPressure
-	w_bldstart 9 scv
+	wait 900
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 barracks 66
@@ -1800,43 +1812,43 @@ script_id TMCx
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 300
 	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 300
 	bld 3 supply_depot 66
 	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 300
 	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 300
 	var set buildSupply 1 13
+	wait 24
 	bld 4 barracks 66
-	w_bldstart 4 barracks
+	wait 300
 	bld 1 engineering_bay 66
-	wait 60
+	wait 24
 	bld 1 medbay 66
-	wait 60
+	wait 24
 	bld 1 academy 66
-	wait 60
+	wait 24
 	multi addProd
 	
 	:buildBioFin
 	call buildBool
-	call wArm
-	w_bldstart 1 armory
+	p_need 1 armory
 	wait 600
-	wait 240
-	bld 1 medbay 66
-	w_bld 1 armory
-	bld 1 covert_ops 66
-	bld 2 engineering_bay 66
-	wait 240
-	call wSci
-	wait 240
-	call wFact
-	wait 240
-	call wStarport
+	p_need 1 medbay
+	wait 300
+	p_need 1 covert_ops
+	wait 300
+	p_need 2 engineering_bay
+	wait 300
+	p_need 1 science_facility
 	stop
 	
 	:buildOrderAir
@@ -1845,114 +1857,113 @@ script_id TMCx
 	dth 13 Ex 3 stasis_chamber buildAirRax
 	
 	:buildAir2PortWraith
-	w_bldstart 8 scv
+	wait 600
 	bld 1 supply_depot 66
-	w_bld 1 supply_depot
+	wait 300
 	bld 1 refinery 66
-	w_bldstart 1 refinery
+	wait 24
 	bld 1 barracks 66
-	w_bldstart 1 barracks
 	wait 300
 	bld 2 supply_depot 66
-	w_bldstart 2 supply_depot
+	wait 24
 	bld 1 armory 66
-	wait 60
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
-	w_bld 1 armory
+	wait 600
 	bld 2 starport 66
-	w_bldstart 2 starport
+	wait 24
 	upg_queue 1 t_ship_weapon 88
+	wait 300
 	var set buildSupply 1 13
-	wait 60
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
+	wait 24
 	var set canStatic 1 13
-	wait 60
-	w_bld 1 starport
+	wait 300
 	queue 1 wraith starport 255 Local Loc.63 80
-	w_bld 2 starport
+	wait 600
 	bld 1 control_tower 66
-	w_bldstart 1 control_tower
+	wait 300
 	queue 1 wraith starport 255 Local Loc.63 80
 	multi addProd
-	w_bld 1 control_tower
+	wait 300
 	tech cloaking_field 88
 	goto buildAirFin
 	
 	:buildAirDon
-	w_bldstart 8 scv
+	wait 600
 	bld 1 supply_depot 66
-	w_bld 1 supply_depot
+	wait 300
 	bld 1 refinery 66
-	w_bld 1 refinery
+	wait 24
 	bld 1 armory 66
 	wait 300
 	bld 2 supply_depot 66
-	w_bld 1 armory
+	wait 300
 	bld 1 starport 66
-	w_bldstart 1 starport
+	wait 300
 	upg_queue 1 t_ship_weapon 88
 	var set buildSupply 1 13
-	wait 60
+	wait 24
 	bld 1 science_facility 66
-	w_bldstart 1 science_facility
+	wait 600
 	bld 2 starport 66
-	w_bldstart 2 starport
+	wait 300
 	bld 1 barracks 66
-	w_bld 1 science_facility
-	bld 2 physics_lab 66
-	w_bld 1 physics_lab
+	wait 600
+	bld 2 physics_lab 6
+	wait 300
 	queue 2 battlecruiser starport 255 Local Loc.63 80
-	wait 240
+	wait 24
 	multi addProd
 	goto buildAirFin
 	
 	:buildAirRax
-	w_bldstart 8 scv
+	wait 600
 	bld 1 supply_depot 66
-	w_bld 1 supply_depot
-	bld 1 refinery 66
-	w_bldstart 1 refinery
-	bld 1 barracks 66
-	w_bldstart 1 barracks
 	wait 300
+	bld 1 refinery 66
+	wait 24
+	bld 1 barracks 66
+	wait 600
 	bld 2 supply_depot 66
-	w_bldstart 2 supply_depot
+	wait 300
 	bld 1 armory 66
-	wait 60
+	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	wait 300
 	var set canStatic 1 13
-	w_bld 1 armory
+	wait 300
 	bld 1 starport 66
-	w_bldstart 1 starport
+	wait 600
 	upg_queue 1 t_ship_weapon 88
+	wait 24
 	var set buildSupply 1 13
-	wait 60
+	wait 24
 	bld 2 barracks 66
-	w_bldstart 2 barracks
+	wait 24
 	bld 3 barracks 66
-	w_bld 1 starport
+	wait 300
 	queue 3 wraith starport 255 Local Loc.63 80
-	w_bld 3 barracks
+	wait 600
 	bld 1 medbay 66
-	w_bldstart 1 medbay
+	wait 24
 	multi addProd
 	
 	:buildAirFin
 	call buildBool
 	wait 600
-	wait 360
-	call wAcad
-	wait 240
-	call wSci
-	wait 240
-	call wEng
-	wait 240
-	bld 2 armory 66
-	wait 480
-	bld 2 engineering_bay 66
-	wait 720
-	bld 3 armory 66
+	p_need 1 academy
+	wait 300
+	p_need 1 science_facility
+	wait 300
+	p_need 1 engineering_bay
+	wait 300
+	p_need 2 armory
+	wait 600
+	p_need 2 engineering_bay
+	wait 600
+	p_need 3 armory
 	stop
 	
 	:buildOrderExp

@@ -1303,9 +1303,9 @@ script_id PMCx
 	dth 13 Ex 3 stasis_chamber buildGen2GateRobo
 	
 	:buildGenFFE
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
+	wait 300
 	bld 1 forge 66
 	wait 600
 	var set cutWorker 1 13
@@ -1313,19 +1313,19 @@ script_id PMCx
 	wait 600
 	var set canExpand 0 13
 	var set buildSupply 1 13
-	wait 60
+	wait 24
 	var set cutWorker 0 13
 	bld 1 photon_cannon 66
-	w_bldstart 1 photon_cannon
+	wait 300
 	bld 1 gateway 66
-	w_bldstart 1 gateway
+	wait 24
 	bld 1 assimilator 66
-	w_bldstart 1 assimilator
+	wait 300
 	var set canStatic 1 13
 	bld 2 gateway 66
-	w_bld 1 gateway
+	wait 300
 	bld 1 cybernetics_core 66
-	w_bldstart 1 cybernetics_core
+	wait 300
 	multi addProd
 	goto buildGenFin
 	
@@ -1407,54 +1407,53 @@ script_id PMCx
 	goto buildGenFin
 	
 	:buildGen2GateRobo
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
+	wait 300
 	bld 1 gateway 66
-	w_bldstart 1 gateway
 	wait 300
 	bld 2 gateway 66
-	w_bldstart 2 gateway
+	wait 300
 	bld 1 assimilator 66
-	w_bldstart 1 assimilator
+	wait 24
 	bld 2 pylon 66
-	w_bld 1 gateway
+	wait 300
 	queue 1 zealot gateway 255 Local Loc.63 80
+	wait 24
 	var set buildSupply 1 13
-	w_bld 1 assimilator
 	bld 1 cybernetics_core 66
-	w_bld 2 gateway
+	wait 300
 	queue 1 zealot gateway 255 Local Loc.63 80
-	w_bld 1 cybernetics_core
+	wait 600
 	bld 1 robotics_facility 66
-	w_bldstart 1 robotics_authority
+	wait 300
 	upg_queue 1 dragoon_range 88
+	wait 24
 	bld 1 forge 66
+	wait 300
 	multi addProd
 	goto buildGenFin
 	
 	:buildGenFin
 	call buildBool
 	wait 600
-	bring 13 AtL_W 2 gateway Loc.63 blank
-	call wRoboFac
-	bring 13 AtL_W 1 robotics_facility Loc.63 blank
-	call wCit
-	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
-	call wForge
-	call wRoboBay
-	bring 13 AtL_W 1 robotics_support_bay Loc.63 blank
-	call wTemp
-	bring 13 AtL_W 1 templar_archives Loc.63 blank
-	call wStargate
-	bring 13 AtL_W 1 stargate Loc.63 blank
-	call wObs
-	bring 13 AtL_W 1 observatory Loc.63 blank
-	call wFleet
-	call wArb
-	wait 240
-	call wForge
-	call wCyb
+	p_need 1 citadel_of_adun
+	wait 300
+	p_need 2 forge
+	wait 24
+	p_need 1 robotics_support_bay
+	wait 600
+	p_need 1 templar_archives
+	wait 600
+	p_need 1 observatory
+	wait 300
+	p_need 1 fleet_beacon
+	wait 600
+	p_need 1 arbiter_tribunal
+	wait 300
+	p_need 3 forge
+	wait 24
+	p_need 2 cybernetics_core
 	stop
 	
 	:buildOrderRanger
@@ -1464,60 +1463,60 @@ script_id PMCx
 	dth 13 Ex 4 stasis_chamber buildRanger1GateExpo
 	
 	:buildRanger2GateGoon
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
+	wait 300
 	bld 1 gateway 66
-	w_bldstart 1 gateway
 	wait 300
 	bld 1 assimilator 66
-	w_bldstart 1 assimilator
+	wait 24
 	bld 2 gateway 66
-	w_bld 1 gateway
+	wait 300
 	var set buildSupply 1 13
+	wait 300
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 24
 	bld 1 cybernetics_core 66
-	w_bld 2 gateway
+	wait 300
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 24
 	bld 1 forge 66
-	w_bld 1 cybernetics_core
+	wait 600
 	queue 2 dragoon gateway 255 Local Loc.63 80
-	w_bldstart 1 forge
+	wait 24
 	upg_queue 1 dragoon_range 88
 	multi addProd
 	goto buildRangerFin
 	
 	:buildRanger1GateRobo
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
-	bld 1 gateway 66
-	w_bldstart 1 gateway
 	wait 300
+	bld 1 gateway 66
+	wait 600
 	bld 1 assimilator 66
-	w_bld 1 gateway
+	wait 24
 	var set buildSupply 1 13
+	wait 24
 	queue 1 zealot gateway 255 Local Loc.63 80
-	wait 60
+	wait 24
 	bld 1 cybernetics_core 66
-	w_bldstart 1 cybernetics_core
+	wait 300
 	bld 2 gateway 66
-	w_bld 1 cybernetics_core
+	wait 300
 	queue 1 dragoon gateway 255 Local Loc.63 80
-	wait 60
+	wait 24
 	bld 1 robotics_facility 66
-	w_bldstart 1 robotics_facility
+	wait 300
 	bld 1 forge 66
-	w_bldstart 1 forge
+	wait 300
 	multi addProd
 	goto buildRangerFin
 	
 	:buildRangerFFEReaver
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
+	wait 300
 	bld 1 forge 66
 	wait 600
 	var set cutWorker 1 13
@@ -1528,18 +1527,18 @@ script_id PMCx
 	var set buildSupply 1 13
 	wait 60
 	bld 1 gateway 66
-	w_bldstart 1 gateway
+	wait 300
 	bld 1 assimilator 66
-	w_bldstart 1 assimilator
+	wait 24
 	bld 1 photon_cannon 66
-	w_bld 1 gateway
+	wait 300
 	var set canStatic 1 13
 	bld 1 cybernetics_core 66
-	w_bldstart 1 cybernetics_core
+	wait 300
 	bld 2 gateway 66
-	w_bld 1 cybernetics_core
+	wait 600
 	bld 1 robotics_facility 66
-	w_bldstart 1 robotics_facility
+	wait 24
 	upg_queue 1 dragoon_range 88
 	multi addProd
 	goto buildRangerFin
@@ -1613,7 +1612,7 @@ script_id PMCx
 	bld 1 templar_archives 66
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 3 nexus Loc.63 blank
+	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	queue 1 dragoon gateway 255 Global Loc.63 80
@@ -1628,30 +1627,24 @@ script_id PMCx
 	
 	:buildRangerFin
 	call buildBool
-	call wGateway
 	wait 600
-	bring 13 AtL_W 2 gateway Loc.63 blank
-	call wRoboFac
-	bring 13 AtL_W 1 robotics_facility Loc.63 blank
-	call wStargate
-	bring 13 AtL_W 1 stargate Loc.63 blank
-	call wRoboFac
-	bring 13 AtL_W 1 robotics_facility Loc.63 blank
-	call wCit
-	wait 240
-	call wForge
-	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
-	call wRoboBay
-	bring 13 AtL_W 1 robotics_support_bay Loc.63 blank
-	call wFleet
-	wait 240
-	call wCyb
-	call wObs
-	bring 13 AtL_W 1 fleet_beacon Loc.63 blank
-	call wTemp
-	bring 13 AtL_W 1 templar_archives Loc.63 blank
-	call wArb
-	call wForge
+	p_need 1 robotics_support_bay
+	wait 600
+	p_need 1 citadel_of_adun
+	wait 300
+	p_need 2 forge
+	wait 600
+	p_need 1 fleet_beacon
+	wait 600
+	p_need 2 cybernetics_core
+	wait 24
+	p_need 1 observatory
+	wait 600
+	p_need 1 templar_archives
+	wait 600
+	p_need 1 arbiter_tribunal
+	wait 24
+	p_need 3 forge
 	stop
 	
 	:buildOrderGate
@@ -1660,138 +1653,138 @@ script_id PMCx
 	dth 13 Ex 3 stasis_chamber buildGate2GateDT
 	
 	:buildGate4Gate
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
+	wait 300
 	bld 1 gateway 66
-	w_bldstart 1 gateway
+	wait 300
 	bld 2 gateway 66
-	w_bldstart 2 gateway
+	wait 24
 	bld 3 gateway 66
-	w_bldstart 3 gateway
+	wait 300
 	bld 2 pylon 66
-	w_bldstart 2 pylon
+	wait 300
 	bld 1 assimilator 66
-	w_bld 1 gateway
+	wait 300
 	var set buildSupply 1 13
 	bld 4 gateway 66
 	queue 1 zealot gateway 255 Local Loc.63 80
-	w_bldstart 4 gateway
+	wait 24
 	var set canAttack 1 13
 	queue 4 zealot gateway 255 Local Loc.63 80
-	wait 240
+	wait 300
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set canExpand 0 13
-	wait 60
 	var set cutWorker 0 13
+	wait 24
 	bld 1 cybernetics_core 66
-	w_bldstart 1 cybernetics_core
+	wait 300
 	bld 1 forge 66
-	w_bld 3 gateway
+	wait 24
 	queue 4 zealot gateway 255 Local Loc.63 80
-	w_bld 1 cybernetics_core
+	wait 300
 	bld 1 citadel_of_adun 66
-	w_bldstart 1 citadel_of_adun
+	wait 24
 	upg_queue 1 dragoon_range 88
-	w_bld 1 forge
+	wait 300
 	upg_queue 1 p_ground_weapon 88
 	wait 24
 	var set canStatic 1 13
-	w_bldstart 1 citadel_of_adun
+	wait 300
 	multi addProd
 	goto buildGateFin
 	
 	:buildGate3GateGoon
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
+	wait 300
 	bld 1 gateway 66
-	w_bldstart 1 gateway
 	wait 300
 	bld 2 gateway 66
-	w_bldstart 2 gateway
+	wait 24
 	bld 1 assimilator 66
-	w_bld 1 gateway
+	wait 24
 	var set buildSupply 1 13
+	wait 24
 	queue 1 zealot gateway 255 Local Loc.63 80
-	wait 60
+	wait 24
 	bld 1 cybernetics_core 66
-	w_bldstart 1 cybernetics_core
+	wait 300
 	bld 3 gateway 66
+	wait 24
 	queue 1 zealot gateway 255 Local Loc.63 80
-	w_bld 1 cybernetics_core
+	wait 300
 	queue 1 dragoon gateway 255 Local Loc.63 80
-	w_bld 3 gateway
+	wait 300
 	queue 2 dragoon gateway 255 Local Loc.63 80
-	wait 60
+	wait 24
 	upg_queue 1 dragoon_range 88
-	wait 240
+	wait 300
 	bld 1 citadel_of_adun 66
+	wait 24
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
+	wait 24
 	bld 1 forge 66
 	multi addProd
 	goto buildGateFin
 	
 	:buildGate2GateDT
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
+	wait 300
 	bld 1 gateway 66
-	w_bldstart 1 gateway
 	wait 300
 	bld 2 gateway 66
-	w_bldstart 2 gateway
+	wait 24
 	bld 1 assimilator 66
-	w_bld 1 gateway
+	wait 300
 	var set buildSupply 1 13
+	wait 24
 	bld 1 cybernetics_core 66
-	w_bld 2 gateway
+	wait 300
 	queue 2 zealot gateway 255 Local Loc.63 80
-	w_bld 1 cybernetics_core
+	wait 600
 	bld 1 citadel_of_adun 66
-	w_bldstart 1 citadel_of_adun
+	wait 24
 	queue 2 zealot gateway 255 Local Loc.63 80
-	w_bld 1 citadel_of_adun
+	wait 300
 	bld 1 templar_archives 66
-	w_bldstart 1 templar_archives
+	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
+	wait 24
 	upg_queue 1 zealot_speed 88
-	wait 240
+	wait 300
 	bld 1 forge 66
-	w_bld 1 templar_archives
+	wait 600
 	queue 2 dark_templar gateway 255 Local Loc.63 80
 	multi addProd
 	
 	:buildGateFin
 	call buildBool
-	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
-	call wRoboFac
-	bring 13 AtL_W 1 robotics_facility Loc.63 blank
-	call wTemp
-	bring 13 AtL_W 1 templar_archives Loc.63 blank
-	call wObs
-	bring 13 AtL_W 1 observatory Loc.63 blank
-	call wGateway
-	wait 240
-	call wForge
-	wait 240
-	call wStargate
-	bring 13 AtL_W 1 stargate Loc.63 blank
-	call wRoboBay
-	bring 13 AtL_W 1 robotics_support_bay Loc.63 blank
-	call wArb
-	bring 13 AtL_W 1 arbiter_tribunal Loc.63 blank
-	call wFleet
-	call wCyb
+	wait 300
+	p_need 1 templar_archives
+	wait 600
+	p_need 1 observatory
+	wait 300
+	p_need 3 forge
+	wait 600
+	p_need 1 robotics_support_bay
+	wait 300
+	p_need 1 arbiter_tribunal
+	wait 600
+	p_need 1 fleet_beacon
+	wait 24
+	p_need 2 cybernetics_core
 	stop
 	
 	:buildOrderSkylord
@@ -1800,92 +1793,95 @@ script_id PMCx
 	dth 13 Ex 3 stasis_chamber buildSkylord2GateScout
 	
 	:buildSkylordFFECorsair
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
 	wait 300
 	bld 1 forge 66
-	w_bldstart 1 forge
+	wait 24
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set canExpand 0 13
-	wait 60
+	wait 24
 	bld 1 gateway 66
-	w_bldstart 1 gateway
+	wait 24
 	bld 1 assimilator 66
+	wait 300
 	var set buildSupply 1 13
 	var set cutWorker 0 13
-	w_bld 1 gateway
+	wait 300
 	bld 1 cybernetics_core 66
+	wait 24
 	multi addProd
-	w_bld 1 cybernetics_core
+	wait 600
 	bld 1 stargate 66
 	wait 24
 	var set canStatic 1 13
-	w_bldstart 1 stargate
+	wait 300
 	upg_queue 1 p_air_weapon 88
-	w_bld 1 stargate
+	wait 300
 	queue 1 corsair stargate 255 Local Loc.63 80
 	goto buildSkylordFin
 	
 	:buildSkylordDon
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
 	wait 300
 	bld 1 gateway 66
-	w_bldstart 1 gateway
+	wait 24
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	bld 1 forge 66
-	w_bldstart 1 forge
+	wait 300
 	var set buildSupply 1 13
+	wait 24
 	bld 1 assimilator 66
-	w_bld 1 gateway
+	wait 300
 	queue 1 zealot gateway 255 Local Loc.63 80
-	wait 60
+	wait 24
 	bld 1 cybernetics_core 66
-	w_bld 1 forge
+	wait 300
 	var set canStatic 1 13
-	w_bld 1 cybernetics_core
+	wait 300
 	bld 1 stargate 66
-	w_bldstart 1 stargate
+	wait 600
 	bld 2 stargate 66
-	w_bldstart 2 stargate
+	wait 24
 	upg_queue 1 p_air_weapon 88
-	w_bld 1 stargate
+	wait 600
 	bld 1 fleet_beacon 66
-	w_bldstart 1 fleet_beacon
+	wait 300
 	multi addProd
-	w_bld 1 fleet_beacon
+	wait 600
 	queue 2 carrier stargate 255 Local Loc.63 80
+	wait 24
 	upg_queue 1 carrier_capacity 88
 	goto buildSkylordFin
 	
 	:buildSkylord2GateScout
-	w_bldstart 8 probe
+	wait 600
 	bld 1 pylon 66
-	w_bld 1 pylon
+	wait 300
 	bld 1 gateway 66
-	w_bldstart 1 gateway
+	wait 24
 	bld 1 assimilator 66
-	w_bldstart 1 assimilator
+	wait 300
 	bld 2 gateway 66
-	w_bld 1 gateway
+	wait 600
 	var set buildSupply 1 13
 	bld 1 cybernetics_core 66
-	w_bldstart 1 cybernetics_core
+	wait 24
 	queue 1 zealot gateway 255 Local Loc.63 80
-	w_bld 1 cybernetics_core
+	wait 300
 	bld 1 stargate 66
-	w_bldstart 1 stargate
+	wait 24
 	upg_queue 1 p_air_weapon 88
+	wait 300
 	queue 2 zealot gateway 255 Local Loc.63 80
-	w_bld 1 stargate
+	wait 600
 	queue 1 scout stargate 255 Local Loc.63 80
 	var set cutWorker 1 13
 	var set canExpand 1 13
@@ -1893,35 +1889,33 @@ script_id PMCx
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	bld 1 forge 66
-	w_bldstart 1 forge
+	wait 300
 	multi addProd
 	bld 1 citadel_of_adun 88
-	wait 240
+	wait 300
 	
 	:buildSkylordFin
 	call buildBool
-	bring 13 AtL_W 1 stargate Loc.63 blank
-	call wStargate
-	wait 240
-	call wGateway
-	wait 120
-	call wForge
-	wait 360
-	call wCit
-	bring 13 AtL_W 1 citadel_of_adun Loc.63 blank
-	call wFleet
-	wait 240
-	call wCyb
-	bring 13 AtL_W 1 fleet_beacon Loc.63 blank
-	call wRoboFac
-	wait 240
-	call wTemp
-	bring 13 AtL_W 1 robotics_facility Loc.63 blank
-	call wObs
-	bring 13 AtL_W 1 templar_archives Loc.63 blank
-	call wRoboBay
-	call wArb
-	call wForge
+	wait 300
+	p_need 2 forge
+	wait 300
+	p_need 1 citadel_of_adun
+	wait 900
+	p_need 1 fleet_beacon
+	wait 300
+	p_need 2 cybernetics_core
+	wait 600
+	p_need 1 robotics_facility
+	wait 300
+	p_need 1 templar_archives
+	wait 600
+	p_need 1 observatory
+	wait 600
+	p_need 1 robotics_support_bay
+	wait 24
+	p_need 1 arbiter_tribunal
+	wait 300
+	p_need 3 forge
 	stop
 	
 	:buildOrderExp

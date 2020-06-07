@@ -1181,7 +1181,7 @@ script_id ZMCx
 	dth 13 Ex 3 stasis_chamber buildGen3HatchHydraQueen
 	
 	:buildGen2HatchHive
-	w_bldstart 9 drone
+	wait 900
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -1189,15 +1189,15 @@ script_id ZMCx
 	var set canExpand 0 13
 	wait 60
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
+	wait 300
 	queue 1 overlord larva 255 Global Loc.63 80
-	bring 13 AtL_W 2 overlord Loc.63 blank
+	wait 300
 	bld 1 extractor 66
-	w_bldstart 1 extractor
-	bring 13 AtL_W 13 drone Loc.63 blank
+	wait 600
 	var set buildSupply 1 13
-	w_bld 1 spawning_pool
+	wait 300
 	var set canStatic 1 13
+	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -1209,27 +1209,29 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 15 drone Loc.63 blank
 	bld 1 lair 66
-	w_bldstart 1 lair
+	wait 24
 	upg_queue 1 zergling_speed 88
 	var set canAttack 1 13
+	wait 300
 	var set buildGas 1 13
-	wait 240
+	wait 300
 	bld 1 evolution_chamber 66
-	w_bldstart 1 evolution_chamber
-	bring 13 AtL_W 1 larva Loc.63 blank
-	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
 	upg_queue 1 z_carapace 88
-	w_bld 1 lair
+	wait 24
 	bld 1 queen_nest 66
-	w_bldstart 1 queen_nest
+	wait 300
 	bld 2 hatchery 72
-	w_bldstart 2 hatchery
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -1238,16 +1240,17 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
-	w_bld 1 queen_nest
+	wait 300
 	bld 1 hive 82
-	w_bldstart 1 hive
+	wait 600
+	bld 2 evolution_chamber 66
+	wait 24
 	goto addProd
 	
 	:buildGen2HatchVorv
-	w_bldstart 9 drone
+	wait 600
 	queue 1 overlord larva 255 Global Loc.63 80
-	bring 13 AtL_W 2 overlord Loc.63 blank
-	w_bldstart 11 drone
+	wait 900
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -1255,12 +1258,11 @@ script_id ZMCx
 	var set canExpand 0 13
 	wait 60
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
+	wait 24
 	bld 1 extractor 66
-	w_bldstart 1 extractor
-	bring 13 AtL_W 13 drone Loc.63 blank
+	wait 600
 	var set buildSupply 1 13
-	w_bld 1 spawning_pool
+	wait 600
 	upg_queue 1 zergling_speed 88
 	wait 24
 	var set canStatic 1 13
@@ -1275,22 +1277,21 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 15 drone Loc.63 blank
 	bld 1 lair 66
-	w_bldstart 1 lair
+	wait 24
 	var set canAttack 1 13
+	wait 300
 	var set buildGas 1 13
-	wait 240
+	wait 300
 	bld 1 evolution_chamber 66
-	w_bldstart 1 evolution_chamber
-	#bld 1 vorval_pond 66
-	#w_bldstart 1 vorval_pond
+	wait 300
 	bld 2 hatchery 72
-	w_bldstart 2 hatchery
+	wait 600
 	bld 2 evolution_chamber 66
-	w_bld 1 evolution_chamber
+	wait 24
 	upg_queue 1 z_melee_attack 88
-	w_bldstart 2 evolution_chamber
+	wait 300
 	multi addProd
-	w_bld 2 evolution_chamber
+	wait 300
 	upg_queue 1 z_carapace 88
 	goto buildGenFin
 	
@@ -1364,32 +1365,33 @@ script_id ZMCx
 	
 	:buildGenFin
 	call buildBool
-	call wEvo
-	call wHydra
-	bring 13 AtL_W 1 hydralisk_den|basilisk_den|lurker_den Loc.63 blank
-	wait 480
-	call wSpire
-	wait 240
-	call wLurk
-	wait 480
-	call wEvo
-	wait 480
-	call wQueen
-	bring 13 AtL_W 1 queen_nest Loc.63 blank
-	call wHive
-	bring 13 AtL_W 1 hive Loc.63 blank
-	call wUltra
-	wait 240
-	call wDefiler
-	bring 13 AtL_W 1 defiler_mound Loc.63 blank
-	call wGuard
-	wait 480
-	call wSpire
-	wait 960
-	call wBas
+	p_need 2 evolution_chamber
+	wait 300
+	p_need 1 hydralisk_den
+	wait 600
+	p_need 1 spire
+	wait 900
+	p_need 1 lurker_den
+	wait 600
+	p_need 3 evolution_chamber
+	wait 300
+	p_need 1 queen_nest
+	wait 600
+	p_need 1 hive
+	wait 900
+	p_need 1 ultralisk_cavern
+	wait 300
+	p_need 1 defiler_mound
+	wait 1200
+	p_need 1 guardian_roost
+	wait 300
+	p_need 2 spire
+	wait 600
+	p_need 2 hydralisk_den
+	p_need 1 basilisk_den
 	wait 2400
-	call wDevo
-	wait 2400
+	p_need 1 devourer_haunt
+	#wait 2400
 	#call wSpire
 	#call wGorg
 	stop
@@ -1400,14 +1402,14 @@ script_id ZMCx
 	dth 13 Ex 3 stasis_chamber buildConnor2HatchHydraLing
 	
 	:buildConnor3HatchHydra
-	w_bldstart 9 drone
+	wait 900
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set cutWorker 0 13
 	wait 300
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
+	wait 24
 	queue 1 overlord larva 255 Local Loc.63 80
 	w_bld 1 spawning_pool
 	bring 13 AtL_W 1 larva Loc.63 blank
@@ -1433,11 +1435,13 @@ script_id ZMCx
 	bld 1 hydralisk_den 66
 	wait 900
 	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
 	upg_queue 1 hydralisk_speed 88
-	bring 13 AtL_W 21 drone Loc.63 blank
+	wait 900
 	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
 	bld 1 evolution_chamber 66
-	bring 13 AtL_W 25 drone Loc.63 blank
+	wait 900
 	var set buildGas 1 13
 	var set buildSupply 1 13
 	bring 13 AtL_W 1 larva Loc.63 blank
@@ -1463,22 +1467,21 @@ script_id ZMCx
 	goto buildConnorFin
 	
 	:buildConnor2HatchLurker
-	w_bldstart 9 drone
+	wait 900
 	queue 1 overlord larva 255 Global Loc.63 80
-	bring 13 AtL_W 2 overlord Loc.63 blank
 	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
-	wait 60
+	wait 24
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
+	wait 300
 	bld 1 extractor 66
 	wait 300
 	var set buildSupply 1 13
-	w_bld 1 spawning_pool
+	wait 600
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -1491,15 +1494,13 @@ script_id ZMCx
 	var set canStatic 1 13
 	wait 600
 	bld 1 lair 66
-	w_bldstart 1 lair
+	wait 300
 	var set buildGas 1 13
 	bld 1 hydralisk_den 66
-	w_bld 1 lair
+	wait 300
 	bld 1 lurker_den 66
-	w_bldstart 1 lurker_den
+	wait 24
 	bld 1 evolution_chamber 66
-	bring 13 AtL_W 1 larva Loc.63 blank
-	queue 1 hydralisk larva 255 Global Loc.63 80
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
@@ -1510,7 +1511,9 @@ script_id ZMCx
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
 	wait 24
-	w_bld 1 evolution_chamber
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 300
 	upg_queue 1 missile_attack 88
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
@@ -1518,30 +1521,30 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
-	w_bld 1 lurker_den
+	wait 300
 	do_morph 3 lurker
 	wait 60
 	do_morph 3 lurker
 	wait 60
 	do_morph 3 lurker
-	wait 360
+	wait 300
 	upg_queue 1 hydralisk_speed 88
 	multi addProd
 	goto buildConnorFin
 	
 	:buildConnor2HatchHydraLing
-	w_bldstart 9 drone
+	wait 900
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set canExpand 0 13
 	var set cutWorker 0 13
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
+	wait 600
 	var set cutWorker 1 13
 	queue 1 overlord larva 255 Global Loc.63 80
 	var set cutWorker 0 13
-	w_bld 1 spawning_pool
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -1554,19 +1557,19 @@ script_id ZMCx
 	var set canStatic 1 13
 	wait 300
 	bld 2 hatchery 72
-	w_bldstart 2 hatchery
+	wait 600
 	bld 1 extractor 66
-	w_bldstart 1 extractor
+	wait 300
 	var set buildSupply 1 13
 	w_bld 1 extractor
 	bld 1 hydralisk_den 66
-	w_bldstart 1 hydralisk_den
+	wait 600
 	upg_queue 1 zergling_speed 88
-	w_bld 1 hydralisk_den
+	wait 300
 	upg_queue 1 hydralisk_speed 88
 	wait 240
 	bld 1 evolution_chamber 66
-	w_bldstart 1 evolution_chamber
+	wait 300
 	var set buildGas 1 13
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
@@ -1585,44 +1588,43 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
-	w_bld 1 evolution_chamber
+	wait 300
 	upg_queue 1 z_carapace 88
 	multi addProd
 	
 	:buildConnorFin
 	call buildBool
-	bring 13 AtL_W 1 evolution_chamber Loc.63 blank
-	call wLair
-	wait 240
-	call wHatch
-	wait 240
-	call wEvo
-	wait 480
-	call wBas
-	wait 480
-	call wEvo
-	wait 240
-	call wQueen
-	wait 360
-	call wHive
-	wait 240
+	p_need 1 evolution_chamber
+	wait 24
+	p_need 1 lair
+	wait 24
+	bld 2 hatchery 72
+	wait 300
+	p_need 2 evolution_chamber
+	wait 300
+	p_need 1 basilisk_den
+	wait 600
+	p_need 3 evolution_chamber
+	wait 300
+	p_need 1 queen_nest
+	wait 300
+	p_need 1 hive
+	wait 300
 	p_need 2 hydralisk_den
-	wait 480
-	call wLurk
-	wait 240
-	call wDefiler
-	wait 360
-	call wUltra
+	p_need 1 lurker_den
+	wait 300
+	p_need 1 defiler_mound
+	wait 600
+	p_need 1 ultralisk_cavern
 	wait 2400
-	call wSpire
-	call wSpire
-	wait 720
-	call wGuard
-	wait 360
+	p_need 2 spire
+	wait 900
+	p_need 1 guardian_roost
+	#wait 600
 	#call wGorg
-	#wait 2400
+	wait 2400
 	#call wSpire
-	call wDevo
+	p_need 1 devourer_haunt
 	stop
 	
 	:buildOrderSwarm
@@ -1632,13 +1634,12 @@ script_id ZMCx
 	dth 13 Ex 4 stasis_chamber buildSwarm3HatchHive
 	
 	:buildSwarm3HatchFlood
-	w_bldstart 9 drone
+	wait 900
 	queue 1 overlord larva 255 Global Loc.63 80
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
 	wait 300
 	bld 1 extractor 66
-	w_bld 1 spawning_pool
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -1649,7 +1650,7 @@ script_id ZMCx
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	upg_queue 1 zergling_speed 88
-	w_bldstart 10 drone
+	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -1659,10 +1660,9 @@ script_id ZMCx
 	var set canStatic 1 13
 	wait 24
 	bld 1 evolution_chamber 66
-	w_bldstart 1 evolution_chamber
+	wait 300
 	bld 1 lair 76
-	w_bldstart 1 lair
-	wait 240
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -1670,32 +1670,40 @@ script_id ZMCx
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
+	wait 24
 	queue 1 zergling larva 255 Global Loc.63 80
-	w_bld 1 evolution_chamber
+	wait 300
 	upg_queue 1 z_carapace 88
-	wait 240
+	wait 300
 	bld 2 hatchery 72
-	w_bldstart 2 hatchery
+	wait 600
 	upg_queue 1 overlord_capacity 88
+	wait 300
 	var set canAttack 1 13
+	wait 24
 	bld 2 evolution_chamber 66
-	w_bldstart 2 evolution_chamber
+	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	upg_queue 1 z_melee_attack 88
+	wait 300
 	var set cutWorker 1 13
 	var set canExpand 1 13
-	bring 13 AtL_W 4 hatchery|lair|hive Loc.63 blank
+	wait 600
+	bld 3 hatchery 72
+	wait 600
 	multi addProd
 	goto buildSwarmFin
 	
 	:buildSwarm3HatchUltra
-	w_bldstart 9 drone
+	wait 900
 	var set cutWorker 1 13
 	queue 1 overlord larva 255 Local Loc.63 80
 	wait 24
@@ -1868,7 +1876,7 @@ script_id ZMCx
 	goto buildSwarmFin
 	
 	:buildSwarm3HatchHive
-	w_bldstart 9 drone
+	wait 900
 	var set cutWorker 1 13
 	queue 1 overlord larva 255 Local Loc.63 80
 	wait 24
@@ -1956,32 +1964,34 @@ script_id ZMCx
 	:buildSwarmFin
 	call buildBool
 	wait 240
-	call wSpire
+	p_need 1 spire
 	wait 720
-	call wQueen
-	call wHydra
-	wait 560
-	call wEvo
-	wait 560
-	call wHive
-	wait 240
-	call wLurk
-	wait 720
-	call wSpire
-	wait 240
-	call wDefiler
-	call wUltra
-	wait 720
-	call wGuard
+	p_need 1 queen_nest
+	wait 24
+	p_need 1 hydralisk_den
+	wait 600
+	p_need 2 evolution_chamber
+	wait 600
+	p_need 1 hive
+	wait 300
+	p_need 1 lurker_den
+	wait 900
+	p_need 2 spire
+	wait 300
+	p_need 1 defiler_mound
+	wait 24
+	p_need 1 ultralisk_cavern
+	wait 600
+	p_need 1 guardian_roost
 	wait 2400
 	p_need 2 hydralisk_den
-	call wBas
+	wait 24
+	p_need 1 basilisk_den
 	wait 2400
-	call wSpire
-	call wDevo
+	p_need 1 devourer_haunt
 	wait 2400
-	call wSpire
-	call wGorg
+	#p_need 3 spire
+	#p_need 1 gorgoleth_apiary
 	stop
 	
 	:buildOrderAir
@@ -1990,7 +2000,7 @@ script_id ZMCx
 	dth 13 Ex 3 stasis_chamber buildAir2HatchMuta
 	
 	:buildAir3HatchMutaLing
-	w_bldstart 9 drone
+	wait 900
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -1999,8 +2009,9 @@ script_id ZMCx
 	wait 300
 	var set cutWorker 1 13
 	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
+	wait 300
 	var set cutWorker 0 13
 	wait 600
 	bld 1 extractor 66
@@ -2030,9 +2041,9 @@ script_id ZMCx
 	var set canExpand 0 13
 	wait 240
 	var set buildGas 1 13
-	w_bld 1 lair
+	wait 300
 	bld 1 spire 66
-	w_bldstart 1 spire
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -2041,8 +2052,7 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
-	wait 24
-	w_bld 1 spire
+	wait 600
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 mutalisk larva 255 Global Loc.63 80
 	wait 24
@@ -2053,11 +2063,13 @@ script_id ZMCx
 	queue 1 mutalisk larva 255 Global Loc.63 80
 	wait 24
 	upg_queue 1 z_flyer_carapace 88
+	wait 24
+	bld 2 hatchery 72
 	multi addProd
 	goto buildAirFin
 	
 	:buildAir2HatchMutaGuard
-	w_bldstart 9 drone
+	wait 900
 	queue 1 overlord larva 255 Global Loc.63 80
 	bring 13 AtL_W 2 overlord Loc.63 blank
 	wait 600
@@ -2068,11 +2080,11 @@ script_id ZMCx
 	var set canExpand 0 13
 	wait 24
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
+	wait 24
 	bld 1 extractor 66
 	wait 600
 	var set buildSupply 1 13
-	w_bld 1 spawning_pool
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -2085,8 +2097,9 @@ script_id ZMCx
 	var set canStatic 1 13
 	wait 900
 	bld 1 lair 66
-	w_bldstart 1 lair
+	wait 300
 	upg_queue 1 zergling_speed 88
+	wait 24
 	var set canAttack 1 13
 	var set buildGas 1 13
 	wait 240
@@ -2098,13 +2111,13 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
-	w_bld 1 lair
+	wait 600
 	bld 1 spire 66
-	w_bldstart 1 spire
+	wait 300
 	bld 2 hatchery 72
-	w_bldstart 2 hatchery
+	wait 600
 	bld 1 queen_nest 66
-	w_bldstart 1 queen_nest
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -2113,24 +2126,27 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
-	w_bld 1 queen_nest
+	wait 24
 	bld 1 hive 82
-	w_bld 1 spire
+	wait 24
 	upg_queue 1 z_flyer_carapace 88
-	w_bldstart 1 hive
+	wait 900
 	var set canExpand 1 13
+	wait 600
 	bld 2 spire 66
-	w_bldstart 2 spire
-	bld 3 hatchery 66
-	w_bld 1 hive
+	wait 600
+	bld 3 hatchery 72
+	wait 600
 	bld 1 guardian_roost 66
-	w_bldstart 1 guardian_roost
+	wait 600
 	upg_queue 1 z_flyer_attack 88
+	wait 900
+	bld 4 hatchery 72
 	multi addProd
 	goto buildAirFin
 	
 	:buildAir2HatchMuta
-	w_bldstart 9 drone
+	wait 900
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -2138,13 +2154,13 @@ script_id ZMCx
 	var set canExpand 0 13
 	wait 60
 	bld 1 spawning_pool 66
-	w_bldstart 1 spawning_pool
+	wait 300
 	queue 1 overlord larva 255 Global Loc.63 80
-	bring 13 AtL_W 2 overlord Loc.63 blank
+	wait 600
 	bld 1 extractor 66
 	wait 600
 	var set buildSupply 1 13
-	w_bld 1 spawning_pool
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -2157,10 +2173,11 @@ script_id ZMCx
 	var set canStatic 1 13
 	wait 600
 	bld 1 lair 66
-	w_bldstart 1 lair
+	wait 300
 	upg_queue 1 zergling_speed 88
+	wait 24
 	var set buildGas 1 13
-	wait 240
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -2171,13 +2188,13 @@ script_id ZMCx
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	var set canAttack 1 13
-	w_bld 1 lair
+	wait 300
 	bld 1 spire 66
-	w_bldstart 1 spire
+	wait 600
 	bld 2 hatchery 72
-	w_bldstart 2 hatchery
+	wait 600
 	bld 1 evolution_chamber 66
-	w_bld 1 spire
+	wait 600
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 mutalisk larva 255 Global Loc.63 80
 	wait 24
@@ -2188,41 +2205,42 @@ script_id ZMCx
 	queue 1 mutalisk larva 255 Global Loc.63 80
 	wait 24
 	upg_queue 1 z_flyer_carapace 88
-	w_bld 1 evolution_chamber
+	wait 300
 	upg_queue 1 z_carapace 88
+	wait 24
 	multi addProd
 	
 	:buildAirFin
 	call buildBool
-	call wEvo
-	wait 1080
-	call wSpire
-	wait 360
-	call wEvo
-	wait 720
-	call wQueen
-	wait 240
-	call wEvo
-	wait 240
-	call wHive
-	wait 720
-	call wHydra
-	wait 720
-	call wGuard
-	wait 360
-	call wLurk
-	wait 1080
-	call wDevo
-	wait 240
-	call wUltra
-	wait 1080
-	#call wSpire
-	#call wGorg
-	#wait 1440
-	call wDefiler
+	p_need 1 evolution_chamber
+	wait 900
+	p_need 2 spire
+	wait 300
+	p_need 2 evolution_chamber
+	wait 600
+	p_need 1 queen_nest
+	wait 300
+	p_need 3 evolution_chamber
+	wait 300
+	p_need 1 hive
+	wait 600
+	p_need 1 hydralisk_den
+	wait 600
+	p_need 1 guardian_roost
+	wait 600
+	p_need 1 lurker_den
+	wait 900
+	p_need 1 devourer_haunt
+	wait 600
+	p_need 1 ultralisk_cavern
+	wait 900
+	#p_need 3 spire
+	#p_need 1 gorgoleth_apiary
+	#wait 600
+	p_need 1 defiler_mound
 	wait 2400
 	p_need 2 hydralisk_den
-	call wBas
+	p_need 1 basilisk_den
 	stop
 	
 	:buildOrderExp
