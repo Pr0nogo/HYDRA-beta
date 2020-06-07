@@ -2,8 +2,7 @@ This document details features of the melee AI for Project: HYDRA.
 
 Useful links:
 Project info - http://pr0nogo.wikidot.com/sc-hydra
-Beta build - https://mega.nz/#F!PxA1BQRD!tgPGL8FxFtTC9q8tXJBuLQ
-AI scripts - https://mega.nz/folder/H9YFBIpT#_SAB9mfgqW5885RaVD9yBA
+Beta builds - https://github.com/Cr0wnogo/HYDRA-beta
 
 Setup for UMS maps:
 -Make sure your AI has the correct race set in map settings
