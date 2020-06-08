@@ -12,11 +12,11 @@ script_id PMCx
 	aictrl dont_build_gas
 	aictrl unit_mover_enabled
 	aictrl dont_focus_disabled
-	under_attack 0
+	farms_notiming
 	transports_off
 	guard_all
-	max_force 3000
-	help_iftrouble
+	m_force 3000
+	help
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	town_state 255 persist true
 	set_var_local blank stp 13
@@ -31,6 +31,7 @@ script_id PMCx
 	var set canAttack 0 13
 	var set canUpgrade 0 13
 	var set canStatic 0 13
+	var set canQueue 0 13
 	var set buildGas 0 13
 	var set buildSupply 0 13
 	var set buildDone 0 13
@@ -46,6 +47,7 @@ script_id PMCx
 	multi pUpg
 	multi pExpand
 	multi pScale
+	#multi qMilitary
 	
 	:slcPers
 	dth 13 AtL 1 crashed_battle dbgPers
@@ -180,9 +182,11 @@ script_id PMCx
 	wait 12
 	player_combat 17 13 63 True Wait Any Group_Buildings|probe
 	var set underAttack 1 13
+	under_attack 1
 	player_combat 17 13 63 False Wait Any Group_Buildings|probe
 	wait 240
 	var set underAttack 0 13
+	under_attack 0
 	goto uAttack
 	
 	:wAttack
@@ -219,6 +223,8 @@ script_id PMCx
 	
 	:wSupply3
 	farms_timing
+	var Ex|jump canQueue 1 stp 13
+	var set canQueue 1 13
 	stop
 	
 	:wWorkerDef
@@ -1235,6 +1241,7 @@ script_id PMCx
 	wait 600
 	multi addCannon
 	w_bld 1 nexus
+	capt_expand
 	multi expCount
 	bld 2 pylon 65
 	wait 900
@@ -1295,6 +1302,7 @@ script_id PMCx
 	var set canAttack 1 13
 	var set canUpgrade 1 13
 	var set canStatic 1 13
+	var set canQueue 1 13
 	var set buildGas 1 13
 	var set buildSupply 1 13
 	var set buildDone 1 13

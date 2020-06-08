@@ -13,11 +13,10 @@ script_id TMCx
 	aictrl unit_mover_enabled
 	aictrl dont_focus_disabled
 	farms_notiming
-	under_attack 0
 	transports_off
 	guard_all
-	max_force 3000
-	help_iftrouble
+	m_force 3000
+	help
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	town_state 255 persist true
 	set_var_local blank stp 13
@@ -32,6 +31,7 @@ script_id TMCx
 	var set canAttack 0 13
 	var set canUpgrade 0 13
 	var set canStatic 0 13
+	var set canQueue 0 13
 	var set buildGas 0 13
 	var set buildSupply 0 13
 	var set buildDone 0 13
@@ -47,6 +47,8 @@ script_id TMCx
 	multi tUpg
 	multi tExpand
 	multi tScale
+	multi bLayout
+	#multi qMilitary
 	
 	:slcPers
 	dth 13 AtL 1 crashed_battle dbgPers
@@ -181,9 +183,11 @@ script_id TMCx
 	wait 12
 	player_combat 17 13 63 True Wait Any Group_Buildings|scv
 	var set underAttack 1 13
+	under_attack 1
 	player_combat 17 13 63 False Wait Any Group_Buildings|scv
 	wait 240
 	var set underAttack 0 13
+	under_attack 0
 	goto uAttack
 	
 	:wAttack
@@ -220,6 +224,8 @@ script_id TMCx
 	
 	:wSupply3
 	farms_timing
+	var Ex|jump canQueue 1 stp 13
+	var set canQueue 1 13
 	stop
 	
 	:wWorkerDef
@@ -1196,6 +1202,7 @@ script_id TMCx
 	bld 1 command_center 90
 	multi expWorker
 	w_bld 1 command_center
+	capt_expand
 	multi expCount
 	multi addTurret
 	wait 360
@@ -1263,6 +1270,7 @@ script_id TMCx
 	var set canAttack 1 13
 	var set canUpgrade 1 13
 	var set canStatic 1 13
+	var set canQueue 1 13
 	var set buildGas 1 13
 	var set buildSupply 1 13
 	var set buildDone 1 13
@@ -2789,3 +2797,58 @@ script_id TMCx
 	queue_rel goliath factory 0.5 factory 255 Global 63 99
 	queue_rel medic medbay 0.5 barracks 255 Global 63 99
 	return 
+	
+	:bLayout
+	dth 13 Ex 0 ab_mutalisk blank
+	print bLayout
+	layout command_center Set (4736,4400) 1 255 50
+	layout supply_depot Set (4496,4608) 1 255 50
+	layout supply_depot Set (4400,4608) 1 255 49
+	layout supply_depot Set (4464,4672) 1 255 48
+	layout supply_depot Set (4560,4672) 1 255 47
+	layout supply_depot Set (4656,4672) 1 255 46
+	layout supply_depot Set (4688,4832) 1 255 45
+	layout supply_depot Set (4784,4832) 1 255 44
+	layout supply_depot Set (4720,4896) 1 255 43
+	layout supply_depot Set (4816,4896) 1 255 42
+	layout supply_depot Set (4912,4928) 1 255 41
+	layout supply_depot Set (5168,4992) 1 255 40
+	layout supply_depot Set (5168,4928) 1 255 39
+	layout supply_depot Set (5264,4960) 1 255 38
+	layout supply_depot Set (5328,4864) 1 255 37
+	layout supply_depot Set (5520,4736) 1 255 36
+	layout supply_depot Set (5584,4672) 1 255 35
+	layout supply_depot Set (5488,4672) 1 255 34
+	layout supply_depot Set (5840,4224) 1 255 33
+	layout supply_depot Set (5776,4160) 1 255 32
+	layout supply_depot Set (4784,3968) 1 255 31
+	layout supply_depot Set (4848,4032) 1 255 30
+	layout supply_depot Set (4880,3968) 1 255 29
+	layout barracks Set (5568,4528) 1 255 50
+	layout barracks Set (5664,4208) 1 255 49
+	layout engineering_bay Set (5056,3728) 1 255 50
+	layout engineering_bay Set (4864,3696) 1 255 49
+	layout missile_turret Set (4608,4352) 1 255 50
+	layout missile_turret Set (4384,4320) 1 255 49
+	layout missile_turret Set (5280,4448) 1 255 48
+	layout missile_turret Set (5056,4640) 1 255 47
+	layout missile_turret Set (5472,3808) 1 255 46
+	layout missile_turret Set (5728,4320) 1 255 45
+	layout academy Set (4944,4672) 1 255 50
+	layout armory Set (4592,4608) 1 255 50
+	layout armory Set (4624,4544) 1 255 49
+	layout armory Set (5712,4384) 1 255 48
+	layout factory Set (4768,4208) 1 255 50
+	layout factory Set (4864,4112) 1 255 49
+	layout factory Set (4960,4400) 1 255 48
+	layout factory Set (4960,4496) 1 255 47
+	layout factory Set (5312,4112) 1 255 46
+	layout factory Set (5312,4208) 1 255 45
+	layout factory Set (5312,4304) 1 255 44
+	layout factory Set (5184,4112) 1 255 43
+	layout factory Set (5184,4208) 1 255 42
+	layout factory Set (5184,4304) 1 255 41
+	layout factory Set (5568,3984) 1 255 40
+	layout factory Set (4928,3792) 1 255 39
+	layout science_facility Set (5056,4976) 1 255 50
+	stop 

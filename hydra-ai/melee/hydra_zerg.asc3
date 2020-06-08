@@ -12,7 +12,6 @@ script_id ZMCx
 	aictrl dont_build_gas
 	aictrl unit_mover_enabled
 	aictrl dont_focus_disabled
-	under_attack 0
 	transports_off
 	guard_all
 	m_force 3000
@@ -181,9 +180,11 @@ script_id ZMCx
 	wait 12
 	player_combat 17 13 63 True Wait Any Group_Buildings|drone
 	var set underAttack 1 13
+	under_attack 1
 	player_combat 17 13 63 False Wait Any Group_Buildings|drone
 	wait 240
 	var set underAttack 0 13
+	under_attack 0
 	goto uAttack
 	
 	:wAttack
