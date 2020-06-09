@@ -37,6 +37,7 @@ script_id PMCx
 	var set buildDone 0 13
 	var set wRes 0 13
 	queue 1 probe nexus 255 Local Loc.63 80
+	dth 13 Set 1 khaydarin_crystal blank
 	multi uAttack
 	multi wResource
 	multi wGas

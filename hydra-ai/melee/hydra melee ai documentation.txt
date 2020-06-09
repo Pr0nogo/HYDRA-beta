@@ -8,6 +8,7 @@ Setup for UMS maps:
 -Make sure your AI has the correct race set in map settings
 -Set crashed battlecruiser deaths for personalities and stasis chamber deaths for build orders
 -Run <race> expansion custom level in a location placed over the starting town hall
+-To check if a player slot is running the melee AI, check for at least 1 khaydarin crystal death
 -Results not guaranteed; the AI have only been tested with melee starting conditions
 
 Special thanks to Connor5620 for testing and documenting many of the AI's build orders! You can take a look at his guides at the no frauds club forum.
