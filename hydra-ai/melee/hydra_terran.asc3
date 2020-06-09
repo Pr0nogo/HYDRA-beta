@@ -1319,6 +1319,7 @@ script_id TMCx
 	bld 1 machine_shop 66
 	wait 300
 	bld 2 machine_shop 66
+	wait 600
 	multi addProd
 	goto buildGenFin
 	
@@ -1692,13 +1693,18 @@ script_id TMCx
 	wait 600
 	bld 1 medbay 66
 	wait 24
-	bld 1 engineering_bay 66
+	bld 3 barracks 66
+	wait 300
+	bld 4 barracks 66
 	wait 300
 	var set canAttack 1 13
 	wait 24
+	bld 1 engineering_bay 66
+	wait 24
 	upg_queue 1 marine_range 88
-	wait 300
+	wait 24
 	upg_queue 1 t_infantry_armor 88
+	wait 600
 	multi addProd
 	goto buildBioFin
 	
