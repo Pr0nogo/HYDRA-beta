@@ -305,7 +305,7 @@ script_id PMCx
 	defb_gg 1 hierophant
 	defb_gg 1 dark_templar
 	defb_gg 1 archon
-	defb_gg 1 clarion
+	#defb_gg 1 clarion
 	defb_gg 2 scout
 	defb_gg 1 exemplar
 	rand_j 160 blankReturn
@@ -3100,4 +3100,25 @@ script_id PMCx
 	queue_rel carrier stargate 0.66 stargate 255 Global 63 99
 	queue_rel carrier argosy 0.66 argosy 255 Global 63 99
 	#queue_rel starcaller starfield 0.66 starfield 255 Global 63 99
-	return 
+	return
+	
+	:harassLogic
+	dth 13 Ex 2 crashed_battle blank
+	dth 13 Ex 3 crashed_battle blank
+	wait 12
+	notowns shuttle harassLogic
+	notowns reaver harassLogic
+	res 13 AtM Ore 399 harassLoop
+	res 13 AtM Gas 199 harassLoop
+	
+	:harassLoop
+	harass_add 1 reaver 1 13
+	harass_add_transport 1 shuttle 1 3
+	wait 4320
+	dth 13 Ex 0 crashed_battle harassLoopLong
+	dth 13 Ex 4 crashed_battle harassLoopLong
+	goto harassLogic
+	
+	:harassLoopLong
+	wait 2880
+	goto harassLogic
