@@ -31,6 +31,8 @@ Community games are organized using Radmin VPN, a free and seemingly lightweight
 * Create and join Starcraft games by launching Starcraft, selecting Multiplayer, and selecting Local Area Network (UDP)
 * Join the [No Frauds Club discord server](https://discordapp.com/invite/s5SKBmY) to organize community games in real time
 
+If your Radmin VPN is stuck on "waiting for adapter response", it is likely that the software's driver did not install correctly or was somehow corrupted. The only known fix for this is to reinstall the program.
+
 # Issue Reports:
 I often ship debug builds, which will print a simple message on map start indicating as such. Please be sure to delete your aise.log after each runtime to prevent it from becoming too large.
 
