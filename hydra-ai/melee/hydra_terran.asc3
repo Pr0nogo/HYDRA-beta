@@ -38,7 +38,7 @@ script_id TMCx
 	var set wRes 0 13
 	queue 1 scv command_center 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
-	upg_j 13 Set 58 3 blank
+	upg_j 13 Set 58 2 blank
 	multi uAttack
 	multi uAttack2
 	multi wResource
@@ -155,13 +155,16 @@ script_id TMCx
 	goto idle
 	
 	:dbgBuild4
-	dth 13 Ex 1 crashed_battle dbgBuild4Gen
+	dth 13 Ex 1 crashed_battle dbgBuild4Mech
 	dth 13 Ex 2 crashed_battle dbgBuild4Bio
 	dth 13 Ex 3 crashed_battle idle
 	
 	:dbgBuild4Gen
 	print Terran<32>General<32>build<32>4:<32>BBS
 	goto idle
+	
+	:dbgBuild4Mech
+	print Terran<32>Mech<32>build<32>4:<32>And<32>We're<32>Walking
 	
 	:dbgBuild4Bio
 	print Terran<32>Raider<32>build<32>4:<32>4RaxPressure
@@ -1508,6 +1511,7 @@ script_id TMCx
 	dth 13 Ex 1 stasis_chamber buildMechTankTiming
 	dth 13 Ex 2 stasis_chamber buildMechTankWraith
 	dth 13 Ex 3 stasis_chamber buildMech2FactVult
+	dth 13 Ex 4 stasis_chamber buildMechWalkerPower
 	
 	:buildMechTankTiming
 	wait 600
@@ -1683,6 +1687,101 @@ script_id TMCx
 	wait 24
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 24
+	multi addProd
+	goto buildMechFin
+	
+	:buildMechWalkerPower
+	wait 900
+	bld 1 refinery 66
+	wait 24
+	bld 1 supply_depot 66
+	wait 600
+	bld 1 armory 66
+	wait 900
+	bld 2 factory 66
+	wait 24
+	upg_queue 1 t_vehicle_weapon 88
+	wait 300
+	var set cutWorker 1 13
+	bld 2 supply_depot 66
+	wait 300
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	var set cutWorker 0 13
+	wait 300
+	bld 3 supply_depot 66
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 300
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	bld 4 supply_depot 66
+	wait 300
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 300
+	bld 5 supply_depot 66
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 300
+	var set canAttack 1 13
+	wait 300
+	var set buildSupply 1 13
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 300
+	upg_queue 1 t_vehicle_plating 88
+	wait 300
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	var set canExpand 1 13
+	wait 600
+	var set canExpand 0 13
+	wait 300
+	bld 1 machine_shop 66
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 300
+	tech siege_mode 66
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 300
+	bld 3 factory 66
+	wait 300
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 600
+	var set buildGas 1 13
+	wait 600
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 600
+	upg_queue 2 t_vehicle_weapon 88
+	wait 300
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 600
 	multi addProd
 	
 	:buildMechFin
