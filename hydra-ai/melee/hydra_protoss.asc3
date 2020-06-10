@@ -38,6 +38,7 @@ script_id PMCx
 	var set wRes 0 13
 	queue 1 probe nexus 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
+	upg_j 13 Set 58 1 blank
 	multi uAttack
 	multi uAttack2
 	multi wResource
@@ -1244,8 +1245,22 @@ script_id PMCx
 	var set wRes 1 13
 	wait 720
 	var set wRes 0 13
-	wait 2800
+	wait 3300
+	call wExpand
 	goto pExpand
+	
+	:wExpand
+	var AtM townCount 1 ret 13
+	wait 3300
+	var AtM townCount 2 ret 13
+	wait 3300
+	var AtM townCount 3 ret 13
+	wait 3300
+	var AtM townCount 4 ret 13
+	wait 3300
+	var AtM townCount 5 ret 13
+	wait 3300
+	return
 	
 	:expRandTown
 	call initTown

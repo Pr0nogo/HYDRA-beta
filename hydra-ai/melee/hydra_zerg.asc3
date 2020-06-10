@@ -39,6 +39,7 @@ script_id ZMCx
 	var set wRes 0 13
 	queue 1 drone larva 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
+	upg_j 13 Set 58 3 blank
 	multi uAttack
 	multi uAttack2
 	multi wResource
@@ -1092,7 +1093,21 @@ script_id ZMCx
 	wait 720
 	var set wRes 0 13
 	wait 2200
+	call wExpand
 	goto zExpand
+	
+	:wExpand
+	var AtM townCount 1 ret 13
+	wait 2200
+	var AtM townCount 2 ret 13
+	wait 2200
+	var AtM townCount 3 ret 13
+	wait 2200
+	var AtM townCount 4 ret 13
+	wait 2200
+	var AtM townCount 5 ret 13
+	wait 2200
+	return
 	
 	:zExpandB
 	call wUpgradeDef
