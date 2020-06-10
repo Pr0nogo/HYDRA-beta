@@ -39,7 +39,7 @@ script_id ZMCx
 	var set wRes 0 13
 	queue 1 drone larva 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
-	upg_j 13 Set 58 3 blank
+	upg_j 13 Set 58 4 blank
 	multi uAttack
 	multi uAttack2
 	multi wResource
