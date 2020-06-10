@@ -1218,7 +1218,7 @@ script_id ZMCx
 	dth 13 Ex 3 stasis_chamber buildGen3HatchHydraQueen
 	
 	:buildGen2HatchHive
-	wait 900
+	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -1285,7 +1285,7 @@ script_id ZMCx
 	goto addProd
 	
 	:buildGen2HatchVorv
-	wait 600
+	wait 300
 	queue 1 overlord larva 255 Global Loc.63 80
 	wait 900
 	var set cutWorker 1 13
@@ -1333,7 +1333,7 @@ script_id ZMCx
 	goto buildGenFin
 	
 	:buildGen3HatchHydraQueen
-	wait 900
+	wait 600
 	queue 1 overlord larva 255 Global Loc.63 80
 	wait 24
 	bld 1 spawning_pool 66
@@ -1439,7 +1439,7 @@ script_id ZMCx
 	dth 13 Ex 3 stasis_chamber buildConnor2HatchHydraLing
 	
 	:buildConnor3HatchHydra
-	wait 900
+	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -1504,7 +1504,7 @@ script_id ZMCx
 	goto buildConnorFin
 	
 	:buildConnor2HatchLurker
-	wait 900
+	wait 600
 	queue 1 overlord larva 255 Global Loc.63 80
 	wait 600
 	var set cutWorker 1 13
@@ -1570,7 +1570,7 @@ script_id ZMCx
 	goto buildConnorFin
 	
 	:buildConnor2HatchHydraLing
-	wait 900
+	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -1671,7 +1671,7 @@ script_id ZMCx
 	dth 13 Ex 4 stasis_chamber buildSwarm3HatchHive
 	
 	:buildSwarm3HatchFlood
-	wait 900
+	wait 600
 	queue 1 overlord larva 255 Global Loc.63 80
 	bld 1 spawning_pool 66
 	wait 300
@@ -1740,7 +1740,7 @@ script_id ZMCx
 	goto buildSwarmFin
 	
 	:buildSwarm3HatchUltra
-	wait 900
+	wait 600
 	var set cutWorker 1 13
 	queue 1 overlord larva 255 Local Loc.63 80
 	wait 24
@@ -1839,7 +1839,7 @@ script_id ZMCx
 	goto buildSwarmFin
 	
 	:buildSwarm9Pool
-	wait 900
+	wait 600
 	var set cutWorker 1 13
 	bld 1 spawning_pool 66
 	wait 300
@@ -1913,7 +1913,7 @@ script_id ZMCx
 	goto buildSwarmFin
 	
 	:buildSwarm3HatchHive
-	wait 900
+	wait 600
 	var set cutWorker 1 13
 	queue 1 overlord larva 255 Local Loc.63 80
 	wait 24
@@ -2037,7 +2037,7 @@ script_id ZMCx
 	dth 13 Ex 3 stasis_chamber buildAir2HatchMuta
 	
 	:buildAir3HatchMutaLing
-	wait 900
+	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -2108,7 +2108,7 @@ script_id ZMCx
 	goto buildAirFin
 	
 	:buildAir2HatchMutaGuard
-	wait 900
+	wait 600
 	queue 1 overlord larva 255 Global Loc.63 80
 	bring 13 AtL_W 2 overlord Loc.63 blank
 	wait 600
@@ -2185,7 +2185,7 @@ script_id ZMCx
 	goto buildAirFin
 	
 	:buildAir2HatchMuta
-	wait 900
+	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600

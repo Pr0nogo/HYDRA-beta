@@ -1349,7 +1349,7 @@ script_id PMCx
 	dth 13 Ex 3 stasis_chamber buildGen2GateRobo
 	
 	:buildGenFFE
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 forge 66
@@ -1376,7 +1376,7 @@ script_id PMCx
 	goto buildGenFin
 	
 	:buildGenNFE
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 600
 	bld 1 assimilator 66
@@ -1453,7 +1453,7 @@ script_id PMCx
 	goto buildGenFin
 	
 	:buildGen2GateRobo
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 66
@@ -1509,7 +1509,7 @@ script_id PMCx
 	dth 13 Ex 4 stasis_chamber buildRanger1GateExpo
 	
 	:buildRanger2GateGoon
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 66
@@ -1535,7 +1535,7 @@ script_id PMCx
 	goto buildRangerFin
 	
 	:buildRanger1GateRobo
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 66
@@ -1560,7 +1560,7 @@ script_id PMCx
 	goto buildRangerFin
 	
 	:buildRangerFFEReaver
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 forge 66
@@ -1590,7 +1590,7 @@ script_id PMCx
 	goto buildRangerFin
 	
 	:buildRanger1GateExpo
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 600
 	bld 1 gateway 66
@@ -1700,7 +1700,7 @@ script_id PMCx
 	dth 13 Ex 4 stasis_chamber buildGateLegion
 	
 	:buildGate4Gate
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 66
@@ -1744,7 +1744,7 @@ script_id PMCx
 	goto buildGateFin
 	
 	:buildGate3GateGoon
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 66
@@ -1782,7 +1782,7 @@ script_id PMCx
 	goto buildGateFin
 	
 	:buildGate2GateDT
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 66
@@ -1818,7 +1818,7 @@ script_id PMCx
 	goto buildGateFin
 	
 	:buildGateLegion
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 66
@@ -1897,7 +1897,7 @@ script_id PMCx
 	dth 13 Ex 3 stasis_chamber buildSkylord2GateScout
 	
 	:buildSkylordFFECorsair
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 forge 66
@@ -1928,7 +1928,7 @@ script_id PMCx
 	goto buildSkylordFin
 	
 	:buildSkylordDon
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 66
@@ -1966,7 +1966,7 @@ script_id PMCx
 	goto buildSkylordFin
 	
 	:buildSkylord2GateScout
-	wait 600
+	wait 300
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 66

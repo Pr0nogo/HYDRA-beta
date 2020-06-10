@@ -1321,7 +1321,7 @@ script_id TMCx
 	dth 13 Ex 4 stasis_chamber buildGenBBS
 	
 	:buildGen8RaxMech
-	wait 600
+	wait 300
 	bld 1 barracks 66
 	wait 24
 	bld 1 supply_depot 66
@@ -1357,7 +1357,7 @@ script_id TMCx
 	goto buildGenFin
 	
 	:buildGen12CC
-	wait 600
+	wait 300
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 barracks 66
@@ -1384,7 +1384,7 @@ script_id TMCx
 	goto buildGenFin
 	
 	:buildGenTenTenTen
-	wait 1200
+	wait 900
 	var set cutWorker 1 13
 	bld 1 supply_depot 66
 	wait 300
@@ -1412,7 +1412,7 @@ script_id TMCx
 	goto buildGenFin
 	
 	:buildGenBBS
-	wait 600
+	wait 300
 	var set cutWorker 1 13
 	bld 1 barracks 66
 	wait 24
@@ -1514,7 +1514,7 @@ script_id TMCx
 	dth 13 Ex 4 stasis_chamber buildMechWalkerPower
 	
 	:buildMechTankTiming
-	wait 600
+	wait 300
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 refinery 66
@@ -1546,7 +1546,7 @@ script_id TMCx
 	goto buildMechFin
 	
 	:buildMechTankWraith
-	wait 600
+	wait 300
 	bld 1 supply_depot 66
 	wait 24
 	bld 1 refinery 66
@@ -1580,7 +1580,7 @@ script_id TMCx
 	goto buildMechFin
 	
 	:buildMech2FactVult
-	wait 900
+	wait 600
 	bld 1 supply_depot 66
 	wait 24
 	bld 1 refinery 66
@@ -1691,7 +1691,7 @@ script_id TMCx
 	goto buildMechFin
 	
 	:buildMechWalkerPower
-	wait 900
+	wait 600
 	bld 1 refinery 66
 	wait 24
 	bld 1 supply_depot 66
@@ -1733,8 +1733,6 @@ script_id TMCx
 	wait 24
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 300
-	var set canAttack 1 13
-	wait 300
 	var set buildSupply 1 13
 	wait 24
 	queue 1 goliath factory 255 Global Loc.63 80
@@ -1746,6 +1744,9 @@ script_id TMCx
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 24
 	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	var set canAttack 1 13
+	wait 300
 	var set canExpand 1 13
 	wait 600
 	var set canExpand 0 13
@@ -1805,7 +1806,7 @@ script_id TMCx
 	dth 13 Ex 4 stasis_chamber buildBio4RaxPressure
 	
 	:buildBio8Rax
-	wait 600
+	wait 300
 	bld 1 barracks 66
 	wait 300
 	bld 1 supply_depot 66
@@ -1838,7 +1839,7 @@ script_id TMCx
 	goto buildBioFin
 	
 	:buildBio3RaxM&M
-	wait 900
+	wait 600
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 barracks 66
@@ -1907,7 +1908,7 @@ script_id TMCx
 	goto buildBioFin
 	
 	:buildBio3RaxNuke
-	wait 600
+	wait 300
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 barracks 66
@@ -1942,7 +1943,7 @@ script_id TMCx
 	goto buildBioFin
 	
 	:buildBio4RaxPressure
-	wait 900
+	wait 600
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 barracks 66
@@ -2001,7 +2002,7 @@ script_id TMCx
 	dth 13 Ex 3 stasis_chamber buildAirRax
 	
 	:buildAir2PortWraith
-	wait 600
+	wait 300
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 refinery 66
@@ -2035,7 +2036,7 @@ script_id TMCx
 	goto buildAirFin
 	
 	:buildAirDon
-	wait 600
+	wait 300
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 refinery 66
@@ -2063,7 +2064,7 @@ script_id TMCx
 	goto buildAirFin
 	
 	:buildAirRax
-	wait 600
+	wait 300
 	bld 1 supply_depot 66
 	wait 300
 	bld 1 refinery 66
