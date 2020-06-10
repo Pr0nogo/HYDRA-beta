@@ -39,7 +39,7 @@ script_id ZMCx
 	var set wRes 0 13
 	queue 1 drone larva 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
-	upg_j 13 Set 58 4 blank
+	upg_j 13 Set 58 3 blank
 	multi uAttack
 	multi uAttack2
 	multi wResource
@@ -1871,6 +1871,8 @@ script_id ZMCx
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	var set canAttack 1 13
+	wait 900
+	bld 1 evolution_chamber 66
 	wait 300
 	var set canExpand 1 13
 	wait 600
@@ -1887,8 +1889,6 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
-	wait 24
-	bld 1 evolution_chamber 66
 	wait 300
 	bld 1 lair 76
 	wait 600
@@ -2067,10 +2067,14 @@ script_id ZMCx
 	var set canStatic 1 13
 	wait 24
 	bld 1 lair 76
-	w_bldstart 1 lair
+	wait 300
 	upg_queue 1 zergling_speed 88
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 drone larva 255 Local Loc.63 80
+	wait 900
+	bld 1 spire 66
+	wait 300
 	var set canExpand 1 13
 	wait 600
 	var set canAttack 1 13
@@ -2078,8 +2082,6 @@ script_id ZMCx
 	var set canExpand 0 13
 	wait 240
 	var set buildGas 1 13
-	wait 300
-	bld 1 spire 66
 	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
