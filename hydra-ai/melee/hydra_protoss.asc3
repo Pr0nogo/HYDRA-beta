@@ -186,8 +186,8 @@ script_id PMCx
 	player_combat 17 13 63 True Wait Any Group_Buildings
 	var set underAttack 1 13
 	under_attack 1
-	player_combat 17 13 63 False Wait Any Group_Buildings
-	player_combat 17 13 63 False Wait Any probe
+	player_combat 17 13 63 False WF(240) Any Group_Buildings
+	player_combat 17 13 63 False WF(240) Any probe
 	wait 240
 	var set underAttack 0 13
 	under_attack 0
@@ -198,8 +198,8 @@ script_id PMCx
 	player_combat 17 13 63 True Wait Any probe
 	var set underAttack 1 13
 	under_attack 1
-	player_combat 17 13 63 False Wait Any probe
-	player_combat 17 13 63 False Wait Any Group_Buildings
+	player_combat 17 13 63 False WF(240) Any probe
+	player_combat 17 13 63 False WF(240) Any Group_Buildings
 	wait 240
 	var set underAttack 0 13
 	under_attack 0
@@ -1363,12 +1363,12 @@ script_id PMCx
 	var set cutWorker 0 13
 	bld 1 photon_cannon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 24
 	bld 1 assimilator 66
 	wait 300
 	var set canStatic 1 13
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 300
 	bld 1 cybernetics_core 66
 	wait 300
@@ -1396,7 +1396,7 @@ script_id PMCx
 	wait 600
 	var set canExpand 0 13
 	wait 24
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 24
 	queue 1 dragoon gateway 255 Global Loc.63 80
 	wait 24
@@ -1409,7 +1409,7 @@ script_id PMCx
 	queue 1 dragoon gateway 255 Global Loc.63 80
 	var set cutWorker 1 13
 	wait 24
-	bld 3 gateway 66
+	bld 3 gateway 72
 	wait 24
 	var set canAttack 1 13
 	bld 4 pylon 66
@@ -1419,7 +1419,7 @@ script_id PMCx
 	wait 24
 	var set cutWorker 0 13
 	wait 600
-	bld 1 robotics_facility 66
+	bld 1 robotics_facility 72
 	wait 1800
 	var set cutWorker 1 13
 	queue 1 dragoon gateway 255 Global Loc.63 80
@@ -1456,9 +1456,9 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 300
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 300
 	bld 1 assimilator 66
 	wait 24
@@ -1471,7 +1471,7 @@ script_id PMCx
 	wait 300
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 600
-	bld 1 robotics_facility 66
+	bld 1 robotics_facility 72
 	wait 300
 	upg_queue 1 dragoon_range 88
 	wait 24
@@ -1483,23 +1483,23 @@ script_id PMCx
 	:buildGenFin
 	call buildBool
 	wait 600
-	p_need 1 citadel_of_adun
+	call wCit
 	wait 300
-	p_need 2 forge
+	call wForge
 	wait 24
-	p_need 1 robotics_support_bay
+	call wRoboBay
 	wait 600
-	p_need 1 templar_archives
+	call wTemp
 	wait 600
-	p_need 1 observatory
+	call wObs
 	wait 300
-	p_need 1 fleet_beacon
+	call wFleet
 	wait 600
-	p_need 1 arbiter_tribunal
+	call wArb
 	wait 300
-	p_need 3 forge
+	call wForge
 	wait 24
-	p_need 2 cybernetics_core
+	call wCyb
 	stop
 	
 	:buildOrderRanger
@@ -1512,11 +1512,11 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 300
 	bld 1 assimilator 66
 	wait 24
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 300
 	var set buildSupply 1 13
 	wait 300
@@ -1538,7 +1538,7 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 600
 	bld 1 assimilator 66
 	wait 24
@@ -1548,11 +1548,11 @@ script_id PMCx
 	wait 24
 	bld 1 cybernetics_core 66
 	wait 300
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 300
 	queue 1 dragoon gateway 255 Local Loc.63 80
 	wait 24
-	bld 1 robotics_facility 66
+	bld 1 robotics_facility 72
 	wait 300
 	bld 1 forge 66
 	wait 300
@@ -1572,7 +1572,7 @@ script_id PMCx
 	var set cutWorker 0 13
 	var set buildSupply 1 13
 	wait 60
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 300
 	bld 1 assimilator 66
 	wait 24
@@ -1581,9 +1581,9 @@ script_id PMCx
 	var set canStatic 1 13
 	bld 1 cybernetics_core 66
 	wait 300
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 600
-	bld 1 robotics_facility 66
+	bld 1 robotics_facility 72
 	wait 24
 	upg_queue 1 dragoon_range 88
 	multi addProd
@@ -1593,7 +1593,7 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 600
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 900
 	queue 1 zealot gateway 255 Global Loc.63 80
 	wait 24
@@ -1619,7 +1619,7 @@ script_id PMCx
 	wait 300
 	bld 4 pylon 66
 	wait 24
-	bld 3 gateway 66
+	bld 3 gateway 72
 	wait 240
 	var set canAttack 1 13
 	wait 600
@@ -1651,7 +1651,7 @@ script_id PMCx
 	wait 24
 	upg_queue 1 p_ground_weapon 88
 	wait 24
-	bld 4 gateway 66
+	bld 4 gateway 72
 	wait 600
 	queue 1 zealot gateway 255 Global Loc.63 80
 	wait 1200
@@ -1674,23 +1674,23 @@ script_id PMCx
 	:buildRangerFin
 	call buildBool
 	wait 600
-	p_need 1 robotics_support_bay
+	call wRoboBay
 	wait 600
-	p_need 1 citadel_of_adun
+	call wCit
 	wait 300
-	p_need 2 forge
+	call wForge
 	wait 600
-	p_need 1 fleet_beacon
+	call wFleet
 	wait 600
-	p_need 2 cybernetics_core
+	call wCyb
 	wait 24
-	p_need 1 observatory
+	call wObs
 	wait 600
-	p_need 1 templar_archives
+	call wTemp
 	wait 600
-	p_need 1 arbiter_tribunal
+	call wArb
 	wait 24
-	p_need 3 forge
+	call wForge
 	stop
 	
 	:buildOrderGate
@@ -1703,18 +1703,18 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 300
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 24
-	bld 3 gateway 66
+	bld 3 gateway 72
 	wait 300
 	bld 2 pylon 66
 	wait 300
 	bld 1 assimilator 66
 	wait 300
 	var set buildSupply 1 13
-	bld 4 gateway 66
+	bld 4 gateway 72
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 24
 	var set canAttack 1 13
@@ -1747,9 +1747,9 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 300
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 24
 	bld 1 assimilator 66
 	wait 24
@@ -1759,7 +1759,7 @@ script_id PMCx
 	wait 24
 	bld 1 cybernetics_core 66
 	wait 300
-	bld 3 gateway 66
+	bld 3 gateway 72
 	wait 24
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 300
@@ -1785,9 +1785,9 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 300
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 24
 	bld 1 assimilator 66
 	wait 300
@@ -1821,9 +1821,9 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 300
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 300
 	bld 2 pylon 66
 	wait 300
@@ -1835,28 +1835,28 @@ script_id PMCx
 	wait 300
 	bld 1 cybernetics_core 66
 	wait 300
-	bld 3 gateway 66
+	bld 3 gateway 72
 	wait 24
 	bld 3 pylon 66
 	wait 300
 	queue 1 zealot gateway 255 Global Loc.63 80
 	wait 24
-	bld 2 principality 66
+	bld 2 principality 72
 	wait 24
 	upg_queue 1 p_ground_weapon 88
 	wait 300
 	bld 4 pylon 66
 	wait 600
-	bld 3 principality 66
+	bld 3 principality 72
 	wait 300
 	bld 1 citadel_of_adun 66
 	wait 300
-	bld 4 gateway 66
+	bld 4 gateway 72
 	wait 24
 	var set canAttack 1 13
 	var set buildSupply 1 13
 	wait 600
-	bld 4 principality 66
+	bld 4 principality 72
 	wait 300
 	bld 2 forge 66
 	wait 600
@@ -1868,27 +1868,27 @@ script_id PMCx
 	var set canExpand 0 13
 	var set cutWorker 0 13
 	wait 600
-	bld 6 gateway 66
+	bld 6 gateway 72
 	wait 900
-	bld 6 principality 66
+	bld 6 principality 72
 	multi addProd
 	
 	:buildGateFin
 	call buildBool
 	wait 300
-	p_need 1 templar_archives
+	call wTemp
 	wait 600
-	p_need 1 observatory
+	call wObs
 	wait 300
-	p_need 3 forge
+	call wForge
 	wait 600
-	p_need 1 robotics_support_bay
+	call wRoboBay
 	wait 300
-	p_need 1 arbiter_tribunal
+	call wArb
 	wait 600
-	p_need 1 fleet_beacon
+	call wFleet
 	wait 24
-	p_need 2 cybernetics_core
+	call wCyb
 	stop
 	
 	:buildOrderSkylord
@@ -1907,7 +1907,7 @@ script_id PMCx
 	wait 600
 	var set canExpand 0 13
 	wait 24
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 24
 	bld 1 assimilator 66
 	wait 300
@@ -1918,7 +1918,7 @@ script_id PMCx
 	wait 24
 	multi addProd
 	wait 600
-	bld 1 stargate 66
+	bld 1 stargate 72
 	wait 24
 	var set canStatic 1 13
 	wait 300
@@ -1931,7 +1931,7 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 24
 	var set cutWorker 1 13
 	var set canExpand 1 13
@@ -1950,9 +1950,9 @@ script_id PMCx
 	wait 300
 	var set canStatic 1 13
 	wait 300
-	bld 1 stargate 66
+	bld 1 stargate 72
 	wait 600
-	bld 2 stargate 66
+	bld 2 stargate 72
 	wait 24
 	upg_queue 1 p_air_weapon 88
 	wait 600
@@ -1969,18 +1969,18 @@ script_id PMCx
 	wait 300
 	bld 1 pylon 66
 	wait 300
-	bld 1 gateway 66
+	bld 1 gateway 72
 	wait 24
 	bld 1 assimilator 66
 	wait 300
-	bld 2 gateway 66
+	bld 2 gateway 72
 	wait 600
 	var set buildSupply 1 13
 	bld 1 cybernetics_core 66
 	wait 24
 	queue 1 zealot gateway 255 Local Loc.63 80
 	wait 300
-	bld 1 stargate 66
+	bld 1 stargate 72
 	wait 24
 	upg_queue 1 p_air_weapon 88
 	wait 300
@@ -2001,83 +2001,76 @@ script_id PMCx
 	:buildSkylordFin
 	call buildBool
 	wait 300
-	p_need 2 forge
+	call wForge
 	wait 300
-	p_need 1 citadel_of_adun
+	call wCit
 	wait 900
-	p_need 1 fleet_beacon
+	call wFleet
 	wait 300
-	p_need 2 cybernetics_core
+	call wCyb
 	wait 600
-	p_need 1 robotics_facility
+	call wRoboFac
 	wait 300
-	p_need 1 templar_archives
+	call wTemp
 	wait 600
-	p_need 1 observatory
+	call wObs
 	wait 600
-	p_need 1 robotics_support_bay
+	call wRoboBay
 	wait 24
-	p_need 1 arbiter_tribunal
+	call wArb
 	wait 300
-	p_need 3 forge
+	call wForge
 	stop
 	
 	:buildOrderExp
 	bring 13 AtL_W 1 gateway|principality|warp_anchor Loc.63 blank
-	p_need 1 cybernetics_core
+	call wCyb
 	wait 900
-	p_need 1 citadel_of_adun
+	call wCit
 	wait 1200
-	p_need 1 robotics_facility
+	call wRoboFac
 	wait 600
-	p_need 1 templar_archives
+	call wTemp
 	wait 600
-	p_need 1 observatory
+	call wObs
 	wait 900
-	p_need 1 fleet_beacon
+	call wFleet
 	wait 1200
-	p_need 1 arbiter_tribunal
+	call wArb
 	stop
 	
 	:wAss
 	wait 12
 	resarea 255 Ex 255 Gas 0 blankReturn
-	res 13 AtM Ore 99 wAss
 	bld 1 assimilator 65
 	return
 	
 	:wGateway
 	wait 12
 	notowns nexus wGateway
-	res 13 AtM Ore 149 wGateway
-	add_bld 255 gateway 1 99 66
+	add_bld 255 gateway 1 99 72
 	return
 	
 	:wForge
 	wait 12
 	notowns nexus wForge
-	res 13 AtM Ore 149 wForge
-	bring 13 AtL 4 forge Loc.63 wForge2
+	bring 13 AtL 4 forge Loc.63 blank
+	local 255 AtL 3 forge wForge2
 	call wUpgradeDef
-	add_bld 255 forge 1 4 66
+	add_bld 255 forge 1 3 66
 	return
 	
 	:wForge2
-	local 255 AtL 1 forge wForge3
 	p_need 1 forge
-	return
-	
-	:wForge3
-	p_need 2 forge
 	return
 	
 	:wCyb
 	wait 12
 	notowns gateway wCyb
-	res 13 AtM Ore 199 wCyb
-	bring 13 AtL 2 cybernetics_core Loc.63 wCyb2
+	bring 13 AtL 3 cybernetics_core Loc.63 blank
+	local 255 AtL 2 cybernetics_core wCyb2
 	call wUpgradeDef
-	add_bld 255 cybernetics_core 1 2 66
+	add_bld 255 cybernetics_core 1 3 66
 	return
 	
 	:wCyb2
@@ -2087,21 +2080,19 @@ script_id PMCx
 	:wRoboFac
 	wait 12
 	notowns cybernetics_core wRoboFac
-	res 13 AtM Any 199 wRoboFac
-	add_bld 255 robotics_facility 1 99 66
+	add_bld 255 robotics_facility 1 99 72
 	return
 	
 	:wStargate
 	wait 12
 	notowns cybernetics_core wStargate
-	res 13 AtM Any 199 wStargate
-	add_bld 255 stargate 1 99 66
+	add_bld 255 stargate 1 99 72
 	return
 	
 	:wCit
 	wait 12
 	notowns cybernetics_core wCit
-	res 13 AtM Any 149 wCit
+	bring 13 AtL 2 citadel_of_adun Loc.63 blank
 	bring 13 AtL 1 citadel_of_adun Loc.63 wCit2
 	call wUpgradeDef
 	add_bld 255 citadel_of_adun 1 1 66
@@ -2114,7 +2105,7 @@ script_id PMCx
 	:wRoboBay
 	wait 12
 	notowns robotics_facility wRoboBay
-	res 13 AtM Any 149 wRoboBay
+	bring 13 AtL 2 robotics_support_bay Loc.63 blank
 	bring 13 AtL 1 robotics_support_bay Loc.63 wRoboBay2
 	call wUpgradeDef
 	add_bld 255 robotics_support_bay 1 1 66
@@ -2127,7 +2118,7 @@ script_id PMCx
 	:wFleet
 	wait 12
 	notowns stargate wFleet
-	res 13 AtM Any 249 wFleet
+	bring 13 AtL 2 fleet_beacon Loc.63 blank
 	bring 13 AtL 1 fleet_beacon Loc.63 wFleet2
 	call wUpgradeDef
 	add_bld 255 fleet_beacon 1 1 66
@@ -2140,7 +2131,7 @@ script_id PMCx
 	:wTemp
 	wait 12
 	notowns citadel_of_adun wTemp
-	res 13 AtM Any 149 wTemp
+	bring 13 AtL 2 templar_archives Loc.63 blank
 	bring 13 AtL 1 templar_archives Loc.63 wTemp2
 	call wUpgradeDef
 	add_bld 255 templar_archives 1 1 66
@@ -2153,7 +2144,7 @@ script_id PMCx
 	:wObs
 	wait 12
 	notowns robotics_facility wObs
-	res 13 AtM Any 99 wObs
+	bring 13 AtL 2 observatory Loc.63 blank
 	bring 13 AtL 1 observatory Loc.63 wObs2
 	call wUpgradeDef
 	add_bld 255 observatory 1 1 66
@@ -2167,7 +2158,7 @@ script_id PMCx
 	wait 12
 	notowns stargate wArb
 	notowns templar_archives wArb
-	res 13 AtM Any 149 wArb
+	bring 13 AtL 2 arbiter_tribunal Loc.63 blank
 	bring 13 AtL 1 arbiter_tribunal Loc.63 wArb2
 	call wUpgradeDef
 	add_bld 255 arbiter_tribunal 1 1 66
@@ -2280,47 +2271,47 @@ script_id PMCx
 	
 	:addGatewayMinGen
 	local 255 AtL 2 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 2 66
+	add_bld 255 gateway 1 2 72
 	rand_j 64 addGatewayMinGen2
 	rand_j 51 addGatewayMinGen3
 	goto addProdSuccess
 	
 	:addGatewayMinGen2
-	add_bld 255 principality 1 2 66
+	add_bld 255 principality 1 2 72
 	goto addProdSuccess
 	
 	:addGatewayMinGen3
-	add_bld 255 warp_anchor 1 2 66
+	add_bld 255 warp_anchor 1 2 72
 	goto addProdSuccess
 	
 	:addGatewayMinMech
 	local 255 AtL 2 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 2 66
+	add_bld 255 gateway 1 2 72
 	rand_j 85 addGatewayMinMech2
 	rand_j 51 addGatewayMinMech3
 	goto addProdSuccess
 	
 	:addGatewayMinMech2
-	add_bld 255 warp_anchor 1 2 66
+	add_bld 255 warp_anchor 1 2 72
 	goto addProdSuccess
 	
 	:addGatewayMinMech3
-	add_bld 255 principality 1 2 66
+	add_bld 255 principality 1 2 72
 	goto addProdSuccess
 	
 	:addGatewayMinGate
 	local 255 AtL 3 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 3 66
+	add_bld 255 gateway 1 3 72
 	rand_j 85 addGatewayMinGate2
 	rand_j 51 addGatewayMinGate3
 	goto addProdSuccess
 	
 	:addGatewayMinGate2
-	add_bld 255 principality 1 3 66
+	add_bld 255 principality 1 3 72
 	goto addProdSuccess
 	
 	:addGatewayMinGate3
-	add_bld 255 warp_anchor 1 3 66
+	add_bld 255 warp_anchor 1 3 72
 	goto addProdSuccess
 	
 	:addGatewayMax
@@ -2330,62 +2321,62 @@ script_id PMCx
 	
 	:addGatewayMaxGen
 	local 255 AtL 8 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 8 66
+	add_bld 255 gateway 1 8 72
 	rand_j 64 addGatewayMaxGen2
 	rand_j 51 addGatewayMaxGen3
 	goto addProdSuccess
 	
 	:addGatewayMaxGen2
-	add_bld 255 principality 1 8 66
+	add_bld 255 principality 1 8 72
 	goto addProdSuccess
 	
 	:addGatewayMaxGen3
-	add_bld 255 principality 1 8 66
+	add_bld 255 principality 1 8 72
 	goto addProdSuccess
 	
 	:addGatewayMaxMech
 	local 255 AtL 6 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 6 66
+	add_bld 255 gateway 1 6 72
 	rand_j 85 addGatewayMaxMech2
 	rand_j 51 addGatewayMaxMech3
 	goto addProdSuccess
 	
 	:addGatewayMaxMech2
-	add_bld 255 warp_anchor 1 6 66
+	add_bld 255 warp_anchor 1 6 72
 	goto addProdSuccess
 	
 	:addGatewayMaxMech3
-	add_bld 255 principality 1 6 66
+	add_bld 255 principality 1 6 72
 	goto addProdSuccess
 	
 	:addGatewayMaxGate
 	local 255 AtL 10 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 10 66
+	add_bld 255 gateway 1 10 72
 	rand_j 85 addGatewayMaxGate2
 	rand_j 51 addGatewayMaxGate3
 	goto addProdSuccess
 	
 	:addGatewayMaxGate2
-	add_bld 255 principality 1 10 66
+	add_bld 255 principality 1 10 72
 	goto addProdSuccess
 	
 	:addGatewayMaxGate3
-	add_bld 255 warp_anchor 1 10 66
+	add_bld 255 warp_anchor 1 10 72
 	goto addProdSuccess
 	
 	:addGatewayMaxAir
 	local 255 AtL 10 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 10 66
+	add_bld 255 gateway 1 10 72
 	rand_j 64 addGatewayMaxAir2
 	rand_j 51 addGatewayMaxAir3
 	goto addProdSuccess
 	
 	:addGatewayMaxAir2
-	add_bld 255 principality 1 10 66
+	add_bld 255 principality 1 10 72
 	goto addProdSuccess
 	
 	:addGatewayMaxAir3
-	add_bld 255 warp_anchor 1 10 66
+	add_bld 255 warp_anchor 1 10 72
 	goto addProdSuccess
 	
 	:addGatewayMed
@@ -2395,62 +2386,62 @@ script_id PMCx
 	
 	:addGatewayMedGen
 	local 255 AtL 5 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 5 66
+	add_bld 255 gateway 1 5 72
 	rand_j 64 addGatewayMedGen2
 	rand_j 51 addGatewayMedGen3
 	goto addProdSuccess
 	
 	:addGatewayMedGen2
-	add_bld 255 principality 1 5 66
+	add_bld 255 principality 1 5 72
 	goto addProdSuccess
 	
 	:addGatewayMedGen3
-	add_bld 255 warp_anchor 1 5 66
+	add_bld 255 warp_anchor 1 5 72
 	goto addProdSuccess
 	
 	:addGatewayMedMech
 	local 255 AtL 4 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 4 66
+	add_bld 255 gateway 1 4 72
 	rand_j 85 addGatewayMedMech2
 	rand_j 51 addGatewayMedMech3
 	goto addProdSuccess
 	
 	:addGatewayMedMech2
-	add_bld 255 warp_anchor 1 4 66
+	add_bld 255 warp_anchor 1 4 72
 	goto addProdSuccess
 	
 	:addGatewayMedMech3
-	add_bld 255 principality 1 4 66
+	add_bld 255 principality 1 4 72
 	goto addProdSuccess
 	
 	:addGatewayMedGate
 	local 255 AtL 5 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 5 66
+	add_bld 255 gateway 1 5 72
 	rand_j 85 addGatewayMedGate2
 	rand_j 51 addGatewayMedGate3
 	goto addProdSuccess
 	
 	:addGatewayMedGate2
-	add_bld 255 principality 1 5 66
+	add_bld 255 principality 1 5 72
 	goto addProdSuccess
 	
 	:addGatewayMedGate3
-	add_bld 255 warp_anchor 1 5 66
+	add_bld 255 warp_anchor 1 5 72
 	goto addProdSuccess
 	
 	:addGatewayMedAir
 	local 255 AtL 4 gateway|principality|warp_anchor addReturn
-	add_bld 255 gateway 1 4 66
+	add_bld 255 gateway 1 4 72
 	rand_j 64 addGatewayMedAir2
 	rand_j 51 addGatewayMedAir3
 	goto addProdSuccess
 	
 	:addGatewayMedAir2
-	add_bld 255 principality 1 4 66
+	add_bld 255 principality 1 4 72
 	goto addProdSuccess
 	
 	:addGatewayMedAir3
-	add_bld 255 warp_anchor 1 4 66
+	add_bld 255 warp_anchor 1 4 72
 	goto addProdSuccess
 	
 	:addRoboCheck
@@ -2465,13 +2456,13 @@ script_id PMCx
 	
 	:addRoboMinGen
 	local 255 AtL 1 robotics_facility addReturn
-	add_bld 255 robotics_facility 1 1 66
+	add_bld 255 robotics_facility 1 1 72
 	rand_j 43 addRoboMinGen2
 	goto addProdSuccess
 	
 	:addRoboMinGen2
 	bring 13 AtL 3 robotics_authority Loc.63 addProdSuccess
-	add_bld 255 robotics_authority 1 1 66
+	add_bld 255 robotics_authority 1 1 72
 	goto addProdSuccess
 	
 	:addRoboMax
@@ -2480,14 +2471,14 @@ script_id PMCx
 	
 	:addRoboMaxGen
 	local 255 AtL 3 robotics_facility addReturn
-	add_bld 255 robotics_facility 1 3 66
+	add_bld 255 robotics_facility 1 3 72
 	local 255 AtL 1 robotics_authority addProdSuccess
 	rand_j 43 addRoboMinGen2
 	goto addProdSuccess
 	
 	:addRoboMaxMech
 	local 255 AtL 4 robotics_facility addReturn
-	add_bld 255 robotics_facility 1 4 66
+	add_bld 255 robotics_facility 1 4 72
 	local 255 AtL 1 robotics_authority addProdSuccess
 	rand_j 43 addRoboMinGen2
 	goto addProdSuccess
@@ -2498,7 +2489,7 @@ script_id PMCx
 	
 	:addRoboMedGen
 	local 255 AtL 2 robotics_facility addReturn
-	add_bld 255 robotics_facility 1 2 66
+	add_bld 255 robotics_facility 1 2 72
 	local 255 AtL 1 robotics_authority addProdSuccess
 	rand_j 43 addRoboMinGen2
 	goto addProdSuccess
@@ -2512,62 +2503,62 @@ script_id PMCx
 	
 	:addStargateMinGen
 	local 255 AtL 3 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 1 66
+	add_bld 255 stargate 1 1 72
 	rand_j 85 addStargateMinGen2
 	rand_j 51 addStargateMinGen3
 	goto addProdSuccess
 	
 	:addStargateMinGen2
-	add_bld 255 argosy 1 1 66
+	add_bld 255 argosy 1 1 72
 	goto addProdSuccess
 	
 	:addStargateMinGen3
-	add_bld 255 starfield 1 1 66	
+	add_bld 255 starfield 1 1 72
 	goto addProdSuccess
 	
 	:addStargateMinMech
 	local 255 AtL 3 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 2 66
+	add_bld 255 stargate 1 2 72
 	rand_j 64 addStargateMinMech2
 	rand_j 51 addStargateMinMech3
 	goto addProdSuccess
 	
 	:addStargateMinMech2
-	add_bld 255 argosy 1 2 66
+	add_bld 255 argosy 1 2 72
 	goto addProdSuccess
 	
 	:addStargateMinMech3
-	add_bld 255 starfield 1 2 66	
+	add_bld 255 starfield 1 2 72
 	goto addProdSuccess
 	
 	:addStargateMinGate
 	local 255 AtL 2 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 1 66
+	add_bld 255 stargate 1 1 72
 	rand_j 51 addStargateMinGate2
 	rand_j 43 addStargateMinGate3
 	goto addProdSuccess
 	
 	:addStargateMinGate2
-	add_bld 255 argosy 1 1 66
+	add_bld 255 argosy 1 1 72
 	goto addProdSuccess
 	
 	:addStargateMinGate3
-	add_bld 255 starfield 1 1 66	
+	add_bld 255 starfield 1 1 72
 	goto addProdSuccess
 	
 	:addStargateMinAir
 	local 255 AtL 4 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 2 66
+	add_bld 255 stargate 1 2 72
 	rand_j 85 addStargateMinAir2
 	rand_j 64 addStargateMinAir3
 	goto addProdSuccess
 	
 	:addStargateMinAir2
-	add_bld 255 argosy 1 2 66
+	add_bld 255 argosy 1 2 72
 	goto addProdSuccess
 	
 	:addStargateMinAir3
-	add_bld 255 starfield 1 2 66	
+	add_bld 255 starfield 1 2 72
 	goto addProdSuccess
 	
 	:addStargateMax
@@ -2577,62 +2568,62 @@ script_id PMCx
 	
 	:addStargateMaxGen
 	local 255 AtL 3 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 4 66
+	add_bld 255 stargate 1 4 72
 	rand_j 85 addStargateMaxGen2
 	rand_j 51 addStargateMaxGen3
 	goto addProdSuccess
 	
 	:addStargateMaxGen2
-	add_bld 255 argosy 1 4 66
+	add_bld 255 argosy 1 4 72
 	goto addProdSuccess
 	
 	:addStargateMaxGen3
-	add_bld 255 starfield 1 4 66	
+	add_bld 255 starfield 1 4 72
 	goto addProdSuccess
 	
 	:addStargateMaxMech
 	local 255 AtL 4 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 3 66
+	add_bld 255 stargate 1 3 72
 	rand_j 64 addStargateMaxMech2
 	rand_j 51 addStargateMaxMech3
 	goto addProdSuccess
 	
 	:addStargateMaxMech2
-	add_bld 255 argosy 1 4 66
+	add_bld 255 argosy 1 4 72
 	goto addProdSuccess
 	
 	:addStargateMaxMech3
-	add_bld 255 starfield 1 4 66	
+	add_bld 255 starfield 1 4 672
 	goto addProdSuccess
 	
 	:addStargateMaxGate
 	local 255 AtL 3 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 2 66
+	add_bld 255 stargate 1 2 72
 	rand_j 51 addStargateMaxGate2
 	rand_j 43 addStargateMaxGate3
 	goto addProdSuccess
 	
 	:addStargateMaxGate2
-	add_bld 255 argosy 1 3 66
+	add_bld 255 argosy 1 3 72
 	goto addProdSuccess
 	
 	:addStargateMaxGate3
-	add_bld 255 starfield 1 3 66	
+	add_bld 255 starfield 1 3 72
 	goto addProdSuccess
 	
 	:addStargateMaxAir
 	local 255 AtL 5 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 5 66
+	add_bld 255 stargate 1 5 72
 	rand_j 85 addStargateMaxAir2
 	rand_j 64 addStargateMaxAir3
 	goto addProdSuccess
 	
 	:addStargateMaxAir2
-	add_bld 255 argosy 1 5 66
+	add_bld 255 argosy 1 5 72
 	goto addProdSuccess
 	
 	:addStargateMaxAir3
-	add_bld 255 starfield 1 5 66	
+	add_bld 255 starfield 1 5 72
 	goto addProdSuccess
 	
 	:addStargateMed
@@ -2642,62 +2633,62 @@ script_id PMCx
 	
 	:addStargateMedGen
 	local 255 AtL 3 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 3 66
+	add_bld 255 stargate 1 3 72
 	rand_j 85 addStargateMedGen2
 	rand_j 51 addStargateMedGen3
 	goto addProdSuccess
 	
 	:addStargateMedGen2
-	add_bld 255 argosy 1 3 66
+	add_bld 255 argosy 1 3 72
 	goto addProdSuccess
 	
 	:addStargateMedGen3
-	add_bld 255 starfield 1 3 66	
+	add_bld 255 starfield 1 3 72
 	goto addProdSuccess
 	
 	:addStargateMedMech
 	local 255 AtL 3 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 3 66
+	add_bld 255 stargate 1 3 72
 	rand_j 64 addStargateMedMech2
 	rand_j 51 addStargateMedMech3
 	goto addProdSuccess
 	
 	:addStargateMedMech2
-	add_bld 255 argosy 1 3 66
+	add_bld 255 argosy 1 3 72
 	goto addProdSuccess
 	
 	:addStargateMedMech3
-	add_bld 255 starfield 1 3 66	
+	add_bld 255 starfield 1 3 72
 	goto addProdSuccess
 	
 	:addStargateMedGate
 	local 255 AtL 2 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 2 66
+	add_bld 255 stargate 1 2 72
 	rand_j 51 addStargateMedGate2
 	rand_j 43 addStargateMedGate3
 	goto addProdSuccess
 	
 	:addStargateMedGate2
-	add_bld 255 argosy 1 2 66
+	add_bld 255 argosy 1 2 72
 	goto addProdSuccess
 	
 	:addStargateMedGate3
-	add_bld 255 starfield 1 2 66	
+	add_bld 255 starfield 1 2 72
 	goto addProdSuccess
 	
 	:addStargateMedAir
 	local 255 AtL 4 stargate|argosy|starfield addReturn
-	add_bld 255 stargate 1 4 66
+	add_bld 255 stargate 1 4 72
 	rand_j 85 addStargateMedAir2
 	rand_j 64 addStargateMedAir3
 	goto addProdSuccess
 	
 	:addStargateMedAir2
-	add_bld 255 argosy 1 4 66
+	add_bld 255 argosy 1 4 72
 	goto addProdSuccess
 	
 	:addStargateMedAir3
-	add_bld 255 starfield 1 4 66	
+	add_bld 255 starfield 1 4 72
 	goto addProdSuccess
 	
 	:addProdSuccess
