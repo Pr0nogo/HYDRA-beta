@@ -21,7 +21,6 @@ script_id TMCx
 	town_state 255 persist true
 	set_var_local blank stp 13
 	set_var_local blankReturn ret 13
-	set_var_local tUpgEnd upgEndT 13
 	set_var_local wWorkerDef wWorker 13
 	var set townCount 1 13
 	var set miningCount 1 13
@@ -50,7 +49,7 @@ script_id TMCx
 	multi tUpg
 	multi tExpand
 	multi tScale
-	multi bLayout
+	#multi bLayout
 	#multi qMilitary
 	
 	:slcPers
@@ -122,7 +121,7 @@ script_id TMCx
 	goto idle
 	
 	:dbgBuild2Mech
-	print Terran<32>Mech<32>build<32>2:<32>TankWraith
+	print Terran<32>Mech<32>build<32>2:<32>FE<32>5Fact
 	goto idle
 	
 	:dbgBuild2Bio
@@ -479,156 +478,38 @@ script_id TMCx
 	return
 	
 	:tUpg
-	var set upgEngUtility 0 13
-	var set upgEngInfArmor 0 13
-	var set upgEngInfWeapon 0 13
-	var set upgArmVehArmor 0 13
-	var set upgArmVehWeapon 0 13
-	var set upgArmShipArmor 0 13
-	var set upgArmShipWeapon 0 13
-	var set upgAcadGen 0 13
-	var set upgAcadFirebat 0 13
-	var set upgAcadCyprian 0 13
-	var set upgMedbayMedic 0 13
-	var set upgMedbayShaman 0 13
-	var set upgCovGhost 0 13
-	var set upgMacVulture 0 13
-	var set upgMacTank 0 13
-	var set upgConWraith 0 13
-	var set upgConDropship 0 13
-	var set upgConWyvern 0 13
-	var set upgSciVessel 0 13
-	var set upgSciAzazel 0 13
-	var set upgPhysGen 0 13
-	var set upgEndVar 0 13
 	multi ioComsat
 	multi ioMedstims
 	multi ioIrradiate
 	multi ioMatrix
 	var Ex|wait canUpgrade 1 13
-	multi tUpgEnd
-	dth 13 Ex 1 crashed_battle tUpgMech
-	dth 13 Ex 2 crashed_battle tUpgBio
-	dth 13 Ex 3 crashed_battle tUpgAir
-	goto tUpgGen
-	
-	:tUpgEnd
-	wait 12
-	var Ex|jump upgEngUtility 0 upgEndT 13
-	var Ex|jump upgEngInfArmor 0 upgEndT 13
-	var Ex|jump upgEngInfWeapon 0 upgEndT 13
-	var Ex|jump upgArmVehArmor 0 upgEndT 13
-	var Ex|jump upgArmVehWeapon 0 upgEndT 13
-	var Ex|jump upgArmShipArmor 0 upgEndT 13
-	var Ex|jump upgArmShipWeapon 0 upgEndT 13
-	var Ex|jump upgAcadGen 0 upgEndT 13
-	var Ex|jump upgAcadFirebat 0 upgEndT 13
-	var Ex|jump upgAcadCyprian 0 upgEndT 13
-	var Ex|jump upgMedbayMedic 0 upgEndT 13
-	var Ex|jump upgMedbayShaman 0 upgEndT 13
-	var Ex|jump upgCovGhost 0 upgEndT 13
-	var Ex|jump upgMacVulture 0 upgEndT 13
-	var Ex|jump upgMacTank 0 upgEndT 13
-	var Ex|jump upgConWraith 0 upgEndT 13
-	var Ex|jump upgConDropship 0 upgEndT 13
-	var Ex|jump upgConWyvern 0 upgEndT 13
-	var Ex|jump upgSciVessel 0 upgEndT 13
-	var Ex|jump upgSciAzazel 0 upgEndT 13
-	var Ex|jump upgPhysGen 0 upgEndT 13
-	var set upgEndVar 1 13
+	multi upgEngInfArmor
+	multi upgEngInfWeapon
+	multi upgEngUtility
+	multi upgAcadMarine
+	multi upgAcadFirebat
+	multi upgAcadCyprian
+	multi upgArmVehArmor
+	multi upgArmVehWeapon
+	multi upgArmShipArmor
+	multi upgArmShipWeapon
+	multi upgConDropship
+	multi upgConWraith
+	multi upgConWyvern
+	multi upgCovGhost
+	#multi upgCovSavant
+	multi upgMacVulture
+	multi upgMacTank
+	multi upgMacGoliath
+	multi upgMedbayMedic
+	multi upgMedbayShaman
+	multi upgPhysBattle
+	multi upgSciAzazel
+	multi upgSciVessel
 	stop
 	
-	:tUpgGen
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 engineering_bay Loc.63 upgEngInfArmorCheck
-	bring 13 AtL_M 1 academy Loc.63 upgAcadGenCheck
-	bring 13 AtL_M 1 armory Loc.63 upgArmVehArmorCheck
-	bring 13 AtL_M 1 armory Loc.63 upgEngInfWeaponCheck
-	bring 13 AtL_M 1 medbay Loc.63 upgMedbayMedicCheck
-	bring 13 AtL_M 1 machine_shop Loc.63 upgMacTankCheck
-	bring 13 AtL_M 1 machine_shop Loc.63 upgArmVehWeaponCheck
-	bring 13 AtL_M 1 science_facility Loc.63 upgSciAzazelCheck
-	bring 13 AtL_M 1 science_facility Loc.63 upgMacVultureCheck
-	bring 13 AtL_M 1 science_facility Loc.63 upgAcadFirebatCheck
-	bring 13 AtL_M 2 engineering_bay Loc.63 upgEngUtilityCheck
-	bring 13 AtL_M 1 covert_ops Loc.63 upgCovGhostCheck
-	bring 13 AtL_M 1 starport Loc.63 upgArmShipArmorCheck
-	bring 13 AtL_M 1 control_tower Loc.63 upgConDropshipCheck
-	bring 13 AtL_M 2 starport Loc.63 upgConWraithCheck
-	bring 13 AtL_M 2 starport Loc.63 upgConWyvernCheck
-	bring 13 AtL_M 2 starport Loc.63 upgArmShipWeaponCheck
-	bring 13 AtL_M 1 physics_lab Loc.63 upgPhysGenCheck
-	goto tUpgGen
-	
-	:tUpgMech
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 armory Loc.63 upgArmVehWeaponCheck
-	bring 13 AtL_M 1 machine_shop Loc.63 upgMacVultureCheck
-	bring 13 AtL_M 2 armory Loc.63 upgMacTankCheck
-	bring 13 AtL_M 2 armory Loc.63 upgArmVehArmorCheck
-	bring 13 AtL_M 1 science_facility Loc.63 upgSciVesselCheck
-	bring 13 AtL_M 1 academy Loc.63 upgAcadGenCheck
-	bring 13 AtL_M 3 armory Loc.63 upgArmShipArmorCheck
-	bring 13 AtL_M 1 engineering_bay Loc.63 upgEngInfArmorCheck
-	bring 13 AtL_M 1 engineering_bay Loc.63 upgAcadCyprianCheck
-	bring 13 AtL_M 1 medbay Loc.63 upgEngUtilityCheck
-	bring 13 AtL_M 1 medbay Loc.63 upgMedbayShamanCheck
-	bring 13 AtL_M 1 control_tower Loc.63 upgConDropshipCheck
-	bring 13 AtL_M 1 control_tower Loc.63 upgArmShipWeaponCheck
-	bring 13 AtL_M 2 engineering_bay|armory Loc.63 upgEngInfWeaponCheck
-	bring 13 AtL_M 1 physics_lab Loc.63 upgPhysGenCheck
-	bring 13 AtL_M 2 control_tower Loc.63 upgConWraithCheck
-	bring 13 AtL_M 2 control_tower Loc.63 upgConWyvernCheck
-	goto tUpgMech
-	
-	:tUpgBio
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 engineering_bay Loc.63 upgEngInfWeaponCheck
-	bring 13 AtL_M 2 engineering_bay Loc.63 upgEngInfArmorCheck
-	bring 13 AtL_M 2 engineering_bay Loc.63 upgEngUtilityCheck
-	bring 13 AtL_M 1 academy Loc.63 upgAcadGenCheck
-	bring 13 AtL_M 2 engineering_bay Loc.63 upgAcadFirebatCheck
-	bring 13 AtL_M 1 medbay Loc.63 upgMedbayMedicCheck
-	bring 13 AtL_M 1 covert_ops Loc.63 upgCovGhostCheck
-	bring 13 AtL_M 1 science_facility Loc.63 upgSciAzazelCheck
-	bring 13 AtL_M 1 factory Loc.63 upgArmVehArmorCheck
-	bring 13 AtL_M 2 factory|armory Loc.63 upgArmVehWeaponCheck
-	bring 13 AtL_M 1 starport Loc.63 upgArmShipArmorCheck
-	bring 13 AtL_M 2 starport Loc.63 upgArmShipWeaponCheck
-	bring 13 AtL_M 1 control_tower Loc.63 upgConDropshipCheck
-	bring 13 AtL_M 2 starport Loc.63 upgConWraithCheck
-	bring 13 AtL_M 2 starport Loc.63 upgConWyvernCheck
-	bring 13 AtL_M 1 physics_lab Loc.63 upgPhysGenCheck
-	goto tUpgBio
-	
-	:tUpgAir
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 armory Loc.63 upgArmShipWeaponCheck
-	bring 13 AtL_M 2 armory Loc.63 upgArmShipArmorCheck
-	bring 13 AtL_M 3 armory Loc.63 upgArmVehArmorCheck
-	bring 13 AtL_M 1 control_tower Loc.63 upgConWraithCheck
-	bring 13 AtL_M 2 control_tower Loc.63 upgConDropshipCheck
-	bring 13 AtL_M 3 control_tower Loc.63 upgConWyvernCheck
-	bring 13 AtL_M 1 physics_lab Loc.63 upgPhysGenCheck
-	bring 13 AtL_M 1 engineering_bay Loc.63 upgEngInfArmorCheck
-	bring 13 AtL_M 2 engineering_bay Loc.63 upgEngInfWeaponCheck
-	bring 13 AtL_M 2 engineering_bay Loc.63 upgEngUtilityCheck
-	bring 13 AtL_M 1 science_facility Loc.63 upgSciVesselCheck
-	bring 13 AtL_M 1 medbay Loc.63 upgMedbayMedicCheck
-	bring 13 AtL_M 1 academy Loc.63 upgAcadGenCheck
-	bring 13 AtL_M 1 academy Loc.63 upgAcadCyprianCheck
-	bring 13 AtL_M 3 armory|factory Loc.63 upgArmVehWeaponCheck
-	bring 13 AtL_M 1 machine_shop Loc.63 upgMacTankCheck
-	bring 13 AtL_M 2 machine_shop Loc.63 upgMacVultureCheck
-	goto tUpgAir
-	
 	:upgEngUtilityCheck
-	var Ex|jump upgEngUtility 1 stp 13
-	var set upgEngUtility 1 13
+	call upgGenUtility
 	
 	:upgEngUtility
 	wait 12
@@ -644,9 +525,14 @@ script_id TMCx
 	extupgrade 1 comsat_mana 88
 	goto wUpgrade
 	
+	:upgGenUtility
+	wait 12
+	var AtL|jump townCount 4 ret 13
+	bring 13 AtM 2 engineering_bay Loc.63 upgGenUtility
+	return
+	
 	:upgEngInfArmorCheck
-	var Ex|jump upgEngInfArmor 1 stp 13
-	var set upgEngInfArmor 1 13
+	dth 13 Ex_C 2 crashed_battle upgBioInfArm
 	
 	:upgEngInfArmor
 	wait 12
@@ -671,9 +557,15 @@ script_id TMCx
 	upg_queue 5 t_infantry_armor 88
 	goto wUpgrade
 	
+	:upgBioInfArm
+	wait 12
+	var AtL|jump townCount 2 ret 13
+	bring 13 AtM 1 engineering_bay Loc.63 upgBioInfArm
+	return
+	
 	:upgEngInfWeaponCheck
-	var Ex|jump upgEngInfWeapon 1 stp 13
-	var set upgEngInfWeapon 1 13
+	dth 13 AtM_C 1 crashed_battle upgGenInfWeap
+	dth 13 AtL_C 3 crashed_battle upgGenInfWeap
 	
 	:upgEngInfWeapon
 	wait 12
@@ -698,13 +590,18 @@ script_id TMCx
 	upg_queue 5 t_infantry_weapon 88
 	goto wUpgrade
 	
-	:upgAcadGenCheck
-	var Ex|jump upgAcadGen 1 stp 13
-	var set upgAcadGen 1 13
-	
-	:upgAcadGen
+	:upgGenInfWeap
 	wait 12
-	notowns academy upgAcadGen
+	var AtL|jump townCount 3 ret 13
+	bring 13 AtM 1 engineering_bay Loc.63 upgGenInfWeap
+	return
+	
+	:upgAcadMarineCheck
+	dth 13 Ex_C 1 crashed_battle upgMechMarine
+	
+	:upgAcadMarine
+	wait 12
+	notowns academy upgAcadMarine
 	call wUpgradeDef
 	upg_queue 1 marine_range 88
 	upg_j 13 AtL_W 16 1 blank
@@ -714,9 +611,13 @@ script_id TMCx
 	tech_j 13 AtL_W 0 1 blank
 	stop
 	
+	:upgMechMarine
+	wait 12
+	bring 13 AtM 2 barracks Loc.63 upgMechMarine
+	return
+	
 	:upgAcadFirebatCheck
-	var Ex|jump upgAcadFirebat 1 stp 13
-	var set upgAcadFirebat 1 13
+	dth 13 Ex 1 crashed_battle blank
 	
 	:upgAcadFirebat
 	wait 12
@@ -728,8 +629,8 @@ script_id TMCx
 	goto wUpgrade
 	
 	:upgAcadCyprianCheck
-	var Ex|jump upgAcadCyprian 1 stp 13
-	var set upgAcadCyprian 1 13
+	dth 13 Ex 0 crashed_battle blank
+	dth 13 AtL 2 crashed_battle blank
 	
 	:upgAcadCyprian
 	wait 12
@@ -750,8 +651,7 @@ script_id TMCx
 	goto wUpgrade
 	
 	:upgMedbayMedicCheck
-	var Ex|jump upgMedbayMedic 1 stp 13
-	var set upgMedbayMedic 1 13
+	dth 13 Ex 1 crashed_battle blank
 	
 	:upgMedbayMedic
 	wait 12
@@ -774,8 +674,8 @@ script_id TMCx
 	goto wUpgrade
 	
 	:upgMedbayShamanCheck
-	var Ex|jump upgMedbayShaman 1 stp 13
-	var set upgMedbayShaman 1 13
+	dth 13 Ex 0 crashed_battle blank
+	dth 13 AtL 2 crashed_battle blank
 	
 	:upgMedbayShaman
 	wait 12
@@ -799,13 +699,12 @@ script_id TMCx
 	goto upgMedbayAdr
 	
 	:upgCovGhostCheck
-	var Ex|jump upgCovGhost 1 stp 13
-	var set upgCovGhost 1 13
+	dth 13 AtL_C 1 crashed_battle upgGenGhost
+	dth 13 AtL_C 3 crashed_battle upgGenGhost
 	
 	:upgCovGhost
 	wait 12
 	notowns covert_ops upgCovGhost
-	notowns science_facility upgCovGhost
 	wait 720
 	call wUpgradeDef
 	tech lockdown 88
@@ -824,9 +723,16 @@ script_id TMCx
 	extupgrade 1 augustgrads_revenge 88
 	goto wUpgrade
 	
+	:upgGenGhost
+	wait 12
+	bring 13 Ex 0 science_facility Loc.63 upgGenGhost
+	return
+	
 	:upgArmVehWeaponCheck
-	var Ex|jump upgArmVehWeapon 1 stp 13
-	var set upgArmVehWeapon 1 13
+	dth 13 Ex_C 0 crashed_battle upgGenVehWeapon
+	dth 13 Ex_C 2 crashed_battle upgGenVehWeapon
+	dth 13 Ex_C 3 crashed_battle upgAirVehWeapon
+	dth 13 AtL_C 4 crashed_battle upgGenVehWeapon
 	
 	:upgArmVehWeapon
 	wait 12
@@ -851,9 +757,21 @@ script_id TMCx
 	upg_queue 5 t_vehicle_weapon 88
 	goto wUpgrade
 	
+	:upgGenVehWeapon
+	wait 12
+	var AtL|Jump townCount 3 ret 13
+	bring 13 AtM 1 armory Loc.63 upgGenVehWeapon
+	return
+	
+	:upgAirVehWeapon
+	wait 12
+	var AtL|Jump townCount 4 ret 13
+	bring 13 AtM 3 armory Loc.63 upgAirVehWeapon
+	return
+	
 	:upgArmVehArmorCheck
-	var Ex|jump upgArmVehArmor 1 stp 13
-	var set upgArmVehArmor 1 13
+	dth 13 Ex_C 1 crashed_battle upgMechVehArmor
+	dth 13 Ex_C 3 crashed_battle upgAirVehArmor
 	
 	:upgArmVehArmor
 	wait 12
@@ -878,18 +796,28 @@ script_id TMCx
 	upg_queue 5 t_vehicle_plating 88
 	goto wUpgrade
 	
+	:upgMechVehArmor
+	wait 12
+	var AtL|Jump townCount 3 ret 13
+	bring 13 AtM 1 armory Loc.63 upgMechVehArmor
+	return
+	
+	:upgAirVehArmor
+	wait 12
+	var AtL|Jump townCount 3 ret 13
+	bring 13 AtM 2 armory Loc.63 upgAirVehArmor
+	return
+	
 	:upgArmShipWeaponCheck
-	var Ex|jump upgArmShipWeapon 1 stp 13
-	var set upgArmShipWeapon 1 13
+	dth 13 AtM_C 1 crashed_battle upgGenShipWeapon
+	dth 13 AtL_C 2 crashed_battle upgBioShipWeapon
+	dth 13 AtL_C 4 crashed_battle upgGenShipWeapon
 	
 	:upgArmShipWeapon
 	wait 12
 	notowns armory upgArmShipWeapon
-	dth 13 Ex 1 stasis_chamber upgArmShipWeapon2
 	call wUpgradeDef
 	upg_queue 1 t_ship_weapon 88
-	
-	:upgArmShipWeapon2
 	upg_j 13 AtL_W 9 1 blank
 	wait 960
 	call wUpgradeDef
@@ -908,9 +836,23 @@ script_id TMCx
 	upg_queue 5 t_ship_weapon 88
 	goto wUpgrade
 	
+	:upgGenShipWeapon
+	wait 12
+	var AtL|Jump townCount 4 ret 13
+	bring 13 AtM 4 armory Loc.63 upgGenShipWeapon
+	return
+	
+	:upgBioShipWeapon
+	wait 12
+	var AtL|Jump townCount 2 ret 13
+	bring 13 AtM 3 armory Loc.63 upgBioShipWeapon
+	return
+	
 	:upgArmShipArmorCheck
-	var Ex|jump upgArmShipArmor 1 stp 13
-	var set upgArmShipArmor 1 13
+	dth 13 AtM_C 1 crashed_battle upgGenShipArmor
+	dth 13 AtL_C 2 crashed_battle upgBioShipArmor
+	dth 13 Ex_C 3 crashed_battle upgAirShipArmor
+	dth 13 AtL_C 4 crashed_battle upgGenShipArmor
 	
 	:upgArmShipArmor
 	wait 12
@@ -935,9 +877,28 @@ script_id TMCx
 	upg_queue 5 t_ship_plating 88
 	goto wUpgrade
 	
+	:upgGenShipArmor
+	wait 12
+	var AtL|Jump townCount 3 ret 13
+	bring 13 AtM 3 armory Loc.63 upgGenShipWeapon
+	return
+	
+	:upgBioShipArmor
+	wait 12
+	var AtL|Jump townCount 3 ret 13
+	bring 13 AtM 4 armory Loc.63 upgBioShipArmor
+	return
+	
+	:upgAirShipArmor
+	wait 12
+	var AtL|Jump townCount 2 ret 13
+	bring 13 AtM 1 armory Loc.63 upgAirShipArmor
+	return
+	
 	:upgMacVultureCheck
-	var Ex|jump upgMacVulture 1 stp 13
-	var set upgMacVulture 1 13
+	dth 13 Ex_C 0 crashed_battle upgGenVulture
+	dth 13 Ex_C 1 crashed_battle upgMechVulture
+	dth 13 AtL_C 2 crashed_battle upgGenVulture
 	
 	:upgMacVulture
 	wait 12
@@ -951,9 +912,19 @@ script_id TMCx
 	upg_queue 1 vulture_speed 88
 	goto wUpgrade
 	
+	:upgGenVulture
+	wait 12
+	bring 13 AtM 4 vulture Loc.63 upgGenVulture
+	return
+	
+	:upgMechVulture
+	wait 12
+	bring 13 AtM 1 factory Loc.63 upgMechVulture
+	return
+	
 	:upgMacTankCheck
-	var Ex|jump upgMacTank 1 stp 13
-	var set upgMacTank 1 13
+	dth 13 Ex_C 2 crashed_battle upgGenTank
+	dth 13 Ex_C 3 crashed_battle upgGenTank
 	
 	:upgMacTank
 	wait 12
@@ -963,19 +934,46 @@ script_id TMCx
 	tech_j 13 AtL_W 5 1 blank
 	stop
 	
+	:upgGenTank
+	wait 12
+	bring 13 AtM 1 siege_tank Loc.63 upgGenTank
+	return
+	
+	:upgMacGoliathCheck
+	dth 13 Ex_C 0 crashed_battle upgGenGoliath
+	dth 13 Ex_C 1 crashed_battle upgMechGoliath
+	dth 13 AtL_C 2 crashed_battle upgGenGoliath
+	
+	:upgMacGoliath
+	wait 12
+	notowns machine_shop upgMacGoliath
+	notowns armory upgMacGoliath
+	notowns goliath upgMacGoliath
+	call wUpgradeDef
+	upg_queue goliath_range 88
+	goto wUpgrade
+	
+	:upgGenGoliath
+	wait 12
+	bring 13 AtM 5 goliath Loc.63 upgGenGoliath
+	return
+	
+	:upgMechGoliath
+	wait 12
+	var AtL|Jump townCount 2 ret 13
+	bring 13 AtM 1 machine_shop Loc.63 upgGenGoliath
+	return
+	
 	:upgConWraithCheck
-	var Ex|jump upgConWraith 1 stp 13
-	var set upgConWraith 1 13
+	dth 13 AtM_C 1 crashed_battle upgGenWraith
+	dth 13 Ex_C 2 crashed_battle upgBioWraith
+	dth 13 AtL_C 4 crashed_battle upgGenWraith
 	
 	:upgConWraith
 	wait 12
 	notowns control_tower upgConWraith
-	dth 13 Ex 1 stasis_chamber upgConWraith2
-	wait 60
 	call wUpgradeDef
 	tech cloaking_field 88
-	
-	:upgConWraith2
 	tech_j 13 AtL_W 9 1 blank
 	call wUpgradeDef
 	extupgrade 1 capacitors 88
@@ -985,9 +983,20 @@ script_id TMCx
 	upg_queue 1 wraith_mana 88
 	goto wUpgrade
 	
+	:upgGenWraith
+	wait 12
+	bring 13 AtM 4 wraith Loc.63 upgGenWraith
+	return
+	
+	:upgBioWraith
+	wait 12
+	var AtL|Jump townCount 2 ret 13
+	bring 13 AtM 1 control_tower Loc.63 upgGenWraith
+	return
+	
 	:upgConDropshipCheck
-	var Ex|jump upgConDropship 1 stp 13
-	var set upgConDropship 1 13
+	dth 13 AtM_C 1 crashed_battle upgGenDropship
+	dth 13 AtL_C 3 crashed_battle upgGenDropship
 	
 	:upgConDropship
 	wait 12
@@ -999,9 +1008,15 @@ script_id TMCx
 	extupgrade 1 hotdrop 88
 	goto wUpgrade
 	
+	:upgGenDropship
+	wait 12
+	bring 13 AtM 3 dropship Loc.63 upgGenDropship
+	return
+	
 	:upgConWyvernCheck
-	var Ex|jump upgConWyvern 1 stp 13
-	var set upgConWyvern 1 13
+	dth 13 AtM_C 2 crashed_battle upgGenWyvern
+	dth 13 Ex_C 3 crashed_battle upgAirWyvern
+	dth 13 AtL_C 4 crashed_battle upgGenWyvern
 	
 	:upgConWyvern
 	wait 12
@@ -1010,13 +1025,24 @@ script_id TMCx
 	#extupgrade 1 reverse_thrust 88
 	goto wUpgrade
 	
-	:upgPhysGenCheck
-	var Ex|jump upgPhysGen 1 stp 13
-	var set upgPhysGen 1 13
-	
-	:upgPhysGen
+	:upgGenWyvern
 	wait 12
-	notowns physics_lab upgPhysGen
+	bring 13 AtM 2 wyvern Loc.63 upgGenWyvern
+	return
+	
+	:upgAirWyvern
+	wait 12
+	var AtL|Jump townCount 3 ret 13
+	bring 13 AtM 1 control_tower Loc.63 upgAirWyvern
+	return
+	
+	:upgPhysBattleCheck
+	dth 13 AtM_C 2 crashed_battle upgGenBattle
+	dth 13 AtM_C 4 crashed_battle upgGenBattle
+	
+	:upgPhysBattle
+	wait 12
+	notowns physics_lab upgPhysBattle
 	call wUpgradeDef
 	extupgrade 1 fore_castle 88
 	wait 4500
@@ -1032,14 +1058,19 @@ script_id TMCx
 	extupgrade 1 umojan_batteries 88
 	goto wUpgrade
 	
+	:upgGenBattle
+	wait 12
+	bring 13 AtM 1 battlecruiser Loc.63 upgGenBattle
+	return
+	
 	:upgSciVesselCheck
-	var Ex|jump upgSciVessel 1 stp 13
-	var set upgSciVessel 1 13
+	dth 13 Ex_C 0 crashed_battle upgGenVessel
+	dth 13 Ex 2 crashed_battle blank
+	dth 13 AtL_C 3 crashed_battle upgGenVessel
 	
 	:upgSciVessel
 	wait 12
 	notowns science_facility upgSciVessel
-	notowns science_vessel upgSciVessel
 	multi ioIrradiate
 	wait 240
 	call wUpgradeDef
@@ -1053,9 +1084,14 @@ script_id TMCx
 	extupgrade 1 radiation_shockwave 88
 	goto wUpgrade
 	
+	:upgGenVessel
+	wait 12
+	bring 13 AtM 1 science_vessel Loc.63 upgGenVessel
+	return
+	
 	:upgSciAzazelCheck
-	var Ex|jump upgSciAzazel 1 stp 13
-	var set upgSciAzazel 1 13
+	dth 13 AtM 1 crashed_battle blank
+	dth 13 AtL 3 crashed_battle blank
 	
 	:upgSciAzazel
 	wait 12
@@ -1509,7 +1545,7 @@ script_id TMCx
 	
 	:buildOrderMech
 	dth 13 Ex 1 stasis_chamber buildMechTankTiming
-	dth 13 Ex 2 stasis_chamber buildMechTankWraith
+	dth 13 Ex 2 stasis_chamber buildMechFE
 	dth 13 Ex 3 stasis_chamber buildMech2FactVult
 	dth 13 Ex 4 stasis_chamber buildMechWalkerPower
 	
@@ -1545,37 +1581,103 @@ script_id TMCx
 	multi addProd
 	goto buildMechFin
 	
-	:buildMechTankWraith
-	wait 300
+	:buildMechFE
+	wait 600
 	bld 1 supply_depot 66
-	wait 24
+	wait 600
+	bld 1 barracks 72
+	wait 300
 	bld 1 refinery 66
-	wait 300
-	bld 1 armory 66
-	wait 24
+	wait 600
 	bld 2 supply_depot 66
+	wait 24
+	queue 1 marine barracks 255 Global Loc.63 80
 	wait 300
+	queue 1 marine barracks 255 Global Loc.63 80
+	wait 24
+	bld 1 armory 66
+	wait 300
+	queue 1 marine barracks 255 Global Loc.63 80
+	wait 300
+	bld 3 supply_depot 66
+	wait 24
 	bld 1 factory 72
 	wait 24
 	upg_queue 1 t_vehicle_weapon 88
-	wait 24
-	bld 1 starport 72
 	wait 300
+	queue 1 marine barracks 255 Global Loc.63 80
+	wait 24
 	var set buildSupply 1 13
-	wait 600
+	wait 24
+	bld 2 factory 72
+	wait 24
 	bld 1 machine_shop 66
-	wait 24
-	bld 1 barracks 72
-	wait 24
-	var set canStatic 1 13
-	wait 600
-	queue 1 wraith starport 255 Local Loc.63 80
-	wait 24
-	bld 1 control_tower 66
 	wait 300
-	queue 1 siege_tank factory 255 Local Loc.63 80
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	wait 600
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	tech siege_mode 88
+	wait 600
+	bld 2 machine_shop 66
+	wait 600
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 600
+	var set buildGas 1 13
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 600
+	upg_queue 2 t_vehicle_weapon 88
 	wait 24
 	var set canAttack 1 13
+	wait 600
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	bld 3 factory 72
+	wait 300
+	tech spider_mines 88
+	wait 24
+	upg_queue 1 vulture_speed 88
+	wait 300
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 600
+	bld 2 armory 66
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 24
+	queue 1 siege_tank factory 255 Global Loc.63 80
+	wait 600
+	var set canExpand 1 13
+	var set cutWorker 1 13
+	wait 600
+	var set canExpand 0 13
+	var set cutWorker 0 13
+	wait 24
+	bld 3 machine_shop 66
+	wait 600
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	upg_queue 1 t_vehicle_plating 88
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 600
+	bld 5 factory 72
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 24
+	queue 1 goliath factory 255 Global Loc.63 80
+	wait 300
+	bld 1 science_facility 66
 	multi addProd
 	goto buildMechFin
 	
@@ -2928,58 +3030,3 @@ script_id TMCx
 	queue_rel goliath factory 0.5 factory 255 Global 63 99
 	queue_rel medic medbay 0.5 barracks 255 Global 63 99
 	return 
-	
-	:bLayout
-	dth 13 Ex 0 ab_mutalisk blank
-	print bLayout
-	layout command_center Set (4736,4400) 1 255 50
-	layout supply_depot Set (4496,4608) 1 255 50
-	layout supply_depot Set (4400,4608) 1 255 49
-	layout supply_depot Set (4464,4672) 1 255 48
-	layout supply_depot Set (4560,4672) 1 255 47
-	layout supply_depot Set (4656,4672) 1 255 46
-	layout supply_depot Set (4688,4832) 1 255 45
-	layout supply_depot Set (4784,4832) 1 255 44
-	layout supply_depot Set (4720,4896) 1 255 43
-	layout supply_depot Set (4816,4896) 1 255 42
-	layout supply_depot Set (4912,4928) 1 255 41
-	layout supply_depot Set (5168,4992) 1 255 40
-	layout supply_depot Set (5168,4928) 1 255 39
-	layout supply_depot Set (5264,4960) 1 255 38
-	layout supply_depot Set (5328,4864) 1 255 37
-	layout supply_depot Set (5520,4736) 1 255 36
-	layout supply_depot Set (5584,4672) 1 255 35
-	layout supply_depot Set (5488,4672) 1 255 34
-	layout supply_depot Set (5840,4224) 1 255 33
-	layout supply_depot Set (5776,4160) 1 255 32
-	layout supply_depot Set (4784,3968) 1 255 31
-	layout supply_depot Set (4848,4032) 1 255 30
-	layout supply_depot Set (4880,3968) 1 255 29
-	layout barracks Set (5568,4528) 1 255 50
-	layout barracks Set (5664,4208) 1 255 49
-	layout engineering_bay Set (5056,3728) 1 255 50
-	layout engineering_bay Set (4864,3696) 1 255 49
-	layout missile_turret Set (4608,4352) 1 255 50
-	layout missile_turret Set (4384,4320) 1 255 49
-	layout missile_turret Set (5280,4448) 1 255 48
-	layout missile_turret Set (5056,4640) 1 255 47
-	layout missile_turret Set (5472,3808) 1 255 46
-	layout missile_turret Set (5728,4320) 1 255 45
-	layout academy Set (4944,4672) 1 255 50
-	layout armory Set (4592,4608) 1 255 50
-	layout armory Set (4624,4544) 1 255 49
-	layout armory Set (5712,4384) 1 255 48
-	layout factory Set (4768,4208) 1 255 50
-	layout factory Set (4864,4112) 1 255 49
-	layout factory Set (4960,4400) 1 255 48
-	layout factory Set (4960,4496) 1 255 47
-	layout factory Set (5312,4112) 1 255 46
-	layout factory Set (5312,4208) 1 255 45
-	layout factory Set (5312,4304) 1 255 44
-	layout factory Set (5184,4112) 1 255 43
-	layout factory Set (5184,4208) 1 255 42
-	layout factory Set (5184,4304) 1 255 41
-	layout factory Set (5568,3984) 1 255 40
-	layout factory Set (4928,3792) 1 255 39
-	layout science_facility Set (5056,4976) 1 255 50
-	stop 
