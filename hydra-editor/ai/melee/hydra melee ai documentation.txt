@@ -59,7 +59,7 @@ General
 
 Mech
 1 - Tank Timing (Factory first)		
-2 - FE into Mech					♣
+2 - FE 5Fact						♣
 3 - 2Fact Vult						* ♣
 4 - Walker Power					♣
 
@@ -71,7 +71,7 @@ Raider
 
 Air
 1 - 2Port Wraith					*
-2 - Battlecruiser					
+2 - Fast BC					
 3 - Wraith Bio						
 
 PROTOSS

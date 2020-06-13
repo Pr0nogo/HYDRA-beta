@@ -21,7 +21,6 @@ script_id PMCx
 	town_state 255 persist true
 	set_var_local blank stp 13
 	set_var_local blankReturn ret 13
-	set_var_local pUpgEnd upgEndP 13
 	set_var_local wWorkerDef wWorker 13
 	var set townCount 1 13
 	var set miningCount 1 13
@@ -508,172 +507,38 @@ script_id PMCx
 	return
 	
 	:pUpg
-	var set upgForgeWeapon 0 13
-	var set upgForgeArmor 0 13
-	var set upgForgeShields 0 13
-	var set upgForgeUtility 0 13
-	var set upgCybStrider 0 13
-	var set upgCybWeapon 0 13
-	var set upgCybArmor 0 13
-	var set upgCitZealot 0 13
-	var set upgCitLegion 0 13
-	var set upgRoboShuttle 0 13
-	var set upgRoboReaver 0 13
-	var set upgFleetScout 0 13
-	var set upgFleetCorsair 0 13
-	var set upgFleetExemplar 0 13
-	var set upgFleetCarrier 0 13
-	var set upgFleetStarcaller 0 13
-	var set upgTempTemplar 0 13
-	var set upgTempDArchon 0 13
-	var set upgObs 0 13
-	var set upgArb 0 13
-	var set upgEndVar 0 13
 	multi ioHallucinate
 	multi ioPhaseLink
 	multi ioConduit
 	multi ioAperture
 	multi ioMindControl
 	var Ex|wait canUpgrade 1 13
-	multi pUpgEnd
-	dth 13 Ex 1 crashed_battle pUpgMech
-	dth 13 Ex 2 crashed_battle pUpgGate
-	dth 13 Ex 3 crashed_battle pUpgAir
-	goto pUpgGen
-	
-	:pUpgEnd
-	wait 12
-	var Ex|jump upgForgeWeapon 0 upgEndP 13
-	var Ex|jump upgForgeArmor 0 upgEndP 13
-	var Ex|jump upgForgeShields 0 upgEndP 13
-	var Ex|jump upgForgeUtility 0 upgEndP 13
-	var Ex|jump upgCybStrider 0 upgEndP 13
-	var Ex|jump upgCybWeapon 0 upgEndP 13
-	var Ex|jump upgCybArmor 0 upgEndP 13
-	var Ex|jump upgCitZealot 0 upgEndP 13
-	var Ex|jump upgCitLegion 0 upgEndP 13
-	var Ex|jump upgRoboShuttle 0 upgEndP 13
-	var Ex|jump upgRoboReaver 0 upgEndP 13
-	var Ex|jump upgFleetScout 0 upgEndP 13
-	var Ex|jump upgFleetCorsair 0 upgEndP 13
-	var Ex|jump upgFleetCarrier 0 upgEndP 13
-	var Ex|jump upgFleetStarcaller 0 upgEndP 13
-	var Ex|jump upgTempTemplar 0 upgEndP 13
-	var Ex|jump upgTempDArchon 0 upgEndP 13
-	var Ex|jump upgObs 0 upgEndP 13
-	var Ex|jump upgArb 0 upgEndP 13
-	var set upgEndVar 1 13
+	multi upgForgeWeaponCheck
+	multi upgForgeArmorCheck
+	multi upgForgeUtilityCheck
+	multi upgForgeShieldsCheck
+	multi upgCybStriderCheck
+	multi upgCybArmorCheck
+	multi upgCybWeaponCheck
+	multi upgCitZealotCheck
+	multi upgCitLegionCheck
+	multi upgRoboClarionCheck
+	multi upgRoboReaverCheck
+	multi upgRoboRelayCheck
+	multi upgRoboShuttleCheck
+	multi upgFleetCarrierCheck
+	multi upgFleetCorsairCheck
+	multi upgFleetExemplarCheck
+	multi upgFleetScoutCheck
+	multi upgFleetStarcallerCheck
+	multi upgTempDArchonCheck
+	multi upgTempTemplarCheck
+	multi upgObsCheck
+	multi upgArbCheck
 	stop
 	
-	:pUpgGen
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 forge Loc.63 upgForgeWeaponCheck
-	bring 13 AtL_M 2 forge Loc.63 upgForgeArmorCheck
-	bring 13 AtL_M 3 forge Loc.63 upgForgeUtilityCheck
-	bring 13 AtL_M 4 forge Loc.63 upgForgeShieldsCheck
-	bring 13 AtL_M 1 cybernetics_core Loc.63 upgCybStriderCheck
-	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybArmorCheck
-	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybWeaponCheck
-	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitZealotCheck
-	bring 13 AtL_M 2 principality Loc.63 upgCitLegionCheck
-	bring 13 AtL_M 1 robotics_support_bay Loc.63 upgRoboReaverCheck
-	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetScoutCheck
-	bring 13 AtL_M 1 templar_archives Loc.63 upgTempTemplarGenCheck
-	bring 13 AtL_M 1 observatory Loc.63 upgObsCheck
-	bring 13 AtL_M 1 arbiter_tribunal Loc.63 upgArbCheck
-	bring 13 AtL_M 2 robotics_facility Loc.63 upgRoboShuttleCheck
-	bring 13 AtL_M 4 clarion Loc.63 upgRoboClarionCheck
-	bring 13 AtL_M 2 warp_relay Loc.63 upgRoboRelayCheck
-	bring 13 AtL_M 5 corsair Loc.63 upgFleetCorsairCheck
-	bring 13 AtL_M 3 stargate|carrier Loc.63 upgFleetCarrierCheck
-	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
-	bring 13 AtL_M 6 gateway|principality|warp_anchor Loc.63 upgTempDArchonCheck
-	bring 13 AtL_M 1 starfield Loc.63 upgFleetStarcallerCheck
-	bring 13 AtL_M 2 argosy Loc.63 upgFleetExemplarCheck
-	goto pUpgGen
-	
-	:pUpgMech
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 forge Loc.63 upgForgeWeaponCheck
-	bring 13 AtL_M 2 forge Loc.63 upgForgeArmorCheck
-	bring 13 AtL_M 4 forge Loc.63 upgForgeShieldsCheck
-	bring 13 AtL_M 3 forge Loc.63 upgForgeUtilityCheck
-	bring 13 AtL_M 1 cybernetics_core Loc.63 upgCybStriderCheck
-	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybWeaponCheck
-	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybArmorCheck
-	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitZealotCheck
-	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
-	bring 13 AtL_M 1 robotics_support_bay Loc.63 upgRoboReaverCheck
-	bring 13 AtL_M 1 robotics_support_bay Loc.63 upgRoboShuttleCheck
-	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetScoutCheck
-	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetCarrierCheck
-	bring 13 AtL_M 1 observatory Loc.63 upgObsCheck
-	bring 13 AtL_M 1 arbiter_tribunal Loc.63 upgArbCheck
-	bring 13 AtL_M 4 clarion Loc.63 upgRoboClarionCheck
-	bring 13 AtL_M 2 warp_relay Loc.63 upgRoboRelayCheck
-	bring 13 AtL_M 5 corsair Loc.63 upgFleetCorsairCheck
-	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
-	bring 13 AtL_M 6 gateway|principality|warp_anchor Loc.63 upgTempTemplarGenCheck
-	bring 13 AtL_M 9 gateway|principality|warp_anchor Loc.63 upgTempDArchonCheck
-	bring 13 AtL_M 1 starfield Loc.63 upgFleetStarcallerCheck
-	bring 13 AtL_M 2 argosy Loc.63 upgFleetExemplarCheck
-	goto pUpgMech
-	
-	:pUpgGate
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 forge Loc.63 upgForgeWeaponCheck
-	bring 13 AtL_M 2 forge Loc.63 upgForgeArmorCheck
-	bring 13 AtL_M 4 forge Loc.63 upgForgeShieldsCheck
-	bring 13 AtL_M 3 forge Loc.63 upgForgeUtilityCheck
-	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitZealotCheck
-	bring 13 AtL_M 1 citadel_of_adun Loc.63 upgCitLegionCheck
-	bring 13 AtL_M 1 templar_archives Loc.63 upgTempTemplarGateCheck
-	bring 13 AtL_M 1 templar_archives Loc.63 upgTempDArchonCheck	
-	bring 13 AtL_M 1 observatory Loc.63 upgObsCheck
-	bring 13 AtL_M 1 arbiter_tribunal Loc.63 upgArbCheck
-	bring 13 AtL_M 2 robotics_facility|robotics_support_bay Loc.63 upgRoboReaverCheck
-	bring 13 AtL_M 2 robotics_facility|robotics_support_bay Loc.63 upgRoboShuttleCheck
-	bring 13 AtL_M 4 clarion Loc.63 upgRoboClarionCheck
-	bring 13 AtL_M 2 warp_relay Loc.63 upgRoboRelayCheck
-	bring 13 AtL_M 5 corsair Loc.63 upgFleetCorsairCheck
-	bring 13 AtL_M 2 stargate|fleet_beacon Loc.63 upgFleetScoutCheck
-	bring 13 AtL_M 2 stargate|fleet_beacon Loc.63 upgFleetCarrierCheck
-	bring 13 AtL_M 1 starfield Loc.63 upgFleetStarcallerCheck
-	bring 13 AtL_M 2 argosy Loc.63 upgFleetExemplarCheck
-	goto pUpgGate
-	
-	:pUpgAir
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 forge Loc.63 upgForgeWeaponCheck
-	bring 13 AtL_M 2 forge Loc.63 upgForgeArmorCheck
-	bring 13 AtL_M 3 forge Loc.63 upgForgeUtilityCheck
-	bring 13 AtL_M 4 forge Loc.63 upgForgeShieldsCheck
-	bring 13 AtL_M 1 cybernetics_core Loc.63 upgCybWeaponCheck
-	bring 13 AtL_M 2 cybernetics_core Loc.63 upgCybArmorCheck
-	bring 13 AtL_M 1 fleet_beacon Loc.63 upgFleetScoutCheck
-	bring 13 AtL_M 1 carrier Loc.63 upgFleetCarrierCheck
-	bring 13 AtL_M 4 stargate Loc.63 upgFleetCorsairCheck
-	bring 13 AtL_M 1 observatory Loc.63 upgObsCheck
-	bring 13 AtL_M 1 arbiter_tribunal Loc.63 upgArbCheck
-	bring 13 AtL_M 3 gateway|dragoon Loc.63 upgCybStriderCheck
-	bring 13 AtL_M 3 gateway|citadel_of_adun Loc.63 upgCitZealotCheck
-	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
-	bring 13 AtL_M 4 clarion Loc.63 upgRoboClarionCheck
-	bring 13 AtL_M 2 warp_relay Loc.63 upgRoboRelayCheck
-	bring 13 AtL_M 3 principality Loc.63 upgCitLegionCheck
-	bring 13 AtL_M 6 gateway|principality|warp_anchor Loc.63 upgTempTemplarGenCheck
-	bring 13 AtL_M 9 gateway|principality|warp_anchor Loc.63 upgTempDArchonCheck
-	bring 13 AtL_M 1 starfield Loc.63 upgFleetStarcallerCheck
-	bring 13 AtL_M 2 argosy Loc.63 upgFleetExemplarCheck
-	goto pUpgAir
-	
 	:upgForgeWeaponCheck
-	var Ex|jump upgForgeWeapon 1 stp 13
-	var set upgForgeWeapon 1 13
+	call upgWeaponCheck
 	
 	:upgForgeWeapon
 	wait 12
@@ -699,9 +564,13 @@ script_id PMCx
 	upg_queue 5 p_ground_weapon 88
 	goto wUpgrade
 	
+	:upgWeaponCheck
+	wait 12
+	notowns forge upgWeaponCheck
+	return
+	
 	:upgForgeArmorCheck
-	var Ex|jump upgForgeArmor 1 stp 13
-	var set upgForgeArmor 1 13
+	call upgArmCheck
 	
 	:upgForgeArmor
 	wait 12
@@ -727,9 +596,16 @@ script_id PMCx
 	upg_queue 5 p_armor 88
 	goto wUpgrade
 	
+	:upgArmCheck
+	wait 12
+	var AtL|jump townCount 2 ret 13
+	bring 13 AtM 1 forge Loc.63 upgArmCheck
+	return
+	
 	:upgForgeShieldsCheck
-	var Ex|jump upgForgeShields 1 stp 13
-	var set upgForgeShields 1 13
+	dth 13 AtM_C 1 crashed_battle upgShieldsGen
+	dth 13 Ex_C 2 crashed_battle upgShieldsGate
+	dth 13 AtL_C 3 crashed_battle upgShieldsGen
 	
 	:upgForgeShields
 	wait 12
@@ -755,32 +631,48 @@ script_id PMCx
 	upg_queue 5 p_shields 88
 	goto wUpgrade
 	
+	:upgShieldsGen
+	wait 12
+	var AtL|jump townCount 3 ret 13
+	bring 13 AtM 2 forge Loc.63 upgShieldsGen
+	return
+	
+	:upgShieldsGate
+	wait 12
+	var AtL|jump townCount 3 ret 13
+	bring 13 AtM 6 gateway|principality|warp_anchor Loc.63 upgShieldsGate
+	return
+	
 	:upgForgeUtilityCheck
-	var Ex|jump upgForgeUtility 1 stp 13
-	var set upgForgeUtility 1 13
+	call upgUtilityGen
 	
 	:upgForgeUtility
 	wait 12
 	notowns forge upgForgeUtility
 	notowns robotics_facility upgForgeUtility
 	call wUpgradeDef
-	extupgrade 1 temporal_batteries 88
+	extupg 1 temporal_batteries 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	call wUpgradeDef
 	upg_queue 1 prismatic_shield 88
 	upg_j 13 AtL_W 46 1 blank
 	call wUpgradeDef
-	extupgrade 1 power_flux 88
+	extupg 1 power_flux 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	call wUpgradeDef
-	extupgrade 1 bulwark_mana 88
+	extupg 1 bulwark_mana 88
 	goto wUpgrade
 	
+	:upgUtilityGen
+	wait 12
+	bring 13 AtM 2 forge Loc.63 upgUtilityGen
+	return
+	
 	:upgCybStriderCheck
-	var Ex|jump upgCybStrider 1 stp 13
-	var set upgCybStrider 1 13
+	dth 13 Ex_C 0 crashed_battle upgStriderGen
+	dth 13 AtL_C 3 crashed_battle upgStriderGen
 	
 	:upgCybStrider
 	wait 12
@@ -791,9 +683,9 @@ script_id PMCx
 	upg_j 13 AtL_W 33 1 blank
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 taldarins_grace 88
+	extupg 1 taldarins_grace 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	
 	:upgCybStrider2
 	wait 12
@@ -804,9 +696,16 @@ script_id PMCx
 	upg_queue 1 signify_malice 88
 	goto wUpgrade
 	
+	:upgStriderGen
+	wait 12
+	var AtL|jump townCount 2 ret 13
+	bring 13 AtM 4 gateway|principality|warp_anchor Loc.63 upgStriderGen
+	return
+	
 	:upgCybWeaponCheck
-	var Ex|jump upgCybWeapon 1 stp 13
-	var set upgCybWeapon 1 13
+	dth 13 Ex_C 0 crashed_battle upgShipWeapGen
+	dth 13 Ex_C 2 crashed_battle upgShipWeapGen
+	dth 13 AtL_C 4 crashed_battle upgShipWeapGen
 	
 	:upgCybWeapon
 	wait 12
@@ -831,9 +730,15 @@ script_id PMCx
 	upg_queue 5 p_air_weapon 88
 	goto wUpgrade
 	
+	:upgShipWeapGen
+	wait 12
+	var AtL|jump townCount 3 ret 13
+	bring 13 AtM 1 cybernetics_core Loc.63 upgShipWeapGen
+	return
+	
 	:upgCybArmorCheck
-	var Ex|jump upgCybArmor 1 stp 13
-	var set upgCybArmor 1 13
+	dth 13 Ex_C 1 crashed_battle upgShipArmGen
+	dth 13 Ex_C 3 crashed_battle upgShipArmGen
 	
 	:upgCybArmor
 	wait 12
@@ -858,9 +763,15 @@ script_id PMCx
 	upg_queue 5 p_plating 88
 	goto wUpgrade
 	
+	:upgShipArmGen
+	wait 12
+	var AtL|jump townCount 3 ret 13
+	bring 13 AtM 1 cybernetics_core Loc.63 upgShipArmGen
+	return
+	
 	:upgCitZealotCheck
-	var Ex|jump upgCitZealot 1 stp 13
-	var set upgCitZealot 1 13
+	dth 13 AtM_C 1 crashed_battle upgZealotGen
+	dth 13 AtL_C 4 crashed_battle upgZealotGen
 	
 	:upgCitZealot
 	wait 12
@@ -869,9 +780,15 @@ script_id PMCx
 	upg_queue 1 zealot_speed 88
 	goto wUpgrade
 	
+	:upgZealotGen
+	wait 12
+	var AtL|jump townCount 3 ret 13
+	bring 13 AtM 3 gateway|principality|warp_anchor Loc.63 upgZealotGen
+	return
+	
 	:upgCitLegionCheck
-	var Ex|jump upgCitLegion 1 stp 13
-	var set upgCitLegion 1 13
+	dth 13 AtM 1 crashed_battle blank
+	dth 13 AtL 3 crashed_battle blank
 	
 	:upgCitLegion
 	wait 12
@@ -881,8 +798,7 @@ script_id PMCx
 	goto wUpgrade
 	
 	:upgRoboShuttleCheck
-	var Ex|jump upgRoboShuttle 1 stp 13
-	var set upgRoboShuttle 1 13
+	call upgShuttleGen
 	
 	:upgRoboShuttle
 	wait 12
@@ -893,12 +809,19 @@ script_id PMCx
 	upg_j 13 AtL_W 37 1 blank
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 expanded_hull 88
+	extupg 1 expanded_hull 88
 	goto wUpgrade
 	
+	:upgShuttleGen
+	wait 12
+	notowns shuttle upgShuttleGen
+	return
+	
 	:upgRoboReaverCheck
-	var Ex|jump upgRoboReaver 1 stp 13
-	var set upgRoboReaver 1 13
+	dth 13 Ex_C 0 crashed_battle upgReaverGen
+	dth 13 Ex_C 2 crashed_battle upgReaverGen
+	dth 13 Ex_C 3 crashed_battle upgReaverAir
+	dth 13 AtL_C 4 crashed_battle upgReaverGen
 	
 	:upgRoboReaver
 	wait 12
@@ -912,33 +835,58 @@ script_id PMCx
 	upg_queue 1 relocators 88
 	goto wUpgrade
 	
+	:upgReaverGen
+	wait 12
+	bring 13 AtM 1 reaver Loc.63 upgReaverGen
+	return
+	
+	:upgReaverAir
+	wait 12
+	var AtL|jump townCount 3 ret 13
+	bring 13 AtM 1 robotics_facility|robotics_authority Loc.63 upgReaverAir
+	return
+	
 	:upgRoboClarionCheck
-	var Ex|jump upgRoboClarion 1 stp 13
-	var set upgRoboClarion 1 13
+	dth 13 AtM_C 1 crashed_battle upgClarionGen
+	dth 13 Ex 3 crashed_battle blank
+	dth 13 AtL_C 4 crashed_battle upgClarionGen
 	
 	:upgRoboClarion
 	wait 12
 	notowns robotics_support_bay upgRoboClarion
 	goto wUpgrade
 	
+	:upgClarionGen
+	wait 12
+	bring 13 AtM 2 clarion Loc.63 upgClarionGen
+	return
+	
 	:upgRoboRelayCheck
-	var Ex|jump upgRoboRelay 1 stp 13
-	var set upgRoboRelay 1 13
+	dth 13 Ex 0 crashed_battle blank
+	dth 13 Ex_C 2 crashed_battle upgRelayGate
+	dth 13 AtL 3 crashed_battle blank
 	
 	:upgRoboRelay
 	wait 12
 	notowns robotics_support_bay upgRoboRelay
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 warp_relay_mana 88
+	extupg 1 warp_relay_mana 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	#exttech recursion 88
 	stop
 	
+	:upgRelayGate
+	wait 12
+	bring 13 AtM 1 warp_relay Loc.63 upgRelayGate
+	return
+	
 	:upgFleetScoutCheck
-	var Ex|jump upgFleetScout 1 stp 13
-	var set upgFleetScout 1 13
+	dth 13 Ex_C 0 crashed_battle upgScoutGen
+	dth 13 Ex_C 1 crashed_battle upgScoutRanger
+	dth 13 Ex_C 2 crashed_battle upgScoutGen
+	dth 13 AtL_C 4 crashed_battle upgScoutGen
 	
 	:upgFleetScout
 	wait 12
@@ -949,12 +897,23 @@ script_id PMCx
 	upg_j 13 AtL_W 42 1 blank
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 last_orders 88
+	extupg 1 last_orders 88
 	goto wUpgrade
 	
+	:upgScoutGen
+	wait 12
+	var AtL|jump townCount 3 ret 13
+	bring 13 AtM 2 stargate|starfield Loc.63 upgScoutGen
+	return
+	
+	:upgScoutRanger
+	wait 12
+	bring 13 AtM 1 stargate|starfield Loc.63 upgScoutRanger
+	return
+	
 	:upgFleetCorsairCheck
-	var Ex|jump upgFleetCorsair 1 stp 13
-	var set upgFleetCorsair 1 13
+	dth 13 AtM_C 2 crashed_battle upgCorsairGen
+	dth 13 AtL_C 4 crashed_battle upgCorsairGen
 	
 	:upgFleetCorsair
 	wait 12
@@ -967,25 +926,36 @@ script_id PMCx
 	upg_queue 1 corsair_mana 88
 	goto wUpgrade
 	
+	:upgCorsairGen
+	wait 12
+	bring 13 AtM 3 corsair Loc.63 upgCorsairGen
+	return
+	
 	:upgFleetExemplarCheck
-	var Ex|jump upgFleetExemplar 1 stp 13
-	var set upgFleetExemplar 1 13
+	dth 13 AtM_C 2 crashed_battle upgExeCheck
+	dth 13 AtL_C 4 crashed_battle upgExeCheck
 	
 	:upgFleetExemplar
 	wait 12
 	notowns fleet_beacon upgFleetExemplar
 	wait 60
 	call wUpgradeDef
-	extupgrade 1 gravitic_attenuator 88
+	extupg 1 gravitic_attenuator 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	call wUpgradeDef
-	extupgrade 1 khaydarin_eclipse 88
+	extupg 1 khaydarin_eclipse 88
 	goto wUpgrade
 	
+	:upgExeCheck
+	wait 12
+	bring 13 AtM 2 exemplar Loc.63 upgExeCheck
+	return
+	
 	:upgFleetCarrierCheck
-	var Ex|jump upgFleetCarrier 1 stp 13
-	var set upgFleetCarrier 1 13
+	dth 13 Ex_C 0 crashed_battle upgCarrierGen
+	dth 13 Ex_C 2 crashed_battle upgCarrierGen
+	dth 13 AtL_C 4 crashed_battle upgCarrierGen
 	
 	:upgFleetCarrier
 	wait 12
@@ -996,28 +966,40 @@ script_id PMCx
 	upg_j 13 AtL_W 43 1 blank
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 skyforge 88
+	extupg 1 skyforge 88
 	goto wUpgrade
 	
+	:upgCarrierGen
+	wait 12
+	notowns carrier upgCarrierGen
+	return
+	
 	:upgFleetStarcallerCheck
-	var Ex|jump upgFleetStarcaller 1 stp 13
-	var set upgFleetStarcaller 1 13
+	dth 13 AtM_C 2 crashed_battle upgStarGen
+	dth 13 AtL_C 4 crashed_battle upgStarGen
 	
 	:upgFleetStarcaller
 	wait 12
 	notowns fleet_beacon upgFleetStarcaller
 	wait 60
 	call wUpgradeDef
-	extupgrade 1 starcaller_mana 88
+	extupg 1 starcaller_mana 88
 	goto wUpgrade
 	
-	:upgTempTemplarGenCheck
-	var Ex|jump upgTempTemplar 1 stp 13
-	var set upgTempTemplar 1 13
-	
-	:upgTempTemplarGen
+	:upgStarGen
 	wait 12
-	notowns templar_archives upgTempTemplarGen
+	notowns starcaller upgStarGen
+	return
+	
+	:upgTempTemplarCheck
+	dth 13 Ex 2 crashed_battle upgTempTemplarGate
+	dth 13 Ex_C 0 crashed_battle upgTempGen
+	dth 13 Ex_C 1 crashed_battle upgTempRanger
+	dth 13 AtL_C 2 crashed_battle upgTempGen
+	
+	:upgTempTemplar
+	wait 12
+	notowns templar_archives upgTempTemplar
 	wait 60
 	call wUpgradeDef
 	tech psionic_storm 88
@@ -1029,49 +1011,57 @@ script_id PMCx
 	upg_j 13 AtL_W 40 1 blank
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 ascendancy 88
+	extupg 1 ascendancy 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	call wUpgradeDef
-	extupgrade 1 astral_aegis 88
+	extupg 1 astral_aegis 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	call wUpgradeDef
-	extupgrade 1 ephemeral_blades 88
+	extupg 1 ephemeral_blades 88
 	goto wUpgrade
 	
-	:upgTempTemplarGateCheck
-	var Ex|jump upgTempTemplar 1 stp 13
-	var set upgTempTemplar 1 13
+	:upgTempGen
+	wait 12
+	notowns high_templar upgTempGen
+	return
+	
+	:upgTempRanger
+	wait 12
+	bring 13 AtM 2 high_templar Loc.63 upgTempRanger
+	return
 	
 	:upgTempTemplarGate
 	wait 12
 	notowns templar_archives upgTempTemplarGate
 	wait 60
 	call wUpgradeDef
-	extupgrade 1 ephemeral_blades 88
+	extupg 1 ephemeral_blades 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	call wUpgradeDef
 	tech psionic_storm 88
 	tech_j 13 AtL_W 19 1 blank
 	multi ioStorm
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 ascendancy 88
+	extupg 1 ascendancy 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	call wUpgradeDef
 	upg_queue 1 templar_mana 88
 	upg_j 13 AtL_W 40 1 blank
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 astral_aegis 88
+	extupg 1 astral_aegis 88
 	goto wUpgrade
 	
 	:upgTempDArchonCheck
-	var Ex|jump upgTempDArchon 1 stp 13
-	var set upgTempDArchon 1 13
+	dth 13 Ex_C 0 crashed_battle upgDArchonGen
+	dth 13 Ex 1 crashed_battle blank
+	dth 13 Ex_C 2 crashed_battle upgDArchonGate
+	dth 13 AtL_C 3 crashed_battle upgDArchonGen
 	
 	:upgTempDArchon
 	wait 12
@@ -1083,16 +1073,26 @@ script_id PMCx
 	multi ioMaelstrom
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 malediction 88
+	extupg 1 malediction 88
 	wait 4500
-	wait_upgrades
+	w_upg
 	call wUpgradeDef
 	upg_queue 1 dark_archon_mana 88
 	goto wUpgrade
 	
+	:upgDArchonGen
+	wait 12
+	notowns dark_archon upgDArchonGen
+	return
+	
+	:upgDArchonGate
+	wait 12
+	var AtL|jump townCount 3 ret 13
+	bring 13 AtM 6 gateway|principality|warp_anchor Loc.63 upgDArchonGate
+	return
+	
 	:upgObsCheck
-	var Ex|jump upgObs 1 stp 13
-	var set upgObs 1 13
+	call upgObsGen
 	
 	:upgObs
 	wait 12
@@ -1106,9 +1106,15 @@ script_id PMCx
 	upg_queue 1 observer_speed 88
 	goto wUpgrade
 	
+	:upgObsGen
+	wait 12
+	notowns observatory upgObsGen
+	return
+	
 	:upgArbCheck
-	var Ex|jump upgArb 1 stp 13
-	var set upgArb 1 13
+	dth 13 Ex_C 0 crashed_battle upgArbGen
+	dth 13 Ex_C 2 crashed_battle upgArbGen
+	dth 13 AtL_C 4 crashed_battle upgArbGen
 	
 	:upgArb
 	wait 12
@@ -1126,10 +1132,16 @@ script_id PMCx
 	wait 240
 	call wUpgradeDef
 	upg_queue 1 arbiter_mana 88
+	goto wUpgrade
+	
+	:upgArbGen
+	wait 12
+	notowns arbiter upgArbGen
+	return
 	
 	:wUpgrade
 	wait 480
-	wait_upgrades
+	w_upg
 	stop
 	
 	:ioHallucinate
@@ -2004,7 +2016,9 @@ script_id PMCx
 	call wForge
 	wait 300
 	call wCit
-	wait 900
+	wait 300
+	upg_queue 1 prismatic_shield 88
+	wait 600
 	call wFleet
 	wait 300
 	call wCyb

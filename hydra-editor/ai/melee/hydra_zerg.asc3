@@ -21,7 +21,6 @@ script_id ZMCx
 	town_state 255 persist true
 	set_var_local blank stp 13
 	set_var_local blankReturn ret 13
-	set_var_local zUpgEnd upgEndZ 13
 	set_var_local wWorkerDef wWorker 13
 	var set townCount 1 13
 	var set miningCount 1 13
@@ -470,152 +469,31 @@ script_id ZMCx
 	return
 	
 	:zUpg
-	var set metastasis 0 13
-	var set upgSpawnZerg 0 13
-	var set upgSpawnVorv 0 13
-	var set upgEvoMelee 0 13
-	var set upgEvoMissile 0 13
-	var set upgEvoArmor 0 13
-	var set upgEvoUtility 0 13
-	var set upgDenHydra 0 13
-	var set upgLair 0 13
-	var set upgDenBasilisk 0 13
-	var set upgDenLurker 0 13
-	var set upgSpireAttack 0 13
-	var set upgSpireArmor 0 13
-	var set upgGuard 0 13
-	var set upgDevourer 0 13
-	var set upgGorg 0 13
-	var set upgQueen 0 13
-	var set upgDefiler 0 13
-	var set upgUltra 0 13
-	var set upgEndVar 0 13
 	multi ioParasite
 	multi ioSwarm
 	var Ex|wait canUpgrade 1 13
-	multi zUpgEnd
-	dth 13 Ex 1 crashed_battle zUpgConnor
-	dth 13 Ex 2 crashed_battle zUpgSwarm
-	dth 13 Ex 3 crashed_battle zUpgAir
-	goto zUpgGen
-	
-	:zUpgEnd
-	wait 12
-	var Ex|jump upgSpawnZerg 0 upgEndZ 13
-	var Ex|jump upgSpawnVorv 0 upgEndZ 13
-	var Ex|jump upgEvoMelee 0 upgEndZ 13
-	var Ex|jump upgEvoMissile 0 upgEndZ 13
-	var Ex|jump upgEvoArmor 0 upgEndZ 13
-	var Ex|jump upgEvoUtility 0 upgEndZ 13
-	var Ex|jump upgDenHydra 0 upgEndZ 13
-	var Ex|jump upgLair 0 upgEndZ 13
-	var Ex|jump upgDenBasilisk 0 upgEndZ 13
-	var Ex|jump upgDenLurker 0 upgEndZ 13
-	var Ex|jump upgSpireAttack 0 upgEndZ 13
-	var Ex|jump upgSpireArmor 0 upgEndZ 13
-	var Ex|jump upgQueen 0 upgEndZ 13
-	var Ex|jump upgGorg 0 upgEndZ 13
-	var Ex|jump upgGuard 0 upgEndZ 13
-	var Ex|jump upgDevourer 0 upgEndZ 13
-	var Ex|jump upgDefiler 0 upgEndZ 13
-	var Ex|jump upgUltra 0 upgEndZ 13
-	var set upgEndVar 1 13
+	multi upgSpawnZergCheck
+	multi upgSpawnVorvCheck
+	multi upgEvoArmorCheck
+	multi upgEvoMeleeCheck
+	multi upgEvoMissileCheck
+	multi upgEvoUtilityCheck
+	multi upgDenHydraCheck
+	multi upgDenBasiliskCheck
+	multi upgDenLurkerCheck
+	multi upgLairCheck
+	multi upgSpireArmorCheck
+	multi upgSpireAttackCheck
+	multi upgQueenCheck
+	multi upgGorgCheck
+	multi upgDefilerCheck
+	multi upgUltraCheck
+	multi upgGuardCheck
+	multi upgDevourerCheck
 	stop
 	
-	:zUpgGen
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 spawning_pool Loc.63 upgSpawnZergCheck
-	bring 13 AtL_M 1 evolution_chamber|mutation_pit Loc.63 upgSpawnVorvCheck
-	bring 13 AtL_M 1 evolution_chamber|mutation_pit Loc.63 upgEvoMissileCheck
-	bring 13 AtL_M 2 evolution_chamber|mutation_pit Loc.63 upgEvoArmorCheck
-	bring 13 AtL_M 3 evolution_chamber|mutation_pit Loc.63 upgEvoMeleeCheck
-	bring 13 AtL_M 4 evolution_chamber|mutation_pit|hive Loc.63 upgEvoUtilityCheck
-	bring 13 AtL_M 1 hydralisk_den Loc.63 upgDenHydraCheck
-	bring 13 AtL_M 1 lurker_den Loc.63 upgDenLurkerCheck
-	bring 13 AtL_M 1 basilisk_den Loc.63 upgDenBasiliskCheck
-	bring 13 AtL_M 1 lair Loc.63 upgLairCheck
-	bring 13 AtL_M 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireArmorCheck
-	bring 13 AtL_M 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt|hive Loc.63 upgSpireAttackCheck
-	bring 13 AtL_M 1 gorgoleth_apiary Loc.63 upgGorgCheck
-	bring 13 AtL_M 1 guardian_roost Loc.63 upgGuardCheck
-	bring 13 AtL_M 1 devourer_haunt Loc.63 upgDevourerCheck
-	bring 13 AtL_M 1 queen_nest Loc.63 upgQueenCheck
-	bring 13 AtL_M 1 defiler_mound Loc.63 upgDefilerCheck
-	bring 13 AtL_M 1 ultralisk_cavern Loc.63 upgUltraCheck
-	goto zUpgGen
-	
-	:zUpgConnor
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 lair Loc.63 upgSpawnZergCheck
-	bring 13 AtL_M 1 hydralisk_den Loc.63 upgDenHydraCheck
-	bring 13 AtL_M 1 evolution_chamber|mutation_pit Loc.63 upgEvoMissileCheck
-	bring 13 AtL_M 2 evolution_chamber|mutation_pit Loc.63 upgEvoArmorCheck
-	bring 13 AtL_M 3 evolution_chamber|mutation_pit Loc.63 upgEvoMeleeCheck
-	bring 13 AtL_M 4 evolution_chamber|mutation_pit|hive Loc.63 upgEvoUtilityCheck
-	bring 13 AtL_M 1 lair Loc.63 upgLairCheck
-	bring 13 AtL_M 1 basilisk_den Loc.63 upgDenBasiliskCheck
-	bring 13 AtL_M 1 lurker_den Loc.63 upgDenLurkerCheck
-	bring 13 AtL_M 1 queen_nest Loc.63 upgQueenCheck
-	bring 13 AtL_M 1 defiler_mound Loc.63 upgDefilerCheck
-	bring 13 AtL_M 1 ultralisk_cavern Loc.63 upgUltraCheck
-	bring 13 AtL_M 1 spire Loc.63 upgSpireAttackCheck
-	bring 13 AtL_M 2 spire|guardian_roost Loc.63 upgSpireArmorCheck
-	bring 13 AtL_M 1 gorgoleth_apiary Loc.63 upgGorgCheck
-	bring 13 AtL_M 1 guardian_roost Loc.63 upgGuardCheck
-	bring 13 AtL_M 1 devourer_haunt Loc.63 upgDevourerCheck
-	goto zUpgConnor
-	
-	:zUpgSwarm
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 spawning_pool Loc.63 upgSpawnZergCheck
-	bring 13 AtL_M 1 evolution_chamber|mutation_pit Loc.63 upgSpawnVorvCheck
-	bring 13 AtL_M 1 evolution_chamber|mutation_pit Loc.63 upgEvoMeleeCheck
-	bring 13 AtL_M 2 evolution_chamber|mutation_pit Loc.63 upgEvoArmorCheck
-	bring 13 AtL_M 3 evolution_chamber|mutation_pit Loc.63 upgEvoUtilityCheck
-	bring 13 AtL_M 4 evolution_chamber|mutation_pit Loc.63 upgEvoMissileCheck
-	bring 13 AtL_M 1 hydralisk_den Loc.63 upgDenHydraCheck
-	bring 13 AtL_M 1 lurker_den Loc.63 upgDenLurkerCheck
-	bring 13 AtL_M 1 basilisk_den Loc.63 upgDenBasiliskCheck
-	bring 13 AtL_M 1 lair Loc.63 upgLairCheck
-	bring 13 AtL_M 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireAttackCheck
-	bring 13 AtL_M 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireArmorCheck
-	bring 13 AtL_M 1 queen_nest Loc.63 upgQueenCheck
-	bring 13 AtL_M 1 defiler_mound Loc.63 upgDefilerCheck
-	bring 13 AtL_M 1 ultralisk_cavern Loc.63 upgUltraCheck
-	bring 13 AtL_M 1 gorgoleth_apiary Loc.63 upgGorgCheck
-	bring 13 AtL_M 1 guardian_roost Loc.63 upgGuardCheck
-	bring 13 AtL_M 1 devourer_haunt Loc.63 upgDevourerCheck
-	goto zUpgSwarm
-	
-	:zUpgAir
-	var Ex|jump upgEndVar 1 stp 13
-	wait 240
-	bring 13 AtL_M 1 spawning_pool Loc.63 upgSpawnZergCheck
-	bring 13 AtL_M 1 evolution_chamber|mutation_pit Loc.63 upgSpawnVorvCheck
-	bring 13 AtL_M 1 evolution_chamber|mutation_pit Loc.63 upgEvoMeleeCheck
-	bring 13 AtL_M 2 evolution_chamber|mutation_pit Loc.63 upgEvoArmorCheck
-	bring 13 AtL_M 3 evolution_chamber|mutation_pit Loc.63 upgEvoMissileCheck
-	bring 13 AtL_M 4 evolution_chamber|mutation_pit|hive Loc.63 upgEvoUtilityCheck
-	bring 13 AtL_M 1 hydralisk_den Loc.63 upgDenHydraCheck
-	bring 13 AtL_M 1 lurker_den Loc.63 upgDenLurkerCheck
-	bring 13 AtL_M 1 basilisk_den Loc.63 upgDenBasiliskCheck
-	bring 13 AtL_M 1 lair Loc.63 upgLairCheck
-	bring 13 AtL_M 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireArmorCheck
-	bring 13 AtL_M 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireAttackCheck
-	bring 13 AtL_M 1 queen_nest Loc.63 upgQueenCheck
-	bring 13 AtL_M 1 defiler_mound Loc.63 upgDefilerCheck
-	bring 13 AtL_M 1 ultralisk_cavern Loc.63 upgUltraCheck
-	bring 13 AtL_M 1 gorgoleth_apiary Loc.63 upgGorgCheck
-	bring 13 AtL_M 1 guardian_roost Loc.63 upgGuardCheck
-	bring 13 AtL_M 1 devourer_haunt Loc.63 upgDevourerCheck
-	goto zUpgAir
-	
 	:upgSpawnZergCheck
-	var Ex|jump upgSpawnZerg 1 stp 13
-	var set upgSpawnZerg 1 13
+	wait 1
 	
 	:upgSpawnZerg
 	wait 12
@@ -633,20 +511,26 @@ script_id ZMCx
 	goto wUpgrade
 	
 	:upgSpawnVorvCheck
-	var Ex|jump upgSpawnVorv 1 stp 13
-	var set upgSpawnVorv 1 13
+	dth 13 AtM_C 1 crashed_battle upgVorvGen
+	dth 13 AtL_C 4 crashed_battle upgVorvGen
 	
 	:upgSpawnVorv
 	wait 12
 	notowns spawning_pool upgSpawnVorv
+	#notowns vorval_pond upgSpawnVorv
 	wait 60
 	call wUpgradeDef
-	extupgrade 1 adrenal_surge 88
+	extupg 1 adrenal_surge 88
 	goto wUpgrade
 	
+	:upgVorvGen
+	wait 12
+	bring 13 AtM 6 vorvaling Loc.63 upgVorvGen
+	return
+	
 	:upgEvoMeleeCheck
-	var Ex|jump upgEvoMelee 1 stp 13
-	var set upgEvoMelee 1 13
+	dth 13 AtM_C 1 crashed_battle upgMeleeGen
+	dth 13 AtL_C 4 crashed_battle upgMeleeGen
 	
 	:upgEvoMelee
 	wait 12
@@ -671,9 +555,15 @@ script_id ZMCx
 	upg_queue 5 z_melee_attack 88
 	goto wUpgrade
 	
+	:upgMeleeGen
+	wait 12
+	var AtL|jump townCount 4 ret 13
+	bring 13 AtM 2 evolution_chamber Loc.63 upgMeleeGen
+	return
+	
 	:upgEvoMissileCheck
-	var Ex|jump upgEvoMissile 1 stp 13
-	var set upgEvoMissile 1 13
+	dth 13 Ex_C 2 crashed_battle upgMissileGen
+	dth 13 Ex_C 3 crashed_battle upgMissileGen
 	
 	:upgEvoMissile
 	wait 12
@@ -699,9 +589,15 @@ script_id ZMCx
 	upg_queue 5 z_missile_attack 88
 	goto wUpgrade
 	
+	:upgMissileGen
+	wait 12
+	var AtL|jump townCount 4 ret 13
+	bring 13 AtM 2 evolution_chamber Loc.63 upgMissileGen
+	return
+	
 	:upgEvoArmorCheck
-	var Ex|jump upgEvoArmor 1 stp 13
-	var set upgEvoArmor 1 13
+	dth 13 Ex_C 1 crashed_battle upgArmGen
+	dth 13 Ex_C 2 crashed_battle upgArmGen
 	
 	:upgEvoArmor
 	wait 12
@@ -726,23 +622,32 @@ script_id ZMCx
 	upg_queue 5 z_carapace 88
 	goto wUpgrade
 	
+	:upgArmGen
+	wait 12
+	bring 13 AtM 1 evolution_chamber Loc.63 upgArmGen
+	goto upgArmGen
+	
 	:upgEvoUtilityCheck
-	var Ex|jump upgEvoUtility 1 stp 13
-	var set upgEvoUtility 1 13
+	call upgUtilityGen
 	
 	:upgEvoUtility
 	wait 12
 	notowns evolution_chamber upgEvoUtility
 	call wUpgradeDef
-	extupgrade 1 tendril_amitosis 88
+	extupg 1 tendril_amitosis 88
 	wait 4500
 	w_upg
 	upg_queue 1 rapid_reconstitution 88
 	goto wUpgrade
 	
+	:upgUtilityGen
+	wait 12
+	var AtL|jump townCount 5 ret 13
+	bring 13 AtM 3 evolution_chamber Loc.63 upgUtilityGen
+	return
+	
 	:upgDenHydraCheck
-	var Ex|jump upgDenHydra 1 stp 13
-	var set upgDenHydra 1 13
+	wait 1
 	
 	:upgDenHydra
 	wait 12
@@ -757,14 +662,14 @@ script_id ZMCx
 	goto wUpgrade
 	
 	:upgDenBasiliskCheck
-	var Ex|jump upgDenBasilisk 1 stp 13
-	var set upgDenBasilisk 1 13
+	dth 13 Ex_C 0 crashed_battle upgBasGen
+	dth 13 AtL_C 2 crashed_battle upgBasGen
 	
 	:upgDenBasilisk
 	wait 12
 	notowns basilisk_den upgDenBasilisk
 	call wUpgradeDef
-	extupgrade 1 corrosive_dispersion 88
+	extupg 1 corrosive_dispersion 88
 	wait 4500
 	w_upg
 	
@@ -772,24 +677,33 @@ script_id ZMCx
 	wait 12
 	notowns hive upgDenBasilisk2
 	call wUpgradeDef
-	extupgrade 1 caustic_fission 88
+	extupg 1 caustic_fission 88
 	goto wUpgrade
 	
+	:upgBasGen
+	wait 12
+	bring 13 AtM 4 basilisk Loc.63 upgBasGen
+	return
+	
 	:upgDenLurkerCheck
-	var Ex|jump upgDenLurker 1 stp 13
-	var set upgDenLurker 1 13
+	dth 13 Ex_C 0 crashed_battle upgLurkGen
+	dth 13 AtL_C 2 crashed_battle upgLurkGen
 	
 	:upgDenLurker
 	wait 12
 	notowns lurker_den upgDenLurker
 	notowns hive upgDenLurker
 	call wUpgradeDef
-	extupgrade 1 tectonic_claws 88
+	extupg 1 tectonic_claws 88
 	goto wUpgrade
 	
+	:upgLurkGen
+	wait 12
+	bring 13 AtM 4 lurker Loc.63 upgLurkGen
+	return
+	
 	:upgLairCheck
-	var Ex|jump upgLair 1 stp 13
-	var set upgLair 1 13
+	wait 1
 	
 	:upgLair
 	wait 12
@@ -808,8 +722,8 @@ script_id ZMCx
 	goto wUpgrade
 	
 	:upgSpireAttackCheck
-	var Ex|jump upgSpireAttack 1 stp 13
-	var set upgSpireAttack 1 13
+	dth 13 AtM_C 2 crashed_battle upgAirWeaponGen
+	dth 13 AtL_C 4 crashed_battle upgAirWeaponGen
 	
 	:upgSpireAttack
 	wait 12
@@ -834,9 +748,14 @@ script_id ZMCx
 	upg_queue 5 z_flyer_attack 88
 	goto wUpgrade
 	
+	:upgAirWeaponGen
+	wait 12
+	var AtL|jump townCount 4 ret 13
+	bring 13 AtM 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgAirWeaponGen
+	return
+	
 	:upgSpireArmorCheck
-	var Ex|jump upgSpireArmor 1 stp 13
-	var set upgSpireArmor 1 13
+	dth 13 Ex_C 3 crashed_battle upgAirArmorGen
 	
 	:upgSpireArmor
 	wait 12
@@ -861,9 +780,15 @@ script_id ZMCx
 	upg_queue 5 z_flyer_carapace 88
 	goto wUpgrade
 	
+	:upgAirArmorGen
+	wait 12
+	var AtL|jump townCount 4 ret 13
+	bring 13 AtM 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgAirArmorGen
+	return
+	
 	:upgQueenCheck
-	var Ex|jump upgQueen 1 stp 13
-	var set upgQueen 1 13
+	dth 13 Ex_C 1 crashed_battle upgQueenGen
+	dth 13 AtL_C 3 crashed_battle upgQueenGen
 	
 	:upgQueen
 	wait 12
@@ -886,55 +811,87 @@ script_id ZMCx
 	tech_j 13 AtL_W 17 1 blank
 	stop
 	
+	:upgQueenGen
+	wait 12
+	bring 13 AtM 3 queen Loc.63 upgQueenGen
+	return
+	
 	:upgGorgCheck
-	var Ex|jump upgGorg 1 stp 13
-	var set upgGorg 1 13
+	dth 13 Ex 0 crashed_battle blank
+	dth 13 Ex_C 1 crashed_battle upgGorgConnor
+	dth 13 Ex 2 crashed_battle blank
+	dth 13 AtL 4 crashed_battle blank
 	
 	:upgGorg
 	wait 12
 	notowns gorgoleth_apiary upgGorg
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 ravening_mandible 88
+	extupg 1 ravening_mandible 88
 	wait 4500
 	w_upg
 	call wUpgradeDef
-	extupgrade 1 vital_encephalon 88
+	extupg 1 vital_encephalon 88
 	goto wUpgrade
 	
+	:upgGorgConnor
+	wait 12
+	bring 13 AtM 3 gorgoleth Loc.63 upgGorgConnor
+	return
+	
 	:upgGuardCheck
-	var Ex|jump upgGuard 1 stp 13
-	var set upgGuard 1 13
+	dth 13 AtM_C 1 crashed_battle upgGuardGen
+	dth 13 Ex_C 2 crashed_battle upgGuardSwarm
+	dth 13 AtL_C 4 crashed_battle upgGuardGen
 	
 	:upgGuard
 	stop
 	
+	:upgGuardGen
+	wait 12
+	bring 13 AtM 3 guardian Loc.63 upgGuardGen
+	return
+	
+	:upgGuardSwarm
+	wait 12
+	notowns guardian upgGuardSwarm
+	return
+	
 	:upgDevourerCheck
-	var Ex|jump upgDevourer 1 stp 13
-	var set upgDevourer 1 13
+	dth 13 AtM_C 2 crashed_battle upgDevoGen
+	dth 13 AtL_C 4 crashed_battle upgDevoGen
 	
 	:upgDevourer
 	stop
 	
+	:upgDevoGen
+	wait 12
+	bring 13 AtM 3 devourer Loc.63 upgDevoGen
+	return
+	
 	:upgUltraCheck
-	var Ex|jump upgUltra 1 stp 13
-	var set upgUltra 1 13
+	dth 13 Ex_C 1 crashed_battle upgUltraGen
+	dth 13 Ex_C 3 crashed_battle upgUltraGen
 	
 	:upgUltra
 	wait 12
 	notowns ultralisk_cavern upgUltra
 	wait 60
 	call wUpgradeDef
-	extupgrade 1 saber_siphon 88
+	extupg 1 saber_siphon 88
 	wait 4500
 	w_upg
 	call wUpgradeDef
-	extupgrade 1 kaiser_rampage 88
+	extupg 1 kaiser_rampage 88
 	goto wUpgrade
 	
+	:upgUltraGen
+	wait 12
+	bring 13 AtM 2 ultralisk Loc.63 upgUltraGen
+	return
+	
 	:upgDefilerCheck
-	var Ex|jump upgDefiler 1 stp 13
-	var set upgDefiler 1 13
+	dth 13 Ex_C 3 crashed_battle upgDefilerAir
 	
 	:upgDefiler
 	wait 12
@@ -955,9 +912,15 @@ script_id ZMCx
 	upg_j 13 AtL_W 32 1 blank
 	wait 60
 	call wUpgradeDef
-	extupgrade 1 metastasis 88
+	extupg 1 metastasis 88
 	wait 4500
 	var set metastasis 1 13
+	goto wUltra
+	
+	:upgDefilerAir
+	wait 12
+	notowns defiler upgDefilerAir
+	return
 	
 	:wUpgrade
 	wait 480

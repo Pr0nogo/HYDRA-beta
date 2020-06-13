@@ -516,13 +516,13 @@ script_id TMCx
 	notowns engineering_bay upgEngUtility
 	notowns science_facility upgEngUtility
 	call wUpgradeDef
-	extupgrade 1 sequester_pods 88
+	extupg 1 sequester_pods 88
 	wait 4500
 	w_upg
 	upg_queue 1 fusion_sealer 88
 	upg_j 13 AtL_W 18 1 blank
 	call wUpgradeDef
-	extupgrade 1 comsat_mana 88
+	extupg 1 comsat_mana 88
 	goto wUpgrade
 	
 	:upgGenUtility
@@ -637,7 +637,7 @@ script_id TMCx
 	notowns academy upgAcadCyprian
 	wait 60
 	call wUpgradeDef
-	extupgrade 1 escalate_cyprian 88
+	extupg 1 escalate_cyprian 88
 	wait 4500
 	replace_unit firebat cyprian
 	wait 240
@@ -647,7 +647,7 @@ script_id TMCx
 	multi ioSafety
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 plasteel_servos 88
+	extupg 1 plasteel_servos 88
 	goto wUpgrade
 	
 	:upgMedbayMedicCheck
@@ -670,7 +670,7 @@ script_id TMCx
 	wait 12
 	notowns science_facility upgMedbayAdr
 	call wUpgradeDef
-	extupgrade 1 adrenaline_packs 88
+	extupg 1 adrenaline_packs 88
 	goto wUpgrade
 	
 	:upgMedbayShamanCheck
@@ -682,7 +682,7 @@ script_id TMCx
 	notowns medbay upgMedbayShaman
 	wait 360
 	call wUpgradeDef
-	extupgrade 1 escalate_shaman 88
+	extupg 1 escalate_shaman 88
 	wait 4500
 	replace_unit medic shaman
 	wait 240
@@ -691,10 +691,10 @@ script_id TMCx
 	wait 12
 	notowns science_facility upgMedbayShaman2
 	call wUpgradeDef
-	extupgrade 1 shaman_mana 88
+	extupg 1 shaman_mana 88
 	wait 4500
 	call wUpgradeDef
-	extupgrade 1 overcharge 88
+	extupg 1 overcharge 88
 	wait 4500
 	goto upgMedbayAdr
 	
@@ -716,11 +716,11 @@ script_id TMCx
 	upg_j 13 AtL_W 21 1 blank
 	wait 360
 	call wUpgradeDef
-	extupgrade 1 somatic_implants 88
+	extupg 1 somatic_implants 88
 	wait 2500
 	w_upg
 	call wUpgradeDef
-	extupgrade 1 augustgrads_revenge 88
+	extupg 1 augustgrads_revenge 88
 	goto wUpgrade
 	
 	:upgGenGhost
@@ -976,7 +976,7 @@ script_id TMCx
 	tech cloaking_field 88
 	tech_j 13 AtL_W 9 1 blank
 	call wUpgradeDef
-	extupgrade 1 capacitors 88
+	extupg 1 capacitors 88
 	wait 2500
 	w_upg
 	call wUpgradeDef
@@ -1002,10 +1002,10 @@ script_id TMCx
 	wait 12
 	notowns control_tower upgConDropship
 	call wUpgradeDef
-	extupgrade 1 passenger_insurance 88
+	extupg 1 passenger_insurance 88
 	wait 4500
 	call wUpgradeDef
-	extupgrade 1 hotdrop 88
+	extupg 1 hotdrop 88
 	goto wUpgrade
 	
 	:upgGenDropship
@@ -1022,7 +1022,7 @@ script_id TMCx
 	wait 12
 	notowns control_tower upgConWyvern
 	call wUpgradeDef
-	#extupgrade 1 reverse_thrust 88
+	#extupg 1 reverse_thrust 88
 	goto wUpgrade
 	
 	:upgGenWyvern
@@ -1044,7 +1044,7 @@ script_id TMCx
 	wait 12
 	notowns physics_lab upgPhysBattle
 	call wUpgradeDef
-	extupgrade 1 fore_castle 88
+	extupg 1 fore_castle 88
 	wait 4500
 	w_upg
 	call wUpgradeDef
@@ -1055,7 +1055,7 @@ script_id TMCx
 	upg_queue 1 battlecruiser_mana 88
 	upg_j 13 AtL_W 23 1 blank
 	call wUpgradeDef
-	extupgrade 1 umojan_batteries 88
+	extupg 1 umojan_batteries 88
 	goto wUpgrade
 	
 	:upgGenBattle
@@ -1081,7 +1081,7 @@ script_id TMCx
 	upg_j 13 AtL_W 19 1 blank
 	wait 720
 	call wUpgradeDef
-	extupgrade 1 radiation_shockwave 88
+	extupg 1 radiation_shockwave 88
 	goto wUpgrade
 	
 	:upgGenVessel
@@ -1099,16 +1099,16 @@ script_id TMCx
 	multi ioMatrix
 	wait 240
 	call wUpgradeDef
-	extupgrade 1 escalate_azazel 88
+	extupg 1 escalate_azazel 88
 	wait 4500
 	replace_unit science_vessel azazel
 	call wUpgradeDef
 	#exttech sublime_shepherd 88
 	multi ioShepherd
 	call wUpgradeDef
-	extupgrade 1 azazel_mana 88
+	extupg 1 azazel_mana 88
 	wait 4500
-	extupgrade 1 innervating_matrices 88
+	extupg 1 innervating_matrices 88
 	
 	:wUpgrade
 	wait 480
@@ -1423,27 +1423,30 @@ script_id TMCx
 	wait 900
 	var set cutWorker 1 13
 	bld 1 supply_depot 66
-	wait 300
-	bld 1 barracks 72
-	wait 300
-	bld 1 refinery 66
 	wait 24
+	bld 1 barracks 72
+	wait 24
+	bld 1 refinery 66
+	wait 300
 	var set cutWorker 0 13
 	wait 300
 	var set buildSupply 1 13
-	wait 24
-	bld 2 barracks 72
-	wait 24
+	wait 300
 	bld 1 armory 66
-	wait 300
-	bld 1 academy 66
-	wait 24
-	bld 1 engineering_bay 66
 	wait 600
-	bld 1 factory 72
+	var set canExpand 1 13
+	wait 600
+	var set canExpand 0 13
 	wait 300
-	bld 1 starport 72
+	bld 1 factory 72
 	wait 24
+	bld 1 academy 66
+	wait 600
+	bld 2 factory 72
+	wait 24
+	bld 1 machine_shop 66
+	wait 24
+	bld 1 comsat_station 66
 	multi addProd
 	goto buildGenFin
 	
@@ -1578,6 +1581,12 @@ script_id TMCx
 	var set canAttack 1 13
 	wait 24
 	bld 1 barracks 72
+	wait 600
+	bld 1 engineering_bay 66
+	wait 24
+	bld 1 academy 66
+	wait 600
+	bld 1 comsat_station 66
 	multi addProd
 	goto buildMechFin
 	
@@ -1678,6 +1687,10 @@ script_id TMCx
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 300
 	bld 1 science_facility 66
+	wait 24
+	bld 1 starport 72
+	wait 24
+	bld 1 control_tower 66
 	multi addProd
 	goto buildMechFin
 	
@@ -1789,6 +1802,9 @@ script_id TMCx
 	wait 24
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 24
+	bld 1 engineering_bay 66
+	wait 24
+	bld 1 barracks 72
 	multi addProd
 	goto buildMechFin
 	
@@ -1885,11 +1901,14 @@ script_id TMCx
 	wait 24
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 600
+	bld 1 barracks 72
 	multi addProd
 	
 	:buildMechFin
 	call buildBool
 	wait 600
+	bld 1 comsat_station 66
+	wait 24
 	call wSci
 	wait 300
 	call wAcad
@@ -2337,8 +2356,8 @@ script_id TMCx
 	
 	:addTurretCheck2
 	var Ex|jump underAttack 0 ret 13
-	local 255 AtL 5 missile_turret addReturn
-	add_bld 255 missile_turret 1 5 64
+	local 255 AtL 6 missile_turret addReturn
+	add_bld 255 missile_turret 1 6 64
 	goto addReturn
 	
 	:addProd
