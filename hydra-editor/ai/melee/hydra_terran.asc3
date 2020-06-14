@@ -19,22 +19,7 @@ script_id TMCx
 	help
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	town_state 255 persist true
-	set_var_local blank stp 13
-	set_var_local blankReturn ret 13
-	set_var_local wWorkerDef wWorker 13
-	var set townCount 1 13
-	var set miningCount 1 13
-	var set underAttack 0 13
-	var set cutWorker 0 13
-	var set canExpand 0 13
-	var set canAttack 0 13
-	var set canUpgrade 0 13
-	var set canStatic 0 13
-	var set canQueue 0 13
-	var set buildGas 0 13
-	var set buildSupply 0 13
-	var set buildDone 0 13
-	var set wRes 0 13
+	multi var
 	queue 1 scv command_center 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
 	upg_j 13 Set 58 2 blank
@@ -1536,13 +1521,13 @@ script_id TMCx
 	call buildBool
 	wait 600
 	call wEng
-	wait 300
-	bld 1 covert_ops 66
-	wait 300
-	call wSci
-	wait 600
-	call wArm
 	wait 900
+	bld 1 covert_ops 66
+	wait 1200
+	call wSci
+	wait 1200
+	call wArm
+	wait 1200
 	call wArm
 	stop
 	
@@ -1906,17 +1891,17 @@ script_id TMCx
 	
 	:buildMechFin
 	call buildBool
-	wait 600
+	wait 1200
 	bld 1 comsat_station 66
 	wait 24
 	call wSci
-	wait 300
+	wait 900
 	call wAcad
-	wait 300
+	wait 1200
 	call wArm
-	wait 600
+	wait 1200
 	call wEng
-	wait 1800
+	wait 2400
 	call wEng
 	stop
 	
@@ -2107,13 +2092,13 @@ script_id TMCx
 	:buildBioFin
 	call buildBool
 	call wArm
-	wait 600
+	wait 300
 	bld 1 medbay 66
-	wait 300
+	wait 1200
 	bld 1 covert_ops 66
-	wait 300
+	wait 1800
 	call wEng
-	wait 300
+	wait 1800
 	call wSci
 	stop
 	
@@ -2218,31 +2203,31 @@ script_id TMCx
 	
 	:buildAirFin
 	call buildBool
-	wait 600
+	wait 900
 	call wAcad
-	wait 300
+	wait 1200
 	call wSci
-	wait 300
+	wait 1800
 	call wEng
-	wait 300
+	wait 1800
 	call wArm
-	wait 600
+	wait 1800
 	call wEng
-	wait 600
+	wait 1200
 	call wArm
 	stop
 	
 	:buildOrderExp
 	bring 13 AtL_W 1 barracks Loc.63 blank
-	wait 450
+	wait 1200
 	call wArm
-	wait 600
+	wait 1800
 	call wEng
-	wait 600
+	wait 1800
 	call wAcad
-	wait 900
+	wait 1800
 	call wSci
-	wait 600
+	wait 1200
 	call wArm
 	stop
 	
@@ -2361,6 +2346,7 @@ script_id TMCx
 	goto addReturn
 	
 	:addProd
+	var set canProd 1 13
 	var AtL|wait townCount 1 13
 	local 255 AtL_W 1 command_center blank
 	dth 13 Ex 1 crashed_battle addProdMech
@@ -2368,51 +2354,62 @@ script_id TMCx
 	dth 13 Ex 3 crashed_battle addProdAir
 	
 	:addProdGen
-	wait 720
+	wait 12
 	res 13 AtL_W Ore 300 blank
-	call wUpgradeDef
+	var Ex|wait canProd 1 13
 	dth 13 Set 0 psi_disrupter blank
 	res 13 AtL_C Any 400 addFactoryCheck
 	dth 13 AtL 1 psi_disrupter addProdGen
 	res 13 AtL_C Any 300 addStarportCheck
 	dth 13 AtL 1 psi_disrupter addProdGen
 	res 13 AtL_C Ore 300 addBarracksCheck
+	wait 300
+	bring 13 AtM 3 barracks|factory|starport Loc.63 addProdGen
+	wait 1200
 	goto addProdGen
 	
 	:addProdMech
-	wait 720
+	wait 12
 	res 13 AtL_W Ore 300 blank
-	call wUpgradeDef
+	var Ex|wait canProd 1 13
 	dth 13 Set 0 psi_disrupter blank
 	res 13 AtL_C Any 400 addFactoryCheck
 	dth 13 AtL 1 psi_disrupter addProdMech
 	res 13 AtL_C Ore 300 addBarracksCheck
 	dth 13 AtL 1 psi_disrupter addProdMech
 	res 13 AtL_C Any 300 addStarportCheck
+	wait 300
+	bring 13 AtM 3 barracks|factory|starport Loc.63 addProdMech
+	wait 1200
 	goto addProdMech
 	
 	:addProdBio
-	wait 720
+	wait 12
 	res 13 AtL_W Ore 300 blank
-	call wUpgradeDef
+	var Ex|wait canProd 1 13
 	dth 13 Set 0 psi_disrupter blank
 	res 13 AtL_C Ore 300 addBarracksCheck
 	dth 13 AtL 1 psi_disrupter addProdBio
 	res 13 AtL_C Any 300 addStarportCheck
 	dth 13 AtL 1 psi_disrupter addProdBio
 	res 13 AtL_C Any 400 addFactoryCheck
+	wait 300
+	bring 13 AtM 3 barracks|factory|starport Loc.63 addProdBio
+	wait 1200
 	goto addProdBio
 	
 	:addProdAir
-	wait 720
 	res 13 AtL_W Ore 300 blank
-	call wUpgradeDef
+	var Ex|wait canProd 1 13
 	dth 13 Set 0 psi_disrupter blank
 	res 13 AtL_C Any 300 addStarportCheck
 	dth 13 AtL 1 psi_disrupter addProdAir
 	res 13 AtL_C Ore 300 addBarracksCheck
 	dth 13 AtL 1 psi_disrupter addProdAir
 	res 13 AtL_C Any 400 addFactoryCheck
+	wait 300
+	bring 13 AtM 3 barracks|factory|starport Loc.63 addProdAir
+	wait 1200
 	goto addProdAir
 	
 	:addBarracksCheck
@@ -2791,261 +2788,302 @@ script_id TMCx
 	bring 13 AtL 10 Group_Factories Loc.63 tLoopC
 	bring 13 AtL 7 Group_Factories Loc.63 tLoopB
 	call atkGen
-	wait 480
+	wait 720
 	goto tLoopA
 	
 	:tLoopB
 	call atkGen
-	wait 360
+	wait 480
 	rand_j 85 tLoopB
-	wait 240
+	wait 360
 	goto tLoopA
 	
 	:tLoopC
 	call atkGen
-	wait 240
+	wait 360
 	goto tLoopA
 	
 	:atkGen
 	call addRand
+	var AtL|jump atkStart 1 xAtkCheck 13
 	atk_prep
-	call atkPrep
-	return
-	
-	:atkPrep
 	atk_do
-	wait 500
+	var set atkStart 1 13
+	wait 250
+	
+	:atkCheck
+	wait 250
+	#attack_jump 13 AtM 30 Group_Men Supply xAtkGen 13
+	#attack_jump 13 AtL 80 Group_Men Supply xAtkExp 13
+	
+	:atkNow
 	atk_now
+	goto atkFin
+	
+	:atkExp
+	target_expansion
+	
+	:atkFin
 	atk_c
 	c_queues train Any 13
+	var set canExpand 1 13
+	var set canProd 1 13
 	return
 	
 	:addRand
 	call wAttack
-	dth 13 Ex 1 crashed_battle addRandMech
-	dth 13 Ex 2 crashed_battle addRandBio
-	dth 13 Ex 3 crashed_battle addRandAir
+	var set canExpand 0 13
+	var set canProd 0 13
+	dth 13 Ex 1 crashed_battle addMech
+	dth 13 Ex 2 crashed_battle addBio
+	dth 13 Ex 3 crashed_battle addAir
 	
-	:addRandGenRelative
-	rand_j 28 addRandGen
-	rand_j 85 addRandGenRelative2
-	rand_j 128 addRandGenRelative3
-	bring 13 AtL 6 factory Loc.63 addRandMech
-	bring 13 AtL 6 barracks Loc.63 addRandBio
-	bring 13 AtL 6 starport Loc.63 addRandAir
-	goto addMix
+	:addGen
+	unit_check 13 13 63 Greater 0 0 barracks factory|starport xAddBio 13
+	unit_check 13 13 63 Greater 0 0 factory barracks|starport xAddMech 13
+	unit_check 13 13 63 Greater 0 0 starport barracks|factory xAddAir 13
 	
-	:addRandGenRelative2
-	bring 13 AtL 6 barracks Loc.63 addRandBio
-	bring 13 AtL 6 starport Loc.63 addRandAir
-	bring 13 AtL 6 factory Loc.63 addRandMech
-	goto addMix
-	
-	:addRandGenRelative3
-	bring 13 AtL 6 starport Loc.63 addRandAir
-	bring 13 AtL 6 factory Loc.63 addRandMech
-	bring 13 AtL 6 barracks Loc.63 addRandBio
-	goto addMix
-	
-	:addRandGen
-	rand_j 128 addMech
-	rand_j 104 addInfMech
-	goto addMix
-	
-	:addRandMech
-	rand_j 85 addRandMechRelative
-	goto addMech
-	
-	:addRandMechRelative
-	bring 13 AtL 5 starport Loc.63 addMechAir
-	bring 13 AtL 5 barracks Loc.63 addInfMech
-	goto addMech
-	
-	:addRandBio
-	rand_j 85 addRandBioRelative
-	goto addInf
-	
-	:addRandBioRelative
-	bring 13 AtL 5 factory Loc.63 addInfMech
-	bring 13 AtL 5 starport Loc.63 addInfAir
-	goto addInf
-	
-	:addRandAir
-	rand_j 85 addRandAirRelative
-	goto addAir
-	
-	:addRandAirRelative
-	bring 13 AtL 5 barracks Loc.63 addInfAir
-	bring 13 AtL 5 factory Loc.63 addMechAir
-	goto addAir
-	
-	:addMix
-	atk_add 2 vulture
-	atk_add 3 marine
-	atk_add 1 siege_tank
-	atk_add 1 firebat
-	atk_add 1 medic
-	atk_add 1 goliath
-	atk_add 1 science_vessel
-	atk_rel vulture factory 3
-	atk_rel marine barracks 3.25
-	atk_rel siege_tank machine_shop 4
-	atk_rel firebat barracks 1
-	atk_rel medic medbay 1.5
-	atk_rel goliath factory 2
-	atk_rel science_vessel control_tower 0.33
-	queue_rel vulture factory 1 factory 255 Global 63 99
-	queue_rel marine barracks 1 barracks 255 Global 63 99
-	queue_rel siege_tank machine_shop 1 factory 255 Global 63 99
-	queue_rel firebat barracks 0.5 barracks 255 Global 63 99
-	queue_rel medic medbay 0.75 barracks 255 Global 63 99
-	queue_rel goliath factory 1 factory 255 Global 63 99
-	queue_rel science_vessel control_tower 0.25 starport 255 Global 63 99
-	return
-	
-	:addInf
-	atk_add 5 marine
-	atk_add 2 firebat
-	atk_add 2 medic
-	atk_add 1 azazel
-	atk_add 2 ghost
-	atk_add 1 vulture
-	atk_rel marine barracks 3
-	atk_rel firebat barracks 1.5
-	atk_rel medic medbay 2
-	atk_rel azazel control_tower 0.33
-	atk_rel ghost covert_ops 2
-	atk_rel vulture factory 2
-	queue_rel marine barracks 1.5 barracks 255 Global 63 99
-	queue_rel firebat barracks 0.75 barracks 255 Global 63 99
-	queue_rel medic medbay 1 barracks 255 Global 63 99
-	queue_rel azazel control_tower 0.5 starport 255 Global 63 99
-	queue_rel ghost covert_ops 1 barracks 255 Global 63 99
-	queue_rel vulture factory 1 factory 255 Global 63 99
+	:addBio
+	call atkBio
+	call atkMech
+	call atkAir
 	return
 	
 	:addMech
-	atk_add 3 vulture
-	atk_add 2 siege_tank
-	atk_add 2 goliath
-	atk_add 2 marine
-	atk_add 1 science_vessel
-	atk_add 1 medic
-	atk_rel vulture factory 4
-	atk_rel siege_tank machine_shop 4
-	atk_rel goliath factory 2
-	atk_rel marine barracks 4.5
-	atk_rel science_vessel control_tower 0.33
-	atk_rel medic medbay 1.5
-	atk_rel firebat barracks 1.5
-	atk_rel wraith starport 2.5
-	queue_rel vulture factory 1 factory 255 Global 63 99
-	queue_rel siege_tank machine_shop 1 factory 255 Global 63 99
-	queue_rel goliath factory 1 factory 255 Global 63 99
-	queue_rel marine barracks 1 barracks 255 Global 63 99
-	queue_rel science_vessel control_tower 0.25 starport 255 Global 63 99
-	queue_rel medic medbay 0.75 barracks 255 Global 63 99
-	queue_rel wraith starport 1.25 starport 255 Global 63 99
+	call atkMech
+	call atkBio
+	call atkAir
 	return
 	
 	:addAir
-	atk_add 3 wraith
-	atk_add 1 science_vessel
-	#atk_add 1 wyvern
-	atk_add 1 battlecruiser
-	atk_add 2 marine
-	atk_add 1 goliath
-	atk_add 1 ghost
-	atk_rel wraith starport 3
-	atk_rel science_vessel control_tower 0.33
-	#atk_rel wyvern control_tower 0.5
-	atk_rel battlecruiser physics_lab 1.5
-	atk_rel marine barracks 3
-	atk_rel goliath factory 2
-	atk_rel medic medbay 1
-	atk_rel ghost covert_ops 1
-	queue_rel wraith starport 1.5 starport 255 Global 63 99
-	queue_rel science_vessel control_tower 0.25 starport 255 Global 63 99
-	#queue_rel wyvern control_tower 0.5 starport 255 Global 63 99
-	queue_rel battlecruiser physics_lab 1 starport 255 Global 63 99
-	queue_rel marine barracks 1.5 barracks 255 Global 63 99
-	queue_rel goliath factory 1 factory 255 Global 63 99
-	queue_rel medic medbay 0.5 barracks 255 Global 63 99
-	queue_rel ghost covert_ops 0.5 barracks 255 Global 63 99
+	call atkAir
+	call atkBio
+	call atkMech
 	return
 	
-	:addInfMech
-	atk_add 2 siege_tank
-	atk_add 1 goliath
-	atk_add 1 science_vessel
-	atk_add 4 marine
-	atk_add 1 firebat
-	atk_add 1 medic
-	atk_add 1 ghost
+	:atkBio
+	dth 13 Ex 1 crashed_battle atkBioMech
+	dth 13 Ex 3 crashed_battle atkBioAir
+	bring 13 AtL_C 5 barracks Loc.63 atkMarineMax
+	bring 13 AtM_C 4 barracks Loc.63 atkMarineMin
+	bring 13 AtL_C 3 medbay Loc.63 atkMedicMax
+	bring 13 AtM_C 2 medbay Loc.63 atkMedicMin
+	bring 13 AtL_C 1 academy Loc.63 atkFirebat
+	bring 13 AtL_C 3 covert_ops Loc.63 atkGhostMax
+	bring 13 AtM_C 2 covert_ops Loc.63 atkGhostMin
+	return
+	
+	:atkBioMech
+	bring 13 AtL_C 1 academy Loc.63 atkFirebat
+	bring 13 AtL_C 5 barracks Loc.63 atkMarineMax
+	bring 13 AtM_C 4 barracks Loc.63 atkMarineMin
+	bring 13 AtL_C 3 covert_ops Loc.63 atkGhostMax
+	bring 13 AtM_C 2 covert_ops Loc.63 atkGhostMin
+	bring 13 AtL_C 3 medbay Loc.63 atkMedicMax
+	bring 13 AtM_C 2 medbay Loc.63 atkMedicMin
+	return
+	
+	:atkBioAir
+	bring 13 AtL_C 5 barracks Loc.63 atkMarineMax
+	bring 13 AtM_C 4 barracks Loc.63 atkMarineMin
+	bring 13 AtL_C 3 medbay Loc.63 atkMedicMax
+	bring 13 AtM_C 2 medbay Loc.63 atkMedicMin
+	bring 13 AtL_C 3 covert_ops Loc.63 atkGhostMax
+	bring 13 AtM_C 2 covert_ops Loc.63 atkGhostMin
+	bring 13 AtL_C 1 academy Loc.63 atkFirebat
+	return
+	
+	:atkMarineMax
+	atk_rel marine barracks 6
+	queue_rel marine barracks 1 barracks 255 Global 63 99
+	return
+	
+	:atkMarineMin
+	atk_rel marine barracks 10
+	queue_rel marine barracks 1 barracks 255 Global 63 99
+	return
+	
+	:atkMedicMax
+	atk_rel medic medbay 3
+	queue_rel medic medbay 1 barracks 255 Global 63 99
+	return
+	
+	:atkMedicMin
+	atk_rel medic medbay 5
+	queue_rel medic medbay 1 barracks 255 Global 63 99
+	return
+	
+	:atkFirebat
+	bring 13 AtL_C 5 barracks Loc.63 atkFirebatMax
+	bring 13 AtM_C 4 barracks Loc.63 atkFirebatMin
+	return
+	
+	:atkFirebatMax
+	atk_rel firebat barracks 4
+	queue_rel firebat barracks 1 barracks 255 Global 63 99
+	return
+	
+	:atkFirebatMin
+	atk_rel firebat barracks 6
+	queue_rel firebat barracks 1 barracks 255 Global 63 99
+	return
+	
+	:atkGhostMax
+	atk_rel ghost covert_ops 3
+	queue_rel ghost covert_ops 1 barracks 255 Global 63 99
+	return
+	
+	:atkGhostMin
+	atk_rel ghost covert_ops 5
+	queue_rel ghost covert_ops 1 barracks 255 Global 63 99
+	return
+	
+	:atkMech
+	dth 13 Ex 2 crashed_battle atkMechRaider
+	dth 13 Ex 3 crashed_battle atkMechAir
+	bring 13 AtL_C 5 machine_shop Loc.63 atkTankMax
+	bring 13 AtM_C 4 machine_shop Loc.63 atkTankMin
+	bring 13 AtL_C 5 factory Loc.63 atkGoliathMax
+	bring 13 AtM_C 4 factory Loc.63 atkGoliathMin
+	bring 13 AtL_C 5 factory Loc.63 atkVultureMax
+	bring 13 AtM_C 4 factory Loc.63 atkVultureMin
+	return
+	
+	:atkMechRaider
+	bring 13 AtL_C 5 machine_shop Loc.63 atkTankMax
+	bring 13 AtM_C 4 machine_shop Loc.63 atkTankMin
+	bring 13 AtL_C 5 factory Loc.63 atkVultureMax
+	bring 13 AtM_C 4 factory Loc.63 atkVultureMin
+	bring 13 AtL_C 5 factory Loc.63 atkGoliathMax
+	bring 13 AtM_C 4 factory Loc.63 atkGoliathMin
+	return
+	
+	:atkMechAir
+	bring 13 AtL_C 5 factory Loc.63 atkVultureMax
+	bring 13 AtM_C 4 factory Loc.63 atkVultureMin
+	bring 13 AtL_C 5 factory Loc.63 atkGoliathMax
+	bring 13 AtM_C 4 factory Loc.63 atkGoliathMin
+	bring 13 AtL_C 5 machine_shop Loc.63 atkTankMax
+	bring 13 AtM_C 4 machine_shop Loc.63 atkTankMin
+	return
+	
+	:atkVultureMax
+	atk_rel vulture factory 3
+	queue_rel vulture factory 1 factory 255 Global 63 99
+	return
+	
+	:atkVultureMin
+	atk_rel vulture factory 9
+	queue_rel vulture factory 1 factory 255 Global 63 99
+	return
+	
+	:atkTankMax
 	atk_rel siege_tank machine_shop 3
-	atk_rel goliath factory 2
-	atk_rel science_vessel control_tower 0.33
-	atk_rel marine barracks 4
-	atk_rel firebat barracks 1.5
-	atk_rel medic medbay 1.5
-	atk_rel ghost covert_ops 2
-	atk_rel wraith starport 1.5
-	queue_rel siege_tank machine_shop 1.5 factory 255 Global 63 99
-	queue_rel goliath factory 1 factory 255 Global 63 99
-	queue_rel science_vessel control_tower 0.25 starport 255 Global 63 99
-	queue_rel marine barracks 2 barracks 255 Global 63 99
-	queue_rel firebat barracks 0.75 barracks 255 Global 63 99
-	queue_rel medic medbay 0.75 barracks 255 Global 63 99
-	queue_rel ghost covert_ops 1 barracks 255 Global 63 99
+	queue_rel siege_tank machine_shop 1 factory 255 Global 63 99
 	return
 	
-	:addInfAir
-	atk_add 3 marine
-	atk_add 2 wraith
-	atk_add 1 medic
-	atk_add 1 ghost
-	atk_add 1 science_vessel
-	atk_add 1 firebat
-	#atk_add 1 wyvern
-	atk_add 1 battlecruiser
-	atk_rel marine barracks 3
-	atk_rel wraith starport 2.5
-	atk_rel medic medbay 1.5
-	atk_rel ghost covert_ops 2
-	atk_rel science_vessel control_tower 0.33
-	#atk_rel wyvern control_tower 0.5
-	atk_rel firebat barracks 1
-	atk_rel battlecruiser physics_lab 1.5
-	queue_rel marine barracks 1.5 barracks 255 Global 63 99
-	queue_rel wraith starport 1.25 starport 255 Global 63 99
-	queue_rel medic medbay 0.75 barracks 255 Global 63 99
-	queue_rel ghost covert_ops 1 barracks 255 Global 63 99
-	queue_rel science_vessel control_tower 0.25 starport 255 Global 63 99
-	#queue_rel wyvern control_tower 0.5 starport 255 Global 63 99
-	queue_rel firebat barracks 0.5 barracks 255 Global 63 99
+	:atkTankMin
+	atk_rel siege_tank machine_shop 4
+	queue_rel siege_tank machine_shop 1 factory 255 Global 63 99
+	return
+	
+	:atkGoliathMax
+	atk_rel goliath factory 5
+	queue_rel goliath factory 1 factory 255 Global 63 99
+	return
+	
+	:atkGoliathMin
+	atk_rel goliath factory 4
+	queue_rel goliath factory 1 factory 255 Global 63 99
+	return
+	
+	:atkAir
+	dth 13 Ex 1 crashed_battle atkAirMech
+	dth 13 Ex 2 crashed_battle atkAirMech
+	bring 13 AtL_C 4 starport Loc.63 atkWraithMax
+	bring 13 AtM_C 3 starport Loc.63 atkWraithMin
+	bring 13 AtL_C 3 control_tower Loc.63 atkVesselMax
+	bring 13 AtM_C 2 control_tower Loc.63 atkVesselMin
+	bring 13 AtL_C 4 physics_lab Loc.63 atkCruiserMax
+	bring 13 AtM_C 3 physics_lab Loc.63 atkCruiserMin
+	bring 13 AtL_C 2 control_tower Loc.63 atkValkMax
+	bring 13 AtM_C 1 control_tower Loc.63 atkValkMin
+	return
+	
+	:atkAirMech
+	bring 13 AtL_C 3 control_tower Loc.63 atkVesselMax
+	bring 13 AtM_C 2 control_tower Loc.63 atkVesselMin
+	bring 13 AtL_C 4 starport Loc.63 atkWraithMax
+	bring 13 AtM_C 3 starport Loc.63 atkWraithMin
+	bring 13 AtL_C 4 physics_lab Loc.63 atkCruiserMax
+	bring 13 AtM_C 3 physics_lab Loc.63 atkCruiserMin
+	rand_j 128 blankReturn
+	bring 13 AtL_C 2 control_tower Loc.63 atkValkMax
+	bring 13 AtM_C 1 control_tower Loc.63 atkValkMin
+	return
+	
+	:atkWraithMax
+	atk_rel wraith starport 5
+	queue_rel wraith starport 1 starport 255 Global 63 99
+	return
+	
+	:atkWraithMin
+	atk_rel wraith starport 3
+	queue_rel wraith starport 1 starport 255 Global 63 99
+	return
+	
+	:atkVesselMax
+	atk_rel science_vessel control_tower 1.5
+	queue_rel science_vessel control_tower 1 starport 255 Global 63 99
+	return
+	
+	:atkVesselMin
+	atk_rel science_vessel control_tower 1
+	queue_rel science_vessel control_tower 1 starport 255 Global 63 99
+	return
+	
+	:atkCruiserMax
+	atk_rel battlecruiser physics_lab 2
 	queue_rel battlecruiser physics_lab 1 starport 255 Global 63 99
 	return
 	
-	:addMechAir
-	atk_add 5 wraith
-	atk_add 4 siege_tank
-	atk_add 2 vulture
-	atk_add 1 science_vessel
-	atk_add 2 marine
-	atk_add 1 goliath
-	atk_add 1 medic
-	atk_rel wraith starport 4
-	atk_rel siege_tank machine_shop 4.5
-	atk_rel vulture factory 2.5
-	atk_rel science_vessel control_tower 0.33
-	atk_rel marine barracks 4
-	atk_rel goliath factory 1
-	atk_rel medic medbay 1
-	queue_rel wraith starport 2 starport 255 Global 63 99
-	queue_rel siege_tank machine_shop 2.25 factory 255 Global 63 99
-	queue_rel vulture factory 1.25 factory 255 Global 63 99
-	queue_rel science_vessel control_tower 0.25 starport 255 Global 63 99
-	queue_rel marine barracks 2 barracks 255 Global 63 99
-	queue_rel goliath factory 0.5 factory 255 Global 63 99
-	queue_rel medic medbay 0.5 barracks 255 Global 63 99
-	return 
+	:atkCruiserMin
+	atk_rel battlecruiser physics_lab 1
+	queue_rel battlecruiser physics_lab 1 starport 255 Global 63 99
+	return
+	
+	:atkValkMax
+	atk_rel valkyrie control_tower 2
+	queue_rel valkyrie control_tower 1 starport 255 Global 63 99
+	return
+	
+	:atkValkMin
+	atk_rel valkyrie control_tower 1
+	queue_rel valkyrie control_tower 1 starport 255 Global 63 99
+	return
+	
+	:var
+	set_var_local blank stp 13
+	set_var_local blankReturn ret 13
+	set_var_local wWorkerDef wWorker 13
+	set_var_local atkGen xAtkGen 13
+	set_var_local atkCheck xAtkCheck 13
+	set_var_local atkExp xAtkExp 13
+	set_var_local addBio xAddBio 13
+	set_var_local addMech xAddMech 13
+	set_var_local addAir xAddAir 13
+	var set townCount 1 13
+	var set miningCount 1 13
+	var set underAttack 0 13
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	var set canAttack 0 13
+	var set canUpgrade 0 13
+	var set canStatic 0 13
+	var set canQueue 0 13
+	var set canProd 0 13
+	var set buildGas 0 13
+	var set buildSupply 0 13
+	var set buildDone 0 13
+	var set wRes 0 13
+	stop 

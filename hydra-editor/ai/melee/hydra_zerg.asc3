@@ -19,23 +19,7 @@ script_id ZMCx
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	i_tactics nydus_placement_ai 300 set
 	town_state 255 persist true
-	set_var_local blank stp 13
-	set_var_local blankReturn ret 13
-	set_var_local wWorkerDef wWorker 13
-	var set townCount 1 13
-	var set miningCount 1 13
-	var set underAttack 0 13
-	var set cutWorker 0 13
-	var set cutWorkerAll 0 13
-	var set canExpand 0 13
-	var set canAttack 0 13
-	var set canUpgrade 0 13
-	var set canStatic 0 13
-	var set canQueue 0 13
-	var set buildGas 0 13
-	var set buildSupply 0 13
-	var set buildDone 0 13
-	var set wRes 0 13
+	multi var
 	queue 1 drone larva 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
 	upg_j 13 Set 58 3 blank
@@ -2511,39 +2495,42 @@ script_id ZMCx
 	dth 13 Ex 3 crashed_battle addProdAir
 	
 	:addProdGen
-	wait 720
+	wait 12
 	res 13 AtL_W Ore 350 blank
-	call wUpgradeDef
+	var Ex|wait canProd 1 13
 	dth 13 Set 0 psi_disrupter blank
 	res 13 AtL_C Ore 350 addHatchCheck
 	dth 13 AtL 1 psi_disrupter addProdGen
 	res 13 AtL_C Any 400 addLairCheck
 	dth 13 AtL 1 psi_disrupter addProdGen
 	res 13 AtL_C Any 450 addHiveCheck
+	wait 720
 	goto addProdGen
 	
 	:addProdConnor
-	wait 720
+	wait 12
 	res 13 AtL_W Ore 450 blank
-	call wUpgradeDef
+	var Ex|wait canProd 1 13
 	dth 13 Set 0 psi_disrupter blank
 	res 13 AtL_C Ore 400 addLairCheck
 	dth 13 AtL 1 psi_disrupter addProdGen
 	res 13 AtL_C Ore 350 addHatchCheck
 	dth 13 AtL 1 psi_disrupter addProdGen
 	res 13 AtL_C Ore 450 addHiveCheck
+	wait 720
 	goto addProdGen
 	
 	:addProdAir
-	wait 720
+	wait 12
 	res 13 AtL_W Ore 450 blank
-	call wUpgradeDef
 	dth 13 Set 0 psi_disrupter blank
+	var Ex|wait canProd 1 13
 	res 13 AtL_C Ore 450 addHiveCheck
 	dth 13 AtL 1 psi_disrupter addProdGen
 	res 13 AtL_C Ore 400 addLairCheck
 	dth 13 AtL 1 psi_disrupter addProdGen
 	res 13 AtL_C Ore 350 addHatchCheck
+	wait 720
 	goto addProdGen
 	
 	:addHatchCheck
@@ -2779,19 +2766,30 @@ script_id ZMCx
 	goto zLoopA
 	
 	:atkGen
-	var set cutWorkerAll 1 13
 	call addRand
+	var AtL|jump atkStart 1 xAtkCheck 13
 	atk_prep
-	call atkPrep
-	return
-	
-	:atkPrep
 	atk_do
-	wait 500
+	var set atkStart 1 13
+	wait 250
+	
+	:atkCheck
+	wait 250
+	#attack_jump 13 AtM 30 Group_Men Supply xAtkGen 13
+	#attack_jump 13 AtL 80 Group_Men Supply xAtkExp 13
+	
+	:atkNow
 	atk_now
+	goto atkFin
+	
+	:atkExp
+	target_expansion
+	
+	:atkFin
 	atk_c
 	c_queues train Any 13
-	var set cutWorkerAll 0 13
+	var set canExpand 1 13
+	var set canProd 1 13
 	return
 	
 	:addRand
@@ -3132,4 +3130,30 @@ script_id ZMCx
 	bring 13 AtM 2 larva Loc.63 blank
 	res 13 AtM Any 199 blank
 	queue_rel ultralisk hatchery|lair|hive 1 larva 255 Global 63 99
+	stop
+	
+	:var
+	set_var_local blank stp 13
+	set_var_local blankReturn ret 13
+	set_var_local wWorkerDef wWorker 13
+	set_var_local atkGen xAtkGen 13
+	set_var_local atkCheck xAtkCheck 13
+	set_var_local atkExp xAtkExp 13
+	#set_var_local addSwarm xAddSwarm 13
+	#set_var_local addRange xAddRange 13
+	#set_var_local addAir xAddAir 13
+	var set townCount 1 13
+	var set miningCount 1 13
+	var set underAttack 0 13
+	var set cutWorker 0 13
+	var set cutWorkerAll 0 13
+	var set canExpand 0 13
+	var set canAttack 0 13
+	var set canUpgrade 0 13
+	var set canStatic 0 13
+	var set canQueue 0 13
+	var set buildGas 0 13
+	var set buildSupply 0 13
+	var set buildDone 0 13
+	var set wRes 0 13
 	stop 
