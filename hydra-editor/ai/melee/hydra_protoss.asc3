@@ -19,7 +19,31 @@ script_id PMCx
 	help
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	town_state 255 persist true
-	multi var
+	set_var_local blank stp 13
+	set_var_local blankReturn ret 13
+	set_var_local wWorkerDef wWorker 13
+	set_var_local atkGen xAtkGen 13
+	set_var_local atkCheck xAtkCheck 13
+	set_var_local atkExp xAtkExp 13
+	set_var_local atkFin xAtkFin 13
+	set_var_local addGate xAddGate 13
+	set_var_local addMech xAddMech 13
+	set_var_local addAir xAddAir 13
+	var set townCount 1 13
+	var set miningCount 1 13
+	var set underAttack 0 13
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	var set canAttack 0 13
+	var set canUpgrade 0 13
+	var set canStatic 0 13
+	var set canQueue 0 13
+	var set canProd 0 13
+	var set buildGas 0 13
+	var set buildSupply 0 13
+	var set buildDone 0 13
+	var set wRes 0 13
+	var set atkCycle 0 13
 	queue 1 probe nexus 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
 	upg_j 13 Set 58 1 blank
@@ -34,7 +58,7 @@ script_id PMCx
 	multi pUpg
 	multi pExpand
 	multi pScale
-	#multi qMilitary
+	multi qMilitary
 	
 	:slcPers
 	dth 13 AtL 1 crashed_battle dbgPers
@@ -1242,7 +1266,7 @@ script_id PMCx
 	var set wRes 1 13
 	wait 720
 	var set wRes 0 13
-	wait 3300
+	wait 3600
 	call wExpand
 	goto pExpand
 	
@@ -1273,11 +1297,11 @@ script_id PMCx
 	bld 2 pylon 65
 	wait 900
 	bld 3 pylon 65
+	wait 300
+	multi addProd
 	var Ex|wait buildDone 1 13
 	wait 300
 	multi buildOrderExp
-	wait 2400
-	multi addProd
 	goto idle
 	
 	:expCount
@@ -2743,14 +2767,17 @@ script_id PMCx
 	
 	:atkGen
 	call addRand
-	var AtL|jump atkStart 1 xAtkCheck 13
+	var AtL|jump atkCycle 1 xAtkCheck 13
 	atk_prep
 	atk_do
-	var set atkStart 1 13
 	wait 250
 	
 	:atkCheck
+	var add atkCycle 1 13
 	wait 250
+	#var AtL|jump atkCycle 2 xAtkFin 13
+	#supply 13 AtM 30 Used 0 Any_Total atkGen
+	#supply 13 AtL 80 Used 0 Any_Total atkExp
 	#attack_jump 13 AtM 30 Group_Men Supply xAtkGen 13
 	#attack_jump 13 AtL 80 Group_Men Supply xAtkExp 13
 	
@@ -2764,6 +2791,7 @@ script_id PMCx
 	:atkFin
 	atk_c
 	c_queues train Any 13
+	var set atkCycle 0 13
 	var set canExpand 1 13
 	var set canProd 1 13
 	return
@@ -2777,6 +2805,7 @@ script_id PMCx
 	dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
+	time_jump 20 addGen
 	unit_check 13 13 63 Greater 0 0 gateway|principality|warp_anchor robotics_facility|robotics_authority|stargate|argosy|starfield xAddGate 13
 	unit_check 13 13 63 Greater 0 0 robotics_facility|robotics_authority gateway|principality|warp_anchor|stargate|argosy|starfield xAddMech 13
 	unit_check 13 13 63 Greater 0 0 stargate|argosy|starfield gateway|principality|warp_anchor|robotics_facility|robotics_authority xAddAir 13
@@ -2895,12 +2924,14 @@ script_id PMCx
 	atk_rel high_templar gateway|principality|warp_anchor 0.75
 	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
 	dth 13 Ex_C 2 crashed_battle atkArchonMax
+	rand_j 64 atkArchonMax
 	return
 	
 	:atkTemplarMin
 	atk_rel high_templar gateway|principality|warp_anchor 0.5
 	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
 	dth 13 Ex_C 2 crashed_battle atkArchonMin
+	rand_j 64 atkArchonMin
 	return
 	
 	:atkArchonMax
@@ -2920,12 +2951,14 @@ script_id PMCx
 	atk_rel dark_templar gateway|principality|warp_anchor 1
 	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
 	dth 13 Ex_C 2 crashed_battle atkDArchonMax
+	rand_j 64 atkDArchonMax
 	return
 	
 	:atkDTemplarMin
 	atk_rel dark_templar gateway|principality|warp_anchor 1
 	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
 	dth 13 Ex_C 2 crashed_battle atkDArchonMin
+	rand_j 64 atkDArchonMin
 	return
 	
 	:atkDArchonMax
@@ -2940,8 +2973,8 @@ script_id PMCx
 	dth 13 Ex 2 crashed_battle atkMechGate
 	dth 13 Ex 3 crashed_battle atkMechAir
 	notowns robotics_support_bay blankReturn
-	bring 13 AtL_C 4 robotics_facility|robotics_authority Loc.63 atkReaverMax
-	bring 13 AtM_C 2 robotics_facility|robotics_authority Loc.63 atkReaverMin
+	bring 13 AtL_C 5 robotics_facility|robotics_authority Loc.63 atkReaverMax
+	bring 13 AtM_C 4 robotics_facility|robotics_authority Loc.63 atkReaverMin
 	return
 	
 	:atkMechGate
@@ -3085,28 +3118,100 @@ script_id PMCx
 	wait 2880
 	goto harassLogic
 	
-	:var
-	set_var_local blank stp 13
-	set_var_local blankReturn ret 13
-	set_var_local wWorkerDef wWorker 13
-	set_var_local atkGen xAtkGen 13
-	set_var_local atkCheck xAtkCheck 13
-	set_var_local atkExp xAtkExp 13
-	set_var_local addGate xAddGate 13
-	set_var_local addMech xAddMech 13
-	set_var_local addAir xAddAir 13
-	var set townCount 1 13
-	var set miningCount 1 13
-	var set underAttack 0 13
-	var set cutWorker 0 13
-	var set canExpand 0 13
-	var set canAttack 0 13
-	var set canUpgrade 0 13
-	var set canStatic 0 13
-	var set canQueue 0 13
-	var set canProd 0 13
-	var set buildGas 0 13
-	var set buildSupply 0 13
-	var set buildDone 0 13
-	var set wRes 0 13
+	:qMilitary
+	dth 13 Ex 1 crashed_battle qMilitaryRanger
+	dth 13 Ex 2 crashed_battle qMilitaryTemplar
+	dth 13 Ex 3 crashed_battle qMilitarySkylord
+	
+	:qMilitaryGen
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 gateway|warp_anchor Loc.63 qZealot
+	bring 13 AtL_M 1 gateway|principality Loc.63 qDragoon
+	bring 13 AtL_M 1 robotics_support_bay Loc.63 qReaver
+	bring 13 AtL_M 1 principality Loc.63 qLegion
+	bring 13 AtL_M 1 warp_anchor Loc.63 qHierophant
+	bring 13 AtL_M 1 stargate Loc.63 qScout
+	wait 480
+	goto qMilitaryGen
+	
+	:qMilitaryRanger
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 gateway|principality Loc.63 qDragoon
+	bring 13 AtL_M 1 robotics_support_bay Loc.63 qReaver
+	bring 13 AtL_M 1 gateway|warp_anchor Loc.63 qZealot
+	bring 13 AtL_M 1 warp_anchor Loc.63 qHierophant
+	bring 13 AtL_M 1 stargate Loc.63 qScout
+	bring 13 AtL_M 1 principality Loc.63 qLegion
+	wait 480
+	goto qMilitaryRanger
+	
+	:qMilitaryTemplar
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 principality Loc.63 qLegion
+	bring 13 AtL_M 1 gateway|warp_anchor Loc.63 qZealot
+	bring 13 AtL_M 1 gateway|principality Loc.63 qDragoon
+	bring 13 AtL_M 1 warp_anchor Loc.63 qHierophant
+	bring 13 AtL_M 1 stargate Loc.63 qScout
+	bring 13 AtL_M 1 robotics_support_bay Loc.63 qReaver
+	wait 480
+	goto qMilitaryTemplar
+	
+	:qMilitarySkylord
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 stargate Loc.63 qScout
+	bring 13 AtL_M 1 gateway|warp_anchor Loc.63 qZealot
+	bring 13 AtL_M 1 principality Loc.63 qLegion
+	bring 13 AtL_M 1 robotics_support_bay Loc.63 qReaver
+	bring 13 AtL_M 1 gateway|principality Loc.63 qDragoon
+	bring 13 AtL_M 1 warp_anchor Loc.63 qHierophant
+	wait 480
+	goto qMilitarySkylord
+	
+	:qZealot
+	bring 13 Ex 0 gateway|warp_anchor Loc.63 blank
+	bring 13 AtL 12 zealot Loc.63 blank
+	res 13 AtM Ore 99 blank
+	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	stop
+	
+	:qDragoon
+	bring 13 Ex 0 gateway|principality Loc.63 blank
+	notowns cybernetics_core blank
+	bring 13 AtL 12 dragoon Loc.63 blank
+	res 13 AtM Ore 124 blank
+	res 13 AtM Gas 49 blank
+	queue_rel dragoon gateway|principality 1 gateway|principality 255 Global 63 99
+	stop
+	
+	:qLegion
+	notowns principality blank
+	bring 13 AtL 15 legionnaire Loc.63 blank
+	res 13 AtM Ore 74 blank
+	queue_rel legionnaire principality 1 principality 255 Global 63 99
+	stop
+	
+	:qHierophant
+	notowns warp_anchor blank
+	notowns cybernetics_core blank
+	bring 13 AtL 8 hierophant Loc.63 blank
+	res 13 AtM Ore 124 blank
+	res 13 AtM Gas 74 blank
+	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	stop
+	
+	:qReaver
+	bring 13 Ex 0 robotics_facility|robotics_authority Loc.63 blank
+	notowns robotics_support_bay blank
+	bring 13 AtL 8 reaver Loc.63 blank
+	res 13 AtM Ore 199 blank
+	res 13 AtM Gas 99 blank
+	queue_rel reaver robotics_facility|robotics_authority 1 robotics_facility|robotics_authority 255 Global 63 99
+	stop
+	
+	:qScout
+	bring 13 Ex 0 stargate|starfield Loc.63 blank
+	bring 13 AtL 12 scout Loc.63 blank
+	res 13 AtM Ore 274 blank
+	res 13 AtM Gas 124 blank
+	queue_rel scout stargate|starfield 1 stargate|starfield 255 Global 63 99
 	stop 

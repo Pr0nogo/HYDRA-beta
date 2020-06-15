@@ -19,7 +19,32 @@ script_id ZMCx
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	i_tactics nydus_placement_ai 300 set
 	town_state 255 persist true
-	multi var
+	set_var_local blank stp 13
+	set_var_local blankReturn ret 13
+	set_var_local wWorkerDef wWorker 13
+	set_var_local atkGen xAtkGen 13
+	set_var_local atkCheck xAtkCheck 13
+	set_var_local atkExp xAtkExp 13
+	set_var_local atkFin xAtkFin 13
+	set_var_local addSwarm xAddSwarm 13
+	set_var_local addRange xAddRange 13
+	set_var_local addAir xAddAir 13
+	var set townCount 1 13
+	var set miningCount 1 13
+	var set underAttack 0 13
+	var set cutWorker 0 13
+	var set cutWorkerAll 0 13
+	var set canExpand 0 13
+	var set canAttack 0 13
+	var set canUpgrade 0 13
+	var set canStatic 0 13
+	var set canQueue 0 13
+	var set canProd 0 13
+	var set buildGas 0 13
+	var set buildSupply 0 13
+	var set buildDone 0 13
+	var set wRes 0 13
+	var set atkCycle 0 13
 	queue 1 drone larva 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
 	upg_j 13 Set 58 3 blank
@@ -1039,7 +1064,7 @@ script_id ZMCx
 	var set wRes 1 13
 	wait 720
 	var set wRes 0 13
-	wait 2200
+	wait 2400
 	call wExpand
 	goto zExpand
 	
@@ -1072,11 +1097,14 @@ script_id ZMCx
 	multi addSunken
 	wait 900
 	multi addSpore
-	var Ex|wait buildDone 1 13
-	multi buildOrderExp
 	wait 900
-	bld 1 nydus_canal 66
 	multi addProd
+	var Ex|wait buildDone 1 13
+	wait 300
+	multi buildOrderExp
+	wait 600
+	bring 13 AtL_W 1 hive Loc.63 blank
+	bld 1 nydus_canal 66
 	goto idle
 	
 	:expCount
@@ -2748,7 +2776,6 @@ script_id ZMCx
 	:zLoopA
 	bring 13 AtL 8 hatchery|lair|hive Loc.63 zLoopC
 	bring 13 AtL 4 hatchery|lair|hive Loc.63 zLoopB
-	var set cutWorkerAll 1 13
 	call atkGen
 	wait 480
 	goto zLoopA
@@ -2766,15 +2793,19 @@ script_id ZMCx
 	goto zLoopA
 	
 	:atkGen
+	var set cutWorkerAll 1 13
 	call addRand
-	var AtL|jump atkStart 1 xAtkCheck 13
+	var AtL|jump atkCycle 1 xAtkCheck 13
 	atk_prep
 	atk_do
-	var set atkStart 1 13
 	wait 250
 	
 	:atkCheck
+	var add atkCycle 1 13
 	wait 250
+	#var AtL|jump atkCycle 2 xAtkFin 13
+	#supply 13 AtM 30 Used 0 Any_Total atkGen
+	#supply 13 AtL 80 Used 0 Any_Total atkExp
 	#attack_jump 13 AtM 30 Group_Men Supply xAtkGen 13
 	#attack_jump 13 AtL 80 Group_Men Supply xAtkExp 13
 	
@@ -2788,244 +2819,328 @@ script_id ZMCx
 	:atkFin
 	atk_c
 	c_queues train Any 13
+	var set atkCycle 0 13
 	var set canExpand 1 13
 	var set canProd 1 13
+	var set cutWorkerAll 0 13
 	return
 	
 	:addRand
 	call wAttack
-	dth 13 Ex 1 crashed_battle addRandConnor
-	dth 13 Ex 2 crashed_battle addRandSwarm
-	dth 13 Ex 3 crashed_battle addRandAir
+	time_jump 20 addGen
+	dth 13 Ex 1 crashed_battle addRange
+	dth 13 Ex 2 crashed_battle addSwarm
+	dth 13 Ex 3 crashed_battle addAir
 	
-	:addRandGenRelative
-	rand_j 28 addRandGen
-	rand_j 85 addRandGenRelative2
-	rand_j 128 addRandGenRelative3
-	bring 13 AtL 3 evolution_chamber|mutation_pit Loc.63 addRandSwarm
-	bring 13 AtL 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addRandAir
-	bring 13 AtL 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addRandConnor
-	goto addMix
-	
-	:addRandGenRelative2
-	bring 13 AtL 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addRandConnor
-	bring 13 AtL 3 evolution_chamber|mutation_pit Loc.63 addRandSwarm
-	bring 13 AtL 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addRandAir
-	goto addMix
-	
-	:addRandGenRelative3
-	bring 13 AtL 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addRandAir
-	bring 13 AtL 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addRandConnor
-	bring 13 AtL 3 evolution_chamber|mutation_pit Loc.63 addRandSwarm
-	goto addMix
-	
-	:addRandGen
-	rand_j 128 addSwarmAir
-	rand_j 104 addConnorSwarm
-	goto addConnorAir
-	
-	:addRandConnor
-	rand_j 85 addRandConnorRelative
-	goto addConnor
-	
-	:addRandSwarm
-	rand_j 85 addRandSwarmRelative
-	goto addSwarm
-	
-	:addRandAir
-	rand_j 85 addRandAirRelative
-	goto addAir
-	
-	:addRandConnorRelative
-	bring 13 AtL 3 evolution_chamber|mutation_pit Loc.63 addConnorSwarm
-	bring 13 AtL 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addConnorAir
-	goto addConnor
-	
-	:addRandSwarmRelative
-	bring 13 AtL 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addConnorSwarm
-	bring 13 AtL 2 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 addSwarmAir
-	goto addSwarm
-	
-	:addRandAirRelative
-	bring 13 AtL 2 hydralisk_den|basilisk_den|lurker_den Loc.63 addRandConnor
-	bring 13 AtL 3 evolution_chamber|mutation_pit Loc.63 addRandSwarm
-	goto addAir
-	
-	:addMix
-	atk_add 4 zergling
-	atk_add 1 vorvaling
-	atk_add 2 hydralisk
-	atk_add 1 lurker
-	atk_rand 0 1 queen
-	atk_rand 0 1 ultralisk
-	atk_rand 0 1 defiler
-	atk_rel zergling hatchery 3
-	atk_rel vorvaling hatchery 1
-	atk_rel hydralisk hatchery|lair 2
-	atk_rel lurker lair|hive 2
-	atk_rel queen hive 1
-	atk_rel ultralisk lair|hive 1
-	atk_rel defiler hive 1
-	queue_rel zergling hatchery 1.5 larva 255 Global 63 99
-	queue_rel vorvaling hatchery 0.5 larva 255 Global 63 99
-	queue_rel hydralisk hatchery|lair 1 larva 255 Global 63 99
-	queue_rel lurker lair|hive 1 larva 255 Global 63 99
-	queue_rel queen hive 0.5 larva 255 Global 63 99
-	queue_rel ultralisk lair|hive 0.5 larva 255 Global 63 99
-	queue_rel defiler hive 0.5 larva 255 Global 63 99
-	return
-	
-	:addConnor
-	atk_add 2 zergling
-	atk_add 1 vorvaling
-	atk_add 4 hydralisk
-	atk_add 2 basilisk
-	atk_add 1 lurker
-	atk_add 1 queen
-	atk_rand 0 1 defiler
-	atk_rel hydralisk hatchery|lair|hive 3
-	atk_rel basilisk lair|hive 2.5
-	atk_rel zergling hatchery 2
-	atk_rel vorvaling hatchery 0.66
-	atk_rel queen lair|hive 2
-	atk_rel defiler hive 1.5
-	queue_rel hydralisk hatchery|lair|hive 1.5 larva 255 Global 63 99
-	queue_rel basilisk lair|hive 1.25 larva 255 Global 63 99
-	queue_rel zergling hatchery 1 larva 255 Global 63 99
-	queue_rel vorvaling hatchery 0.33 larva 255 Global 63 99
-	queue_rel queen lair|hive 1 larva 255 Global 63 99
-	queue_rel defiler hive 0.75 larva 255 Global 63 99
-	return
+	:addGen
+	unit_check 13 13 63 Greater 0 0 hive hatchery|lair xAddAir
+	unit_check 13 13 63 Greater 0 0 lair hatchery|hive xAddRange
+	unit_check 13 13 63 Greater 0 0 hatchery lair|hive xAddSwarm
 	
 	:addSwarm
-	atk_add 6 zergling
-	atk_add 2 vorvaling
-	atk_add 1 hydralisk
-	atk_add 1 queen
-	atk_add 1 ultralisk
-	atk_rand 0 1 lurker
-	atk_rand 0 1 defiler
-	atk_rel zergling hatchery|lair|hive 4
-	atk_rel vorvaling hatchery|lair|hive 1.5
-	atk_rel ultralisk lair|hive 2
-	atk_rel hydralisk hatchery|lair|hive 1
-	atk_rel lurker lair|hive 1
-	atk_rel queen lair|hive 1
-	atk_rel defiler lair|hive 1.5
-	queue_rel zergling hatchery|lair|hive 2 larva 255 Global 63 99
-	queue_rel vorvaling hatchery|lair|hive 0.75 larva 255 Global 63 99
-	queue_rel ultralisk lair|hive 1 larva 255 Global 63 99
-	queue_rel hydralisk hatchery|lair|hive 0.5 larva 255 Global 63 99
-	queue_rel lurker lair|hive 0.5 larva 255 Global 63 99
-	queue_rel queen lair|hive 0.75 larva 255 Global 63 99
-	queue_rel defiler lair|hive 0.75 larva 255 Global 63 99
+	call atkSwarm
+	call atkAir
+	call atkRange
+	return
+	
+	:addRange
+	call atkRange
+	call atkSwarm
+	call atkAir
 	return
 	
 	:addAir
-	atk_add 4 zergling
-	atk_add 2 vorvaling
-	atk_add 5 mutalisk
-	atk_add 2 guardian
-	#atk_add 1 gorgoleth
-	atk_add 1 devourer
-	atk_rand 0 1 queen
-	atk_rel zergling hatchery 8
-	atk_rel vorvaling hatchery 2.5
-	atk_rel mutalisk lair|hive 2.5
-	atk_rel guardian lair|hive 2.5
-	atk_rel devourer lair|hive 1.5
-	atk_rel queen lair|hive 1.5
-	queue_rel zergling hatchery 4 larva 255 Global 63 99
-	queue_rel vorvaling hatchery 1.25 larva 255 Global 63 99
-	queue_rel mutalisk lair|hive 2.25 larva 255 Global 63 99
-	queue_rel guardian lair|hive 1.25 larva 255 Global 63 99
-	queue_rel devourer lair|hive 0.75 larva 255 Global 63 99
-	queue_rel queen lair|hive 0.75 larva 255 Global 63 99
+	call atkAir
+	call atkSwarm
+	call atkRange
 	return
 	
-	:addConnorSwarm
-	atk_add 4 zergling
-	atk_add 1 vorvaling
-	atk_add 3 hydralisk
-	atk_add 1 basilisk
-	atk_add 1 lurker
-	atk_add 1 queen
-	atk_rand 0 1 ultralisk
-	atk_rand 0 1 defiler
-	atk_rel zergling hatchery|lair 4.5
-	atk_rel hydralisk hatchery|lair|hive 3
-	atk_rel vorvaling hatchery|lair 1.5
-	atk_rel basilisk hatchery|lair|hive 1.5
-	atk_rel lurker hatchery|lair|hive 1.5
-	atk_rel queen lair|hive 1.5
-	atk_rel ultralisk lair|hive 1.5
-	atk_rel defiler lair|hive 1
-	queue_rel zergling hatchery|lair 2.25 larva 255 Global 63 99
-	queue_rel hydralisk hatchery|lair|hive 1.5 larva 255 Global 63 99
-	queue_rel vorvaling hatchery|lair 0.75 larva 255 Global 63 99
-	queue_rel basilisk hatchery|lair|hive 0.75 larva 255 Global 63 99
-	queue_rel lurker hatchery|lair|hive 0.75 larva 255 Global 63 99
-	queue_rel queen lair|hive 0.75 larva 255 Global 63 99
-	queue_rel ultralisk lair|hive 0.75 larva 255 Global 63 99
-	queue_rel defiler lair|hive 0.5 larva 255 Global 63 99
+	:atkSwarm
+	dth 13 Ex 1 crashed_battle atkSwarmRange
+	dth 13 Ex 3 crashed_battle atkSwarmAir
+	bring 13 AtL_C 1 spawning_pool Loc.63 atkZergling
+	bring 13 AtL_C 1 evolution_chamber Loc.63 atkVorvaling
+	bring 13 AtL_C 1 ultralisk_cavern Loc.63 atkUltralisk
+	bring 13 AtL_C 1 defiler_mound Loc.63 atkDefiler
+	bring 13 AtL_C 1 infested_command_center|infested_terran Loc.63 atkInfest
+	bring 13 AtL_C 1 broodling Loc.63 atkBroodling
 	return
 	
-	:addSwarmAir
-	atk_add 4 zergling
-	atk_add 1 vorvaling
-	atk_add 4 mutalisk
-	atk_add 1 guardian
-	atk_rand 0 1 queen
-	atk_rand 0 1 devourer
-	atk_rand 0 1 ultralisk
-	atk_rand 0 1 defiler
-	atk_rel zergling hatchery|lair|hive 3
-	atk_rel vorvaling hatchery|lair|hive 1.5
-	atk_rel mutalisk hatchery|lair|hive 3
-	atk_rel queen lair|hive 0.66
-	atk_rel guardian lair|hive 1.5
-	atk_rel ultralisk lair|hive 1.5
-	atk_rel devourer lair|hive 1
-	atk_rel defiler lair|hive 0.66
-	queue_rel zergling hatchery|lair|hive 1.5 larva 255 Global 63 99
-	queue_rel vorvaling hatchery|lair|hive 0.75 larva 255 Global 63 99
-	queue_rel mutalisk hatchery|lair|hive 1.5 larva 255 Global 63 99
-	queue_rel queen lair|hive 0.33 larva 255 Global 63 99
-	queue_rel guardian lair|hive 0.75 larva 255 Global 63 99
-	queue_rel ultralisk lair|hive 0.75 larva 255 Global 63 99
-	queue_rel devourer lair|hive 0.5 larva 255 Global 63 99
-	queue_rel defiler lair|hive 0.33 larva 255 Global 63 99
+	:atkSwarmRange
+	bring 13 AtL_C 1 spawning_pool Loc.63 atkZergling
+	bring 13 AtL_C 1 defiler_mound Loc.63 atkDefiler
+	bring 13 AtL_C 1 evolution_chamber Loc.63 atkVorvaling
+	bring 13 AtL_C 1 ultralisk_cavern Loc.63 atkUltralisk
+	bring 13 AtL_C 1 infested_command_center|infested_terran Loc.63 atkInfest
+	bring 13 AtL_C 1 broodling Loc.63 atkBroodling
 	return
 	
-	:addConnorAir
-	atk_add 3 hydralisk
-	atk_add 1 basilisk
-	atk_add 1 lurker
-	atk_add 3 mutalisk
-	atk_add 1 guardian
-	atk_rand 0 1 queen
-	atk_rand 0 1 devourer
-	atk_rand 0 1 defiler
-	atk_rel hydralisk hatchery|lair|hive 3.25
-	atk_rel mutalisk hatchery|lair|hive 3
-	atk_rel basilisk lair|hive 2.5
-	atk_rel lurker lair|hive 2.5
-	atk_rel guardian lair|hive 2.5
-	atk_rel devourer lair|hive 1
-	atk_rel queen lair|hive 0.66
-	atk_rel defiler lair|hive 0.66
-	queue_rel hydralisk hatchery|lair|hive 1.75 larva 255 Global 63 99
-	queue_rel mutalisk hatchery|lair|hive 1.5 larva 255 Global 63 99
-	queue_rel basilisk lair|hive 1.25 larva 255 Global 63 99
-	queue_rel lurker lair|hive 1.25 larva 255 Global 63 99
-	queue_rel guardian lair|hive 1.25 larva 255 Global 63 99
-	queue_rel devourer lair|hive 0.5 larva 255 Global 63 99
-	queue_rel queen lair|hive 0.33 larva 255 Global 63 99
-	queue_rel defiler lair|hive 0.33 larva 255 Global 63 99
-	return 
+	:atkSwarmAir
+	bring 13 AtL_C 1 spawning_pool Loc.63 atkZergling
+	bring 13 AtL_C 1 evolution_chamber Loc.63 atkVorvaling
+	bring 13 AtL_C 1 defiler_mound Loc.63 atkDefiler
+	bring 13 AtL_C 1 ultralisk_cavern Loc.63 atkUltralisk
+	bring 13 AtL_C 1 infested_command_center|infested_terran Loc.63 atkInfest
+	bring 13 AtL_C 1 broodling Loc.63 atkBroodling
+	return
+	
+	:atkZergling
+	bring 13 AtL_C 9 larva Loc.63 atkZerglingMax
+	bring 13 AtM_C 8 larva Loc.63 atkZerglingMin
+	return
+	
+	:atkZerglingMax
+	atk_rel zergling larva 0.75
+	queue_rel zergling larva 0.75 larva 255 Global 63 99
+	return
+	
+	:atkZerglingMin
+	atk_rel zergling larva 0.7
+	queue_rel zergling larva 0.7 larva 255 Global 63 99
+	return
+	
+	:atkVorvaling
+	notowns spawning_pool blankReturn
+	bring 13 AtL_C 9 larva Loc.63 atkVorvalingMax
+	bring 13 AtM_C 8 larva Loc.63 atkVorvalingMin
+	return
+	
+	:atkVorvalingMax
+	atk_rel vorvaling larva 0.4
+	queue_rel zergling larva 0.4 larva 255 Global 63 99
+	return
+	
+	:atkVorvalingMin
+	atk_rel vorvaling larva 0.44
+	queue_rel zergling larva 0.44 larva 255 Global 63 99
+	return
+	
+	:atkUltralisk
+	bring 13 AtL_C 12 larva Loc.63 atkUltraliskMax
+	bring 13 AtM_C 11 larva Loc.63 atkUltraliskMin
+	return
+	
+	:atkUltraliskMax
+	atk_add 2 ultralisk
+	atk_rel ultralisk larva 0.25
+	queue_rel ultralisk larva 0.25 larva 255 Global 63 99
+	return
+	
+	:atkUltraliskMin
+	atk_rel ultralisk larva 0.2
+	queue_rel ultralisk larva 0.2 larva 255 Global 63 99
+	return
+	
+	:atkDefiler
+	bring 13 AtL_C 12 larva Loc.63 atkDefilerMax
+	bring 13 AtM_C 11 larva Loc.63 atkDefilerMin
+	return
+	
+	:atkDefilerMax
+	atk_add 1 defiler
+	atk_rel defiler larva 0.09
+	queue_rel defiler larva 0.09 larva 255 Global 63 99
+	return
+	
+	:atkDefilerMin
+	atk_rel defiler larva 0.1
+	queue_rel defiler larva 0.1 larva 255 Global 63 99
+	return
+	
+	:atkInfest
+	atk_rel infested_terran infested_command_center 1
+	atk_rel infested_terran infested_terran 1
+	return
+	
+	:atkBroodling
+	atk_rel broodling broodling 1
+	return
+	
+	:atkRange
+	dth 13 Ex 2 crashed_battle atkRangeSwarm
+	dth 13 Ex 3 crashed_battle atkRangeAir
+	bring 13 AtL_C 1 hydralisk_den|basilisk_den|lurker_den Loc.63 atkHydra
+	bring 13 AtL_C 1 basilisk_den Loc.63 atkBasilisk
+	bring 13 AtL_C 1 lurker_den Loc.63 atkLurker
+	bring 13 AtL_C 1 queen_nest Loc.63 atkQueen
+	return
+	
+	:atkRangeSwarm
+	bring 13 AtL_C 1 queen_nest Loc.63 atkQueen
+	bring 13 AtL_C 1 hydralisk_den|basilisk_den|lurker_den Loc.63 atkHydra
+	bring 13 AtL_C 1 lurker_den Loc.63 atkLurker
+	bring 13 AtL_C 1 basilisk_den Loc.63 atkBasilisk
+	return
+	
+	:atkRangeAir
+	bring 13 AtL_C 1 hydralisk_den|basilisk_den|lurker_den Loc.63 atkHydra
+	bring 13 AtL_C 1 lurker_den Loc.63 atkLurker
+	bring 13 AtL_C 1 basilisk_den Loc.63 atkBasilisk
+	bring 13 AtL_C 1 queen_nest Loc.63 atkQueen
+	return
+	
+	:atkHydra
+	bring 13 AtL_C 9 larva Loc.63 atkHydraMax
+	bring 13 AtM_C 8 larva Loc.63 atkHydraMin
+	return
+	
+	:atkHydraMax
+	atk_rel hydralisk larva 0.6
+	queue_rel hydralisk larva 0.6 larva 255 Global 63 99
+	return
+	
+	:atkHydraMin
+	atk_rel hydralisk larva 0.5
+	queue_rel hydralisk larva 0.5 larva 255 Global 63 99
+	return
+	
+	:atkBasilisk
+	bring 13 AtL_C 12 larva Loc.63 atkBasiliskMax
+	bring 13 AtM_C 11 larva Loc.63 atkBasiliskMin
+	return
+	
+	:atkBasiliskMax
+	atk_rel basilisk larva 0.33
+	queue_rel hydralisk larva 0.33 larva 255 Global 63 99
+	return
+	
+	:atkBasiliskMin
+	atk_rel basilisk larva 0.27
+	queue_rel hydralisk larva 0.27 larva 255 Global 63 99
+	return
+	
+	:atkLurker
+	bring 13 AtL_C 12 larva Loc.63 atkLurkerMax
+	bring 13 AtM_C 11 larva Loc.63 atkLurkerMin
+	return
+	
+	:atkLurkerMax
+	atk_rel lurker larva 0.33
+	queue_rel hydralisk larva 0.33 larva 255 Global 63 99
+	return
+	
+	:atkLurkerMin
+	atk_rel lurker larva 0.27
+	queue_rel hydralisk larva 0.27 larva 255 Global 63 99
+	return
+	
+	:atkQueen
+	bring 13 AtL_C 12 larva Loc.63 atkQueenMax
+	bring 13 AtM_C 11 larva Loc.63 atkQueenMin
+	return
+	
+	:atkQueenMax
+	atk_rel queen larva 0.09
+	queue_rel queen larva 0.09 larva 255 Global 63 99
+	return
+	
+	:atkQueenMin
+	atk_rel queen larva 0.1
+	queue_rel queen larva 0.1 larva 255 Global 63 99
+	return
+	
+	:atkAir
+	dth 13 Ex 1 crashed_battle atkAirRange
+	dth 13 Ex 2 crashed_battle atkAirSwarm
+	bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkMutalisk
+	bring 13 AtL_C 1 guardian_roost Loc.63 atkGuardian
+	bring 13 AtL_C 1 devourer_haunt Loc.63 atkDevourer
+	bring 13 AtL_C 1 gorgoleth_apiary Loc.63 atkGorgoleth
+	#bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkScourge
+	return
+	
+	:atkAirRange
+	bring 13 AtL_C 1 guardian_roost Loc.63 atkGuardian
+	bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkMutalisk
+	bring 13 AtL_C 1 gorgoleth_apiary Loc.63 atkGorgoleth
+	bring 13 AtL_C 1 devourer_haunt Loc.63 atkDevourer
+	#bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkScourge
+	return
+	
+	:atkAirSwarm
+	bring 13 AtL_C 1 guardian_roost Loc.63 atkGuardian
+	bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkMutalisk
+	bring 13 AtL_C 1 devourer_haunt Loc.63 atkDevourer
+	bring 13 AtL_C 1 gorgoleth_apiary Loc.63 atkGorgoleth
+	#bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkScourge
+	return
+	
+	:atkMutalisk
+	bring 13 AtL_C 9 larva Loc.63 atkMutaliskMax
+	bring 13 AtM_C 8 larva Loc.63 atkMutaliskMin
+	return
+	
+	:atkMutaliskMax
+	atk_rel mutalisk larva 0.4
+	queue_rel mutalisk larva 0.4 larva 255 Global 63 99
+	return
+	
+	:atkMutaliskMin
+	atk_rel mutalisk larva 0.45
+	queue_rel mutalisk larva 0.45 larva 255 Global 63 99
+	return
+	
+	:atkGuardian
+	bring 13 AtL_C 12 larva Loc.63 atkGuardianMax
+	bring 13 AtM_C 11 larva Loc.63 atkGuardianMin
+	return
+	
+	:atkGuardianMax
+	atk_rel guardian larva 0.33
+	queue_rel mutalisk larva 0.33 larva 255 Global 63 99
+	return
+	
+	:atkGuardianMin
+	atk_rel guardian larva 0.27
+	queue_rel mutalisk larva 0.27 larva 255 Global 63 99
+	return
+	
+	:atkDevourer
+	bring 13 AtL_C 12 larva Loc.63 atkDevourerMax
+	bring 13 AtM_C 11 larva Loc.63 atkDevourerMin
+	return
+	
+	:atkDevourerMax
+	atk_rel devourer larva 0.09
+	queue_rel mutalisk larva 0.09 larva 255 Global 63 99
+	return
+	
+	:atkDevourerMin
+	atk_rel devourer larva 0.1
+	queue_rel mutalisk larva 0.1 larva 255 Global 63 99
+	return
+	
+	:atkGorgoleth
+	bring 13 AtL_C 12 larva Loc.63 atkGorgolethMax
+	bring 13 AtM_C 11 larva Loc.63 atkGorgolethMin
+	return
+	
+	:atkGorgolethMax
+	atk_rel gorgoleth larva 0.09
+	queue_rel mutalisk larva 0.09 larva 255 Global 63 99
+	return
+	
+	:atkGorgolethMin
+	atk_rel gorgoleth larva 0.1
+	queue_rel mutalisk larva 0.1 larva 255 Global 63 99
+	return
+	
+	:atkScourge
+	bring 13 AtL_C 12 larva Loc.63 atkScourgeMax
+	bring 13 AtM_C 11 larva Loc.63 atkScourgeMin
+	return
+	
+	:atkScourgeMax
+	atk_rel scourge larva 0.09
+	queue_rel scourge larva 0.09 larva 255 Global 63 99
+	return
+	
+	:atkScourgeMin
+	atk_rel scourge larva 0.1
+	queue_rel scourge larva 0.1 larva 255 Global 63 99
+	return
 	
 	:qMilitary
-	var Ex|wait canQueue 1 13
 	dth 13 Ex 1 crashed_battle qMilitaryConnor
 	dth 13 Ex 2 crashed_battle qMilitarySwarm
 	dth 13 Ex 3 crashed_battle qMilitaryAir
@@ -3130,30 +3245,4 @@ script_id ZMCx
 	bring 13 AtM 2 larva Loc.63 blank
 	res 13 AtM Any 199 blank
 	queue_rel ultralisk hatchery|lair|hive 1 larva 255 Global 63 99
-	stop
-	
-	:var
-	set_var_local blank stp 13
-	set_var_local blankReturn ret 13
-	set_var_local wWorkerDef wWorker 13
-	set_var_local atkGen xAtkGen 13
-	set_var_local atkCheck xAtkCheck 13
-	set_var_local atkExp xAtkExp 13
-	#set_var_local addSwarm xAddSwarm 13
-	#set_var_local addRange xAddRange 13
-	#set_var_local addAir xAddAir 13
-	var set townCount 1 13
-	var set miningCount 1 13
-	var set underAttack 0 13
-	var set cutWorker 0 13
-	var set cutWorkerAll 0 13
-	var set canExpand 0 13
-	var set canAttack 0 13
-	var set canUpgrade 0 13
-	var set canStatic 0 13
-	var set canQueue 0 13
-	var set buildGas 0 13
-	var set buildSupply 0 13
-	var set buildDone 0 13
-	var set wRes 0 13
 	stop 

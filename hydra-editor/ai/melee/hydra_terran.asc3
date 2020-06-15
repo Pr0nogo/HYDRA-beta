@@ -19,7 +19,31 @@ script_id TMCx
 	help
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	town_state 255 persist true
-	multi var
+	set_var_local blank stp 13
+	set_var_local blankReturn ret 13
+	set_var_local wWorkerDef wWorker 13
+	set_var_local atkGen xAtkGen 13
+	set_var_local atkCheck xAtkCheck 13
+	set_var_local atkExp xAtkExp 13
+	set_var_local atkFin xAtkFin 13
+	set_var_local addBio xAddBio 13
+	set_var_local addMech xAddMech 13
+	set_var_local addAir xAddAir 13
+	var set townCount 1 13
+	var set miningCount 1 13
+	var set underAttack 0 13
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	var set canAttack 0 13
+	var set canUpgrade 0 13
+	var set canStatic 0 13
+	var set canQueue 0 13
+	var set canProd 0 13
+	var set buildGas 0 13
+	var set buildSupply 0 13
+	var set buildDone 0 13
+	var set wRes 0 13
+	var set atkCycle 0 13
 	queue 1 scv command_center 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
 	upg_j 13 Set 58 2 blank
@@ -34,8 +58,8 @@ script_id TMCx
 	multi tUpg
 	multi tExpand
 	multi tScale
+	multi qMilitary
 	#multi bLayout
-	#multi qMilitary
 	
 	:slcPers
 	dth 13 AtL 1 crashed_battle dbgPers
@@ -1234,7 +1258,7 @@ script_id TMCx
 	var set wRes 1 13
 	wait 720
 	var set wRes 0 13
-	wait 3300
+	wait 3600
 	call wExpand
 	goto tExpand
 	
@@ -1259,13 +1283,14 @@ script_id TMCx
 	capt_expand
 	multi expCount
 	multi addTurret
-	wait 360
+	wait 300
+	multi addProd
+	wait 600
 	multi addBunker
 	var Ex|wait buildDone 1 13
 	wait 300
 	multi buildOrderExp
-	wait 720
-	multi addProd
+	wait 600
 	notowns covert_ops expRandComsat
 	rand_j 128 expRandComsat
 	bld 1 nuclear_silo 66
@@ -1370,9 +1395,9 @@ script_id TMCx
 	wait 900
 	bld 2 factory 72
 	wait 600
-	bld 1 machine_shop 66
+	bld 1 machine_shop 72
 	wait 300
-	bld 2 machine_shop 66
+	bld 2 machine_shop 72
 	wait 600
 	multi addProd
 	goto buildGenFin
@@ -1400,7 +1425,7 @@ script_id TMCx
 	wait 600
 	bld 1 starport 72
 	wait 300
-	bld 1 machine_shop 66
+	bld 1 machine_shop 72
 	multi addProd
 	goto buildGenFin
 	
@@ -1429,7 +1454,7 @@ script_id TMCx
 	wait 600
 	bld 2 factory 72
 	wait 24
-	bld 1 machine_shop 66
+	bld 1 machine_shop 72
 	wait 24
 	bld 1 comsat_station 66
 	multi addProd
@@ -1509,12 +1534,12 @@ script_id TMCx
 	wait 24
 	upg_queue 1 t_infantry_weapon 88
 	wait 300
-	bld 1 machine_shop 66
+	bld 1 machine_shop 72
 	wait 300
 	tech siege_mode 88
 	bld 2 factory 72
 	wait 600
-	bld 2 machine_shop 66
+	bld 2 machine_shop 72
 	multi addProd
 	
 	:buildGenFin
@@ -1522,7 +1547,7 @@ script_id TMCx
 	wait 600
 	call wEng
 	wait 900
-	bld 1 covert_ops 66
+	bld 1 covert_ops 72
 	wait 1200
 	call wSci
 	wait 1200
@@ -1553,13 +1578,13 @@ script_id TMCx
 	wait 24
 	bld 2 factory 72
 	wait 300
-	bld 1 machine_shop 66
+	bld 1 machine_shop 72
 	wait 24
 	var set canStatic 1 13
 	wait 600
 	tech siege_mode 66
 	wait 300
-	bld 2 machine_shop 66
+	bld 2 machine_shop 72
 	wait 600
 	queue 2 siege_tank factory 255 Local Loc.63 80
 	wait 300
@@ -1605,8 +1630,8 @@ script_id TMCx
 	wait 24
 	bld 2 factory 72
 	wait 24
-	bld 1 machine_shop 66
-	wait 300
+	bld 1 machine_shop 72
+	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
@@ -1617,7 +1642,7 @@ script_id TMCx
 	wait 24
 	tech siege_mode 88
 	wait 600
-	bld 2 machine_shop 66
+	bld 2 machine_shop 72
 	wait 600
 	queue 1 siege_tank factory 255 Global Loc.63 80
 	wait 600
@@ -1653,7 +1678,7 @@ script_id TMCx
 	var set canExpand 0 13
 	var set cutWorker 0 13
 	wait 24
-	bld 3 machine_shop 66
+	bld 3 machine_shop 72
 	wait 600
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 24
@@ -1675,7 +1700,7 @@ script_id TMCx
 	wait 24
 	bld 1 starport 72
 	wait 24
-	bld 1 control_tower 66
+	bld 1 control_tower 72
 	multi addProd
 	goto buildMechFin
 	
@@ -1697,7 +1722,7 @@ script_id TMCx
 	wait 900
 	bld 3 supply_depot 66
 	wait 24
-	bld 1 machine_shop 66
+	bld 1 machine_shop 72
 	wait 24
 	queue 1 vulture factory 255 Global Loc.63 80
 	wait 300
@@ -1722,7 +1747,7 @@ script_id TMCx
 	wait 24
 	queue 1 siege_tank factory 255 Global Loc.63 80
 	wait 24
-	bld 2 machine_shop 66
+	bld 2 machine_shop 72
 	wait 300
 	queue 1 siege_tank factory 255 Global Loc.63 80
 	wait 24
@@ -1760,7 +1785,7 @@ script_id TMCx
 	wait 24
 	queue 1 siege_tank factory 255 Global Loc.63 80
 	wait 24
-	bld 3 machine_shop 66
+	bld 3 machine_shop 72
 	wait 600
 	var set cutWorker 1 13
 	var set canExpand 1 13
@@ -1854,7 +1879,7 @@ script_id TMCx
 	wait 600
 	var set canExpand 0 13
 	wait 300
-	bld 1 machine_shop 66
+	bld 1 machine_shop 72
 	wait 24
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 300
@@ -1927,7 +1952,7 @@ script_id TMCx
 	wait 24
 	var set buildSupply 1 13
 	wait 600
-	bld 1 medbay 66
+	bld 1 medbay 72
 	wait 24
 	bld 3 barracks 72
 	wait 300
@@ -1966,7 +1991,7 @@ script_id TMCx
 	bld 3 supply_depot 66
 	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
-	bld 1 medbay 66
+	bld 1 medbay 72
 	wait 300
 	var set cutWorker 1 13
 	bld 3 barracks 72
@@ -1980,7 +2005,7 @@ script_id TMCx
 	wait 24
 	queue 1 medic barracks 255 Local Loc.63 80
 	queue 1 marine barracks 255 Local Loc.63 80
-	bld 2 medbay 66
+	bld 2 medbay 72
 	wait 24
 	queue 1 marine barracks 255 Local Loc.63 80
 	queue 1 medic barracks 255 Local Loc.63 80
@@ -2031,7 +2056,7 @@ script_id TMCx
 	wait 300
 	bld 3 barracks 72
 	wait 24
-	bld 1 covert_ops 66
+	bld 1 covert_ops 72
 	wait 24
 	bld 1 nuclear_silo 66
 	wait 600
@@ -2039,7 +2064,7 @@ script_id TMCx
 	wait 300
 	queue 1 ghost barracks 255 Local Loc.63 80
 	wait 24
-	bld 2 covert_ops 66
+	bld 2 covert_ops 72
 	wait 300
 	queue 1 ghost barracks 255 Local Loc.63 80
 	wait 24
@@ -2083,7 +2108,7 @@ script_id TMCx
 	wait 300
 	bld 1 engineering_bay 66
 	wait 24
-	bld 1 medbay 66
+	bld 1 medbay 72
 	wait 24
 	bld 1 academy 66
 	wait 24
@@ -2093,9 +2118,9 @@ script_id TMCx
 	call buildBool
 	call wArm
 	wait 300
-	bld 1 medbay 66
+	bld 1 medbay 72
 	wait 1200
-	bld 1 covert_ops 66
+	bld 1 covert_ops 72
 	wait 1800
 	call wEng
 	wait 1800
@@ -2133,7 +2158,7 @@ script_id TMCx
 	wait 300
 	queue 1 wraith starport 255 Local Loc.63 80
 	wait 600
-	bld 1 control_tower 66
+	bld 1 control_tower 72
 	wait 300
 	queue 1 wraith starport 255 Local Loc.63 80
 	multi addProd
@@ -2162,7 +2187,7 @@ script_id TMCx
 	wait 300
 	bld 1 barracks 72
 	wait 600
-	bld 2 physics_lab 6
+	bld 2 physics_lab 72
 	wait 300
 	queue 2 battlecruiser starport 255 Local Loc.63 80
 	wait 24
@@ -2197,7 +2222,7 @@ script_id TMCx
 	wait 300
 	queue 3 wraith starport 255 Local Loc.63 80
 	wait 600
-	bld 1 medbay 66
+	bld 1 medbay 72
 	wait 24
 	multi addProd
 	
@@ -2425,7 +2450,7 @@ script_id TMCx
 	dth 13 Ex 3 crashed_battle addBarracksMinAir
 	local 255 AtL 2 barracks addReturn
 	add_bld 255 barracks 1 2 72
-	add_bld 255 medbay 1 1 66
+	add_bld 255 medbay 1 1 72
 	goto addProdSuccess
 	
 	:addBarracksMinMech
@@ -2437,11 +2462,11 @@ script_id TMCx
 	local 255 AtL 2 barracks addReturn
 	add_bld 255 barracks 1 2 72
 	local 255 AtL 1 medbay addBarracksMinBio2
-	add_bld 255 medbay 1 1 66
+	add_bld 255 medbay 1 1 72
 	goto addProdSuccess
 	
 	:addBarracksMinBio2
-	add_bld 255 covert_ops 1 1 66
+	add_bld 255 covert_ops 1 1 72
 	goto addProdSuccess
 	
 	:addBarracksMinAir
@@ -2449,11 +2474,11 @@ script_id TMCx
 	add_bld 255 barracks 1 1 72
 	local 255 AtL 1 medbay|covert_ops addProdSuccess
 	rand_j 128 addBarracksMinAir2
-	add_bld 255 medbay 1 1 66
+	add_bld 255 medbay 1 1 72
 	goto addProdSuccess
 	
 	:addBarracksMinAir2
-	add_bld 255 covert_ops 1 1 66
+	add_bld 255 covert_ops 1 1 72
 	goto addProdSuccess
 	
 	:addBarracksMax
@@ -2467,18 +2492,18 @@ script_id TMCx
 	rand_j 128 addBarracksMaxGen2
 	
 	:addBarracksMaxGen
-	add_bld 255 medbay 1 2 66
+	add_bld 255 medbay 1 2 72
 	goto addProdSuccess
 	
 	:addBarracksMaxGen2
 	local 255 AtL 2 covert_ops addBarracksMaxGen
-	add_bld 255 covert_ops 1 2 66
+	add_bld 255 covert_ops 1 2 72
 	goto addProdSuccess
 	
 	:addBarracksMaxMech
 	local 255 AtL 3 barracks addReturn
 	add_bld 255 barracks 1 3 72
-	add_bld 255 medbay 1 1 66
+	add_bld 255 medbay 1 1 72
 	goto addProdSuccess
 	
 	:addBarracksMaxBio
@@ -2489,12 +2514,12 @@ script_id TMCx
 	rand_j 128 addBarracksMaxBio3
 	
 	:addBarracksMaxBio2
-	add_bld 255 medbay 1 3 66
+	add_bld 255 medbay 1 3 72
 	goto addProdSuccess
 	
 	:addBarracksMaxBio3
 	local 255 AtL 3 covert_ops addBarracksMaxBio2
-	add_bld 255 covert_ops 1 3 66
+	add_bld 255 covert_ops 1 3 72
 	goto addProdSuccess
 	
 	:addBarracksMaxAir
@@ -2505,12 +2530,12 @@ script_id TMCx
 	rand_j 128 addBarracksMaxAir3
 	
 	:addBarracksMaxAir2
-	add_bld 255 medbay 1 1 66
+	add_bld 255 medbay 1 1 72
 	goto addProdSuccess
 	
 	:addBarracksMaxAir3
 	local 255 AtL 1 covert_ops addBarracksMaxAir2
-	add_bld 255 covert_ops 1 1 66
+	add_bld 255 covert_ops 1 1 72
 	goto addProdSuccess
 	
 	:addBarracksMed
@@ -2526,12 +2551,12 @@ script_id TMCx
 	local 255 AtL 2 medbay addBarracksMedBio3
 	
 	:addBarracksMedBio2
-	add_bld 255 medbay 1 2 66
+	add_bld 255 medbay 1 2 72
 	goto addProdSuccess
 	
 	:addBarracksMedBio3
 	local 255 AtL 2 covert_ops addBarracksMedBio2
-	add_bld 255 covert_ops 1 2 66
+	add_bld 255 covert_ops 1 2 72
 	goto addProdSuccess
 	
 	:addFactoryCheck
@@ -2547,13 +2572,13 @@ script_id TMCx
 	dth 13 Ex 3 crashed_battle addFactoryMinAir
 	local 255 AtL 1 factory addReturn
 	add_bld 255 factory 1 1 72
-	add_bld 255 machine_shop 1 1 66
+	add_bld 255 machine_shop 1 1 72
 	goto addProdSuccess
 	
 	:addFactoryMinMech
 	local 255 AtL 2 factory addReturn
 	add_bld 255 factory 1 2 72
-	add_bld 255 machine_shop 1 1 66
+	add_bld 255 machine_shop 1 1 72
 	goto addProdSuccess
 	
 	:addFactoryMinAir
@@ -2567,25 +2592,25 @@ script_id TMCx
 	dth 13 Ex 3 crashed_battle addFactoryMaxAir
 	local 255 AtL 5 factory addReturn
 	add_bld 255 factory 1 5 72
-	add_bld 255 machine_shop 1 3 66
+	add_bld 255 machine_shop 1 3 72
 	goto addProdSuccess
 	
 	:addFactoryMaxMech
 	local 255 AtL 6 factory addReturn
 	add_bld 255 factory 1 6 72
-	add_bld 255 machine_shop 1 4 66
+	add_bld 255 machine_shop 1 4 72
 	goto addProdSuccess
 	
 	:addFactoryMaxBio
 	local 255 AtL 4 factory addReturn
 	add_bld 255 factory 1 4 72
-	add_bld 255 machine_shop 1 2 66
+	add_bld 255 machine_shop 1 2 72
 	goto addProdSuccess
 	
 	:addFactoryMaxAir
 	local 255 AtL 3 factory addReturn
 	add_bld 255 factory 1 3 72
-	add_bld 255 machine_shop 1 1 66
+	add_bld 255 machine_shop 1 1 72
 	goto addProdSuccess
 	
 	:addFactoryMed
@@ -2594,25 +2619,25 @@ script_id TMCx
 	dth 13 Ex 3 crashed_battle addFactoryMedAir
 	local 255 AtL 3 factory addReturn
 	add_bld 255 factory 1 3 72
-	add_bld 255 machine_shop 1 2 66
+	add_bld 255 machine_shop 1 2 72
 	goto addProdSuccess
 	
 	:addFactoryMedMech
 	local 255 AtL 3 factory addReturn
 	add_bld 255 factory 1 3 72
-	add_bld 255 machine_shop 1 2 66
+	add_bld 255 machine_shop 1 2 72
 	goto addProdSuccess
 	
 	:addFactoryMedBio
 	local 255 AtL 2 factory addReturn
 	add_bld 255 factory 1 2 72
-	add_bld 255 machine_shop 1 2 66
+	add_bld 255 machine_shop 1 2 72
 	goto addProdSuccess
 	
 	:addFactoryMedAir
 	local 255 AtL 2 factory addReturn
 	add_bld 255 factory 1 2 72
-	add_bld 255 machine_shop 1 1 66
+	add_bld 255 machine_shop 1 1 72
 	goto addProdSuccess
 	
 	:addStarportCheck
@@ -2629,7 +2654,7 @@ script_id TMCx
 	local 255 AtL 1 starport addReturn
 	add_bld 255 starport 1 1 72
 	dth 13 Ex 2 crashed_battle addProdSuccess
-	add_bld 255 control_tower 1 1 66
+	add_bld 255 control_tower 1 1 72
 	dth 13 Set 1 psi_disrupter blank
 	goto addProdSuccess
 	
@@ -2638,11 +2663,11 @@ script_id TMCx
 	add_bld 255 starport 1 1 72
 	local 255 AtL 1 control_tower|physics_lab addProdSuccess
 	rand_j 85 addStarportMinMech2
-	add_bld 255 control_tower 1 1 66
+	add_bld 255 control_tower 1 1 72
 	goto addProdSuccess
 	
 	:addStarportMinMech2
-	add_bld 255 physics_lab 1 1 66
+	add_bld 255 physics_lab 1 1 72
 	goto addProdSuccess
 	
 	:addStarportMinAir
@@ -2652,12 +2677,12 @@ script_id TMCx
 	rand_j 85 addStarportMinAir3
 	
 	:addStarportMinAir2
-	add_bld 255 control_tower 1 2 66
+	add_bld 255 control_tower 1 2 72
 	goto addProdSuccess
 	
 	:addStarportMinAir3
 	local 255 AtL 1 physics_lab addStarportMinAir2
-	add_bld 255 physics_lab 1 1 66
+	add_bld 255 physics_lab 1 1 72
 	goto addProdSuccess
 	
 	:addStarportMax
@@ -2670,18 +2695,18 @@ script_id TMCx
 	rand_j 85 addStarportMaxGen3
 	
 	:addStarportMaxGen2
-	add_bld 255 control_tower 1 2 66
+	add_bld 255 control_tower 1 2 72
 	goto addProdSuccess
 	
 	:addStarportMaxGen3
 	local 255 AtL 1 physics_lab addStarportMaxGen2
-	add_bld 255 physics_lab 1 1 66
+	add_bld 255 physics_lab 1 1 72
 	goto addProdSuccess
 	
 	:addStarportMaxMech
 	local 255 AtL 2 starport addReturn
 	add_bld 255 starport 1 2 72
-	add_bld 255 control_tower 1 2 66
+	add_bld 255 control_tower 1 2 72
 	goto addProdSuccess
 	
 	:addStarportMaxBio
@@ -2691,12 +2716,12 @@ script_id TMCx
 	rand_j 85 addStarportMaxBio3
 	
 	:addStarportMaxBio2
-	add_bld 255 control_tower 1 2 66
+	add_bld 255 control_tower 1 2 72
 	goto addProdSuccess
 	
 	:addStarportMaxBio3
 	local 255 AtL 1 physics_lab addStarportMaxBio2
-	add_bld 255 physics_lab 1 1 66
+	add_bld 255 physics_lab 1 1 72
 	goto addProdSuccess
 	
 	:addStarportMaxAir
@@ -2706,12 +2731,12 @@ script_id TMCx
 	rand_j 85 addStarportMaxAir3
 	
 	:addStarportMaxAir2
-	add_bld 255 control_tower 1 4 66
+	add_bld 255 control_tower 1 4 72
 	goto addProdSuccess
 	
 	:addStarportMaxAir3
 	local 255 AtL 2 physics_lab addStarportMaxAir2
-	add_bld 255 physics_lab 1 2 66
+	add_bld 255 physics_lab 1 2 72
 	goto addProdSuccess
 	
 	:addStarportMed
@@ -2720,13 +2745,13 @@ script_id TMCx
 	dth 13 Ex 3 crashed_battle addStarportMedAir
 	local 255 AtL 3 starport addReturn
 	add_bld 255 starport 1 2 72
-	add_bld 255 control_tower 1 1 66
+	add_bld 255 control_tower 1 1 72
 	goto addProdSuccess
 	
 	:addStarportMedMech
 	local 255 AtL 2 starport addReturn
 	add_bld 255 starport 1 2 72
-	add_bld 255 control_tower 1 1 66
+	add_bld 255 control_tower 1 1 72
 	goto addProdSuccess
 	
 	:addStarportMedBio
@@ -2736,12 +2761,12 @@ script_id TMCx
 	rand_j 85 addStarportMedBio3
 	
 	:addStarportMedBio2
-	add_bld 255 control_tower 1 2 66
+	add_bld 255 control_tower 1 2 72
 	goto addProdSuccess
 	
 	:addStarportMedBio3
 	local 255 AtL 1 physics_lab addStarportMedBio2
-	add_bld 255 physics_lab 1 1 66
+	add_bld 255 physics_lab 1 1 72
 	goto addProdSuccess
 	
 	:addStarportMedAir
@@ -2751,12 +2776,12 @@ script_id TMCx
 	rand_j 85 addStarportMedAir3
 	
 	:addStarportMedAir2
-	add_bld 255 control_tower 1 4 66
+	add_bld 255 control_tower 1 4 72
 	goto addProdSuccess
 	
 	:addStarportMedAir3
 	local 255 AtL 1 physics_lab addStarportMedAir2
-	add_bld 255 physics_lab 1 1 66
+	add_bld 255 physics_lab 1 1 72
 	
 	:addProdSuccess
 	dth 13 Set 1 psi_disrupter blank
@@ -2805,14 +2830,17 @@ script_id TMCx
 	
 	:atkGen
 	call addRand
-	var AtL|jump atkStart 1 xAtkCheck 13
+	var AtL|jump atkCycle 1 xAtkCheck 13
 	atk_prep
 	atk_do
-	var set atkStart 1 13
 	wait 250
 	
 	:atkCheck
+	var add atkCycle 1 13
 	wait 250
+	#var AtL|jump atkCycle 2 xAtkFin 13
+	#supply 13 AtM 30 Used 0 Any_Total atkGen
+	#supply 13 AtL 80 Used 0 Any_Total atkExp
 	#attack_jump 13 AtM 30 Group_Men Supply xAtkGen 13
 	#attack_jump 13 AtL 80 Group_Men Supply xAtkExp 13
 	
@@ -2826,6 +2854,7 @@ script_id TMCx
 	:atkFin
 	atk_c
 	c_queues train Any 13
+	var set atkCycle 0 13
 	var set canExpand 1 13
 	var set canProd 1 13
 	return
@@ -2839,6 +2868,7 @@ script_id TMCx
 	dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
+	time_jump 20 addGen
 	unit_check 13 13 63 Greater 0 0 barracks factory|starport xAddBio 13
 	unit_check 13 13 63 Greater 0 0 factory barracks|starport xAddMech 13
 	unit_check 13 13 63 Greater 0 0 starport barracks|factory xAddAir 13
@@ -3062,28 +3092,88 @@ script_id TMCx
 	queue_rel valkyrie control_tower 1 starport 255 Global 63 99
 	return
 	
-	:var
-	set_var_local blank stp 13
-	set_var_local blankReturn ret 13
-	set_var_local wWorkerDef wWorker 13
-	set_var_local atkGen xAtkGen 13
-	set_var_local atkCheck xAtkCheck 13
-	set_var_local atkExp xAtkExp 13
-	set_var_local addBio xAddBio 13
-	set_var_local addMech xAddMech 13
-	set_var_local addAir xAddAir 13
-	var set townCount 1 13
-	var set miningCount 1 13
-	var set underAttack 0 13
-	var set cutWorker 0 13
-	var set canExpand 0 13
-	var set canAttack 0 13
-	var set canUpgrade 0 13
-	var set canStatic 0 13
-	var set canQueue 0 13
-	var set canProd 0 13
-	var set buildGas 0 13
-	var set buildSupply 0 13
-	var set buildDone 0 13
-	var set wRes 0 13
+	:qMilitary
+	dth 13 Ex 1 crashed_battle qMilitaryMech
+	dth 13 Ex 2 crashed_battle qMilitaryRaider
+	dth 13 Ex 3 crashed_battle qMilitaryAir
+	
+	:qMilitaryGen
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 barracks Loc.63 qMarine
+	bring 13 AtL_M 1 machine_shop Loc.63 qTank
+	bring 13 AtL_M 1 starport Loc.63 qWraith
+	bring 13 AtL_M 1 academy Loc.63 qFirebat
+	bring 13 AtL_M 1 factory Loc.63 qGoliath
+	wait 480
+	goto qMilitaryGen
+	
+	:qMilitaryMech
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 machine_shop Loc.63 qTank
+	bring 13 AtL_M 1 factory Loc.63 qGoliath
+	bring 13 AtL_M 1 starport Loc.63 qWraith
+	bring 13 AtL_M 1 academy Loc.63 qFirebat
+	bring 13 AtL_M 1 barracks Loc.63 qMarine
+	wait 480
+	goto qMilitaryMech
+	
+	:qMilitaryRaider
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 barracks Loc.63 qMarine
+	bring 13 AtL_M 1 academy Loc.63 qFirebat
+	bring 13 AtL_M 1 starport Loc.63 qWraith
+	bring 13 AtL_M 1 machine_shop Loc.63 qTank
+	bring 13 AtL_M 1 factory Loc.63 qGoliath
+	wait 480
+	goto qMilitaryRaider
+	
+	:qMilitaryAir
+	var Ex|wait canQueue 1 13
+	bring 13 AtL_M 1 starport Loc.63 qWraith
+	bring 13 AtL_M 1 barracks Loc.63 qMarine
+	bring 13 AtL_M 1 factory Loc.63 qGoliath
+	bring 13 AtL_M 1 academy Loc.63 qFirebat
+	bring 13 AtL_M 1 machine_shop Loc.63 qTank
+	wait 480
+	goto qMilitaryAir
+	
+	:qMarine
+	notowns barracks blank
+	bring 13 AtL 12 marine Loc.63 blank
+	res 13 AtM Ore 49 blank
+	queue_rel marine barracks 1 barracks 255 Global 63 99
+	stop
+	
+	:qFirebat
+	notowns barracks blank
+	notowns academy blank
+	bring 13 AtL 9 firebat|cyprian Loc.63 blank
+	res 13 AtM Ore 49 blank
+	res 13 AtM Gas 24 blank
+	queue_rel firebat barracks 1 barracks 255 Global 63 99
+	stop
+	
+	:qTank
+	notowns factory blank
+	notowns machine_shop blank
+	bring 13 AtL 12 siege_tank Loc.63 blank
+	res 13 AtM Ore 149 blank
+	res 13 AtM Gas 99 blank
+	queue_rel siege_tank machine_shop 1 factory 255 Global 63 99
+	
+	:qGoliath
+	notowns factory blank
+	notowns armory blank
+	bring 13 AtL 12 goliath Loc.63 blank
+	res 13 AtM Ore 124 blank
+	res 13 AtM Gas 49 blank
+	queue_rel goliath factory 1 factory 255 Global 63 99
+	stop
+	
+	:qWraith
+	notowns starport blank
+	bring 13 AtL 9 wraith Loc.63 blank
+	res 13 AtM Ore 149 blank
+	res 13 AtM Gas 99 blank
+	queue_rel wraith starport 1 starport 255 Global 63 99
 	stop 
