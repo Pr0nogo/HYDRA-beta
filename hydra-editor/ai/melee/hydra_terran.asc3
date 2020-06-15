@@ -29,6 +29,7 @@ script_id TMCx
 	set_var_local addBio xAddBio 13
 	set_var_local addMech xAddMech 13
 	set_var_local addAir xAddAir 13
+	set_var_local uAttackMax xUAttackMax 13
 	var set townCount 1 13
 	var set miningCount 1 13
 	var set underAttack 0 13
@@ -201,6 +202,7 @@ script_id TMCx
 	player_combat 17 13 63 False WF(240) Any Group_Buildings
 	player_combat 17 13 63 False WF(240) Any scv
 	wait 240
+	player_combat 17 13 63 True call Any Group_Buildings xUAttackMax 13
 	var set underAttack 0 13
 	under_attack 0
 	goto uAttack
@@ -213,9 +215,16 @@ script_id TMCx
 	player_combat 17 13 63 False WF(240) Any scv
 	player_combat 17 13 63 False WF(240) Any Group_Buildings
 	wait 240
+	player_combat 17 13 63 True call Any Group_Buildings xUAttackMax 13
 	var set underAttack 0 13
 	under_attack 0
 	goto uAttack2
+	
+	:uAttackMax
+	under_attack 2
+	player_combat 17 13 63 False WF(480) Any Group_Buildings
+	player_combat 17 13 63 False WF(480) Any scv
+	return
 	
 	:wAttack
 	wait 24
@@ -2839,7 +2848,7 @@ script_id TMCx
 	var add atkCycle 1 13
 	wait 250
 	#var AtL|jump atkCycle 2 xAtkFin 13
-	#supply 13 AtM 30 Used 0 Any_Total atkGen
+	#supply 13 AtM 20 Used 0 Any_Total atkGen
 	#supply 13 AtL 80 Used 0 Any_Total atkExp
 	#attack_jump 13 AtM 30 Group_Men Supply xAtkGen 13
 	#attack_jump 13 AtL 80 Group_Men Supply xAtkExp 13
