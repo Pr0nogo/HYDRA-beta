@@ -196,7 +196,7 @@ script_id PMCx
 	under_attack 1
 	player_combat 17 13 63 False WF(240) Any Group_Buildings|probe
 	wait 240
-	#player_combat 17 13 63 True Jump Any Group_Buildings|probe xUAttackMax 13
+	call uAttackMax
 	
 	:uAttackFin
 	var set underAttack 0 13
@@ -206,7 +206,7 @@ script_id PMCx
 	:uAttackMax
 	under_attack 2
 	player_combat 17 13 63 False WF(480) Any Group_Buildings|probe
-	goto uAttackFin
+	return
 	
 	:wAttack
 	wait 24

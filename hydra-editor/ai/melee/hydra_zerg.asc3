@@ -194,7 +194,7 @@ script_id ZMCx
 	under_attack 1
 	player_combat 17 13 63 False WF(240) Any Group_Buildings|drone
 	wait 240
-	#player_combat 17 13 63 True Jump Any Group_Buildings|drone xUAttackMax 13
+	call uAttackMax
 	
 	:uAttackFin
 	var set underAttack 0 13
@@ -204,7 +204,7 @@ script_id ZMCx
 	:uAttackMax
 	under_attack 2
 	player_combat 17 13 63 False WF(480) Any Group_Buildings|drone
-	goto uAttackFin
+	return
 	
 	:wAttack
 	wait 24
@@ -274,7 +274,7 @@ script_id ZMCx
 	def_max 42 guardian
 	def_max 36 gorgoleth
 	def_max 36 devourer
-	def_max 26 defiler
+	def_max 20 defiler
 	def_max 52 ultralisk
 	def_max 36 k_screamer
 	def_max 12 ab_zergling
@@ -475,6 +475,7 @@ script_id ZMCx
 	:zUpg
 	multi ioParasite
 	multi ioSwarm
+	var set metastasis 0 13
 	var Ex|wait canUpgrade 1 13
 	multi upgSpawnZergCheck
 	multi upgSpawnVorvCheck
@@ -919,7 +920,7 @@ script_id ZMCx
 	extupg 1 metastasis 88
 	wait 4500
 	var set metastasis 1 13
-	goto wUltra
+	goto wUpgrade
 	
 	:upgDefilerAir
 	wait 12
@@ -2828,8 +2829,8 @@ script_id ZMCx
 	dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
-	unit_check 13 13 63 Greater 0 0 hive hatchery|lair xAddAir
-	unit_check 13 13 63 Greater 0 0 lair hatchery|hive xAddRange
+	unit_check 13 13 63 Greater 2 0 hive hatchery|lair xAddAir
+	unit_check 13 13 63 Greater 2 0 lair hatchery|hive xAddRange
 	unit_check 13 13 63 Greater 0 0 hatchery lair|hive xAddSwarm
 	
 	:addSwarm
