@@ -284,10 +284,10 @@ script_id PMCx
 	
 	:pDef
 	call pDefUse
-	var Ex|WF(240) underAttack 1 13
+	var Ex|WF(480) underAttack 1 13
 	call pDefGBuild
 	call pDefABuild
-	wait 360
+	wait 120
 	var Ex|wait underAttack 0 13
 	defc_gg
 	defc_aa

@@ -208,6 +208,7 @@ script_id ZMCx
 	
 	:wAttack
 	wait 24
+	bring 13 Ex 0 spawning_pool|hydralisk_den|basilisk_den|lurker_den|spire|guardian_roost|ultralisk_cavern Loc.63 wAttack
 	bring 13 AtM 12 drone Loc.63 wAttack
 	bring 13 AtM 2 larva Loc.63 wAttack
 	res 13 AtL Any 999 blankReturn
@@ -290,7 +291,7 @@ script_id ZMCx
 	var Ex|WF(480) underAttack 1 13
 	call zDefGBuild
 	call zDefABuild
-	wait 360
+	wait 120
 	var Ex|wait underAttack 0 13
 	defc_gg
 	defc_aa
@@ -305,7 +306,7 @@ script_id ZMCx
 	:zDefGBuildGen
 	dth 13 AtL 1 raynor_marine zDefGBuildGen2
 	dth 13 Add 1 raynor_marine blank
-	defb_gg 4 zergling
+	defb_gg 2 zergling
 	defb_gg 2 vorvaling
 	defb_gg 1 hydralisk
 	defb_gg 1 lurker
@@ -452,10 +453,12 @@ script_id ZMCx
 	defu_gg 1 gorgoleth
 	defu_gg 1 guardian
 	defu_gg 1 ultralisk
-	defu_gg 1 ab_zergling
-	defu_gg 1 ab_hydralisk
-	defu_gg 1 ab_mutalisk
-	defu_gg 1 ab_ultralisk
+	#defu_gg 1 ab_zergling
+	#defu_gg 1 ab_hydralisk
+	#defu_gg 1 ab_mutalisk
+	#defu_gg 1 ab_ultralisk
+	defu_gg 1 infested_terran
+	defu_gg 2 broodling
 	defu_ag 2 hydralisk
 	defu_ag 1 mutalisk
 	defu_ag 2 scourge
@@ -989,8 +992,8 @@ script_id ZMCx
 	bring 13 AtL 80 drone Loc.63 mainWorker
 	resarea 255 AtM 255 Ore 600 mainWorkerLowStart
 	var Ex|wait cutWorker 0 13
-	var Ex|WF(360) cutWorkerAll 0 13
-	var Ex|WF(360) underAttack 0 13
+	var Ex|WF(240) cutWorkerAll 0 13
+	var Ex|WF(240) underAttack 0 13
 	local 255 AtL_W 1 hatchery|lair|hive blank
 	local 255 AtL_W 1 larva blank
 	bring 13 AtL 5 hatchery|lair|hive Loc.63 mainWorkerMax
@@ -1830,6 +1833,11 @@ script_id ZMCx
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
+	var set canExpand 1 13
+	wait 600
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 24
 	var set buildSupply 1 13
 	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
@@ -1842,14 +1850,11 @@ script_id ZMCx
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	var set canAttack 1 13
-	wait 900
+	wait 300
+	var set cutWorker 0 13
+	wait 600
 	bld 1 evolution_chamber 66
 	wait 300
-	var set canExpand 1 13
-	wait 600
-	var set cutWorker 0 13
-	var set canExpand 0 13
-	wait 24
 	var set canStatic 1 13
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
@@ -2824,28 +2829,32 @@ script_id ZMCx
 	:addRand
 	call wAttack
 	time_jump 20 addGen
-	dth 13 Ex 1 crashed_battle addRange
-	dth 13 Ex 2 crashed_battle addSwarm
-	dth 13 Ex 3 crashed_battle addAir
+	#dth 13 Ex 1 crashed_battle addRange
+	#dth 13 Ex 2 crashed_battle addSwarm
+	#dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
+	print unitCheck
 	unit_check 13 13 63 Greater 2 0 hive hatchery|lair xAddAir
 	unit_check 13 13 63 Greater 2 0 lair hatchery|hive xAddRange
 	unit_check 13 13 63 Greater 0 0 hatchery lair|hive xAddSwarm
 	
 	:addSwarm
+	print addSwarm
 	call atkSwarm
 	call atkAir
 	call atkRange
 	return
 	
 	:addRange
+	print addRange
 	call atkRange
 	call atkSwarm
 	call atkAir
 	return
 	
 	:addAir
+	print addAir
 	call atkAir
 	call atkSwarm
 	call atkRange
@@ -2886,13 +2895,13 @@ script_id ZMCx
 	return
 	
 	:atkZerglingMax
-	atk_rel zergling larva 0.75
-	queue_rel zergling larva 0.75 larva 255 Global 63 99
+	atk_rel zergling larva 0.55
+	queue_rel zergling larva 0.55 larva 255 Global 63 99
 	return
 	
 	:atkZerglingMin
-	atk_rel zergling larva 0.7
-	queue_rel zergling larva 0.7 larva 255 Global 63 99
+	atk_rel zergling larva 0.5
+	queue_rel zergling larva 0.5 larva 255 Global 63 99
 	return
 	
 	:atkVorvaling
@@ -2902,13 +2911,13 @@ script_id ZMCx
 	return
 	
 	:atkVorvalingMax
-	atk_rel vorvaling larva 0.4
-	queue_rel zergling larva 0.4 larva 255 Global 63 99
+	atk_rel vorvaling larva 0.35
+	queue_rel zergling larva 0.35 larva 255 Global 63 99
 	return
 	
 	:atkVorvalingMin
-	atk_rel vorvaling larva 0.44
-	queue_rel zergling larva 0.44 larva 255 Global 63 99
+	atk_rel vorvaling larva 0.4
+	queue_rel zergling larva 0.4 larva 255 Global 63 99
 	return
 	
 	:atkUltralisk
@@ -2935,11 +2944,13 @@ script_id ZMCx
 	:atkDefilerMax
 	atk_add 1 defiler
 	atk_rel defiler larva 0.09
+	bring 13 AtL 10 defiler Loc.63 blankReturn
 	queue_rel defiler larva 0.09 larva 255 Global 63 99
 	return
 	
 	:atkDefilerMin
 	atk_rel defiler larva 0.1
+	bring 13 AtL 10 defiler Loc.63 blankReturn
 	queue_rel defiler larva 0.1 larva 255 Global 63 99
 	return
 	

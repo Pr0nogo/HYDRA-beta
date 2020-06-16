@@ -289,7 +289,7 @@ script_id TMCx
 	var Ex|WF(480) underAttack 1 13
 	call tDefGBuild
 	call tDefABuild
-	wait 360
+	wait 120
 	var Ex|wait underAttack 0 13
 	defc_gg
 	defc_aa
