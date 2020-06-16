@@ -50,7 +50,6 @@ script_id ZMCx
 	dth 13 Set 1 khaydarin_crystal blank
 	upg_j 13 Set 58 3 blank
 	multi uAttack
-	multi uAttack2
 	multi wResource
 	multi wGas
 	multi wSupply
@@ -190,34 +189,19 @@ script_id ZMCx
 	
 	:uAttack
 	wait 12
-	player_combat 17 13 63 True Wait Any Group_Buildings
+	player_combat 17 13 63 True Wait Any Group_Buildings|drone
 	var set underAttack 1 13
 	under_attack 1
-	player_combat 17 13 63 False WF(240) Any Group_Buildings
-	player_combat 17 13 63 False WF(240) Any drone
+	player_combat 17 13 63 False WF(240) Any Group_Buildings|drone
 	wait 240
-	player_combat 17 13 63 True call Any Group_Buildings xUAttackMax 13
+	player_combat 17 13 63 True Call Any Group_Buildings|drone xUAttackMax 13
 	var set underAttack 0 13
 	under_attack 0
 	goto uAttack
 	
-	:uAttack2
-	wait 12
-	player_combat 17 13 63 True Wait Any drone
-	var set underAttack 1 13
-	under_attack 1
-	player_combat 17 13 63 False WF(240) Any drone
-	player_combat 17 13 63 False WF(240) Any Group_Buildings
-	wait 240
-	player_combat 17 13 63 True call Any Group_Buildings xUAttackMax 13
-	var set underAttack 0 13
-	under_attack 0
-	goto uAttack2
-	
 	:uAttackMax
 	under_attack 2
-	player_combat 17 13 63 False WF(480) Any Group_Buildings
-	player_combat 17 13 63 False WF(480) Any drone
+	player_combat 17 13 63 False WF(480) Any Group_Buildings|drone
 	return
 	
 	:wAttack
