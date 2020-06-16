@@ -200,7 +200,7 @@ script_id TMCx
 	under_attack 1
 	player_combat 17 13 63 False WF(240) Any Group_Buildings|scv
 	wait 240
-	player_combat 17 13 63 True Jump Any Group_Buildings|scv xUAttackMax 13
+	#player_combat 17 13 63 True Jump Any Group_Buildings|scv xUAttackMax 13
 	
 	:uAttackFin
 	var set underAttack 0 13
