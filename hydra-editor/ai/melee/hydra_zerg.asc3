@@ -215,7 +215,6 @@ script_id ZMCx
 	bring 13 AtL 10 Group_Factories Loc.63 blankReturn
 	var Ex|WF(360) underAttack 0 13
 	res 13 AtM Ore 199 wAttack
-	#print wAttack<32>return
 	return
 	
 	:wResource
@@ -2834,27 +2833,23 @@ script_id ZMCx
 	#dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
-	print unitCheck
 	unit_check 13 13 63 Greater 2 0 hive hatchery|lair xAddAir
 	unit_check 13 13 63 Greater 2 0 lair hatchery|hive xAddRange
 	unit_check 13 13 63 Greater 0 0 hatchery lair|hive xAddSwarm
 	
 	:addSwarm
-	print addSwarm
 	call atkSwarm
 	call atkAir
 	call atkRange
 	return
 	
 	:addRange
-	print addRange
 	call atkRange
 	call atkSwarm
 	call atkAir
 	return
 	
 	:addAir
-	print addAir
 	call atkAir
 	call atkSwarm
 	call atkRange
