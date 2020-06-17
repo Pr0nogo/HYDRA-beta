@@ -260,7 +260,6 @@ script_id TMCx
 	wait 12
 	res 13 AtL Any 399 blankReturn
 	var Ex|WF(360) underAttack 0 13
-	res 13 AtM Any 199 wUpgradeDef
 	return
 	
 	:tMax
