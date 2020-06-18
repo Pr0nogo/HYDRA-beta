@@ -11,6 +11,6 @@ Project: Hydra is currently in development faze. It is daily developed by Pr0nog
 
 ### Project: HYDRA Links
 
-*[Wiki](http://pr0nogo.wikidot.com/sc-hydra)
-*[Github](https://github.com/Pr0nogo/HYDRA-beta)
-*[Pr0nogo's Youtube](https://www.youtube.com/user/Pr0nogo)
+* [Wiki](http://pr0nogo.wikidot.com/sc-hydra)
+* [Github](https://github.com/Pr0nogo/HYDRA-beta)
+* [Pr0nogo's Youtube](https://www.youtube.com/user/Pr0nogo)
