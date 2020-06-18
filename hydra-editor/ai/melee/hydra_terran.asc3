@@ -1138,7 +1138,7 @@ script_id TMCx
 	wait 12
 	notowns cyprian ioSafety
 	i_tactics action SafetyOff cyprian IfSelf(Hp(GreaterThanPercent 15))&IfInRange(14 AtL 2 Group_Men 64)
-	i_tactics action SafetyOn cyprian IfSelf(Hp(LessThanPercent 15))|IfInRange(14 AtM 1 Group_Men 64)
+	i_tactics action SafetyOn cyprian IfInRange(14 AtM 1 Group_Men 64)
 	stop
 	
 	:ioLockdown
