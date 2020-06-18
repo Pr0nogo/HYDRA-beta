@@ -2794,12 +2794,12 @@ script_id PMCx
 	call wAttack
 	var set canExpand 0 13
 	var set canProd 0 13
+	time_jump 20 addGen
 	dth 13 Ex 1 crashed_battle addMech
 	dth 13 Ex 2 crashed_battle addGate
 	dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
-	time_jump 20 addGen
 	unit_check 13 13 63 Greater 0 0 gateway|principality|warp_anchor robotics_facility|robotics_authority|stargate|argosy|starfield xAddGate 13
 	unit_check 13 13 63 Greater 0 0 robotics_facility|robotics_authority gateway|principality|warp_anchor|stargate|argosy|starfield xAddMech 13
 	unit_check 13 13 63 Greater 0 0 stargate|argosy|starfield gateway|principality|warp_anchor|robotics_facility|robotics_authority xAddAir 13

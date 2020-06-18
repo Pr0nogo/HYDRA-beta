@@ -2826,10 +2826,12 @@ script_id ZMCx
 	
 	:addRand
 	call wAttack
+	var set canExpand 0 13
+	var set canProd 0 13
 	time_jump 20 addGen
-	#dth 13 Ex 1 crashed_battle addRange
-	#dth 13 Ex 2 crashed_battle addSwarm
-	#dth 13 Ex 3 crashed_battle addAir
+	dth 13 Ex 1 crashed_battle addRange
+	dth 13 Ex 2 crashed_battle addSwarm
+	dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
 	unit_check 13 13 63 Greater 2 0 hive hatchery|lair xAddAir

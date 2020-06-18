@@ -2857,12 +2857,12 @@ script_id TMCx
 	call wAttack
 	var set canExpand 0 13
 	var set canProd 0 13
+	time_jump 20 addGen
 	dth 13 Ex 1 crashed_battle addMech
 	dth 13 Ex 2 crashed_battle addBio
 	dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
-	time_jump 20 addGen
 	unit_check 13 13 63 Greater 0 0 barracks factory|starport xAddBio 13
 	unit_check 13 13 63 Greater 0 0 factory barracks|starport xAddMech 13
 	unit_check 13 13 63 Greater 0 0 starport barracks|factory xAddAir 13
