@@ -445,14 +445,13 @@ script_id TMCx
 	defb_ag 2 marine
 	def 1 medic Build Ground Air
 	defb_ag 2 wraith
-	#defb_ag 1 valkyrie
 	def 1 goliath Build Ground Air
 	def 1 science_vessel Build Ground Air
 	defb_ag 1 battlecruiser
 	defb_aa 2 marine
 	def 1 medic Build Air Air
 	defb_aa 2 wraith
-	#defb_aa 1 valkyrie
+	defb_aa 1 valkyrie
 	def 1 goliath Build Air Air
 	def 1 science_vessel Build Air Air
 	defb_aa 1 battlecruiser
