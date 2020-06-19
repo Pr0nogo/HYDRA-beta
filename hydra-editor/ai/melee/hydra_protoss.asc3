@@ -413,7 +413,6 @@ script_id PMCx
 	defb_ag 2 dragoon
 	defb_ag 1 hierophant
 	defb_ag 1 scout
-	defb_ag 1 corsair
 	defb_ag 1 exemplar
 	defb_aa 2 dragoon
 	defb_aa 1 hierophant
@@ -432,7 +431,6 @@ script_id PMCx
 	defb_ag 3 dragoon
 	defb_ag 1 hierophant
 	defb_ag 2 scout
-	defb_ag 1 corsair
 	defb_aa 3 dragoon
 	defb_aa 1 hierophant
 	defb_aa 2 scout
@@ -463,7 +461,6 @@ script_id PMCx
 	defb_ag 1 hierophant
 	defb_ag 3 scout
 	defb_ag 1 exemplar
-	defb_ag 2 corsair
 	defb_ag 1 arbiter
 	defb_aa 1 dragoon
 	defb_aa 1 hierophant
@@ -496,7 +493,6 @@ script_id PMCx
 	defu_ag 1 archon
 	defu_ag 2 scout
 	defu_ag 1 exemplar
-	defu_ag 2 corsair
 	defu_ag 1 carrier
 	defu_ag 1 starcaller
 	defu_aa 2 dragoon
