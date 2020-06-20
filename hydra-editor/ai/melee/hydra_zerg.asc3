@@ -1012,14 +1012,14 @@ script_id ZMCx
 	wait 12
 	bring 13 AtL 80 drone Loc.63 mainWorker
 	resarea 255 AtM 255 Ore 600 mainWorkerLowStart
-	var Ex|wait cutWorker 0 13
+	var Ex|WF(360) cutWorker 0 13
 	var Ex|WF(240) cutWorkerAll 0 13
-	var Ex|WF(240) underAttack 0 13
 	local 255 AtL_W 1 hatchery|lair|hive blank
 	local 255 AtL_W 1 larva blank
 	bring 13 AtL 5 hatchery|lair|hive Loc.63 mainWorkerMax
 	bring 13 AtL 3 hatchery|lair|hive Loc.63 mainWorkerMed
 	bring 13 AtL 2 hatchery|lair|hive Loc.63 mainWorkerMin
+	time_jump 6 mainWorkerMed
 	
 	:mainWorkerEarly
 	local 255 AtL 12 drone mainWorker
@@ -1151,7 +1151,7 @@ script_id ZMCx
 	wait 12
 	bring 13 AtL 80 drone Loc.63 expWorkerStd
 	local 13 Ex 0 larva expWorkerStd
-	var Ex|WF(360) cutWorkerAll 0 13
+	var Ex|WF(240) cutWorkerAll 0 13
 	bring 13 AtL 5 hatchery|lair|hive Loc.63 expWorkerMax
 	bring 13 AtL 3 hatchery|lair|hive Loc.63 expWorkerMed
 	resarea 255 AtM 255 Ore 600 expWorkerLow
@@ -2960,77 +2960,171 @@ script_id ZMCx
 	:atkSwarm
 	dth 13 Ex 1 crashed_battle atkSwarmRange
 	dth 13 Ex 3 crashed_battle atkSwarmAir
-	bring 13 AtL_C 1 spawning_pool Loc.63 atkZergling
-	bring 13 AtL_C 1 evolution_chamber Loc.63 atkVorvaling
-	bring 13 AtL_C 1 ultralisk_cavern Loc.63 atkUltralisk
+	bring 13 AtL_C 1 spawning_pool Loc.63 atkZerglingSwarm
+	bring 13 AtL_C 1 evolution_chamber Loc.63 atkVorvalingSwarm
+	bring 13 AtL_C 1 ultralisk_cavern Loc.63 atkUltraliskSwarm
 	bring 13 AtL_C 1 defiler_mound Loc.63 atkDefiler
 	bring 13 AtL_C 1 infested_command_center|infested_terran Loc.63 atkInfest
 	bring 13 AtL_C 1 broodling Loc.63 atkBroodling
 	return
 	
 	:atkSwarmRange
-	bring 13 AtL_C 1 spawning_pool Loc.63 atkZergling
+	bring 13 AtL_C 1 spawning_pool Loc.63 atkZerglingRange
 	bring 13 AtL_C 1 defiler_mound Loc.63 atkDefiler
-	bring 13 AtL_C 1 evolution_chamber Loc.63 atkVorvaling
-	bring 13 AtL_C 1 ultralisk_cavern Loc.63 atkUltralisk
+	bring 13 AtL_C 1 evolution_chamber Loc.63 atkVorvalingRange
+	bring 13 AtL_C 1 ultralisk_cavern Loc.63 atkUltraliskRange
 	bring 13 AtL_C 1 infested_command_center|infested_terran Loc.63 atkInfest
 	bring 13 AtL_C 1 broodling Loc.63 atkBroodling
 	return
 	
 	:atkSwarmAir
-	bring 13 AtL_C 1 spawning_pool Loc.63 atkZergling
-	bring 13 AtL_C 1 evolution_chamber Loc.63 atkVorvaling
+	bring 13 AtL_C 1 spawning_pool Loc.63 atkZerglingAir
+	bring 13 AtL_C 1 evolution_chamber Loc.63 atkVorvalingAir
 	bring 13 AtL_C 1 defiler_mound Loc.63 atkDefiler
-	bring 13 AtL_C 1 ultralisk_cavern Loc.63 atkUltralisk
+	bring 13 AtL_C 1 ultralisk_cavern Loc.63 atkUltraliskAir
 	bring 13 AtL_C 1 infested_command_center|infested_terran Loc.63 atkInfest
 	bring 13 AtL_C 1 broodling Loc.63 atkBroodling
 	return
 	
-	:atkZergling
-	bring 13 AtL_C 9 larva Loc.63 atkZerglingMax
-	bring 13 AtM_C 8 larva Loc.63 atkZerglingMin
+	:atkZerglingRange
+	bring 13 AtL_C 9 larva Loc.63 atkZerglingRangeMax
+	bring 13 AtM_C 8 larva Loc.63 atkZerglingRangeMin
 	return
 	
-	:atkZerglingMax
+	:atkZerglingRangeMax
+	atk_rel zergling larva 0.4
+	queue_rel zergling larva 0.4 larva 255 Global 63 99
+	return
+	
+	:atkZerglingRangeMin
+	atk_rel zergling larva 0.35
+	queue_rel zergling larva 0.35 larva 255 Global 63 99
+	return
+	
+	:atkZerglingSwarm
+	bring 13 AtL_C 9 larva Loc.63 atkZerglingSwarmMax
+	bring 13 AtM_C 8 larva Loc.63 atkZerglingSwarmMin
+	return
+	
+	:atkZerglingSwarmMax
 	atk_rel zergling larva 0.55
 	queue_rel zergling larva 0.55 larva 255 Global 63 99
 	return
 	
-	:atkZerglingMin
+	:atkZerglingSwarmMin
 	atk_rel zergling larva 0.5
 	queue_rel zergling larva 0.5 larva 255 Global 63 99
 	return
 	
-	:atkVorvaling
-	notowns spawning_pool blankReturn
-	bring 13 AtL_C 9 larva Loc.63 atkVorvalingMax
-	bring 13 AtM_C 8 larva Loc.63 atkVorvalingMin
+	:atkZerglingAir
+	bring 13 AtL_C 9 larva Loc.63 atkZerglingAirMax
+	bring 13 AtM_C 8 larva Loc.63 atkZerglingAirMin
 	return
 	
-	:atkVorvalingMax
+	:atkZerglingAirMax
+	atk_rel zergling larva 0.5
+	queue_rel zergling larva 0.5 larva 255 Global 63 99
+	return
+	
+	:atkZerglingAirMin
+	atk_rel zergling larva 0.45
+	queue_rel zergling larva 0.45 larva 255 Global 63 99
+	return
+	
+	:atkVorvalingRange
+	notowns spawning_pool blankReturn
+	bring 13 AtL_C 9 larva Loc.63 atkVorvalingRangeMax
+	bring 13 AtM_C 8 larva Loc.63 atkVorvalingRangeMin
+	return
+	
+	:atkVorvalingRangeMax
+	atk_rel vorvaling larva 0.27
+	queue_rel zergling larva 0.27 larva 255 Global 63 99
+	return
+	
+	:atkVorvalingRangeMin
+	atk_rel vorvaling larva 0.24
+	queue_rel zergling larva 0.24 larva 255 Global 63 99
+	return
+	
+	:atkVorvalingSwarm
+	notowns spawning_pool blankReturn
+	bring 13 AtL_C 9 larva Loc.63 atkVorvalingSwarmMax
+	bring 13 AtM_C 8 larva Loc.63 atkVorvalingSwarmMin
+	return
+	
+	:atkVorvalingSwarmMax
 	atk_rel vorvaling larva 0.35
 	queue_rel zergling larva 0.35 larva 255 Global 63 99
 	return
 	
-	:atkVorvalingMin
+	:atkVorvalingSwarmMin
 	atk_rel vorvaling larva 0.4
 	queue_rel zergling larva 0.4 larva 255 Global 63 99
 	return
 	
-	:atkUltralisk
-	bring 13 AtL_C 12 larva Loc.63 atkUltraliskMax
-	bring 13 AtM_C 11 larva Loc.63 atkUltraliskMin
+	:atkVorvalingAir
+	notowns spawning_pool blankReturn
+	bring 13 AtL_C 9 larva Loc.63 atkVorvalingAirMax
+	bring 13 AtM_C 8 larva Loc.63 atkVorvalingAirMin
 	return
 	
-	:atkUltraliskMax
+	:atkVorvalingAirMax
+	atk_rel vorvaling larva 0.3
+	queue_rel zergling larva 0.3 larva 255 Global 63 99
+	return
+	
+	:atkVorvalingAirMin
+	atk_rel vorvaling larva 0.25
+	queue_rel zergling larva 0.25 larva 255 Global 63 99
+	return
+	
+	:atkUltraliskRange
+	bring 13 AtL_C 12 larva Loc.63 atkUltraliskRangeMax
+	bring 13 AtM_C 11 larva Loc.63 atkUltraliskRangeMin
+	return
+	
+	:atkUltraliskRangeMax
+	atk_add 2 ultralisk
+	atk_rel ultralisk larva 0.125
+	queue_rel ultralisk larva 0.125 larva 255 Global 63 99
+	return
+	
+	:atkUltraliskRangeMin
+	atk_rel ultralisk larva 0.1
+	queue_rel ultralisk larva 0.1 larva 255 Global 63 99
+	return
+	
+	:atkUltraliskSwarm
+	bring 13 AtL_C 12 larva Loc.63 atkUltraliskSwarmMax
+	bring 13 AtM_C 11 larva Loc.63 atkUltraliskSwarmMin
+	return
+	
+	:atkUltraliskSwarmMax
 	atk_add 2 ultralisk
 	atk_rel ultralisk larva 0.25
 	queue_rel ultralisk larva 0.25 larva 255 Global 63 99
 	return
 	
-	:atkUltraliskMin
+	:atkUltraliskSwarmMin
 	atk_rel ultralisk larva 0.2
 	queue_rel ultralisk larva 0.2 larva 255 Global 63 99
+	return
+	
+	:atkUltraliskAir
+	bring 13 AtL_C 12 larva Loc.63 atkUltraliskAirMax
+	bring 13 AtM_C 11 larva Loc.63 atkUltraliskAirMin
+	return
+	
+	:atkUltraliskAirMax
+	atk_add 2 ultralisk
+	atk_rel ultralisk larva 0.125
+	queue_rel ultralisk larva 0.125 larva 255 Global 63 99
+	return
+	
+	:atkUltraliskAirMin
+	atk_rel ultralisk larva 0.1
+	queue_rel ultralisk larva 0.1 larva 255 Global 63 99
 	return
 	
 	:atkDefiler
@@ -3063,69 +3157,159 @@ script_id ZMCx
 	:atkRange
 	dth 13 Ex 2 crashed_battle atkRangeSwarm
 	dth 13 Ex 3 crashed_battle atkRangeAir
-	bring 13 AtL_C 1 hydralisk_den|basilisk_den|lurker_den Loc.63 atkHydra
-	bring 13 AtL_C 1 basilisk_den Loc.63 atkBasilisk
-	bring 13 AtL_C 1 lurker_den Loc.63 atkLurker
+	bring 13 AtL_C 1 hydralisk_den|basilisk_den|lurker_den Loc.63 atkHydraRange
+	bring 13 AtL_C 1 basilisk_den Loc.63 atkBasiliskRange
+	bring 13 AtL_C 1 lurker_den Loc.63 atkLurkerRange
 	bring 13 AtL_C 1 queen_nest Loc.63 atkQueen
 	return
 	
 	:atkRangeSwarm
 	bring 13 AtL_C 1 queen_nest Loc.63 atkQueen
-	bring 13 AtL_C 1 hydralisk_den|basilisk_den|lurker_den Loc.63 atkHydra
-	bring 13 AtL_C 1 lurker_den Loc.63 atkLurker
-	bring 13 AtL_C 1 basilisk_den Loc.63 atkBasilisk
+	bring 13 AtL_C 1 hydralisk_den|basilisk_den|lurker_den Loc.63 atkHydraSwarm
+	bring 13 AtL_C 1 lurker_den Loc.63 atkLurkerSwarm
+	bring 13 AtL_C 1 basilisk_den Loc.63 atkBasiliskSwarm
 	return
 	
 	:atkRangeAir
-	bring 13 AtL_C 1 hydralisk_den|basilisk_den|lurker_den Loc.63 atkHydra
-	bring 13 AtL_C 1 lurker_den Loc.63 atkLurker
-	bring 13 AtL_C 1 basilisk_den Loc.63 atkBasilisk
+	bring 13 AtL_C 1 hydralisk_den|basilisk_den|lurker_den Loc.63 atkHydraAir
+	bring 13 AtL_C 1 lurker_den Loc.63 atkLurkerAir
+	bring 13 AtL_C 1 basilisk_den Loc.63 atkBasiliskAir
 	bring 13 AtL_C 1 queen_nest Loc.63 atkQueen
 	return
 	
-	:atkHydra
-	bring 13 AtL_C 9 larva Loc.63 atkHydraMax
-	bring 13 AtM_C 8 larva Loc.63 atkHydraMin
+	:atkHydraRange
+	bring 13 AtL_C 9 larva Loc.63 atkHydraRangeMax
+	bring 13 AtM_C 8 larva Loc.63 atkHydraRangeMin
 	return
 	
-	:atkHydraMax
+	:atkHydraRangeMax
 	atk_rel hydralisk larva 0.6
 	queue_rel hydralisk larva 0.6 larva 255 Global 63 99
 	return
 	
-	:atkHydraMin
+	:atkHydraRangeMin
 	atk_rel hydralisk larva 0.5
 	queue_rel hydralisk larva 0.5 larva 255 Global 63 99
 	return
 	
-	:atkBasilisk
-	bring 13 AtL_C 12 larva Loc.63 atkBasiliskMax
-	bring 13 AtM_C 11 larva Loc.63 atkBasiliskMin
+	:atkHydraSwarm
+	bring 13 AtL_C 9 larva Loc.63 atkHydraSwarmMax
+	bring 13 AtM_C 8 larva Loc.63 atkHydraSwarmMin
 	return
 	
-	:atkBasiliskMax
+	:atkHydraSwarmMax
+	atk_rel hydralisk larva 0.35
+	queue_rel hydralisk larva 0.35 larva 255 Global 63 99
+	return
+	
+	:atkHydraSwarmMin
+	atk_rel hydralisk larva 0.3
+	queue_rel hydralisk larva 0.3 larva 255 Global 63 99
+	return
+	
+	:atkHydraAir
+	bring 13 AtL_C 9 larva Loc.63 atkHydraAirMax
+	bring 13 AtM_C 8 larva Loc.63 atkHydraAirMin
+	return
+	
+	:atkHydraAirMax
+	atk_rel hydralisk larva 0.3
+	queue_rel hydralisk larva 0.3 larva 255 Global 63 99
+	return
+	
+	:atkHydraAirMin
+	atk_rel hydralisk larva 0.25
+	queue_rel hydralisk larva 0.25 larva 255 Global 63 99
+	return
+	
+	:atkBasiliskRange
+	bring 13 AtL_C 12 larva Loc.63 atkBasiliskRangeMax
+	bring 13 AtM_C 11 larva Loc.63 atkBasiliskRangeMin
+	return
+	
+	:atkBasiliskRangeMax
 	atk_rel basilisk larva 0.33
 	queue_rel hydralisk larva 0.33 larva 255 Global 63 99
 	return
 	
-	:atkBasiliskMin
+	:atkBasiliskRangeMin
 	atk_rel basilisk larva 0.27
 	queue_rel hydralisk larva 0.27 larva 255 Global 63 99
 	return
 	
-	:atkLurker
-	bring 13 AtL_C 12 larva Loc.63 atkLurkerMax
-	bring 13 AtM_C 11 larva Loc.63 atkLurkerMin
+	:atkBasiliskSwarm
+	bring 13 AtL_C 12 larva Loc.63 atkBasiliskSwarmMax
+	bring 13 AtM_C 11 larva Loc.63 atkBasiliskSwarmMin
 	return
 	
-	:atkLurkerMax
+	:atkBasiliskSwarmMax
+	atk_rel basilisk larva 0.24
+	queue_rel hydralisk larva 0.24 larva 255 Global 63 99
+	return
+	
+	:atkBasiliskSwarmMin
+	atk_rel basilisk larva 0.2
+	queue_rel hydralisk larva 0.2 larva 255 Global 63 99
+	return
+	
+	:atkBasiliskAir
+	bring 13 AtL_C 12 larva Loc.63 atkBasiliskAirMax
+	bring 13 AtM_C 11 larva Loc.63 atkBasiliskAirMin
+	return
+	
+	:atkBasiliskAirMax
+	atk_rel basilisk larva 0.2
+	queue_rel hydralisk larva 0.2 larva 255 Global 63 99
+	return
+	
+	:atkBasiliskAirMin
+	atk_rel basilisk larva 0.16
+	queue_rel hydralisk larva 0.16 larva 255 Global 63 99
+	return
+	
+	:atkLurkerRange
+	bring 13 AtL_C 12 larva Loc.63 atkLurkerRangeMax
+	bring 13 AtM_C 11 larva Loc.63 atkLurkerRangeMin
+	return
+	
+	:atkLurkerRangeMax
+	atk_rel lurker larva 0.27
+	queue_rel hydralisk larva 0.27 larva 255 Global 63 99
+	return
+	
+	:atkLurkerRangeMin
+	atk_rel lurker larva 0.24
+	queue_rel hydralisk larva 0.24 larva 255 Global 63 99
+	return
+	
+	:atkLurkerSwarm
+	bring 13 AtL_C 12 larva Loc.63 atkLurkerSwarmMax
+	bring 13 AtM_C 11 larva Loc.63 atkLurkerSwarmMin
+	return
+	
+	:atkLurkerSwarmMax
 	atk_rel lurker larva 0.33
 	queue_rel hydralisk larva 0.33 larva 255 Global 63 99
 	return
 	
-	:atkLurkerMin
+	:atkLurkerSwarmMin
 	atk_rel lurker larva 0.27
 	queue_rel hydralisk larva 0.27 larva 255 Global 63 99
+	return
+	
+	:atkLurkerAir
+	bring 13 AtL_C 12 larva Loc.63 atkLurkerAirMax
+	bring 13 AtM_C 11 larva Loc.63 atkLurkerAirMin
+	return
+	
+	:atkLurkerAirMax
+	atk_rel lurker larva 0.2
+	queue_rel hydralisk larva 0.2 larva 255 Global 63 99
+	return
+	
+	:atkLurkerAirMin
+	atk_rel lurker larva 0.16
+	queue_rel hydralisk larva 0.16 larva 255 Global 63 99
 	return
 	
 	:atkQueen
@@ -3146,70 +3330,160 @@ script_id ZMCx
 	:atkAir
 	dth 13 Ex 1 crashed_battle atkAirRange
 	dth 13 Ex 2 crashed_battle atkAirSwarm
-	bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkMutalisk
-	bring 13 AtL_C 1 guardian_roost Loc.63 atkGuardian
-	bring 13 AtL_C 1 devourer_haunt Loc.63 atkDevourer
+	bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkMutaliskAir
+	bring 13 AtL_C 1 guardian_roost Loc.63 atkGuardianAir
+	bring 13 AtL_C 1 devourer_haunt Loc.63 atkDevourerAir
 	bring 13 AtL_C 1 gorgoleth_apiary Loc.63 atkGorgoleth
 	#bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkScourge
 	return
 	
 	:atkAirRange
-	bring 13 AtL_C 1 guardian_roost Loc.63 atkGuardian
-	bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkMutalisk
+	bring 13 AtL_C 1 guardian_roost Loc.63 atkGuardianRange
+	bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkMutaliskRange
 	bring 13 AtL_C 1 gorgoleth_apiary Loc.63 atkGorgoleth
-	bring 13 AtL_C 1 devourer_haunt Loc.63 atkDevourer
+	bring 13 AtL_C 1 devourer_haunt Loc.63 atkDevourerRange
 	#bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkScourge
 	return
 	
 	:atkAirSwarm
-	bring 13 AtL_C 1 guardian_roost Loc.63 atkGuardian
-	bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkMutalisk
-	bring 13 AtL_C 1 devourer_haunt Loc.63 atkDevourer
+	bring 13 AtL_C 1 guardian_roost Loc.63 atkGuardianSwarm
+	bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkMutaliskSwarm
+	bring 13 AtL_C 1 devourer_haunt Loc.63 atkDevourerSwarm
 	bring 13 AtL_C 1 gorgoleth_apiary Loc.63 atkGorgoleth
 	#bring 13 AtL_C 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 atkScourge
 	return
 	
-	:atkMutalisk
-	bring 13 AtL_C 9 larva Loc.63 atkMutaliskMax
-	bring 13 AtM_C 8 larva Loc.63 atkMutaliskMin
+	:atkMutaliskRange
+	bring 13 AtL_C 9 larva Loc.63 atkMutaliskRangeMax
+	bring 13 AtM_C 8 larva Loc.63 atkMutaliskRangeMin
 	return
 	
-	:atkMutaliskMax
-	atk_rel mutalisk larva 0.4
-	queue_rel mutalisk larva 0.4 larva 255 Global 63 99
+	:atkMutaliskRangeMax
+	atk_rel mutalisk larva 0.2
+	queue_rel mutalisk larva 0.2 larva 255 Global 63 99
 	return
 	
-	:atkMutaliskMin
-	atk_rel mutalisk larva 0.45
-	queue_rel mutalisk larva 0.45 larva 255 Global 63 99
+	:atkMutaliskRangeMin
+	atk_rel mutalisk larva 0.16
+	queue_rel mutalisk larva 0.16 larva 255 Global 63 99
 	return
 	
-	:atkGuardian
-	bring 13 AtL_C 12 larva Loc.63 atkGuardianMax
-	bring 13 AtM_C 11 larva Loc.63 atkGuardianMin
+	:atkMutaliskSwarm
+	bring 13 AtL_C 9 larva Loc.63 atkMutaliskSwarmMax
+	bring 13 AtM_C 8 larva Loc.63 atkMutaliskSwarmMin
 	return
 	
-	:atkGuardianMax
+	:atkMutaliskSwarmMax
+	atk_rel mutalisk larva 0.37
+	queue_rel mutalisk larva 0.37 larva 255 Global 63 99
+	return
+	
+	:atkMutaliskSwarmMin
+	atk_rel mutalisk larva 0.33
+	queue_rel mutalisk larva 0.33 larva 255 Global 63 99
+	return
+	
+	:atkMutaliskAir
+	bring 13 AtL_C 9 larva Loc.63 atkMutaliskAirMax
+	bring 13 AtM_C 8 larva Loc.63 atkMutaliskAirMin
+	return
+	
+	:atkMutaliskAirMax
+	atk_rel mutalisk larva 0.47
+	queue_rel mutalisk larva 0.47 larva 255 Global 63 99
+	return
+	
+	:atkMutaliskAirMin
+	atk_rel mutalisk larva 0.44
+	queue_rel mutalisk larva 0.44 larva 255 Global 63 99
+	return
+	
+	:atkGuardianRange
+	bring 13 AtL_C 12 larva Loc.63 atkGuardianRangeMax
+	bring 13 AtM_C 11 larva Loc.63 atkGuardianRangeMin
+	return
+	
+	:atkGuardianRangeMax
+	atk_rel guardian larva 0.2
+	queue_rel mutalisk larva 0.2 larva 255 Global 63 99
+	return
+	
+	:atkGuardianRangeMin
+	atk_rel guardian larva 0.16
+	queue_rel mutalisk larva 0.16 larva 255 Global 63 99
+	return
+	
+	:atkGuardianSwarm
+	bring 13 AtL_C 12 larva Loc.63 atkGuardianSwarmMax
+	bring 13 AtM_C 11 larva Loc.63 atkGuardianSwarmMin
+	return
+	
+	:atkGuardianSwarmMax
+	atk_rel guardian larva 0.24
+	queue_rel mutalisk larva 0.24 larva 255 Global 63 99
+	return
+	
+	:atkGuardianSwarmMin
+	atk_rel guardian larva 0.2
+	queue_rel mutalisk larva 0.2 larva 255 Global 63 99
+	return
+	
+	:atkGuardianAir
+	bring 13 AtL_C 12 larva Loc.63 atkGuardianAirMax
+	bring 13 AtM_C 11 larva Loc.63 atkGuardianAirMin
+	return
+	
+	:atkGuardianAirMax
 	atk_rel guardian larva 0.33
 	queue_rel mutalisk larva 0.33 larva 255 Global 63 99
 	return
 	
-	:atkGuardianMin
+	:atkGuardianAirMin
 	atk_rel guardian larva 0.27
 	queue_rel mutalisk larva 0.27 larva 255 Global 63 99
 	return
 	
-	:atkDevourer
-	bring 13 AtL_C 12 larva Loc.63 atkDevourerMax
-	bring 13 AtM_C 11 larva Loc.63 atkDevourerMin
+	:atkDevourerRange
+	bring 13 AtL_C 12 larva Loc.63 atkDevourerRangeMax
+	bring 13 AtM_C 11 larva Loc.63 atkDevourerRangeMin
 	return
 	
-	:atkDevourerMax
+	:atkDevourerRangeMax
+	atk_rel devourer larva 0.06
+	queue_rel mutalisk larva 0.06 larva 255 Global 63 99
+	return
+	
+	:atkDevourerRangeMin
+	atk_rel devourer larva 0.04
+	queue_rel mutalisk larva 0.04 larva 255 Global 63 99
+	return
+	
+	:atkDevourerSwarm
+	bring 13 AtL_C 12 larva Loc.63 atkDevourerSwarmMax
+	bring 13 AtM_C 11 larva Loc.63 atkDevourerSwarmMin
+	return
+	
+	:atkDevourerSwarmMax
+	atk_rel devourer larva 0.06
+	queue_rel mutalisk larva 0.06 larva 255 Global 63 99
+	return
+	
+	:atkDevourerSwarmMin
+	atk_rel devourer larva 0.04
+	queue_rel mutalisk larva 0.04 larva 255 Global 63 99
+	return
+	
+	:atkDevourerAir
+	bring 13 AtL_C 12 larva Loc.63 atkDevourerAirMax
+	bring 13 AtM_C 11 larva Loc.63 atkDevourerAirMin
+	return
+	
+	:atkDevourerAirMax
 	atk_rel devourer larva 0.09
 	queue_rel mutalisk larva 0.09 larva 255 Global 63 99
 	return
 	
-	:atkDevourerMin
+	:atkDevourerAirMin
 	atk_rel devourer larva 0.1
 	queue_rel mutalisk larva 0.1 larva 255 Global 63 99
 	return
