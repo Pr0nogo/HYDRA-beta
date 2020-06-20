@@ -68,30 +68,43 @@ script_id PMCx
 	dth 13 Ex 1 crashed_battle dbgPers1
 	dth 13 Ex 2 crashed_battle dbgPers2
 	dth 13 Ex 3 crashed_battle dbgPers3
+	dth 13 Ex 0 temple slcBuild4
 	print <32>HYDRA<32>Protoss<32>AI<32>personality<32>0:<32>General
+	
+	:slcBuild4
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers1
+	dth 13 Ex 0 temple slcBuild1
 	print <32>HYDRA<32>Protoss<32>AI<32>personality<32>1:<32>Ranger
+	
+	:slcBuild1
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 5 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers2
+	dth 13 Ex 0 temple slcBuild2
 	print <32>HYDRA<32>Protoss<32>AI<32>personality<32>2:<32>Templar
+	
+	:slcBuild2
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers3
+	dth 13 Ex 0 temple slcBuild3
 	print <32>HYDRA<32>Protoss<32>AI<32>personality<32>3:<32>Skylord
+	
+	:slcBuild3
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgBuild
+	dth 13 Ex 0 temple idle
 	dth 13 Ex 1 stasis_chamber dbgBuild1
 	dth 13 Ex 2 stasis_chamber dbgBuild2
 	dth 13 Ex 3 stasis_chamber dbgBuild3

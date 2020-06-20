@@ -7,6 +7,7 @@ Beta builds - https://github.com/Cr0wnogo/HYDRA-beta
 Setup for UMS maps:
 -Make sure your AI has the correct race set in map settings
 -Set crashed battlecruiser deaths for personalities and stasis chamber deaths for build orders
+-To enable debug messages for showing AI personalities and build orders, set temple deaths above 0
 -Run <race> expansion custom level in a location placed over the starting town hall
 -To check if a player slot is running the melee AI, check for at least 1 khaydarin crystal death
 -Results not guaranteed; the AI have only been tested with melee starting conditions

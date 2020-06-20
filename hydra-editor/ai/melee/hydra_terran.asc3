@@ -69,30 +69,43 @@ script_id TMCx
 	dth 13 Ex 1 crashed_battle dbgPers1
 	dth 13 Ex 2 crashed_battle dbgPers2
 	dth 13 Ex 3 crashed_battle dbgPers3
+	dth 13 Ex 0 temple slcBuild4
 	print <32>HYDRA<32>Terran<32>AI<32>personality<32>0:<32>General
+	
+	:slcBuild4
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 5 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers1
+	dth 13 Ex 0 temple slcBuild1
 	print <32>HYDRA<32>Terran<32>AI<32>personality<32>1:<32>Mech
+	
+	:slcBuild1
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers2
+	dth 13 Ex 0 temple slcBuild2
 	print <32>HYDRA<32>Terran<32>AI<32>personality<32>2:<32>Raider
+	
+	:slcBuild2
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 5 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers3
+	dth 13 Ex 0 temple slcBuild3
 	print <32>HYDRA<32>Terran<32>AI<32>personality<32>3:<32>Air
+	
+	:slcBuild3
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgBuild
+	dth 13 Ex 0 temple idle
 	dth 13 Ex 1 stasis_chamber dbgBuild1
 	dth 13 Ex 2 stasis_chamber dbgBuild2
 	dth 13 Ex 3 stasis_chamber dbgBuild3
@@ -377,7 +390,7 @@ script_id TMCx
 	dth 13 Add 1 fenix_zealot blank
 	defb_gg 2 marine
 	defb_gg 3 wraith
-	#defb_gg 1 wyvern
+	defb_gg 1 wyvern
 	def 1 ghost Build Ground Ground
 	defb_gg 1 siege_tank
 	def 1 goliath Build Ground Ground
@@ -465,7 +478,7 @@ script_id TMCx
 	defu_gg 1 siege_tank
 	def 2 goliath Use Ground Ground
 	defu_gg 1 wraith
-	#defu_gg 1 wyvern
+	defu_gg 1 wyvern
 	defu_gg 1 battlecruiser
 	defu_ag 2 marine
 	def 1 ghost Use Ground Air
@@ -1024,7 +1037,7 @@ script_id TMCx
 	wait 12
 	notowns control_tower upgConWyvern
 	call wUpgradeDef
-	#extupg 1 reverse_thrust 88
+	tech reverse_thrust 88
 	goto wUpgrade
 	
 	:upgGenWyvern
@@ -1183,15 +1196,14 @@ script_id TMCx
 	multi addTurret
 	bring 13 AtL_W 1 academy Loc.63 blank
 	dth 13 Ex 2 crashed_battle tTownNuke
-	bld 1 comsat_station 66
+	bld 1 comsat_station 72
 	goto idle
 	
 	:tTownNuke
 	wait 12
 	notowns armory tTownNuke
 	notowns academy tTownNuke
-	res 13 AtM Any 199 tTownNuke
-	bld 1 nuclear_silo 66
+	bld 1 nuclear_silo 72
 	goto idle
 	
 	:mainWorkerStart
@@ -1286,11 +1298,11 @@ script_id TMCx
 	wait 600
 	notowns covert_ops expRandComsat
 	rand_j 128 expRandComsat
-	bld 1 nuclear_silo 66
+	bld 1 nuclear_silo 72
 	goto idle
 	
 	:expRandComsat
-	bld 1 comsat_station 66
+	bld 1 comsat_station 72
 	goto idle
 	
 	:expCount
@@ -3025,6 +3037,8 @@ script_id TMCx
 	dth 13 Ex 2 crashed_battle atkAirMech
 	bring 13 AtL_C 4 starport Loc.63 atkWraithMax
 	bring 13 AtM_C 3 starport Loc.63 atkWraithMin
+	bring 13 AtL_C 4 control_tower Loc.63 atkWyvernMax
+	bring 13 AtM_C 3 control_tower Loc.63 atkWyvernMin
 	bring 13 AtL_C 3 control_tower Loc.63 atkVesselMax
 	bring 13 AtM_C 2 control_tower Loc.63 atkVesselMin
 	bring 13 AtL_C 4 physics_lab Loc.63 atkCruiserMax
@@ -3038,6 +3052,8 @@ script_id TMCx
 	bring 13 AtM_C 2 control_tower Loc.63 atkVesselMin
 	bring 13 AtL_C 4 starport Loc.63 atkWraithMax
 	bring 13 AtM_C 3 starport Loc.63 atkWraithMin
+	bring 13 AtL_C 3 control_tower Loc.63 atkWyvernMax
+	bring 13 AtM_C 2 control_tower Loc.63 atkWyvernMin
 	bring 13 AtL_C 4 physics_lab Loc.63 atkCruiserMax
 	bring 13 AtM_C 3 physics_lab Loc.63 atkCruiserMin
 	rand_j 128 blankReturn
@@ -3053,6 +3069,16 @@ script_id TMCx
 	:atkWraithMin
 	atk_rel wraith starport 3
 	queue_rel wraith starport 1 starport 255 Global 63 99
+	return
+	
+	:atkWyvernMax
+	atk_rel wyvern control_tower 1.5
+	queue_rel wyvern control_tower 1 starport 255 Global 63 99
+	return
+	
+	:atkWyvernMin
+	atk_rel wyvern control_tower 1
+	queue_rel wyvern control_tower 1 starport 255 Global 63 99
 	return
 	
 	:atkVesselMax

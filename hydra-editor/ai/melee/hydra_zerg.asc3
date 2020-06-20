@@ -69,30 +69,43 @@ script_id ZMCx
 	dth 13 Ex 1 crashed_battle dbgPers1
 	dth 13 Ex 2 crashed_battle dbgPers2
 	dth 13 Ex 3 crashed_battle dbgPers3
+	dth 13 Ex 0 temple slcBuild4
 	print <32>HYDRA<32>Zerg<32>AI<32>personality<32>0:<32>General
+	
+	:slcBuild4
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers1
+	dth 13 Ex 0 temple slcBuild1
 	print <32>HYDRA<32>Zerg<32>AI<32>personality<32>1:<32>Connor
+	
+	:slcBuild1
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers2
+	dth 13 Ex 0 temple slcBuild2
 	print <32>HYDRA<32>Zerg<32>AI<32>personality<32>2:<32>Swarm
+	
+	:slcBuild2
 	dth 13 AtL 1 stasis_chamber dbgBuild
-	dth 13 Rand 4 stasis_chamber blank
+	dth 13 Rand 5 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers3
+	dth 13 Ex 0 temple slcBuild3
 	print <32>HYDRA<32>Zerg<32>AI<32>personality<32>3:<32>Air
+	
+	:slcBuild3
 	dth 13 AtL 1 stasis_chamber dbgBuild
 	dth 13 Rand 4 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgBuild
+	dth 13 Ex 0 temple idle
 	dth 13 Ex 1 stasis_chamber dbgBuild1
 	dth 13 Ex 2 stasis_chamber dbgBuild2
 	dth 13 Ex 3 stasis_chamber dbgBuild3
@@ -169,7 +182,17 @@ script_id ZMCx
 	goto idle
 	
 	:dbgBuild4Swarm
-	print Zerg<32>Swarm<32>build<32>3:<32>3HatchHive
+	print Zerg<32>Swarm<32>build<32>4:<32>3HatchHive
+	goto idle
+	
+	:dbgBuild5
+	dth 13 Ex 1 crashed_battle idle
+	dth 13 Ex 2 crashed_battle dbgBuild5Swarm
+	dth 13 Ex 3 crashed_battle idle
+	goto idle
+	
+	:dbgBuild5Swarm
+	print Zerg<32>Swarm<32>build<32>5:<32>Congo<32>Todgod
 	
 	:idle
 	wait 25500
@@ -1641,6 +1664,7 @@ script_id ZMCx
 	dth 13 Ex 2 stasis_chamber buildSwarm3HatchUltra
 	dth 13 Ex 3 stasis_chamber buildSwarm9Pool
 	dth 13 Ex 4 stasis_chamber buildSwarm3HatchHive
+	dth 13 Ex 5 stasis_chamber buildSwarmCongo
 	
 	:buildSwarm3HatchFlood
 	wait 600
@@ -1971,6 +1995,83 @@ script_id ZMCx
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
 	multi addProd
+	goto buildSwarmFin
+	
+	:buildSwarmCongo
+	wait 600
+	var set cutWorker 1 13
+	bld 1 spawning_pool 66
+	wait 300
+	var set cutWorker 0 13
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 24
+	bld 1 extractor 66
+	wait 600
+	upg_queue 1 zergling_speed 88
+	var set cutWorker 1 13
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set canExpand 1 13
+	wait 600
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 24
+	var set buildSupply 1 13
+	wait 300
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	var set canAttack 1 13
+	wait 300
+	var set cutWorker 0 13
+	wait 600
+	bld 1 evolution_chamber 66
+	wait 300
+	var set canStatic 1 13
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 300
+	bld 1 lair 76
+	wait 600
+	bld 2 hatchery 72
+	wait 300
+	upg_queue 1 z_melee_attack 88
+	wait 24
+	bld 2 evolution_chamber 66
+	wait 300
+	upg_queue 1 z_carapace 88
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	multi addProd
+	goto buildSwarmFin
 	
 	:buildSwarmFin
 	call buildBool
