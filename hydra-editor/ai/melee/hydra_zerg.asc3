@@ -19,17 +19,18 @@ script_id ZMCx
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	i_tactics nydus_placement_ai 300 set
 	town_state 255 persist true
-	set_var_local blank stp 13
-	set_var_local blankReturn ret 13
-	set_var_local wWorkerDef wWorker 13
-	set_var_local atkGen xAtkGen 13
-	set_var_local atkCheck xAtkCheck 13
-	set_var_local atkExp xAtkExp 13
-	set_var_local atkFin xAtkFin 13
-	set_var_local addSwarm xAddSwarm 13
-	set_var_local addRange xAddRange 13
-	set_var_local addAir xAddAir 13
-	set_var_local uAttackMax xUAttackMax 13
+	set_var_local blank blank 13
+	set_var_local blankReturn blankReturn 13
+	set_var_local wWorkerDef wWorkerDef 13
+	set_var_local atkGen atkGen 13
+	set_var_local atkCheck atkCheck 13
+	set_var_local atkDo atkDo 13
+	set_var_local atkExp atkExp 13
+	set_var_local atkFin atkFin 13
+	set_var_local addSwarm addSwarm 13
+	set_var_local addRange addRange 13
+	set_var_local addAir addAir 13
+	set_var_local uAttackMax uAttackMax 13
 	var set townCount 1 13
 	var set miningCount 1 13
 	var set underAttack 0 13
@@ -212,7 +213,7 @@ script_id ZMCx
 	
 	:uAttack
 	wait 12
-	player_combat 17 13 63 True Wait Any Group_Buildings|drone
+	player_combat 17 13 63 True Wait Any Group_Buildings|drone|larva_egg|larva
 	var set underAttack 1 13
 	under_attack 1
 	player_combat 17 13 63 False WF(240) Any Group_Buildings|drone
@@ -226,18 +227,17 @@ script_id ZMCx
 	
 	:uAttackMax
 	under_attack 2
-	player_combat 17 13 63 False WF(480) Any Group_Buildings|drone
+	player_combat 17 13 63 False WF(480) Any Group_Buildings|drone|larva_egg|larva
 	return
 	
 	:wAttack
 	wait 24
 	bring 13 Ex 0 spawning_pool|hydralisk_den|basilisk_den|lurker_den|spire|guardian_roost|ultralisk_cavern Loc.63 wAttack
-	bring 13 AtM 12 drone Loc.63 wAttack
+	bring 13 AtM 10 drone Loc.63 wAttack
 	bring 13 AtM 2 larva Loc.63 wAttack
 	res 13 AtL Any 999 blankReturn
 	bring 13 AtL 10 Group_Factories Loc.63 blankReturn
 	var Ex|WF(360) underAttack 0 13
-	res 13 AtM Ore 199 wAttack
 	return
 	
 	:wResource
@@ -261,13 +261,13 @@ script_id ZMCx
 	
 	:wSupply2
 	dth 13 AtL_W 1 overlord blank
-	var Ex|jump buildSupply 1 stp 13
+	var Ex|jump buildSupply 1 blank 13
 	
 	:wSupply3
 	farms_timing
 	queue 1 overlord larva 255 Global Loc.63 80
 	def_max 254 overlord
-	var Ex|jump canQueue 1 stp 13
+	var Ex|jump canQueue 1 blank 13
 	var set canQueue 1 13
 	stop
 	
@@ -586,7 +586,7 @@ script_id ZMCx
 	
 	:upgMeleeGen
 	wait 12
-	var AtL|jump townCount 4 ret 13
+	var AtL|jump townCount 4 blankReturn 13
 	bring 13 AtM 2 evolution_chamber Loc.63 upgMeleeGen
 	return
 	
@@ -620,7 +620,7 @@ script_id ZMCx
 	
 	:upgMissileGen
 	wait 12
-	var AtL|jump townCount 4 ret 13
+	var AtL|jump townCount 4 blankReturn 13
 	bring 13 AtM 2 evolution_chamber Loc.63 upgMissileGen
 	return
 	
@@ -654,7 +654,7 @@ script_id ZMCx
 	:upgArmGen
 	wait 12
 	bring 13 AtM 1 evolution_chamber Loc.63 upgArmGen
-	goto upgArmGen
+	return
 	
 	:upgEvoUtilityCheck
 	call upgUtilityGen
@@ -671,7 +671,7 @@ script_id ZMCx
 	
 	:upgUtilityGen
 	wait 12
-	var AtL|jump townCount 5 ret 13
+	var AtL|jump townCount 5 blankReturn 13
 	bring 13 AtM 3 evolution_chamber Loc.63 upgUtilityGen
 	return
 	
@@ -779,7 +779,7 @@ script_id ZMCx
 	
 	:upgAirWeaponGen
 	wait 12
-	var AtL|jump townCount 4 ret 13
+	var AtL|jump townCount 4 blankReturn 13
 	bring 13 AtM 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgAirWeaponGen
 	return
 	
@@ -811,7 +811,7 @@ script_id ZMCx
 	
 	:upgAirArmorGen
 	wait 12
-	var AtL|jump townCount 4 ret 13
+	var AtL|jump townCount 4 blankReturn 13
 	bring 13 AtM 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgAirArmorGen
 	return
 	
@@ -1012,7 +1012,7 @@ script_id ZMCx
 	wait 12
 	bring 13 AtL 80 drone Loc.63 mainWorker
 	resarea 255 AtM 255 Ore 600 mainWorkerLowStart
-	var Ex|WF(360) cutWorker 0 13
+	var Ex|WF(300) cutWorker 0 13
 	var Ex|WF(240) cutWorkerAll 0 13
 	local 255 AtL_W 1 hatchery|lair|hive blank
 	local 255 AtL_W 1 larva blank
@@ -1089,15 +1089,15 @@ script_id ZMCx
 	goto zExpand
 	
 	:wExpand
-	var AtM townCount 1 ret 13
+	var AtM townCount 1 blankReturn 13
 	wait 2200
-	var AtM townCount 2 ret 13
+	var AtM townCount 2 blankReturn 13
 	wait 2200
-	var AtM townCount 3 ret 13
+	var AtM townCount 3 blankReturn 13
 	wait 2200
-	var AtM townCount 4 ret 13
+	var AtM townCount 4 blankReturn 13
 	wait 2200
-	var AtM townCount 5 ret 13
+	var AtM townCount 5 blankReturn 13
 	wait 2200
 	return
 	
@@ -1473,9 +1473,12 @@ script_id ZMCx
 	queue 1 overlord larva 255 Global Loc.63 80
 	wait 24
 	bld 1 evolution_chamber 66
-	wait 900
+	wait 600
+	var set canUpgrade 1 13
+	wait 300
 	var set buildGas 1 13
 	var set buildSupply 1 13
+	multi addProd
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
 	wait 24
@@ -1495,7 +1498,6 @@ script_id ZMCx
 	queue 1 hydralisk larva 255 Global Loc.63 80
 	wait 24
 	bld 2 hatchery 72
-	multi addProd
 	goto buildConnorFin
 	
 	:buildConnor2HatchLurker
@@ -1546,7 +1548,7 @@ script_id ZMCx
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
 	wait 300
-	upg_queue 1 missile_attack 88
+	upg_queue 1 z_missile_attack 88
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 hydralisk larva 255 Global Loc.63 80
@@ -2591,7 +2593,7 @@ script_id ZMCx
 	goto addReturn
 	
 	:addSunkenCheck2
-	var Ex|jump underAttack 0 ret 13
+	var Ex|jump underAttack 0 blankReturn 13
 	local 255 AtL 8 sunken_colony addReturn
 	add_bld 255 creep_colony 1 13 64
 	add_bld 255 sunken_colony 1 8 66
@@ -2611,7 +2613,7 @@ script_id ZMCx
 	goto addReturn
 	
 	:addSporeCheck2
-	var Ex|jump underAttack 0 ret 13
+	var Ex|jump underAttack 0 blankReturn 13
 	local 255 AtL 5 spore_colony addReturn
 	add_bld 255 creep_colony 1 13 64
 	add_bld 255 spore_colony 1 5 65
@@ -2895,7 +2897,7 @@ script_id ZMCx
 	:atkGen
 	var set cutWorkerAll 1 13
 	call addRand
-	var AtL|jump atkCycle 1 xAtkCheck 13
+	var AtL|jump atkCycle 1 atkCheck 13
 	atk_prep
 	atk_do
 	wait 250
@@ -2903,11 +2905,13 @@ script_id ZMCx
 	:atkCheck
 	var add atkCycle 1 13
 	wait 250
-	#var AtL|jump atkCycle 2 xAtkFin 13
-	#supply 13 AtM 20 Used 0 Any_Total atkGen
-	#supply 13 AtL 80 Used 0 Any_Total atkExp
-	#attack_jump 13 AtM 30 Group_Men Supply xAtkGen 13
-	#attack_jump 13 AtL 80 Group_Men Supply xAtkExp 13
+	var AtL|jump atkCycle 2 atkDo 13
+	supply 13 AtM 24 InUnits zergling|vorvaling|hydralisk|basilisk|lurker|mutalisk|guardian|ultralisk|k_screamer|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler|infested_terran Zerg atkGen
+	
+	:atkDo
+	#attack_jump 13 AtM 30 Group_Men Supply atkGen 13
+	#attack_jump 13 AtL 80 Group_Men Supply atkExp 13
+	supply 13 AtL 80 InUnits zergling|vorvaling|hydralisk|basilisk|lurker|mutalisk|guardian|ultralisk|k_screamer|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler|infested_terran Zerg atkExp
 	
 	:atkNow
 	atk_now
@@ -2935,9 +2939,9 @@ script_id ZMCx
 	dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
-	unit_check 13 13 63 Greater 2 0 hive hatchery|lair xAddAir
-	unit_check 13 13 63 Greater 2 0 lair hatchery|hive xAddRange
-	unit_check 13 13 63 Greater 0 0 hatchery lair|hive xAddSwarm
+	unit_check 13 13 63 Greater 2 0 hive hatchery|lair addAir
+	unit_check 13 13 63 Greater 2 0 lair hatchery|hive addRange
+	unit_check 13 13 63 Greater 0 0 hatchery lair|hive addSwarm
 	
 	:addSwarm
 	call atkSwarm
@@ -3007,13 +3011,13 @@ script_id ZMCx
 	return
 	
 	:atkZerglingSwarmMax
-	atk_rel zergling larva 0.55
-	queue_rel zergling larva 0.55 larva 255 Global 63 99
+	atk_rel zergling larva 0.6
+	queue_rel zergling larva 0.6 larva 255 Global 63 99
 	return
 	
 	:atkZerglingSwarmMin
-	atk_rel zergling larva 0.5
-	queue_rel zergling larva 0.5 larva 255 Global 63 99
+	atk_rel zergling larva 0.55
+	queue_rel zergling larva 0.55 larva 255 Global 63 99
 	return
 	
 	:atkZerglingAir

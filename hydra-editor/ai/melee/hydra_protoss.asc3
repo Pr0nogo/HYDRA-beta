@@ -19,17 +19,18 @@ script_id PMCx
 	help
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	town_state 255 persist true
-	set_var_local blank stp 13
-	set_var_local blankReturn ret 13
-	set_var_local wWorkerDef wWorker 13
-	set_var_local atkGen xAtkGen 13
-	set_var_local atkCheck xAtkCheck 13
-	set_var_local atkExp xAtkExp 13
-	set_var_local atkFin xAtkFin 13
-	set_var_local addGate xAddGate 13
-	set_var_local addMech xAddMech 13
-	set_var_local addAir xAddAir 13
-	set_var_local uAttackMax xUAttackMax 13
+	set_var_local blank blank 13
+	set_var_local blankReturn blankReturn 13
+	set_var_local wWorkerDef wWorkerDef 13
+	set_var_local atkGen atkGen 13
+	set_var_local atkCheck atkCheck 13
+	set_var_local atkDo atkDo 13
+	set_var_local atkExp atkExp 13
+	set_var_local atkFin atkFin 13
+	set_var_local addGate addGate 13
+	set_var_local addMech addMech 13
+	set_var_local addAir addAir 13
+	set_var_local uAttackMax uAttackMax 13
 	var set townCount 1 13
 	var set miningCount 1 13
 	var set underAttack 0 13
@@ -228,7 +229,6 @@ script_id PMCx
 	bring 13 AtL 10 Group_Factories Loc.63 blankReturn
 	res 13 AtL Any 999 blankReturn
 	var Ex|WF(360) underAttack 0 13
-	res 13 AtM Ore 199 wAttack
 	return
 	
 	:wResource
@@ -251,11 +251,11 @@ script_id PMCx
 	
 	:wSupply2
 	dth 13 AtL_W 1 pylon blank
-	var Ex|jump buildSupply 1 stp 13
+	var Ex|jump buildSupply 1 blank 13
 	
 	:wSupply3
 	farms_timing
-	var Ex|jump canQueue 1 stp 13
+	var Ex|jump canQueue 1 blank 13
 	var set canQueue 1 13
 	stop
 	
@@ -610,7 +610,7 @@ script_id PMCx
 	
 	:upgArmCheck
 	wait 12
-	var AtL|jump townCount 2 ret 13
+	var AtL|jump townCount 2 blankReturn 13
 	bring 13 AtM 1 forge Loc.63 upgArmCheck
 	return
 	
@@ -645,13 +645,13 @@ script_id PMCx
 	
 	:upgShieldsGen
 	wait 12
-	var AtL|jump townCount 3 ret 13
+	var AtL|jump townCount 3 blankReturn 13
 	bring 13 AtM 2 forge Loc.63 upgShieldsGen
 	return
 	
 	:upgShieldsGate
 	wait 12
-	var AtL|jump townCount 3 ret 13
+	var AtL|jump townCount 3 blankReturn 13
 	bring 13 AtM 6 gateway|principality|warp_anchor Loc.63 upgShieldsGate
 	return
 	
@@ -710,7 +710,7 @@ script_id PMCx
 	
 	:upgStriderGen
 	wait 12
-	var AtL|jump townCount 2 ret 13
+	var AtL|jump townCount 2 blankReturn 13
 	bring 13 AtM 4 gateway|principality|warp_anchor Loc.63 upgStriderGen
 	return
 	
@@ -744,7 +744,7 @@ script_id PMCx
 	
 	:upgShipWeapGen
 	wait 12
-	var AtL|jump townCount 3 ret 13
+	var AtL|jump townCount 3 blankReturn 13
 	bring 13 AtM 1 cybernetics_core Loc.63 upgShipWeapGen
 	return
 	
@@ -777,7 +777,7 @@ script_id PMCx
 	
 	:upgShipArmGen
 	wait 12
-	var AtL|jump townCount 3 ret 13
+	var AtL|jump townCount 3 blankReturn 13
 	bring 13 AtM 1 cybernetics_core Loc.63 upgShipArmGen
 	return
 	
@@ -794,7 +794,7 @@ script_id PMCx
 	
 	:upgZealotGen
 	wait 12
-	var AtL|jump townCount 3 ret 13
+	var AtL|jump townCount 3 blankReturn 13
 	bring 13 AtM 3 gateway|principality|warp_anchor Loc.63 upgZealotGen
 	return
 	
@@ -854,7 +854,7 @@ script_id PMCx
 	
 	:upgReaverAir
 	wait 12
-	var AtL|jump townCount 3 ret 13
+	var AtL|jump townCount 3 blankReturn 13
 	bring 13 AtM 1 robotics_facility|robotics_authority Loc.63 upgReaverAir
 	return
 	
@@ -914,7 +914,7 @@ script_id PMCx
 	
 	:upgScoutGen
 	wait 12
-	var AtL|jump townCount 3 ret 13
+	var AtL|jump townCount 3 blankReturn 13
 	bring 13 AtM 2 stargate|starfield Loc.63 upgScoutGen
 	return
 	
@@ -1099,7 +1099,7 @@ script_id PMCx
 	
 	:upgDArchonGate
 	wait 12
-	var AtL|jump townCount 3 ret 13
+	var AtL|jump townCount 3 blankReturn 13
 	bring 13 AtM 6 gateway|principality|warp_anchor Loc.63 upgDArchonGate
 	return
 	
@@ -1274,15 +1274,15 @@ script_id PMCx
 	goto pExpand
 	
 	:wExpand
-	var AtM townCount 1 ret 13
+	var AtM townCount 1 blankReturn 13
 	wait 3300
-	var AtM townCount 2 ret 13
+	var AtM townCount 2 blankReturn 13
 	wait 3300
-	var AtM townCount 3 ret 13
+	var AtM townCount 3 blankReturn 13
 	wait 3300
-	var AtM townCount 4 ret 13
+	var AtM townCount 4 blankReturn 13
 	wait 3300
-	var AtM townCount 5 ret 13
+	var AtM townCount 5 blankReturn 13
 	wait 3300
 	return
 	
@@ -2209,7 +2209,7 @@ script_id PMCx
 	goto addReturn
 	
 	:addCannonCheck2
-	var Ex|jump underAttack 0 ret 13
+	var Ex|jump underAttack 0 blankReturn 13
 	local 255 AtL 7 photon_cannon addReturn
 	add_bld 255 photon_cannon 1 7 65
 	goto addReturn
@@ -2770,7 +2770,7 @@ script_id PMCx
 	
 	:atkGen
 	call addRand
-	var AtL|jump atkCycle 1 xAtkCheck 13
+	var AtL|jump atkCycle 1 atkCheck 13
 	atk_prep
 	atk_do
 	wait 250
@@ -2778,11 +2778,13 @@ script_id PMCx
 	:atkCheck
 	var add atkCycle 1 13
 	wait 250
-	#var AtL|jump atkCycle 2 xAtkFin 13
-	#supply 13 AtM 20 Used 0 Any_Total atkGen
-	#supply 13 AtL 80 Used 0 Any_Total atkExp
-	#attack_jump 13 AtM 30 Group_Men Supply xAtkGen 13
-	#attack_jump 13 AtL 80 Group_Men Supply xAtkExp 13
+	var AtL|jump atkCycle 2 atkDo 13
+	supply 13 AtM 24 InUnits zealot|legionnaire|dragoon|hierophant|dark_templar|archon|scout|exemplar|carrier|starcaller|reaver Protoss atkGen
+	
+	:atkDo
+	#attack_jump 13 AtM 30 Group_Men Supply atkGen 13
+	#attack_jump 13 AtL 80 Group_Men Supply atkExp 13
+	supply 13 AtL 80 InUnits zealot|legionnaire|dragoon|hierophant|dark_templar|archon|scout|exemplar|carrier|starcaller|reaver Protoss atkExp
 	
 	:atkNow
 	atk_now
@@ -2809,9 +2811,9 @@ script_id PMCx
 	dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
-	unit_check 13 13 63 Greater 0 0 gateway|principality|warp_anchor robotics_facility|robotics_authority|stargate|argosy|starfield xAddGate 13
-	unit_check 13 13 63 Greater 0 0 robotics_facility|robotics_authority gateway|principality|warp_anchor|stargate|argosy|starfield xAddMech 13
-	unit_check 13 13 63 Greater 0 0 stargate|argosy|starfield gateway|principality|warp_anchor|robotics_facility|robotics_authority xAddAir 13
+	unit_check 13 13 63 Greater 0 0 gateway|principality|warp_anchor robotics_facility|robotics_authority|stargate|argosy|starfield addGate 13
+	unit_check 13 13 63 Greater 0 0 robotics_facility|robotics_authority gateway|principality|warp_anchor|stargate|argosy|starfield addMech 13
+	unit_check 13 13 63 Greater 0 0 stargate|argosy|starfield gateway|principality|warp_anchor|robotics_facility|robotics_authority addAir 13
 	
 	:addGate
 	call atkGate
@@ -2834,131 +2836,296 @@ script_id PMCx
 	:atkGate
 	dth 13 Ex 1 crashed_battle atkGateMech
 	dth 13 Ex 3 crashed_battle atkGateAir
-	bring 13 AtL_C 6 gateway|warp_anchor Loc.63 atkZealotMax
-	bring 13 AtM_C 5 gateway|warp_anchor Loc.63 atkZealotMin
-	bring 13 AtL_C 1 principality Loc.63 atkLegion
-	bring 13 AtL_C 1 cybernetics_core Loc.63 atkDragoon
-	bring 13 AtL_C 1 warp_anchor Loc.63 atkHierophant
-	bring 13 AtL_C 1 templar_archives Loc.63 atkTemplar
-	bring 13 AtL_C 1 templar_archives Loc.63 atkDTemplar
+	bring 13 AtL_C 6 gateway|warp_anchor Loc.63 atkZealotGateMax
+	bring 13 AtM_C 5 gateway|warp_anchor Loc.63 atkZealotGateMin
+	bring 13 AtL_C 1 principality Loc.63 atkLegionGate
+	bring 13 AtL_C 1 cybernetics_core Loc.63 atkDragoonGate
+	bring 13 AtL_C 1 warp_anchor Loc.63 atkHierophantGate
+	bring 13 AtL_C 1 templar_archives Loc.63 atkTemplarGate
+	bring 13 AtL_C 1 templar_archives Loc.63 atkDTemplarGate
 	return
 	
 	:atkGateMech
-	bring 13 AtL_C 1 cybernetics_core Loc.63 atkDragoon
-	bring 13 AtL_C 1 warp_anchor Loc.63 atkHierophant
-	bring 13 AtL_C 6 gateway|warp_anchor Loc.63 atkZealotMax
-	bring 13 AtM_C 5 gateway|warp_anchor Loc.63 atkZealotMin
-	bring 13 AtL_C 1 templar_archives Loc.63 atkTemplar
-	bring 13 AtL_C 1 principality Loc.63 atkLegion
-	bring 13 AtL_C 1 templar_archives Loc.63 atkDTemplar
+	bring 13 AtL_C 1 cybernetics_core Loc.63 atkDragoonRanger
+	bring 13 AtL_C 1 warp_anchor Loc.63 atkHierophantRanger
+	bring 13 AtL_C 6 gateway|warp_anchor Loc.63 atkZealotRangerMax
+	bring 13 AtM_C 5 gateway|warp_anchor Loc.63 atkZealotRangerMin
+	bring 13 AtL_C 1 templar_archives Loc.63 atkTemplarRanger
+	bring 13 AtL_C 1 principality Loc.63 atkLegionGen
+	bring 13 AtL_C 1 templar_archives Loc.63 atkDTemplarRanger
 	return
 	
 	:atkGateAir
-	bring 13 AtL_C 6 gateway|warp_anchor Loc.63 atkZealotMax
-	bring 13 AtM_C 5 gateway|warp_anchor Loc.63 atkZealotMin
-	bring 13 AtL_C 1 cybernetics_core Loc.63 atkDragoon
-	bring 13 AtL_C 1 principality Loc.63 atkLegion
-	bring 13 AtL_C 1 warp_anchor Loc.63 atkHierophant
-	bring 13 AtL_C 1 templar_archives Loc.63 atkDTemplar
-	bring 13 AtL_C 1 templar_archives Loc.63 atkTemplar
+	bring 13 AtL_C 6 gateway|warp_anchor Loc.63 atkZealotAirMax
+	bring 13 AtM_C 5 gateway|warp_anchor Loc.63 atkZealotAirMin
+	bring 13 AtL_C 1 cybernetics_core Loc.63 atkDragoonAir
+	bring 13 AtL_C 1 principality Loc.63 atkLegionGen
+	bring 13 AtL_C 1 warp_anchor Loc.63 atkHierophantAir
+	bring 13 AtL_C 1 templar_archives Loc.63 atkDTemplarAir
+	bring 13 AtL_C 1 templar_archives Loc.63 atkTemplarAir
 	return
 	
-	:atkZealotMax
+	:atkZealotRangerMax
 	atk_rel zealot gateway|warp_anchor 4
 	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
 	return
 	
-	:atkZealotMin
+	:atkZealotRangerMin
 	atk_rel zealot gateway|warp_anchor 7
 	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
 	return
 	
-	:atkDragoon
-	bring 13 AtL_C 6 gateway|principality Loc.63 atkDragoonMax
-	bring 13 AtM_C 5 gateway|principality Loc.63 atkDragoonMin
+	:atkZealotGateMax
+	atk_rel zealot gateway|warp_anchor 4
+	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
 	return
 	
-	:atkDragoonMax
+	:atkZealotGateMin
+	atk_rel zealot gateway|warp_anchor 7
+	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	return
+	
+	:atkZealotAirMax
+	atk_rel zealot gateway|warp_anchor 4
+	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	return
+	
+	:atkZealotAirMin
+	atk_rel zealot gateway|warp_anchor 7
+	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	return
+	
+	:atkDragoonRanger
+	bring 13 AtL_C 6 gateway|principality Loc.63 atkDragoonRangerMax
+	bring 13 AtM_C 5 gateway|principality Loc.63 atkDragoonRangerMin
+	return
+	
+	:atkDragoonRangerMax
+	atk_rel dragoon gateway|principality 4.25
+	queue_rel dragoon gateway|principality 1 gateway|principality 255 Global 63 99
+	return
+	
+	:atkDragoonRangerMin
+	atk_rel dragoon gateway|principality 5.5
+	queue_rel dragoon gateway|principality 1 gateway|principality 255 Global 63 99
+	return
+	
+	:atkDragoonGate
+	bring 13 AtL_C 6 gateway|principality Loc.63 atkDragoonGateMax
+	bring 13 AtM_C 5 gateway|principality Loc.63 atkDragoonGateMin
+	return
+	
+	:atkDragoonGateMax
+	atk_rel dragoon gateway|principality 3.33
+	queue_rel dragoon gateway|principality 1 gateway|principality 255 Global 63 99
+	return
+	
+	:atkDragoonGateMin
 	atk_rel dragoon gateway|principality 4
 	queue_rel dragoon gateway|principality 1 gateway|principality 255 Global 63 99
 	return
 	
-	:atkDragoonMin
-	atk_rel dragoon gateway|principality 6
+	:atkDragoonAir
+	bring 13 AtL_C 6 gateway|principality Loc.63 atkDragoonAirMax
+	bring 13 AtM_C 5 gateway|principality Loc.63 atkDragoonAirMin
+	return
+	
+	:atkDragoonAirMax
+	atk_rel dragoon gateway|principality 2
 	queue_rel dragoon gateway|principality 1 gateway|principality 255 Global 63 99
 	return
 	
-	:atkLegion
-	bring 13 AtL_C 7 principality Loc.63 atkLegionMax
-	bring 13 AtM_C 6 principality Loc.63 atkLegionMin
+	:atkDragoonAirMin
+	atk_rel dragoon gateway|principality 3
+	queue_rel dragoon gateway|principality 1 gateway|principality 255 Global 63 99
 	return
 	
-	:atkLegionMax
+	:atkLegionGate
+	bring 13 AtL_C 7 principality Loc.63 atkLegionGateMax
+	bring 13 AtM_C 6 principality Loc.63 atkLegionGateMin
+	return
+	
+	:atkLegionGateMax
 	atk_rel legionnaire principality 6
 	queue_rel legionnaire principality 1 principality 255 Global 63 99
 	return
 	
-	:atkLegionMin
+	:atkLegionGateMin
 	atk_rel legionnaire principality 8
 	queue_rel legionnaire principality 1 principality 255 Global 63 99
 	return
 	
-	:atkHierophant
-	bring 13 AtL_C 3 warp_anchor Loc.63 atkHierophantMax
-	bring 13 AtM_C 2 warp_anchor Loc.63 atkHierophantMin
+	:atkLegionGen
+	bring 13 AtL_C 7 principality Loc.63 atkLegionGenMax
+	bring 13 AtM_C 6 principality Loc.63 atkLegionGenMin
 	return
 	
-	:atkHierophantMax
-	atk_rel hierophant warp_anchor 2
+	:atkLegionGenMax
+	atk_rel legionnaire principality 5.5
+	queue_rel legionnaire principality 1 principality 255 Global 63 99
+	return
+	
+	:atkLegionGenMin
+	atk_rel legionnaire principality 7
+	queue_rel legionnaire principality 1 principality 255 Global 63 99
+	return
+	
+	:atkHierophantRanger
+	bring 13 AtL_C 3 warp_anchor Loc.63 atkHierophantRangerMax
+	bring 13 AtM_C 2 warp_anchor Loc.63 atkHierophantRangerMin
+	return
+	
+	:atkHierophantRangerMax
+	atk_rel hierophant warp_anchor 2.25
 	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
 	return
 	
-	:atkHierophantMin
+	:atkHierophantRangerMin
+	atk_rel hierophant warp_anchor 1.66
+	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	return
+	
+	:atkHierophantGate
+	bring 13 AtL_C 3 warp_anchor Loc.63 atkHierophantGateMax
+	bring 13 AtM_C 2 warp_anchor Loc.63 atkHierophantGateMin
+	return
+	
+	:atkHierophantGateMax
+	atk_rel hierophant warp_anchor 1.75
+	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	return
+	
+	:atkHierophantGateMin
+	atk_rel hierophant warp_anchor 1.25
+	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	return
+	
+	:atkHierophantAir
+	bring 13 AtL_C 3 warp_anchor Loc.63 atkHierophantAirMax
+	bring 13 AtM_C 2 warp_anchor Loc.63 atkHierophantAirMin
+	return
+	
+	:atkHierophantAirMax
+	atk_rel hierophant warp_anchor 1.25
+	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	return
+	
+	:atkHierophantAirMin
 	atk_rel hierophant warp_anchor 1
 	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
 	return
 	
-	:atkTemplar
-	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkTemplarMax
-	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkTemplarMin
+	:atkTemplarRanger
+	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkTemplarRangerMax
+	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkTemplarRangerMin
 	return
 	
-	:atkTemplarMax
+	:atkTemplarRangerMax
+	atk_rel high_templar gateway|principality|warp_anchor 0.66
+	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	call atkArchonRangerMax
+	return
+	
+	:atkTemplarRangerMin
+	atk_rel high_templar gateway|principality|warp_anchor 0.45
+	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	call atkArchonRangerMin
+	return
+	
+	:atkTemplarGate
+	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkTemplarGateMax
+	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkTemplarGateMin
+	return
+	
+	:atkTemplarGateMax
 	atk_rel high_templar gateway|principality|warp_anchor 0.75
 	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
-	dth 13 Ex_C 2 crashed_battle atkArchonMax
-	rand_j 64 atkArchonMax
+	call atkArchonGateMax
 	return
 	
-	:atkTemplarMin
+	:atkTemplarGateMin
 	atk_rel high_templar gateway|principality|warp_anchor 0.5
 	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
-	dth 13 Ex_C 2 crashed_battle atkArchonMin
-	rand_j 64 atkArchonMin
+	call atkArchonGateMin
 	return
 	
-	:atkArchonMax
+	:atkTemplarAir
+	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkTemplarAirMax
+	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkTemplarAirMin
+	return
+	
+	:atkTemplarAirMax
+	atk_rel high_templar gateway|principality|warp_anchor 0.5
+	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	return
+	
+	:atkTemplarAirMin
+	atk_rel high_templar gateway|principality|warp_anchor 0.33
+	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	return
+	
+	:atkArchonGateMax
 	atk_rel archon gateway|principality|warp_anchor 0.75
 	return
 	
-	:atkArchonMin
+	:atkArchonGateMin
 	atk_rel archon gateway|principality|warp_anchor 0.5
 	return
 	
-	:atkDTemplar
-	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkDTemplarMax
-	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkDTemplarMin
+	:atkArchonRangerMax
+	atk_rel archon gateway|principality|warp_anchor 0.5
 	return
 	
-	:atkDTemplarMax
+	:atkArchonRangerMin
+	atk_rel archon gateway|principality|warp_anchor 0.33
+	return
+	
+	:atkDTemplarRanger
+	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkDTemplarRangerMax
+	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkDTemplarRangerMin
+	return
+	
+	:atkDTemplarRangerMax
+	atk_rel dark_templar gateway|principality|warp_anchor 1
+	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	return
+	
+	:atkDTemplarRangerMin
+	atk_rel dark_templar gateway|principality|warp_anchor 1
+	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	return
+	
+	:atkDTemplarGate
+	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkDTemplarGateMax
+	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkDTemplarGateMin
+	return
+	
+	:atkDTemplarGateMax
+	atk_rel dark_templar gateway|principality|warp_anchor 1.33
+	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	call atkDArchonMax
+	return
+	
+	:atkDTemplarGateMin
+	atk_rel dark_templar gateway|principality|warp_anchor 1.11
+	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	call atkDArchonMin
+	return
+	
+	:atkDTemplarAir
+	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkDTemplarAirMax
+	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkDTemplarAirMin
+	return
+	
+	:atkDTemplarAirMax
 	atk_rel dark_templar gateway|principality|warp_anchor 1
 	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
 	dth 13 Ex_C 2 crashed_battle atkDArchonMax
 	rand_j 64 atkDArchonMax
 	return
 	
-	:atkDTemplarMin
-	atk_rel dark_templar gateway|principality|warp_anchor 1
+	:atkDTemplarAirMin
+	atk_rel dark_templar gateway|principality|warp_anchor 0.75
 	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
 	dth 13 Ex_C 2 crashed_battle atkDArchonMin
 	rand_j 64 atkDArchonMin
@@ -2976,28 +3143,48 @@ script_id PMCx
 	dth 13 Ex 2 crashed_battle atkMechGate
 	dth 13 Ex 3 crashed_battle atkMechAir
 	notowns robotics_support_bay blankReturn
-	bring 13 AtL_C 5 robotics_facility|robotics_authority Loc.63 atkReaverMax
-	bring 13 AtM_C 4 robotics_facility|robotics_authority Loc.63 atkReaverMin
+	bring 13 AtL_C 5 robotics_facility|robotics_authority Loc.63 atkReaverRangerMax
+	bring 13 AtM_C 4 robotics_facility|robotics_authority Loc.63 atkReaverRangerMin
 	return
 	
 	:atkMechGate
 	notowns robotics_support_bay blankReturn
-	bring 13 AtL_C 3 robotics_facility|robotics_authority Loc.63 atkReaverMax
-	bring 13 AtM_C 2 robotics_facility|robotics_authority Loc.63 atkReaverMin
+	bring 13 AtL_C 3 robotics_facility|robotics_authority Loc.63 atkReaverGateMax
+	bring 13 AtM_C 2 robotics_facility|robotics_authority Loc.63 atkReaverGateMin
 	return
 	
 	:atkMechAir
 	notowns robotics_support_bay blankReturn
-	bring 13 AtL_C 4 robotics_facility|robotics_authority Loc.63 atkReaverMax
-	bring 13 AtM_C 3 robotics_facility|robotics_authority Loc.63 atkReaverMin
+	bring 13 AtL_C 4 robotics_facility|robotics_authority Loc.63 atkReaverAirMax
+	bring 13 AtM_C 3 robotics_facility|robotics_authority Loc.63 atkReaverAirMin
 	return
 	
-	:atkReaverMax
+	:atkReaverRangerMax
 	atk_rel reaver robotics_facility|robotics_authority 2
 	queue_rel reaver robotics_facility|robotics_authority 1 robotics_facility|robotics_authority 255 Global 63 99
 	return
 	
-	:atkReaverMin
+	:atkReaverRangerMin
+	atk_rel reaver robotics_facility|robotics_authority 1
+	queue_rel reaver robotics_facility|robotics_authority 1 robotics_facility|robotics_authority 255 Global 63 99
+	return
+	
+	:atkReaverGateMax
+	atk_rel reaver robotics_facility|robotics_authority 1.33
+	queue_rel reaver robotics_facility|robotics_authority 1 robotics_facility|robotics_authority 255 Global 63 99
+	return
+	
+	:atkReaverGateMin
+	atk_rel reaver robotics_facility|robotics_authority 1.11
+	queue_rel reaver robotics_facility|robotics_authority 1 robotics_facility|robotics_authority 255 Global 63 99
+	return
+	
+	:atkReaverAirMax
+	atk_rel reaver robotics_facility|robotics_authority 1.25
+	queue_rel reaver robotics_facility|robotics_authority 1 robotics_facility|robotics_authority 255 Global 63 99
+	return
+	
+	:atkReaverAirMin
 	atk_rel reaver robotics_facility|robotics_authority 1
 	queue_rel reaver robotics_facility|robotics_authority 1 robotics_facility|robotics_authority 255 Global 63 99
 	return
@@ -3005,84 +3192,174 @@ script_id PMCx
 	:atkAir
 	dth 13 Ex 1 crashed_battle atkAirMech
 	dth 13 Ex 2 crashed_battle atkAirGate
-	bring 13 AtL_C 5 stargate|argosy|starfield Loc.63 atkScoutMax
-	bring 13 AtM_C 4 stargate|argosy|starfield Loc.63 atkScoutMin
-	bring 13 AtL_C 7 stargate|argosy|starfield Loc.63 atkCorsairMax
-	bring 13 AtM_C 6 stargate|argosy|starfield Loc.63 atkCorsairMin
-	bring 13 AtL_C 1 argosy Loc.63 atkExemplar
-	bring 13 AtL_C 1 fleet_beacon Loc.63 atkCarrier
-	#bring 13 AtL_C 1 starfield Loc.63 atkStarcaller
+	bring 13 AtL_C 5 stargate|argosy|starfield Loc.63 atkScoutAirMax
+	bring 13 AtM_C 4 stargate|argosy|starfield Loc.63 atkScoutAirMin
+	bring 13 AtL_C 7 stargate|argosy|starfield Loc.63 atkCorsairAirMax
+	bring 13 AtM_C 6 stargate|argosy|starfield Loc.63 atkCorsairAirMin
+	bring 13 AtL_C 1 argosy Loc.63 atkExemplarAir
+	bring 13 AtL_C 1 fleet_beacon Loc.63 atkCarrierAir
+	#bring 13 AtL_C 1 starfield Loc.63 atkStarcallerAir
 	bring 13 AtL_C 1 arbiter_tribunal Loc.63 atkArbiter
 	return
 	
 	:atkAirMech
 	bring 13 AtL_C 1 arbiter_tribunal Loc.63 atkArbiter
-	bring 13 AtL_C 1 argosy Loc.63 atkExemplar
-	bring 13 AtL_C 5 stargate|argosy|starfield Loc.63 atkScoutMax
-	bring 13 AtM_C 4 stargate|argosy|starfield Loc.63 atkScoutMin
-	bring 13 AtL_C 1 fleet_beacon Loc.63 atkCarrier
+	bring 13 AtL_C 1 argosy Loc.63 atkExemplarRanger
+	bring 13 AtL_C 5 stargate|argosy|starfield Loc.63 atkScoutRangerMax
+	bring 13 AtM_C 4 stargate|argosy|starfield Loc.63 atkScoutRangerMin
+	bring 13 AtL_C 1 fleet_beacon Loc.63 atkCarrierRanger
 	#bring 13 AtL_C 1 starfield Loc.63 atkStarcaller
-	bring 13 AtL_C 7 stargate|argosy|starfield Loc.63 atkCorsairMax
-	bring 13 AtM_C 6 stargate|argosy|starfield Loc.63 atkCorsairMin
+	bring 13 AtL_C 7 stargate|argosy|starfield Loc.63 atkCorsairGenMax
+	bring 13 AtM_C 6 stargate|argosy|starfield Loc.63 atkCorsairGenMin
 	return
 	
 	:atkAirGate
-	bring 13 AtL_C 5 stargate|argosy|starfield Loc.63 atkScoutMax
-	bring 13 AtM_C 4 stargate|argosy|starfield Loc.63 atkScoutMin
-	bring 13 AtL_C 1 argosy Loc.63 atkExemplar
+	bring 13 AtL_C 5 stargate|argosy|starfield Loc.63 atkScoutGateMax
+	bring 13 AtM_C 4 stargate|argosy|starfield Loc.63 atkScoutGateMin
+	bring 13 AtL_C 1 argosy Loc.63 atkExemplarGate
 	bring 13 AtL_C 1 arbiter_tribunal Loc.63 atkArbiter
-	bring 13 AtL_C 1 fleet_beacon Loc.63 atkCarrier
-	bring 13 AtL_C 7 stargate|argosy|starfield Loc.63 atkCorsairMax
-	bring 13 AtM_C 6 stargate|argosy|starfield Loc.63 atkCorsairMin
+	bring 13 AtL_C 1 fleet_beacon Loc.63 atkCarrierGate
+	bring 13 AtL_C 7 stargate|argosy|starfield Loc.63 atkCorsairGenMax
+	bring 13 AtM_C 6 stargate|argosy|starfield Loc.63 atkCorsairGenMin
 	#bring 13 AtL_C 1 starfield Loc.63 atkStarcaller
 	return
 	
-	:atkScoutMax
-	atk_rel scout stargate|argosy|starfield 5
-	queue_rel scout stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
-	return
-	
-	:atkScoutMin
+	:atkScoutRangerMax
 	atk_rel scout stargate|argosy|starfield 3
 	queue_rel scout stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
 	return
 	
-	:atkCorsairMax
+	:atkScoutRangerMin
+	atk_rel scout stargate|argosy|starfield 2.5
+	queue_rel scout stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkScoutGateMax
+	atk_rel scout stargate|argosy|starfield 2.66
+	queue_rel scout stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkScoutGateMin
+	atk_rel scout stargate|argosy|starfield 2.25
+	queue_rel scout stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkScoutAirMax
+	atk_rel scout stargate|argosy|starfield 5
+	queue_rel scout stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkScoutAirMin
+	atk_rel scout stargate|argosy|starfield 3
+	queue_rel scout stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkCorsairAirMax
 	atk_rel corsair stargate|argosy|starfield 1.25
 	queue_rel corsair stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
 	return
 	
-	:atkCorsairMin
+	:atkCorsairAirMin
 	atk_rel corsair stargate|argosy|starfield 1
 	queue_rel corsair stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
 	return
 	
-	:atkExemplar
-	bring 13 AtL_C 4 argosy Loc.63 atkExemplarMax
-	bring 13 AtM_C 3 argosy Loc.63 atkExemplarMin
+	:atkCorsairGenMax
+	atk_rel corsair stargate|argosy|starfield 1
+	queue_rel corsair stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
 	return
 	
-	:atkExemplarMax
+	:atkCorsairGenMin
+	atk_rel corsair stargate|argosy|starfield 0.75
+	queue_rel corsair stargate|argosy|starfield 1 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkExemplarRanger
+	bring 13 AtL_C 4 argosy Loc.63 atkExemplarRangerMax
+	bring 13 AtM_C 3 argosy Loc.63 atkExemplarRangerMin
+	return
+	
+	:atkExemplarRangerMax
+	atk_rel exemplar argosy 2.33
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	return
+	
+	:atkExemplarRangerMin
+	atk_rel exemplar argosy 1.66
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	return
+	
+	:atkExemplarGate
+	bring 13 AtL_C 4 argosy Loc.63 atkExemplarGateMax
+	bring 13 AtM_C 3 argosy Loc.63 atkExemplarGateMin
+	return
+	
+	:atkExemplarGateMax
+	atk_rel exemplar argosy 1.75
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	return
+	
+	:atkExemplarGateMin
+	atk_rel exemplar argosy 1.5
+	queue_rel exemplar argosy 1 argosy 255 Global 63 99
+	return
+	
+	:atkExemplarAir
+	bring 13 AtL_C 4 argosy Loc.63 atkExemplarAirMax
+	bring 13 AtM_C 3 argosy Loc.63 atkExemplarAirMin
+	return
+	
+	:atkExemplarAirMax
 	atk_rel exemplar argosy 3
 	queue_rel exemplar argosy 1 argosy 255 Global 63 99
 	return
 	
-	:atkExemplarMin
-	atk_rel exemplar argosy 2
+	:atkExemplarAirMin
+	atk_rel exemplar argosy 2.25
 	queue_rel exemplar argosy 1 argosy 255 Global 63 99
 	return
 	
-	:atkCarrier
-	bring 13 AtL_C 4 stargate|argosy Loc.63 atkCarrierMax
-	bring 13 AtM_C 3 stargate|argosy Loc.63 atkCarrierMin
+	:atkCarrierRanger
+	bring 13 AtL_C 4 stargate|argosy Loc.63 atkCarrierRangerMax
+	bring 13 AtM_C 3 stargate|argosy Loc.63 atkCarrierRangerMin
 	return
 	
-	:atkCarrierMax
+	:atkCarrierRangerMax
+	atk_rel carrier stargate|argosy 1.66
+	queue_rel carrier stargate|argosy 0.5 stargate|argosy 255 Global 63 99
+	return
+	
+	:atkCarrierRangerMin
+	atk_rel carrier stargate|argosy 1.25
+	queue_rel carrier stargate|argosy 0.5 stargate|argosy 255 Global 63 99
+	return
+	
+	:atkCarrierGate
+	bring 13 AtL_C 4 stargate|argosy Loc.63 atkCarrierGateMax
+	bring 13 AtM_C 3 stargate|argosy Loc.63 atkCarrierGateMin
+	return
+	
+	:atkCarrierGateMax
+	atk_rel carrier stargate|argosy 1
+	queue_rel carrier stargate|argosy 0.5 stargate|argosy 255 Global 63 99
+	return
+	
+	:atkCarrierGateMin
+	atk_rel carrier stargate|argosy 0.66
+	queue_rel carrier stargate|argosy 0.5 stargate|argosy 255 Global 63 99
+	return
+	
+	:atkCarrierAir
+	bring 13 AtL_C 4 stargate|argosy Loc.63 atkCarrierAirMax
+	bring 13 AtM_C 3 stargate|argosy Loc.63 atkCarrierAirMin
+	return
+	
+	:atkCarrierAirMax
 	atk_rel carrier stargate|argosy 1.75
 	queue_rel carrier stargate|argosy 0.5 stargate|argosy 255 Global 63 99
 	return
 	
-	:atkCarrierMin
+	:atkCarrierAirMin
 	atk_rel carrier stargate|argosy 1
 	queue_rel carrier stargate|argosy 0.5 stargate|argosy 255 Global 63 99
 	return
