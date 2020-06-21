@@ -836,9 +836,9 @@ script_id ZMCx
 	wait 12
 	notowns hive upgQueen2
 	call wUpgradeDef
-	tech ensnare 88
-	tech_j 13 AtL_W 17 1 blank
-	stop
+	extupgrade ensnaring_brood 88
+	wait 480
+	goto wUpgrade
 	
 	:upgQueenGen
 	wait 12
