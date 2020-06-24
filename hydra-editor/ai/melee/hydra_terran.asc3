@@ -19,18 +19,6 @@ script_id TMCx
 	help
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	town_state 255 persist true
-	set_var_local blank blank 13
-	set_var_local blankReturn blankReturn 13
-	set_var_local wWorkerDef wWorkerDef 13
-	set_var_local atkGen atkGen 13
-	set_var_local atkCheck atkCheck 13
-	set_var_local atkDo atkDo 13
-	set_var_local atkExp atkExp 13
-	set_var_local atkFin atkFin 13
-	set_var_local addBio addBio 13
-	set_var_local addMech addMech 13
-	set_var_local addAir addAir 13
-	set_var_local uAttackMax uAttackMax 13
 	var set townCount 1 13
 	var set miningCount 1 13
 	var set underAttack 0 13
@@ -1188,7 +1176,7 @@ script_id TMCx
 	multi mainTransport
 	bld 1 command_center 90
 	w_bld 1 command_center
-	multi buildOrder
+	multi bldOrder
 	bring 13 AtL_W 1 barracks Loc.63 blank
 	wait 120
 	multi addBunker
@@ -1294,7 +1282,7 @@ script_id TMCx
 	multi addBunker
 	var Ex|wait buildDone 1 13
 	wait 300
-	multi buildOrderExp
+	multi bldOrderExp
 	wait 600
 	notowns covert_ops expRandComsat
 	rand_j 128 expRandComsat
@@ -1360,12 +1348,12 @@ script_id TMCx
 	var set buildDone 1 13
 	return
 	
-	:buildOrder
-	dth 13 Ex 3 crashed_battle buildOrderAir
-	dth 13 Ex 2 crashed_battle buildOrderBio
-	dth 13 Ex 1 crashed_battle buildOrderMech
+	:bldOrder
+	dth 13 Ex 3 crashed_battle bldOrderAir
+	dth 13 Ex 2 crashed_battle bldOrderBio
+	dth 13 Ex 1 crashed_battle bldOrderMech
 	
-	:buildOrderGen
+	:bldOrderGen
 	dth 13 Ex 1 stasis_chamber buildGen8RaxMech
 	dth 13 Ex 2 stasis_chamber buildGen12CC
 	dth 13 Ex 3 stasis_chamber buildGenTenTenTen
@@ -1561,7 +1549,7 @@ script_id TMCx
 	call wArm
 	stop
 	
-	:buildOrderMech
+	:bldOrderMech
 	dth 13 Ex 1 stasis_chamber buildMechTankTiming
 	dth 13 Ex 2 stasis_chamber buildMechFE
 	dth 13 Ex 3 stasis_chamber buildMech2FactVult
@@ -1935,7 +1923,7 @@ script_id TMCx
 	call wEng
 	stop
 	
-	:buildOrderBio
+	:bldOrderBio
 	dth 13 Ex 1 stasis_chamber buildBio8Rax
 	dth 13 Ex 2 stasis_chamber buildBio3RaxM&M
 	dth 13 Ex 3 stasis_chamber buildBio3RaxNuke
@@ -2132,7 +2120,7 @@ script_id TMCx
 	call wSci
 	stop
 	
-	:buildOrderAir
+	:bldOrderAir
 	dth 13 Ex 1 stasis_chamber buildAir2PortWraith
 	dth 13 Ex 2 stasis_chamber buildAirDon
 	dth 13 Ex 3 stasis_chamber buildAirRax
@@ -2247,7 +2235,7 @@ script_id TMCx
 	call wArm
 	stop
 	
-	:buildOrderExp
+	:bldOrderExp
 	bring 13 AtL_W 1 barracks Loc.63 blank
 	wait 1200
 	call wArm

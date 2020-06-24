@@ -19,18 +19,6 @@ script_id ZMCx
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	i_tactics nydus_placement_ai 300 set
 	town_state 255 persist true
-	set_var_local blank blank 13
-	set_var_local blankReturn blankReturn 13
-	set_var_local wWorkerDef wWorkerDef 13
-	set_var_local atkGen atkGen 13
-	set_var_local atkCheck atkCheck 13
-	set_var_local atkDo atkDo 13
-	set_var_local atkExp atkExp 13
-	set_var_local atkFin atkFin 13
-	set_var_local addSwarm addSwarm 13
-	set_var_local addRange addRange 13
-	set_var_local addAir addAir 13
-	set_var_local uAttackMax uAttackMax 13
 	var set townCount 1 13
 	var set miningCount 1 13
 	var set underAttack 0 13
@@ -995,7 +983,7 @@ script_id ZMCx
 	multi mainWorker
 	bld 1 hatchery 90
 	w_bld 1 hatchery
-	multi buildOrder
+	multi bldOrder
 	bring 13 AtL_W 1 spawning_pool Loc.63 blank
 	wait 600
 	multi addSunken
@@ -1121,7 +1109,7 @@ script_id ZMCx
 	multi addProd
 	var Ex|wait buildDone 1 13
 	wait 300
-	multi buildOrderExp
+	multi bldOrderExp
 	wait 600
 	bring 13 AtL_W 1 hive Loc.63 blank
 	bld 1 nydus_canal 66
@@ -1202,12 +1190,12 @@ script_id ZMCx
 	var set buildDone 1 13
 	return
 	
-	:buildOrder
-	dth 13 Ex 1 crashed_battle buildOrderConnor
-	dth 13 Ex 2 crashed_battle buildOrderSwarm
-	dth 13 Ex 3 crashed_battle buildOrderAir
+	:bldOrder
+	dth 13 Ex 1 crashed_battle bldOrderConnor
+	dth 13 Ex 2 crashed_battle bldOrderSwarm
+	dth 13 Ex 3 crashed_battle bldOrderAir
 	
-	:buildOrderGen
+	:bldOrderGen
 	dth 13 Ex 1 stasis_chamber buildGen2HatchHive
 	dth 13 Ex 2 stasis_chamber buildGen2HatchVorv
 	dth 13 Ex 3 stasis_chamber buildGen3HatchHydraQueen
@@ -1277,7 +1265,8 @@ script_id ZMCx
 	wait 600
 	bld 2 evolution_chamber 66
 	wait 24
-	goto addProd
+	multi addProd
+	goto buildGenFin
 	
 	:buildGen2HatchVorv
 	wait 300
@@ -1428,7 +1417,7 @@ script_id ZMCx
 	#call wGorg
 	stop
 	
-	:buildOrderConnor
+	:bldOrderConnor
 	dth 13 Ex 1 stasis_chamber buildConnor3HatchHydra
 	dth 13 Ex 2 stasis_chamber buildConnor2HatchLurker
 	dth 13 Ex 3 stasis_chamber buildConnor2HatchHydraLing
@@ -1661,7 +1650,7 @@ script_id ZMCx
 	call wDevo
 	stop
 	
-	:buildOrderSwarm
+	:bldOrderSwarm
 	dth 13 Ex 1 stasis_chamber buildSwarm3HatchFlood
 	dth 13 Ex 2 stasis_chamber buildSwarm3HatchUltra
 	dth 13 Ex 3 stasis_chamber buildSwarm9Pool
@@ -2108,7 +2097,7 @@ script_id ZMCx
 	#p_need 1 gorgoleth_apiary
 	stop
 	
-	:buildOrderAir
+	:bldOrderAir
 	dth 13 Ex 1 stasis_chamber buildAir3HatchMutaLing
 	dth 13 Ex 2 stasis_chamber buildAir2HatchMutaGuard
 	dth 13 Ex 3 stasis_chamber buildAir2HatchMuta
@@ -2359,7 +2348,7 @@ script_id ZMCx
 	call wBas
 	stop
 	
-	:buildOrderExp
+	:bldOrderExp
 	bring 13 AtL_W 1 hatchery|lair|hive Loc.63 blank
 	call wSpawn
 	wait 600
@@ -2717,7 +2706,7 @@ script_id ZMCx
 	dth 13 Ex 1 crashed_battle addHatchMedConnor
 	dth 13 Ex 2 crashed_battle addHatchMedSwarm
 	dth 13 Ex 3 crashed_battle addHatchMedAir
-	goto addHatchMaxAir
+	goto addProdSuccess
 	
 	:addHatchMedConnor
 	local 255 AtL 5 hatchery addReturn

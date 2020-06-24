@@ -19,18 +19,6 @@ script_id PMCx
 	help
 	i_orders DisableBuiltin 0 0 0 0 0 0 0
 	town_state 255 persist true
-	set_var_local blank blank 13
-	set_var_local blankReturn blankReturn 13
-	set_var_local wWorkerDef wWorkerDef 13
-	set_var_local atkGen atkGen 13
-	set_var_local atkCheck atkCheck 13
-	set_var_local atkDo atkDo 13
-	set_var_local atkExp atkExp 13
-	set_var_local atkFin atkFin 13
-	set_var_local addGate addGate 13
-	set_var_local addMech addMech 13
-	set_var_local addAir addAir 13
-	set_var_local uAttackMax uAttackMax 13
 	var set townCount 1 13
 	var set miningCount 1 13
 	var set underAttack 0 13
@@ -1203,7 +1191,7 @@ script_id PMCx
 	multi mainTransport
 	bld 1 nexus 90
 	w_bld 1 nexus
-	multi buildOrder
+	multi bldOrder
 	bring 13 AtL_W 1 forge Loc.63 blank
 	wait 120
 	multi addCannon
@@ -1304,7 +1292,7 @@ script_id PMCx
 	multi addProd
 	var Ex|wait buildDone 1 13
 	wait 300
-	multi buildOrderExp
+	multi bldOrderExp
 	goto idle
 	
 	:expCount
@@ -1362,12 +1350,12 @@ script_id PMCx
 	var set buildDone 1 13
 	return
 	
-	:buildOrder
-	dth 13 Ex 1 crashed_battle buildOrderRanger
-	dth 13 Ex 2 crashed_battle buildOrderGate
-	dth 13 Ex 3 crashed_battle buildOrderSkylord
+	:bldOrder
+	dth 13 Ex 1 crashed_battle bldOrderRanger
+	dth 13 Ex 2 crashed_battle bldOrderGate
+	dth 13 Ex 3 crashed_battle bldOrderSkylord
 	
-	:buildOrderGen
+	:bldOrderGen
 	dth 13 Ex 1 stasis_chamber buildGenFFE
 	dth 13 Ex 2 stasis_chamber buildGenNFE
 	dth 13 Ex 3 stasis_chamber buildGen2GateRobo
@@ -1526,7 +1514,7 @@ script_id PMCx
 	call wCyb
 	stop
 	
-	:buildOrderRanger
+	:bldOrderRanger
 	dth 13 Ex 1 stasis_chamber buildRanger2GateGoon
 	dth 13 Ex 2 stasis_chamber buildRanger1GateRobo
 	dth 13 Ex 3 stasis_chamber buildRangerFFEReaver
@@ -1717,7 +1705,7 @@ script_id PMCx
 	call wForge
 	stop
 	
-	:buildOrderGate
+	:bldOrderGate
 	dth 13 Ex 1 stasis_chamber buildGate4Gate
 	dth 13 Ex 2 stasis_chamber buildGate3GateGoon
 	dth 13 Ex 3 stasis_chamber buildGate2GateDT
@@ -1915,7 +1903,7 @@ script_id PMCx
 	call wCyb
 	stop
 	
-	:buildOrderSkylord
+	:bldOrderSkylord
 	dth 13 Ex 1 stasis_chamber buildSkylordFFECorsair
 	dth 13 Ex 2 stasis_chamber buildSkylordDon
 	dth 13 Ex 3 stasis_chamber buildSkylord2GateScout
@@ -2048,7 +2036,7 @@ script_id PMCx
 	call wForge
 	stop
 	
-	:buildOrderExp
+	:bldOrderExp
 	bring 13 AtL_W 1 gateway|principality|warp_anchor Loc.63 blank
 	call wCyb
 	wait 900
