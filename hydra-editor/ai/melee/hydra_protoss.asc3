@@ -2612,7 +2612,7 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addStargateMaxMech3
-	add_bld 255 starfield 1 4 672
+	add_bld 255 starfield 1 4 72
 	goto addProdSuccess
 	
 	:addStargateMaxGate
