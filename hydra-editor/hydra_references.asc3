@@ -1,0 +1,147 @@
+:references
+name 			|	oldunit			| uId  		| wId			| fId		| sId		| iId		| isId		| grp
+
+:terran-unit
+cyprian			|	merc_gunship	| uId 92	| wId 26		| fId 114	| sId 276	| iId 338	| isid 198	| n\Acritter.grp
+shaman			|	civilian		| uId 15	| wId 87		| fId 71	| sId 226	| iId 221	| isId 67	| n\civilian.grp
+paladin			|	ruins			| uId 186	| wId 126 127	| fId		| sId		| iId		| isId		| 
+wyvern			|	cargo_ship		| uId 91	| wId 125		| fId 31	| sId 176	| iId 90	| isId 54	| z\Over2.grp
+savant			|	kyadarin_form	| uId 187	| wId			| fId		| sId		| iId		| isId		| 
+azazel			|	raszagal		| uId 98	| wId -			| fId 198	| sId 492	| iId 952	| isId 375	| n\Kcritter.grp
+
+:terran-elite
+
+
+:terran-building
+medbay			|	starbase		| uId 119	| wId -			| fId 196	| sId 496	| iId 949	| isId 408	| n\Generate.grp
+sentry turret	|	ind_jumpgate	| uId 185	| wId -			| fId		| sId		| iId		| isId		| 
+future station	|	terran_marker	| uId 192	| wId -			| fId 		| sId 		| iId 		| isId		| 
+captaincy		|	repair_bay		| uId 121	| wId -			| fId 129	| sId 290	| iId 395	| isId 218	| n\DataDisk.grp
+quarry			|	mineral_chunk1	| uId 220	| wId -			| fId 		| sId 		| iId 		| isId 		| 
+ion cannon		|	ion_cannon		| uId 127	| wId 129		| fId 99	| sId 257	| iId 292	| isId 116	| n\ion.grp
+weapons plat	|	-				| uId -		| wId -			| fId -		| sId -		| iId -		| isId -	| 
+
+:protoss-unit
+legionnaire		|	h_dtemplar		| uId 74	| wId 86		| fId 46	| sId 198	| iId 129	| isId 152	| n\Icritter.grp
+hierophant		|	h_archon		| uId 76	| wId 72		| fId 106	| sId 386	| iId 757	| isId 402	| ttt\Ldxel01.grp
+clarion			|	h_reaver		| uId 81	| wId -			| fId 115	| sId 277	| iId 972	| isId 199	| th\tmeHealL.grp
+warp relay		|	bengalaas		| uId 90	| wId -			| fId 116	| sId 278	| iId 342	| isId 200 	| n\Jcritter.grp
+bulwark			|	scantid			| uId 93 	| wId -			| fId -		| sId -		| iId -		| isId -	| 
+exemplar		|	kakaru			| uId 94 	| wId 76		| fId 199	| sId 493	| iId 954	| isId 376	| n\Scritter.grp
+starcaller		|	h_mojo			| uId 80 	| wId -			| fId -		| sId -		| iId -		| isId -	| 
+
+:protoss-elite
+
+
+:protoss-building
+principality	|	unused_p1		| uId 158	| wId -			| fId 194	| sId 498	| iId 947	| isId 407	| n\PsiDisr.grp
+warp anchor		|	unused_p2		| uId 161	| wId -			| fId 195	| sId 499	| iId 934	| isId 406	| p\XwarpGat.grp
+reliquary		|	xelnaga_temple	| uId 175	| wId -			| fId 197	| sId 497	| iId 937	| isId 410	| p\XelTempl.grp
+pennant			|	mineral_chunk2	| uId 221	| wId -			| fId		| sId		| iId		| isId		| 
+robo authority	|	mining_platform	| uId 182	| wId -			| fId		| sId		| iId		| isId		| 
+argosy			|	ind_commcenter	| uId 183	| wId -			| fId		| sId		| iId		| isId		| 
+starfield		|	ind_starport	| uId 184	| wId -			| fId		| sId		| iId		| isId		| 
+
+:zerg-unit
+vorvaling		|	uraj			| uId 128	| wId 36		| fId 127	| sId 288	| iId 393	| isId 220	| n\KerrEgg.grp
+*basilisk		|	khalis			| uId 129	| wId 50		| fId 208	| sId 516	| iId 959	| isId 18	| n\Khalis.grp
+iroleth			|	gas_orb1		| uId 222	| wId -			| fId		| sId		| iId		| isId		| 
+gorgoleth		|	h_guardian		| uId 56	| wId 47		| fId 147	| sId 344	| iId 360	| isId 244	| th\eldFire.grp
+kasan screamer	|	ursadon			| uId 96	| wId 128		| fId		| sId		| iId		| isId		| 
+
+:zerg-elite
+nathrokor		|	h_zergling		| uId 54	| wId 			| fId 		| sId 		| iId		| isId		| 
+konvimoth		|	h_hydralisk		| uId 53	| wId 			| fId 		| sId 		| iId		| isId		| 
+akistrigon		|	h_mutalisk		| uId 55	| wId 			| fId 		| sId 		| iId		| isId		| 
+bastethir		|	h_queen			| uId 49	| wId 			| fId 		| sId 		| iId		| isId		| 
+osteroth		|	h_ultralisk		| uId 48	| wId 			| fId 		| sId 		| iId		| isId		| 
+maktisthuk		|	h_defiler		| uId 52	| wId 			| fId 		| sId 		| iId		| isId		| 
+
+:zerg-building
+chasmal colony	|	overmind_cocoon	| uId 201	| wId -			| fId		| sId		| iId		| isId		| 
+vorval pond		|					| uId  		| wId - 		| fId		| sId 		| iId 		| isID		| 
+mutation pit	|	unused_z1		| uId 145	| wId -			| fId		| sId		| iId		| isId		| 
+basilisk den	|	unused_z2		| uId 153	| wId -			| fId 193	| sId 495	| iId 923	| isId 405	| z\XOvermnd.grp
+lurker den		|	zerg_marker		| uId 191	| wId -			| fId 164	| sId 354	| iId 936	| isId 409	| p\XwarpFir.grp
+gorg apiary		|	overmind		| uId 148 	| wId -			| fId		| sId		| iId		| isId		| 
+devourer haunt	|	zerg_flagbeacon	| uId 197	| wId -			| fId 121	| sId 387	| iId 759	| isId 404	| ttt\Ldxel03.grp
+nydus artery	|	cantina			| uId 181	| wId -			| fId		| sId		| iId		| isId		| 
+chrysalis		|	m_chrysalis		| uId 150	| wId -			| fId		| sId		| iId		| isId		| n\kerrchry.grp
+inf geyser		|	-				| uId -		| wId -			| fId		| sId		| iId		| isId		| 
+
+:zerg-eggs
+vorvaling egg	|	young_chrysalis	| uId 216	| wId -			| fId 184	| sId 481	| iId 914	| isId 353	| z\Lurkegg.grp
+basilisk egg	|	t_flagbeacon	| uId 198	| wId -			| fId 184	| sId 481	| iId 914	| isId 353	| z\Lurkegg.grp
+iroleth egg		| 	p_marker		| uId 193	| wId -			| fId 3		| sId 137	| iId 11	| isId 8	| z\cocoon.grp
+gorgoleth egg	|	cave			| uId 179	| wId -			| fId 3		| sId 137	| iId 11	| isId 8	| z\cocoon.grp
+screamer egg	|	p_flagbeacon	| uId 199	| wId -			| fId 184	| sId 481	| iId 914	| isId 353	| z\Lurkegg.grp
+devourer egg	|	khaydarin_form	| uId 173	| wId -			| fId 3		| sId 137	| iId 11	| isId 8	| z\cocoon.grp
+
+:shadows
+cyprian shadow																			| iId 339	| isId 275	| n\nacShad.grp
+shaman shadow																			| iId 222	| isId 275	| n\ncishad.grp
+paladin shadow																			| iId 		| isId 275	| 
+wyvern shadow																			| iId 353	| isId 275	| -
+savant shadow																			| iId 		| isId 275	| 
+azazel shadow																			| iId 953	| isId 275	| -
+
+medbay shadow																			| iId 950	| isId 275	| n\tgnShad.grp
+sentry turret shadow																	| iId 		| isId 275	| 
+future station shadow																	| iId 		| isId 275	| 
+captaincy shadow																		| iId 		| isId 275	| 
+quarry shadow																			| iId 409	| isId 275	| n\nddShad.grp
+ion cannon shadow																		| iId 943	| isId 275	| th\tbmAfter.grp
+weapons plat shadow																		| iId 		| isId 275	| 
+
+*legionnaire shadow																		| iId 152	| isId 275	| p\pzeShad.grp
+hierophant shadow																		| iId 758	| isId 403	| ttt\Ldxel02.grp
+clarion shadow																			| iId 755	| isId 275	| -
+warp relay shadow																		| iId 		| isId 275	| 
+bulwark shadow																			| iId 		| isId 275	| -
+exemplar shadow																			| iId 955	| isId 275	| -
+starcaller shadow																		| iId 		| isId 275	| -
+
+*principality shadow																	| iId 173	| isId 275	| p\pgaShad.grp
+*warp anchor shadow																		| iId 173	| isId 275	| p\pgaShad.grp
+reliquary shadow																		| iId 938	| isId 275	| p\pxtShad.grp
+pennant shadow																			| iId 		| isId 275	| 
+robo authority shadow																	| iId 		| isId 275	| 
+argosy shadow																			| iId 		| isId 275	| 
+starfield shadow																		| iId 		| isId 275	| 
+
+vorvaling shadow																		| iId 415	| isId 275	| n\nkeShad.grp
+*basilisk shadow																		| iId 30	| isId 275	| z\zhyshad.grp
+iroleth shadow																			| iId 		| isId 275	| 
+gorgoleth shadow																		| iId 		| isId 275	| 
+kasan screamer shadow																	| iId 		| isId 275	| 
+
+chasmal colony shadow																	| iId 		| isId 275	| 
+mutation pit shadow																		| iId 		| isId 275	| 
+basilisk den shadow																		| iId 		| isId 275	| 
+lurker den shadow																		| iId 410	| isId 275	| n\nddSha2.grp
+gorg apiary shadow																		| iId 		| isId 275	| 
+devourer haunt shadow																	| iId 		| isId 275	| 
+nydus artery shadow																		| iId 		| isId 275	| 
+chrysalis shadow																		| iId 79	| isId 275	| n\nkoShad.grp
+inf geyser shadow																		| iId 		| isId 275	| 
+
+:weapons
+basilisk projectile												| fId 162	| sId 356	| iId 507	| isId 257	| th\ep2Fire.grp
+basilisk creeprange read																| iId		| isId		| 
+
+:overlays
+adrenaline packs read																	| iId 971	| isId 394	| th\tmeHealM.grp
+ascendancy read																			| iId 425	| isId 277	| th\explo2.grp
+wyvern engine																			| iId 913	| isId 83	| ttt\LDarch.grp
+
+:misc
+medbay connector																		| iId 340	| isId 100	| n\Bcritter.grp
+
+protoss morph anchor																	| iId 970	| isId 191	| p\pblGlow.grp
+
+zergling morph																			| iId 448	| isId 295	| th\elbMuzz.grp
+vorvaling birth																			| iId 942	| isId 401	| n\nckshad.grp
+basilisk creeper|	cave_in			| uId 180
+
+:orphaned
+-
