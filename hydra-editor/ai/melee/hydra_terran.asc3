@@ -48,6 +48,7 @@ script_id TMCx
 	multi tExpand
 	multi tScale
 	multi qMilitary
+	multi antiGrief
 	multi techFix
 	#multi bLayout
 	
@@ -487,29 +488,29 @@ script_id TMCx
 	multi ioIrradiate
 	multi ioMatrix
 	var Ex|wait canUpgrade 1 13
-	multi upgEngInfArmor
-	multi upgEngInfWeapon
-	multi upgEngUtility
-	multi upgAcadMarine
-	multi upgAcadFirebat
-	multi upgAcadCyprian
-	multi upgArmVehArmor
-	multi upgArmVehWeapon
-	multi upgArmShipArmor
-	multi upgArmShipWeapon
-	multi upgConDropship
-	multi upgConWraith
-	multi upgConWyvern
-	multi upgCovGhost
-	#multi upgCovSavant
-	multi upgMacVulture
-	multi upgMacTank
-	multi upgMacGoliath
-	multi upgMedbayMedic
-	multi upgMedbayShaman
-	multi upgPhysBattle
-	multi upgSciAzazel
-	multi upgSciVessel
+	multi upgEngInfArmorCheck
+	multi upgEngInfWeaponCheck
+	multi upgEngUtilityCheck
+	multi upgAcadMarineCheck
+	multi upgAcadFirebatCheck
+	multi upgAcadCyprianCheck
+	multi upgArmVehArmorCheck
+	multi upgArmVehWeaponCheck
+	multi upgArmShipArmorCheck
+	multi upgArmShipWeaponCheck
+	multi upgConDropshipCheck
+	multi upgConWraithCheck
+	multi upgConWyvernCheck
+	multi upgCovGhostCheck
+	#multi upgCovSavantCheck
+	multi upgMacVultureCheck
+	multi upgMacTankCheck
+	multi upgMacGoliathCheck
+	multi upgMedbayMedicCheck
+	multi upgMedbayShamanCheck
+	multi upgPhysBattleCheck
+	multi upgSciAzazelCheck
+	multi upgSciVesselCheck
 	stop
 	
 	:upgEngUtilityCheck
@@ -642,7 +643,7 @@ script_id TMCx
 	wait 60
 	call wUpgradeDef
 	extupg 1 escalate_cyprian 88
-	wait 4500
+	wait 720
 	replace_unit firebat cyprian
 	wait 240
 	call wUpgradeDef
@@ -687,7 +688,7 @@ script_id TMCx
 	wait 360
 	call wUpgradeDef
 	extupg 1 escalate_shaman 88
-	wait 4500
+	wait 720
 	replace_unit medic shaman
 	wait 240
 	
@@ -1104,7 +1105,7 @@ script_id TMCx
 	wait 240
 	call wUpgradeDef
 	extupg 1 escalate_azazel 88
-	wait 4500
+	wait 720
 	replace_unit science_vessel azazel
 	call wUpgradeDef
 	#exttech sublime_shepherd 88
@@ -3432,6 +3433,66 @@ script_id TMCx
 	res 13 AtM Ore 149 blank
 	res 13 AtM Gas 99 blank
 	queue_rel wraith starport 1 starport 255 Global 63 99
+	stop
+	
+	:antiGrief
+	wait 360
+	multi antiGriefAir
+	multi antiGriefCloak
+	stop
+	
+	:antiGriefAir
+	player_combat 17 13 63 True Wait wraith|wyvern|scout|corsair|mutalisk Any
+	bring 13 AtL 3 goliath|wraith Loc.63 blank
+	bring 13 AtL 20 marine Loc.63 blank
+	dth 13 Ex 1 crashed_battle antiGriefAirMech
+	dth 13 Ex 3 crashed_battle antiGriefAirAir
+	goto antiGriefAirGen
+	
+	:antiGriefAirMech
+	p_need 1 armory
+	p_need 1 factory
+	train 3 goliath
+	stop
+	
+	:antiGriefAirAir
+	p_need 1 armory
+	p_need 1 starport
+	train 3 wraith
+	stop
+	
+	:antiGriefAirGen
+	train 10 marine
+	p_need 1 engineering_bay
+	p_need 3 missile_turret
+	p_need 1 academy
+	upg_j 13 AtL 16 1 blank
+	upg_queue 1 marine_range 88
+	stop
+	
+	:antiGriefCloak
+	player_combat 17 13 63 True Wait ghost|wraith|dark_templar|lurker Any
+	bring 13 AtL 1 comsat_station|science_vessel Loc.63 blank
+	dth 13 Ex 3 crashed_battle antiGriefCloakAir
+	goto antiGriefCloakGen
+	
+	:antiGriefCloakAir
+	p_need 1 engineering_bay
+	p_need 2 missile_turret
+	p_need 1 armory
+	p_need 1 starport
+	p_need 1 control_tower
+	p_need 1 science_facility
+	bring 13 AtL_W 1 science_facility Loc.63 blank
+	train 1 science_vessel
+	stop
+	
+	:antiGriefCloakGen
+	p_need 1 engineering_bay
+	p_need 3 missile_turret
+	p_need 1 barracks
+	p_need 1 academy
+	p_need 1 comsat_station
 	stop 
 	
 	:techFix

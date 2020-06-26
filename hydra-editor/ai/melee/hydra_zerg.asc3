@@ -49,6 +49,7 @@ script_id ZMCx
 	multi zExpand
 	multi zScale
 	multi qMilitary
+	multi antiGrief
 	multi techFix
 	
 	:slcPers
@@ -3617,7 +3618,46 @@ script_id ZMCx
 	bring 13 AtM 2 larva Loc.63 blank
 	res 13 AtM Any 199 blank
 	queue_rel ultralisk hatchery|lair|hive 1 larva 255 Global 63 99
-	stop 
+	stop
+	
+	:antiGrief
+	multi antiGriefAir
+	stop
+	
+	:antiGriefAir
+	player_combat 17 13 63 True Wait wraith|wyvern|scout|corsair|mutalisk Any
+	bring 13 AtL 5 hydralisk|mutalisk|scourge Loc.63 blank
+	dth 13 Ex 1 crashed_battle antiGriefAirConnor
+	dth 13 Ex 3 crashed_battle antiGriefAirAir
+	goto antiGriefAirGen
+	
+	:antiGriefAirConnor
+	p_need 1 evolution_chamber
+	add_bld 255 creep_colony 2 99 66
+	add_bld 255 spore_colony 2 99 67
+	p_need 1 spawning_pool
+	p_need 1 hydralisk_den
+	train 6 hydralisk
+	stop
+	
+	:antiGriefAirAir
+	p_need 1 evolution_chamber
+	add_bld 255 creep_colony 2 99 66
+	add_bld 255 spore_colony 2 99 67
+	p_need 1 spawning_pool
+	p_need 1 lair
+	p_need 1 spire
+	train 4 mutalisk
+	stop
+	
+	:antiGriefAirGen
+	p_need 1 evolution_chamber
+	add_bld 255 creep_colony 3 99 66
+	add_bld 255 spore_colony 3 99 67
+	p_need 1 spawning_pool
+	p_need 1 hydralisk_den
+	train 4 hydralisk
+	stop
 	
 	:techFix
 	tech_j 17 Set 7 1 blank

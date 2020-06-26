@@ -48,6 +48,7 @@ script_id PMCx
 	multi pExpand
 	multi pScale
 	multi qMilitary
+	multi antiGrief
 	multi techFix
 	
 	:slcPers
@@ -3483,6 +3484,64 @@ script_id PMCx
 	res 13 AtM Ore 274 blank
 	res 13 AtM Gas 124 blank
 	queue_rel scout stargate|starfield 1 stargate|starfield 255 Global 63 99
+	stop
+	
+	:antiGrief
+	multi antiGriefAir
+	multi antiGriefCloak
+	stop
+	
+	:antiGriefAir
+	player_combat 17 13 63 True Wait wraith|wyvern|scout|corsair|mutalisk Any
+	bring 13 AtL 3 dragoon|hierophant|scout|corsair Loc.63 blank
+	dth 13 Ex 1 crashed_battle antiGriefAirRanger
+	dth 13 Ex 3 crashed_battle antiGriefAirAir
+	goto antiGriefAirGen
+	
+	:antiGriefAirRanger
+	p_need 1 gateway
+	p_need 1 cybernetics_core
+	p_need 1 warp_anchor
+	train 3 dragoon
+	train 2 hierophant
+	stop
+	
+	:antiGriefAirAir
+	p_need 1 gateway
+	p_need 1 cybernetics_core
+	p_need 1 stargate
+	train 3 dragoon
+	train 2 corsair
+	train 1 scout
+	stop
+	
+	:antiGriefAirGen
+	p_need 1 gateway
+	p_need 1 cybernetics_core
+	train 4 dragoon
+	stop
+	
+	:antiGriefCloak
+	player_combat 17 13 63 True Wait ghost|wraith|dark_templar|lurker Any
+	bring 13 AtL 1 observer Loc.63 blank
+	dth 13 Ex 3 crashed_battle antiGriefCloakAir
+	goto antiGriefCloakGen
+	
+	:antiGriefCloakAir
+	p_need 1 forge
+	p_need 2 photon_cannon
+	p_need 1 gateway
+	p_need 1 cybernetics_core
+	p_need 1 robotics_authority
+	train 2 observer
+	
+	:antiGriefCloakGen
+	p_need 1 forge
+	p_need 3 photon_cannon
+	p_need 1 gateway
+	p_need 1 cybernetics_core
+	p_need 1 robotics_authority
+	train 2 observer
 	stop 
 	
 	:techFix
