@@ -48,6 +48,7 @@ script_id TMCx
 	multi tExpand
 	multi tScale
 	multi qMilitary
+	multi techFix
 	#multi bLayout
 	
 	:slcPers
@@ -3431,4 +3432,15 @@ script_id TMCx
 	res 13 AtM Ore 149 blank
 	res 13 AtM Gas 99 blank
 	queue_rel wraith starport 1 starport 255 Global 63 99
+	stop 
+	
+	:techFix
+	tech_j 17 Set 7 1 blank
+	tech_j 17 Set 10 1 blank
+	tech_j 17 Set 11 1 blank
+	tech_j 17 Set 20 1 blank
+	tech_j 17 Set 24 1 blank
+	tech_j 17 Set 27 1 blank
+	tech_j 17 Set 32 1 blank
+	tech_j 17 Set 41 1 blank
 	stop 

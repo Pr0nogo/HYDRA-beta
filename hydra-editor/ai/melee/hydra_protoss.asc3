@@ -48,6 +48,7 @@ script_id PMCx
 	multi pExpand
 	multi pScale
 	multi qMilitary
+	multi techFix
 	
 	:slcPers
 	dth 13 AtL 1 crashed_battle dbgPers
@@ -3482,4 +3483,15 @@ script_id PMCx
 	res 13 AtM Ore 274 blank
 	res 13 AtM Gas 124 blank
 	queue_rel scout stargate|starfield 1 stargate|starfield 255 Global 63 99
+	stop 
+	
+	:techFix
+	tech_j 17 Set 7 1 blank
+	tech_j 17 Set 10 1 blank
+	tech_j 17 Set 11 1 blank
+	tech_j 17 Set 20 1 blank
+	tech_j 17 Set 24 1 blank
+	tech_j 17 Set 27 1 blank
+	tech_j 17 Set 32 1 blank
+	tech_j 17 Set 41 1 blank
 	stop 
