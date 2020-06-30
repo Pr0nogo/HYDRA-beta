@@ -101,6 +101,7 @@ script_id ZMCx
 	dth 13 Ex 2 stasis_chamber dbgBuild2
 	dth 13 Ex 3 stasis_chamber dbgBuild3
 	dth 13 Ex 4 stasis_chamber dbgBuild4
+	dth 13 Ex 5 stasis_chamber dbgBuild5
 	goto idle
 	
 	:dbgBuild1
@@ -1993,13 +1994,19 @@ script_id ZMCx
 	:buildSwarmCongo
 	wait 600
 	var set cutWorker 1 13
-	bld 1 spawning_pool 66
-	wait 300
-	var set cutWorker 0 13
-	queue 1 overlord larva 255 Global Loc.63 80
-	wait 24
-	bld 1 extractor 66
+	var set canExpand 1 13
 	wait 600
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	wait 300
+	var set cutWorker 1 13
+	bld 1 spawning_pool 66
+	var set cutWorker 0 13
+	wait 24
+	queue 1 overlord larva 255 Global Loc.63 80
+	wait 300
+	bld 1 extractor 66
+	wait 900
 	upg_queue 1 zergling_speed 88
 	var set cutWorker 1 13
 	bring 13 AtL_W 1 larva Loc.63 blank
@@ -2011,12 +2018,16 @@ script_id ZMCx
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
+	bld 1 evolution_chamber 66
+	wait 300
 	var set canExpand 1 13
 	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	wait 24
 	var set buildSupply 1 13
+	wait 300
+	upg_queue 1 z_melee_attack 88
 	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
@@ -2031,8 +2042,6 @@ script_id ZMCx
 	wait 300
 	var set cutWorker 0 13
 	wait 600
-	bld 1 evolution_chamber 66
-	wait 300
 	var set canStatic 1 13
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
@@ -2044,16 +2053,22 @@ script_id ZMCx
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 300
-	bld 1 lair 76
-	wait 600
 	bld 2 hatchery 72
+	wait 600
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	wait 600
+	var set cutWorker 0 13
+	var set canExpand 0 13
 	wait 300
-	upg_queue 1 z_melee_attack 88
-	wait 24
-	bld 2 evolution_chamber 66
+	bld 3 hatchery 72
+	wait 600
+	bld 1 lair 76
 	wait 300
 	upg_queue 1 z_carapace 88
 	wait 24
+	bld 2 evolution_chamber 66
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -2062,6 +2077,10 @@ script_id ZMCx
 	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
+	wait 24
+	bld 4 hatchery 72
+	wait 600
+	upg_queue 2 z_melee_attack 88
 	wait 24
 	multi addProd
 	goto buildSwarmFin
