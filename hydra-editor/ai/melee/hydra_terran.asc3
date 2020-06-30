@@ -35,7 +35,7 @@ script_id TMCx
 	var set wRes 0 13
 	var set atkCycle 0 13
 	queue 1 scv command_center 255 Local Loc.63 80
-	dth 13 Set 1 khaydarin_crystal blank
+	dth 13 Set 1 khaydarin_crystal blank	
 	upg_j 13 Set 58 2 blank
 	multi uAttack
 	multi wResource
@@ -50,7 +50,6 @@ script_id TMCx
 	multi qMilitary
 	multi antiGrief
 	multi techFix
-	#multi bLayout
 	
 	:slcPers
 	dth 13 AtL 1 crashed_battle dbgPers
@@ -696,9 +695,6 @@ script_id TMCx
 	wait 12
 	notowns science_facility upgMedbayShaman2
 	call wUpgradeDef
-	extupg 1 shaman_mana 88
-	wait 4500
-	call wUpgradeDef
 	extupg 1 overcharge 88
 	wait 4500
 	goto upgMedbayAdr
@@ -1101,7 +1097,6 @@ script_id TMCx
 	:upgSciAzazel
 	wait 12
 	notowns science_facility upgSciAzazel
-	multi ioMatrix
 	wait 240
 	call wUpgradeDef
 	extupg 1 escalate_azazel 88
@@ -1159,9 +1154,9 @@ script_id TMCx
 	stop
 	
 	:ioMatrix
-	i_orders 141 60 1 science_vessel 1920 siege_tank|goliath|paladin|science_vessel|azazel|battlecruiser|archon|reaver|carrier|basilisk|lurker|guardian|ultralisk|k_screamer 80 Own|Allied|NotEnemies|InCombat
-	i_orders 141 60 1 science_vessel 1920 firebat|ghost|zealot|legionnaire|high_templar|dark_templar|archon|hydralisk|gorgoleth|devourer|defiler 75 Own|Allied|NotEnemies|InCombat
-	i_orders 141 60 1 science_vessel 1920 ghost 90 Own|Allied|NotEnemies|InCombat|Order(126)
+	i_orders 141 60 1 azazel 1920 siege_tank|goliath|paladin|science_vessel|azazel|battlecruiser|archon|reaver|carrier|basilisk|lurker|guardian|ultralisk|k_screamer 80 Own|Allied|NotEnemies|InCombat
+	i_orders 141 60 1 azazel 1920 firebat|ghost|zealot|legionnaire|high_templar|dark_templar|archon|hydralisk|gorgoleth|devourer|defiler 75 Own|Allied|NotEnemies|InCombat
+	i_orders 141 60 1 azazel 1920 ghost 90 Own|Allied|NotEnemies|InCombat|Order(126)
 	stop
 	
 	:ioShepherd
@@ -1174,7 +1169,7 @@ script_id TMCx
 	stop
 	
 	:tTown
-	multi mainWorker
+	multi mainWorkerStart
 	multi mainTransport
 	bld 1 command_center 90
 	w_bld 1 command_center

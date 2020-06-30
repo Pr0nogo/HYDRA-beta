@@ -796,7 +796,7 @@ script_id PMCx
 	wait 12
 	notowns citadel_of_adun upgCitLegion
 	call wUpgradeDef
-	upg_queue 1 battle_harmony 88
+	upg_queue 1 blade_vortex 88
 	goto wUpgrade
 	
 	:upgRoboShuttleCheck
@@ -1189,7 +1189,7 @@ script_id PMCx
 	stop
 	
 	:pTown
-	multi mainWorker
+	multi mainWorkerStart
 	multi mainTransport
 	bld 1 nexus 90
 	w_bld 1 nexus
@@ -2352,7 +2352,7 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMaxGen3
-	add_bld 255 principality 1 8 72
+	add_bld 255 warp_anchor 1 8 72
 	goto addProdSuccess
 	
 	:addGatewayMaxMech

@@ -982,7 +982,7 @@ script_id ZMCx
 	stop
 	
 	:zTown
-	multi mainWorker
+	multi mainWorkerStart
 	bld 1 hatchery 90
 	w_bld 1 hatchery
 	multi bldOrder
