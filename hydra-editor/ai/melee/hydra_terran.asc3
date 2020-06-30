@@ -82,7 +82,7 @@ script_id TMCx
 	
 	:slcBuild2
 	dth 13 AtL 1 stasis_chamber dbgBuild
-	dth 13 Rand 5 stasis_chamber blank
+	dth 13 Rand 6 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgPers3
@@ -100,6 +100,7 @@ script_id TMCx
 	dth 13 Ex 2 stasis_chamber dbgBuild2
 	dth 13 Ex 3 stasis_chamber dbgBuild3
 	dth 13 Ex 4 stasis_chamber dbgBuild4
+	dth 13 Ex 5 stasis_chamber dbgBuild5
 	goto dbgBuild1
 	
 	:dbgBuild1
@@ -168,7 +169,7 @@ script_id TMCx
 	:dbgBuild4
 	dth 13 Ex 1 crashed_battle dbgBuild4Mech
 	dth 13 Ex 2 crashed_battle dbgBuild4Bio
-	dth 13 Ex 3 crashed_battle idle
+	dth 13 Ex 3 crashed_battle dbgBuild4Air
 	
 	:dbgBuild4Gen
 	print Terran<32>General<32>build<32>4:<32>BBS
@@ -176,9 +177,23 @@ script_id TMCx
 	
 	:dbgBuild4Mech
 	print Terran<32>Mech<32>build<32>4:<32>And<32>We're<32>Walking
+	goto idle
 	
 	:dbgBuild4Bio
 	print Terran<32>Raider<32>build<32>4:<32>4RaxPressure
+	goto idle
+	
+	:dbgBuild4Air
+#	print Terran<32>Air<32>build<32>4:<32>Hotdrop
+	goto idle
+	
+	:dbgBuild5
+	dth 13 Ex 2 crashed_battle dbgBuild5Bio
+	goto idle
+	
+	:dbgBuild5Bio
+	print Terran<32>Raider<32>build<32>5:<32>Uprising
+	goto idle
 	
 	:idle
 	wait 25500
@@ -678,8 +693,9 @@ script_id TMCx
 	goto wUpgrade
 	
 	:upgMedbayShamanCheck
-	dth 13 Ex 0 crashed_battle blank
-	dth 13 AtL 2 crashed_battle blank
+	dth 13 Ex 0 crashed_battle upgMedbayShamanRand
+	dth 13 Ex 2 crashed_battle upgMedbayShamanRand
+	dth 13 AtL 3 crashed_battle blank
 	
 	:upgMedbayShaman
 	wait 12
@@ -699,8 +715,12 @@ script_id TMCx
 	wait 4500
 	goto upgMedbayAdr
 	
+	:upgMedbayShamanRand
+	rand_j 85 blank
+	goto upgMedbayShaman
+	
 	:upgCovGhostCheck
-	dth 13 AtL_C 1 crashed_battle upgGenGhost
+	dth 13 AtM_C 1 crashed_battle upgGenGhost
 	dth 13 AtL_C 3 crashed_battle upgGenGhost
 	
 	:upgCovGhost
@@ -811,7 +831,7 @@ script_id TMCx
 	
 	:upgArmShipWeaponCheck
 	dth 13 AtM_C 1 crashed_battle upgGenShipWeapon
-	dth 13 AtL_C 2 crashed_battle upgBioShipWeapon
+	dth 13 Ex_C 2 crashed_battle upgBioShipWeapon
 	dth 13 AtL_C 4 crashed_battle upgGenShipWeapon
 	
 	:upgArmShipWeapon
@@ -851,7 +871,7 @@ script_id TMCx
 	
 	:upgArmShipArmorCheck
 	dth 13 AtM_C 1 crashed_battle upgGenShipArmor
-	dth 13 AtL_C 2 crashed_battle upgBioShipArmor
+	dth 13 Ex_C 2 crashed_battle upgBioShipArmor
 	dth 13 Ex_C 3 crashed_battle upgAirShipArmor
 	dth 13 AtL_C 4 crashed_battle upgGenShipArmor
 	
@@ -1039,7 +1059,7 @@ script_id TMCx
 	
 	:upgPhysBattleCheck
 	dth 13 AtM_C 2 crashed_battle upgGenBattle
-	dth 13 AtM_C 4 crashed_battle upgGenBattle
+	dth 13 AtL_C 4 crashed_battle upgGenBattle
 	
 	:upgPhysBattle
 	wait 12
@@ -1075,7 +1095,7 @@ script_id TMCx
 	multi ioIrradiate
 	wait 240
 	call wUpgradeDef
-	#exttech observance 88
+	tech observance 88
 	multi ioObservance
 	call wUpgradeDef
 	upg_queue 1 science_vessel_mana 88
@@ -1151,6 +1171,8 @@ script_id TMCx
 	stop
 	
 	:ioObservance
+	i_orders 122 0 1 science_vessel 1280 shaman|goliath|siege_tank|t_siege_mode|goliath|paladin|wraith|wyvern|battlecruiser|lurker|ultralisk|k_screamer|dragoon|hierophant|reaver|scout|exemplar|carrier|starcaller|arbiter 80 RandomRate(48 160)|Count(AtL 2 128 14)|InCombat|Self(Hp(GreaterThanPercent 33))
+	i_orders 122 0 1 science_vessel 1280 Group_Men 75 RandomRate(48 160)|Count(AtL 4 128 14)|InCombat|Self(Hp(GreaterThanPercent 33))
 	stop
 	
 	:ioMatrix
@@ -1925,6 +1947,7 @@ script_id TMCx
 	dth 13 Ex 2 stasis_chamber buildBio3RaxM&M
 	dth 13 Ex 3 stasis_chamber buildBio3RaxNuke
 	dth 13 Ex 4 stasis_chamber buildBio4RaxPressure
+	dth 13 Ex 5 stasis_chamber buildBioUprising
 	
 	:buildBio8Rax
 	wait 300
@@ -2103,6 +2126,56 @@ script_id TMCx
 	bld 1 academy 66
 	wait 24
 	multi addProd
+	goto buildBioFin
+	
+	:buildBioUprising
+	wait 600
+	bld 1 supply_depot 66
+	wait 300
+	bld 1 barracks 72
+	wait 450
+	bld 2 barracks 72
+	wait 450
+	bld 3 barracks 72
+	wait 300
+	build 2 supply_depot 66
+	wait 300
+	bld 1 refinery 66
+	wait 450
+	bld 1 academy 72
+	wait 300
+	bld 3 supply_depot 66
+	wait 300
+	bld 1 engineering_bay 66
+	wait 600
+	bld 1 medbay 66
+	wait 24
+	var set buildSupply 1 13
+	wait 300
+	bld 4 barracks 72
+	wait 450
+	extupgrade 1 escalate_cyprian 88
+	wait 300
+	upg_queue 1 t_infantry_weapon 88
+	wait 600
+	replace_unit firebat cyprian
+	tech safety_off 88
+	multirun ioSafety
+	wait 24
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	wait 600
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	bld 2 engineering_bay 66
+	wait 300
+	upg_queue 1 plasteel_servos 88
+	bld 1 armory 66
+	wait 300
+	bld 2 medbay 66
+	wait 300
+	bld 1 science_facility 66
+	wait 450
 	
 	:buildBioFin
 	call buildBool
