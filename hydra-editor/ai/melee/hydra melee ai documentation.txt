@@ -69,6 +69,7 @@ Raider
 2 - 3Rax Marine & Medic				* ♣
 3 - Fast Ghost/Nuke					
 4 - 4Rax Pressure					* ♣
+5 - Uprising (heavy Cyprian usage)
 
 Air
 1 - 2Port Wraith					*
@@ -114,6 +115,7 @@ Swarm
 2 - 3Hatch Ultra					♣
 3 - 9Pool							
 4 - 3Hatch Hive						♣
+5 - Congo Todgod (heavy Zergling usage)
 
 Air
 1 - 3Hatch Mutaling					
