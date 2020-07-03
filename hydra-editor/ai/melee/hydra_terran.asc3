@@ -1844,6 +1844,10 @@ script_id TMCx
 	wait 300
 	var set cutWorker 1 13
 	bld 2 supply_depot 66
+	wait 600
+	bld 2 machine_shop 66
+	wait 450
+	bld 3 factory 72
 	wait 300
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 24
@@ -1891,17 +1895,18 @@ script_id TMCx
 	wait 600
 	var set canExpand 0 13
 	wait 300
-	bld 1 machine_shop 72
+	bld 3 machine_shop 72
 	wait 24
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 300
-	tech siege_mode 66
+	tech siege_mode 88
 	wait 24
 	queue 1 siege_tank factory 255 Global Loc.63 80
 	wait 24
 	queue 1 goliath factory 255 Global Loc.63 80
 	wait 300
-	bld 3 factory 72
+	bld 4 factory 72
+	bld 4 machine_shop 66
 	wait 300
 	queue 1 siege_tank factory 255 Global Loc.63 80
 	wait 24
@@ -3122,8 +3127,8 @@ script_id TMCx
 	dth 13 Ex 3 crashed_battle atkMechAir
 	bring 13 AtL_C 5 machine_shop Loc.63 atkTankMechMax
 	bring 13 AtM_C 4 machine_shop Loc.63 atkTankMechMin
-	bring 13 AtL_C 5 factory Loc.63 atkGoliathMechMax
-	bring 13 AtM_C 4 factory Loc.63 atkGoliathMechMin
+	bring 13 AtL_C 5 machine_shop Loc.63 atkGoliathMechMax
+	bring 13 AtM_C 4 machine_shop Loc.63 atkGoliathMechMin
 	bring 13 AtL_C 5 factory Loc.63 atkVultureMechMax
 	bring 13 AtM_C 4 factory Loc.63 atkVultureMechMin
 	return
@@ -3133,15 +3138,15 @@ script_id TMCx
 	bring 13 AtM_C 4 machine_shop Loc.63 atkTankBioMin
 	bring 13 AtL_C 5 factory Loc.63 atkVultureBioMax
 	bring 13 AtM_C 4 factory Loc.63 atkVultureBioMin
-	bring 13 AtL_C 5 factory Loc.63 atkGoliathBioMax
-	bring 13 AtM_C 4 factory Loc.63 atkGoliathBioMin
+	bring 13 AtL_C 5 machine_shop Loc.63 atkGoliathBioMax
+	bring 13 AtM_C 4 machine_shop Loc.63 atkGoliathBioMin
 	return
 	
 	:atkMechAir
 	bring 13 AtL_C 5 factory Loc.63 atkVultureAirMax
 	bring 13 AtM_C 4 factory Loc.63 atkVultureAirMin
-	bring 13 AtL_C 5 factory Loc.63 atkGoliathAirMax
-	bring 13 AtM_C 4 factory Loc.63 atkGoliathAirMin
+	bring 13 AtL_C 5 machine_shop Loc.63 atkGoliathAirMax
+	bring 13 AtM_C 4 machine_shop Loc.63 atkGoliathAirMin
 	bring 13 AtL_C 5 machine_shop Loc.63 atkTankAirMax
 	bring 13 AtM_C 4 machine_shop Loc.63 atkTankAirMin
 	return
