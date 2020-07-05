@@ -1141,6 +1141,8 @@ script_id TMCx
 	stop
 	
 	:ioFlare
+	i_orders 185 0 1 medic 1280 siege_tank|t_siege_mode|paladin|wyvern|battlecruiser|high_templar|archon|dark_archon|reaver|carrier|arbiter|lurker|ultralisk|keskathalor|guardian|devourer|defiler 85 InCombat|Targeting(Own|Ally)|WithoutSpellEffects(Blind)|Self(Energy(GreaterThan 60))
+	i_orders 185 0 1 medic 1280 shaman|ghost|goliath|wraith|science_vessel|dragoon|hierophant|scout|corsair|overlord|basilisk|mutalisk|gorgoleth 80 InCombat|Targeting(Own|Ally)|WithoutSpellEffects(Blind)|Self(Energy(GreaterThan 70))
 	stop
 	
 	:ioMedstims
@@ -1154,7 +1156,7 @@ script_id TMCx
 	:ioSafety
 	wait 12
 	notowns cyprian ioSafety
-	i_tactics action SafetyOff cyprian IfSelf(Hp(GreaterThanPercent 15))&IfInRange(14 AtL 2 Group_Men 64)
+	i_tactics action SafetyOff cyprian IfInRange(14 AtL 2 Group_Men 64)
 	i_tactics action SafetyOn cyprian IfInRange(14 AtM 1 Group_Men 64)
 	stop
 	
@@ -1171,12 +1173,12 @@ script_id TMCx
 	stop
 	
 	:ioObservance
-	i_orders 122 0 1 science_vessel 1280 shaman|goliath|siege_tank|t_siege_mode|goliath|paladin|wraith|wyvern|battlecruiser|lurker|ultralisk|k_screamer|dragoon|hierophant|reaver|scout|exemplar|carrier|starcaller|arbiter 80 RandomRate(48 160)|Count(AtL 2 128 14)|InCombat|Self(Hp(GreaterThanPercent 33))
+	i_orders 122 0 1 science_vessel 1280 shaman|goliath|siege_tank|t_siege_mode|goliath|paladin|wraith|wyvern|battlecruiser|lurker|ultralisk|keskathalor|dragoon|hierophant|reaver|scout|exemplar|carrier|starcaller|arbiter 80 RandomRate(48 160)|Count(AtL 2 128 14)|InCombat|Self(Hp(GreaterThanPercent 33))
 	i_orders 122 0 1 science_vessel 1280 Group_Men 75 RandomRate(48 160)|Count(AtL 4 128 14)|InCombat|Self(Hp(GreaterThanPercent 33))
 	stop
 	
 	:ioMatrix
-	i_orders 141 60 1 azazel 1920 siege_tank|goliath|paladin|science_vessel|azazel|battlecruiser|archon|reaver|carrier|basilisk|lurker|guardian|ultralisk|k_screamer 80 Own|Allied|NotEnemies|InCombat
+	i_orders 141 60 1 azazel 1920 siege_tank|goliath|paladin|science_vessel|azazel|battlecruiser|archon|reaver|carrier|basilisk|lurker|guardian|ultralisk|keskathalor 80 Own|Allied|NotEnemies|InCombat
 	i_orders 141 60 1 azazel 1920 firebat|ghost|zealot|legionnaire|high_templar|dark_templar|archon|hydralisk|gorgoleth|devourer|defiler 75 Own|Allied|NotEnemies|InCombat
 	i_orders 141 60 1 azazel 1920 ghost 90 Own|Allied|NotEnemies|InCombat|Order(126)
 	stop
@@ -1186,7 +1188,7 @@ script_id TMCx
 	
 	:ioYamato
 	i_orders 113 0 1 battlecruiser 1440 missile_turret|spore_colony|photon_cannon 75 RandomRate(180 360)|InCombat
-	i_orders 113 0 1 battlecruiser 1440 siege_tank|paladin|science_vessel|azazel|sunken_colony|guardian|devourer|defiler|ultralisk|k_screamer|archon|reaver|carrier 75 RandomRate(180 360)|InCombat
+	i_orders 113 0 1 battlecruiser 1440 siege_tank|paladin|science_vessel|azazel|sunken_colony|guardian|devourer|defiler|ultralisk|keskathalor|archon|reaver|carrier 75 RandomRate(180 360)|InCombat
 	i_orders 113 0 1 battlecruiser 1080 battlecruiser|arbiter 75 RandomRate(180 360)
 	stop
 	
