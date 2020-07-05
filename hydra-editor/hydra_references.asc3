@@ -4,7 +4,8 @@ name 			|	oldunit			| uId  		| wId			| fId		| sId		| iId		| isId		| grp
 :terran-unit
 cyprian			|	merc_gunship	| uId 92	| wId 26		| fId 114	| sId 276	| iId 338	| isid 198	| n\Acritter.grp
 shaman			|	civilian		| uId 15	| wId 87		| fId 71	| sId 226	| iId 221	| isId 67	| n\civilian.grp
-paladin			|	ruins			| uId 186	| wId 126 127	| fId		| sId		| iId		| isId		| 
+madrigal		|					| uId 		| wId 			| fId 		| sId 		| iId 		| isId 		| 
+paladin			|	ruins			| uId 186	| wId 126		| fId		| sId		| iId		| isId		| 
 wyvern			|	cargo_ship		| uId 91	| wId 125		| fId 31	| sId 176	| iId 90	| isId 54	| z\Over2.grp
 savant			|	kyadarin_form	| uId 187	| wId			| fId		| sId		| iId		| isId		| 
 azazel			|	raszagal		| uId 98	| wId -			| fId 198	| sId 492	| iId 952	| isId 375	| n\Kcritter.grp
@@ -14,12 +15,15 @@ azazel			|	raszagal		| uId 98	| wId -			| fId 198	| sId 492	| iId 952	| isId 375
 
 :terran-building
 medbay			|	starbase		| uId 119	| wId -			| fId 196	| sId 496	| iId 949	| isId 408	| n\Generate.grp
-sentry turret	|	ind_jumpgate	| uId 185	| wId -			| fId		| sId		| iId		| isId		| 
+gallery			|	ind_jumpgate	| uId 185	| wId -			| fId 		| sId 		| iId 		| isId 		| 
+salvo yard		|					| uId 		| wId -			| fId 		| sId 		| iId 		| isId 		| 
+munitions bay	|					|			|				|			|			|			|			| 
+drydock			|					|			|				|			|			|			|			| 
 future station	|	terran_marker	| uId 192	| wId -			| fId 		| sId 		| iId 		| isId		| 
 captaincy		|	repair_bay		| uId 121	| wId -			| fId 129	| sId 290	| iId 395	| isId 218	| n\DataDisk.grp
 quarry			|	mineral_chunk1	| uId 220	| wId -			| fId 		| sId 		| iId 		| isId 		| 
 ion cannon		|	ion_cannon		| uId 127	| wId 129		| fId 99	| sId 257	| iId 292	| isId 116	| n\ion.grp
-weapons plat	|	-				| uId -		| wId -			| fId -		| sId -		| iId -		| isId -	| 
+tactical plat	|	-				| uId -		| wId -			| fId -		| sId -		| iId -		| isId -	| 
 
 :protoss-unit
 legionnaire		|	h_dtemplar		| uId 74	| wId 86		| fId 46	| sId 198	| iId 129	| isId 152	| n\Icritter.grp
@@ -28,19 +32,20 @@ clarion			|	h_reaver		| uId 81	| wId -			| fId 115	| sId 277	| iId 972	| isId 19
 warp relay		|	bengalaas		| uId 90	| wId -			| fId 116	| sId 278	| iId 342	| isId 200 	| n\Jcritter.grp
 bulwark			|	scantid			| uId 93 	| wId -			| fId -		| sId -		| iId -		| isId -	| 
 exemplar		|	kakaru			| uId 94 	| wId 76		| fId 199	| sId 493	| iId 954	| isId 376	| n\Scritter.grp
-starcaller		|	h_mojo			| uId 80 	| wId -			| fId -		| sId -		| iId -		| isId -	| 
+star sovereign	|	h_mojo			| uId 80 	| wId -			| fId -		| sId -		| iId -		| isId -	| 
 
 :protoss-elite
 
 
 :protoss-building
 principality	|	unused_p1		| uId 158	| wId -			| fId 194	| sId 498	| iId 947	| isId 407	| n\PsiDisr.grp
-warp anchor		|	unused_p2		| uId 161	| wId -			| fId 195	| sId 499	| iId 934	| isId 406	| p\XwarpGat.grp
+vicarage		|	unused_p2		| uId 161	| wId -			| fId 195	| sId 499	| iId 934	| isId 406	| p\XwarpGat.grp
 reliquary		|	xelnaga_temple	| uId 175	| wId -			| fId 197	| sId 497	| iId 937	| isId 410	| p\XelTempl.grp
 pennant			|	mineral_chunk2	| uId 221	| wId -			| fId		| sId		| iId		| isId		| 
 robo authority	|	mining_platform	| uId 182	| wId -			| fId		| sId		| iId		| isId		| 
 argosy			|	ind_commcenter	| uId 183	| wId -			| fId		| sId		| iId		| isId		| 
 starfield		|	ind_starport	| uId 184	| wId -			| fId		| sId		| iId		| isId		| 
+grand library	|					| uId 184	| wId -			| fId		| sId		| iId		| isId		| 
 
 :zerg-unit
 vorvaling		|	uraj			| uId 128	| wId 36		| fId 127	| sId 288	| iId 393	| isId 220	| n\KerrEgg.grp
@@ -125,13 +130,21 @@ nydus artery shadow																		| iId 		| isId 275	|
 chrysalis shadow																		| iId 79	| isId 275	| n\nkoShad.grp
 inf geyser shadow																		| iId 		| isId 275	| 
 
-:weapons
-basilisk projectile												| fId 162	| sId 356	| iId 507	| isId 257	| th\ep2Fire.grp
+:abilities_and_upgrades
+adrenaline packs read																	| iId 971	| isId 394	| th\tmeHealM.grp
+land grab										| wId 125								
+observance										| wId 122								| iId 264	| isId 95	| t\AcademyT.grp
+
+last orders										| wId 121								| iId 		| isId 		| 
+vortex blades																			| iId 276	| isId 103	| t\controlT.grp
+ascendancy read																			| iId 425	| isId 277	| th\explo2.grp
+
 basilisk creeprange read																| iId		| isId		| 
 
+:weapons
+basilisk projectile												| fId 162	| sId 356	| iId 507	| isId 257	| th\ep2Fire.grp
+
 :overlays
-adrenaline packs read																	| iId 971	| isId 394	| th\tmeHealM.grp
-ascendancy read																			| iId 425	| isId 277	| th\explo2.grp
 wyvern engine																			| iId 913	| isId 83	| ttt\LDarch.grp
 
 :misc

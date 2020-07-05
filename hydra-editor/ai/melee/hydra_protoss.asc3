@@ -1147,7 +1147,7 @@ script_id PMCx
 	stop
 	
 	:ioHallucinate
-	i_orders 148 0 1 high_templar 960 t_siege_mode|paladin|wyvern|battlecruiser|archon|reaver|carrier|starcaller|lurker|guardian|devourer|ultralisk|k_screamer 90 RandomRate(60 240)|InCombat|Own|Allied|NotEnemies
+	i_orders 148 0 1 high_templar 960 t_siege_mode|paladin|wyvern|battlecruiser|archon|reaver|carrier|starcaller|lurker|guardian|devourer|ultralisk|keskathalor 90 RandomRate(60 240)|InCombat|Own|Allied|NotEnemies
 	i_orders 148 0 1 high_templar 960 ghost|siege_tank|goliath|wraith|zealot|dragoon|hierophant|dark_templar|scout|hydralisk|basilisk|mutalisk|gorgoleth 80 RandomRate(60 240)|InCombat|Own|NotEnemies
 	stop
 	
@@ -1169,7 +1169,7 @@ script_id PMCx
 	stop
 	
 	:ioMindControl
-	i_orders 182 0 1 dark_archon 1440 ghost|savant|t_siege_mode|paladin|wyvern|battlecruiser|high_templar|dark_archon|reaver|carrier|starcaller|guardian|devourer|defiler|ultralisk|k_screamer 90 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 35))
+	i_orders 182 0 1 dark_archon 1440 ghost|savant|t_siege_mode|paladin|wyvern|battlecruiser|high_templar|dark_archon|reaver|carrier|starcaller|guardian|devourer|defiler|ultralisk|keskathalor 90 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 35))
 	i_orders 182 0 1 dark_archon 1440 medic|shaman|siege_tank|goliath|wraith|dragoon|hierophant|archon|dark_templar|basilisk|lurker|mutalisk|queen 75 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 25))
 	i_orders 182 0 1 dark_archon 1440 medic|shaman|siege_tank|goliath|wraith|dragoon|hierophant|archon|dark_templar|basilisk|lurker|mutalisk|queen 60 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 15))
 	i_orders 182 0 1 dark_archon 1440 Group_Men 90 Deathrattle|Targeting(OtherUnit)
@@ -1181,7 +1181,7 @@ script_id PMCx
 	
 	:ioStasis
 	i_orders 147 0 1 arbiter 1080 Group_Men 80 RandomRate(60 240)|Count(AtL 4 128 14)|InCombat|Targeting(Own|Ally|OtherUnit)
-	i_orders 147 0 1 arbiter 1080 wyvern|battlecruiser|reaver|carrier|starcaller|guardian|devourer|ultralisk|k_screamer 80 RandomRate(120 240)|Health(GreaterThanPercent 40)
+	i_orders 147 0 1 arbiter 1080 wyvern|battlecruiser|reaver|carrier|starcaller|guardian|devourer|ultralisk|keskathalor 80 RandomRate(120 240)|Health(GreaterThanPercent 40)
 	stop
 	
 	:ioRecall

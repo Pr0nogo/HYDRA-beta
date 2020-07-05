@@ -289,7 +289,7 @@ script_id ZMCx
 	def_max 36 devourer
 	def_max 20 defiler
 	def_max 52 ultralisk
-	def_max 36 k_screamer
+	def_max 36 keskathalor
 	def_max 12 ab_zergling
 	def_max 12 ab_hydralisk
 	def_max 12 ab_mutalisk
@@ -326,7 +326,7 @@ script_id ZMCx
 	defb_gg 1 queen
 	defb_gg 1 gorgoleth
 	defb_gg 1 ultralisk
-	#defb_gg 1 k_screamer
+	#defb_gg 1 keskathalor
 	return
 	
 	:zDefGBuildGen2
@@ -956,7 +956,7 @@ script_id ZMCx
 	dth 13 Ex 0 crashed_battle ioBroodling2
 	dth 13 Ex 2 crashed_battle ioBroodling2
 	dth 13 AtL 4 crashed_battle ioBroodling2
-	i_orders 121 0 1 queen 1080 shaman|siege_tank|t_siege_mode|goliath|paladin|dragoon|hierophant|high_templar|dark_templar|basilisk|lurker|ultralisk|k_screamer|defiler|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler 80 RandomRate(120 240)|Hp(GreaterThanPercent 40)|InCombat
+	i_orders 121 0 1 queen 1080 shaman|siege_tank|t_siege_mode|goliath|paladin|dragoon|hierophant|high_templar|dark_templar|basilisk|lurker|ultralisk|keskathalor|defiler|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler 80 RandomRate(120 240)|Hp(GreaterThanPercent 40)|InCombat
 	i_orders 121 0 1 queen 1080 Group_Men 65 RandomRate(240 360)|Hp(GreaterThanPercent 40)|InCombat|Self(Energy(GreaterThanPercent 40))
 	stop
 	
@@ -970,7 +970,7 @@ script_id ZMCx
 	stop
 	
 	:ioPlague
-	i_orders 144 0 1 defiler 1080 medic|shaman|siege_tank|goliath|paladin|wraith|wyvern|dropship|science_vessel|dragoon|hierophant|reaver|scout|shuttle|hydralisk|basilisk|lurker|mutalisk|guardian|gorgoleth|devourer|ultralisk|k_screamer|defiler|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler 75 RandomRate(120 360)|Hp(GreaterThanPercent 40)|Count(AtL 2 96 14)|WithoutSpellEffects(Plague)
+	i_orders 144 0 1 defiler 1080 medic|shaman|siege_tank|goliath|paladin|wraith|wyvern|dropship|science_vessel|dragoon|hierophant|reaver|scout|shuttle|hydralisk|basilisk|lurker|mutalisk|guardian|gorgoleth|devourer|ultralisk|keskathalor|defiler|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler 75 RandomRate(120 360)|Hp(GreaterThanPercent 40)|Count(AtL 2 96 14)|WithoutSpellEffects(Plague)
 	i_orders 144 0 1 defiler 1080 Group_Men 70 RandomRate(120 360)|Hp(GreaterThanPercent 40)|Count(AtL 2 96 14)|WithoutSpellEffects(Plague)
 	i_orders 144 1 1 defiler 1080 Group_Men 99 Deathrattle|Targeting(OtherUnit)
 	var Ex|wait metastasis 1 13
@@ -2916,12 +2916,12 @@ script_id ZMCx
 	var add atkCycle 1 13
 	wait 250
 	var AtL|jump atkCycle 2 atkDo 13
-	supply 13 AtM 24 InUnits zergling|vorvaling|hydralisk|basilisk|lurker|mutalisk|guardian|ultralisk|k_screamer|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler|infested_terran Zerg atkGen
+	supply 13 AtM 24 InUnits zergling|vorvaling|hydralisk|basilisk|lurker|mutalisk|guardian|ultralisk|keskathalor|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler|infested_terran Zerg atkGen
 	
 	:atkDo
 	#attack_jump 13 AtM 30 Group_Men Supply atkGen 13
 	#attack_jump 13 AtL 80 Group_Men Supply atkExp 13
-	supply 13 AtL 80 InUnits zergling|vorvaling|hydralisk|basilisk|lurker|mutalisk|guardian|ultralisk|k_screamer|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler|infested_terran Zerg atkExp
+	supply 13 AtL 80 InUnits zergling|vorvaling|hydralisk|basilisk|lurker|mutalisk|guardian|ultralisk|keskathalor|ab_zergling|ab_hydralisk|ab_ultralisk|ab_defiler|infested_terran Zerg atkExp
 	
 	:atkNow
 	atk_now
