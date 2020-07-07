@@ -1,0 +1,615 @@
+script_name Expansion Terran Campaign Area Town
+script_id TARx
+
+	start_areatown
+	set_free_id
+	bld 1 command_center 90
+	multi expWorker
+	w_bld 1 command_center
+	capt_expand
+	multi expCount
+	multi addTurret
+	wait 300
+	multi addProd
+	wait 600
+	multi addBunker
+	var Ex|wait buildDone 1 13
+	wait 300
+	multi bldOrderExp
+	wait 600
+	notowns covert_ops expRandComsat
+	rand_j 128 expRandComsat
+	bld 1 nuclear_silo 72
+	goto idle
+	
+	:expRandComsat
+	bld 1 comsat_station 72
+	goto idle
+	
+	:idle
+	wait 25500
+	goto idle
+	
+	:blank
+	stop
+	
+	:blankReturn
+	return
+	
+	:wWorkerDef
+	wait 12
+	res 13 AtL Ore 500 blankReturn
+	var Ex|WF(360) underAttack 0 13
+	return
+	
+	:wUpgradeDef
+	wait 12
+	res 13 AtL Any 399 blankReturn
+	var Ex|WF(360) underAttack 0 13
+	return
+	
+	:expCount
+	wait 12
+	local 255 Ex 0 command_center expCount
+	town_state 255 persist true
+	var add townCount 1 13
+	local 255 Ex_W 0 command_center blank
+	var subtract townCount 1 13
+	town_state 255 persist false
+	goto expCount
+	
+	:expWorker
+	max_workers 2
+	maynard 1
+	bld 1 scv 98
+	w_bldstart 1 command_center
+	bld 2 scv 98
+	w_bld 1 command_center
+	max_workers 18
+	maynard 4
+	goto expWorkerStd
+	
+	:expWorkerStd
+	wait 12
+	bring 13 AtL 90 scv Loc.63 expWorkerStd
+	resarea 255 AtM 255 Ore 600 expWorkerLow
+	max_workers 28
+	wait 300
+	local 255 AtL 18 scv expWorkerStd
+	res 13 AtL_W Ore 50 blank
+	call wWorkerDef
+	queue 1 scv command_center 255 Local Loc.63 80
+	goto expWorkerStd
+	
+	:expWorkerLow
+	resarea 255 AtL 255 Ore 6000 expWorkerStd
+	max_workers 6
+	wait 300
+	local 255 AtL 6 scv expWorkerLow
+	res 13 AtL_W Ore 50 blank
+	call wWorkerDef
+	queue 1 scv command_center 255 Local Loc.63 80
+	goto expWorkerLow
+	
+	:bldOrderExp
+	wait 300
+	p_need 1 barracks
+	wait 900
+	call wArm
+	wait 1800
+	call wEng
+	wait 1800
+	call wAcad
+	wait 1800
+	call wSci
+	wait 1200
+	call wArm
+	stop
+	
+	:wEng
+	wait 12
+	notowns command_center wEng
+	bring 13 AtL 3 engineering_bay Loc.63 blank
+	local 255 AtL 2 engineering_bay wEng2
+	call wUpgradeDef
+	add_bld 255 engineering_bay 1 2 66
+	return
+	
+	:wEng2
+	p_need 1 engineering_bay
+	return
+	
+	:wAcad
+	wait 12
+	notowns barracks wAcad
+	bring 13 AtL 2 academy Loc.63 blank
+	bring 13 AtL 1 academy Loc.63 wAcad2
+	call wUpgradeDef
+	add_bld 255 academy 1 1 66
+	return
+	
+	:wAcad2
+	p_need 1 academy
+	return
+	
+	:wArm
+	wait 12
+	notowns command_center wArm
+	bring 13 AtL 4 armory Loc.63 blank
+	local 255 AtL 3 armory wArm2
+	call wUpgradeDef
+	add_bld 255 armory 1 3 66
+	return
+	
+	:wArm2
+	p_need 1 armory
+	return
+	
+	:wSci
+	wait 12
+	notowns armory wSci
+	bring 13 AtL 2 science_facility Loc.63 blank
+	bring 13 AtL 1 science_facility Loc.63 wSci2
+	call wUpgradeDef
+	add_bld 255 science_facility 1 1 66
+	return
+	
+	:wSci2
+	p_need 1 science_facility
+	return
+	
+	:addBunker
+	var Ex|wait canStatic 1 13
+	wait 12
+	notowns barracks addBunker
+	call wUpgradeDef
+	res 13 AtL_C Ore 125 addBunkerCheck
+	wait 720
+	goto addBunker
+	
+	:addBunkerCheck
+	add_bld 255 bunker 1 1
+	local 255 AtL 1 bunker addReturn
+	p_guard marine 0
+	p_guard marine 0
+	p_guard marine 1
+	p_guard firebat 0
+	goto addReturn
+	
+	:addTurret
+	wait 12
+	notowns engineering_bay addTurret
+	call wUpgradeDef
+	res 13 AtL_C Ore 125 addTurretCheck
+	wait 480
+	goto addTurret
+	
+	:addTurretCheck
+	local 255 AtL 3 missile_turret addTurretCheck2
+	add_bld 255 missile_turret 1 3 64
+	goto addReturn
+	
+	:addTurretCheck2
+	var Ex|jump underAttack 0 blankReturn 13
+	local 255 AtL 6 missile_turret addReturn
+	add_bld 255 missile_turret 1 6 64
+	goto addReturn
+	
+	:addProd
+	var AtL|wait townCount 1 13
+	local 255 AtL_W 1 command_center blank
+	dth 13 Ex 1 crashed_battle addProdMech
+	dth 13 Ex 2 crashed_battle addProdBio
+	dth 13 Ex 3 crashed_battle addProdAir
+	
+	:addProdGen
+	wait 12
+	res 13 AtL_W Ore 300 blank
+	var Ex|wait canProd 1 13
+	dth 13 Set 0 psi_disrupter blank
+	res 13 AtL_C Any 400 addFactoryCheck
+	dth 13 AtL 1 psi_disrupter addProdGen
+	res 13 AtL_C Any 300 addStarportCheck
+	dth 13 AtL 1 psi_disrupter addProdGen
+	res 13 AtL_C Ore 300 addBarracksCheck
+	wait 300
+	bring 13 AtM 3 barracks|factory|starport Loc.63 addProdGen
+	wait 1200
+	goto addProdGen
+	
+	:addProdMech
+	wait 12
+	res 13 AtL_W Ore 300 blank
+	var Ex|wait canProd 1 13
+	dth 13 Set 0 psi_disrupter blank
+	res 13 AtL_C Any 400 addFactoryCheck
+	dth 13 AtL 1 psi_disrupter addProdMech
+	res 13 AtL_C Ore 300 addBarracksCheck
+	dth 13 AtL 1 psi_disrupter addProdMech
+	res 13 AtL_C Any 300 addStarportCheck
+	wait 300
+	bring 13 AtM 3 barracks|factory|starport Loc.63 addProdMech
+	wait 1200
+	goto addProdMech
+	
+	:addProdBio
+	wait 12
+	res 13 AtL_W Ore 300 blank
+	var Ex|wait canProd 1 13
+	dth 13 Set 0 psi_disrupter blank
+	res 13 AtL_C Ore 300 addBarracksCheck
+	dth 13 AtL 1 psi_disrupter addProdBio
+	res 13 AtL_C Any 300 addStarportCheck
+	dth 13 AtL 1 psi_disrupter addProdBio
+	res 13 AtL_C Any 400 addFactoryCheck
+	wait 300
+	bring 13 AtM 3 barracks|factory|starport Loc.63 addProdBio
+	wait 1200
+	goto addProdBio
+	
+	:addProdAir
+	res 13 AtL_W Ore 300 blank
+	var Ex|wait canProd 1 13
+	dth 13 Set 0 psi_disrupter blank
+	res 13 AtL_C Any 300 addStarportCheck
+	dth 13 AtL 1 psi_disrupter addProdAir
+	res 13 AtL_C Ore 300 addBarracksCheck
+	dth 13 AtL 1 psi_disrupter addProdAir
+	res 13 AtL_C Any 400 addFactoryCheck
+	wait 300
+	bring 13 AtM 3 barracks|factory|starport Loc.63 addProdAir
+	wait 1200
+	goto addProdAir
+	
+	:addBarracksCheck
+	wait 12
+	notowns command_center addBarracksCheck
+	res 13 AtM Ore 149 addBarracksCheck
+	resarea 255 AtL 255 Ore 12000 addBarracksMax
+	resarea 255 AtL 255 Ore 6000 addBarracksMed
+	
+	:addBarracksMin
+	dth 13 Ex 1 crashed_battle addBarracksMinMech
+	dth 13 Ex 2 crashed_battle addBarracksMinBio
+	dth 13 Ex 3 crashed_battle addBarracksMinAir
+	local 255 AtL 2 barracks addReturn
+	add_bld 255 barracks 1 2 72
+	add_bld 255 medbay 1 1 72
+	goto addProdSuccess
+	
+	:addBarracksMinMech
+	local 255 AtL 1 barracks addReturn
+	add_bld 255 barracks 1 1 72
+	goto addProdSuccess
+	
+	:addBarracksMinBio
+	local 255 AtL 2 barracks addReturn
+	add_bld 255 barracks 1 2 72
+	local 255 AtL 1 medbay addBarracksMinBio2
+	add_bld 255 medbay 1 1 72
+	goto addProdSuccess
+	
+	:addBarracksMinBio2
+	add_bld 255 covert_ops 1 1 72
+	goto addProdSuccess
+	
+	:addBarracksMinAir
+	local 255 AtL 1 barracks addReturn
+	add_bld 255 barracks 1 1 72
+	local 255 AtL 1 medbay|covert_ops addProdSuccess
+	rand_j 128 addBarracksMinAir2
+	add_bld 255 medbay 1 1 72
+	goto addProdSuccess
+	
+	:addBarracksMinAir2
+	add_bld 255 covert_ops 1 1 72
+	goto addProdSuccess
+	
+	:addBarracksMax
+	dth 13 Ex 1 crashed_battle addBarracksMaxMech
+	dth 13 Ex 2 crashed_battle addBarracksMaxBio
+	dth 13 Ex 3 crashed_battle addBarracksMaxAir
+	local 255 AtL 6 barracks addReturn
+	add_bld 255 barracks 1 6 72
+	local 255 AtL 4 medbay|covert_ops addProdSuccess
+	local 255 AtL 2 medbay addBarracksMaxGen2
+	rand_j 128 addBarracksMaxGen2
+	
+	:addBarracksMaxGen
+	add_bld 255 medbay 1 2 72
+	goto addProdSuccess
+	
+	:addBarracksMaxGen2
+	local 255 AtL 2 covert_ops addBarracksMaxGen
+	add_bld 255 covert_ops 1 2 72
+	goto addProdSuccess
+	
+	:addBarracksMaxMech
+	local 255 AtL 3 barracks addReturn
+	add_bld 255 barracks 1 3 72
+	add_bld 255 medbay 1 1 72
+	goto addProdSuccess
+	
+	:addBarracksMaxBio
+	local 255 AtL 8 barracks addReturn
+	add_bld 255 barracks 1 8 72
+	local 255 AtL 6 medbay|covert_ops addProdSuccess
+	local 255 AtL 3 medbay addBarracksMaxBio3
+	rand_j 128 addBarracksMaxBio3
+	
+	:addBarracksMaxBio2
+	add_bld 255 medbay 1 3 72
+	goto addProdSuccess
+	
+	:addBarracksMaxBio3
+	local 255 AtL 3 covert_ops addBarracksMaxBio2
+	add_bld 255 covert_ops 1 3 72
+	goto addProdSuccess
+	
+	:addBarracksMaxAir
+	local 255 AtL 4 barracks addReturn
+	add_bld 255 barracks 1 4 72
+	local 255 AtL 2 medbay|covert_ops addProdSuccess
+	local 255 AtL 1 medbay addBarracksMaxAir3
+	rand_j 128 addBarracksMaxAir3
+	
+	:addBarracksMaxAir2
+	add_bld 255 medbay 1 1 72
+	goto addProdSuccess
+	
+	:addBarracksMaxAir3
+	local 255 AtL 1 covert_ops addBarracksMaxAir2
+	add_bld 255 covert_ops 1 1 72
+	goto addProdSuccess
+	
+	:addBarracksMed
+	dth 13 Ex 1 crashed_battle addBarracksMinBio
+	dth 13 Ex 2 crashed_battle addBarracksMedBio
+	dth 13 Ex 3 crashed_battle addBarracksMinBio
+	goto addBarracksMaxAir
+	
+	:addBarracksMedBio
+	local 255 AtL 5 barracks addReturn
+	add_bld 255 barracks 1 5 72
+	local 255 AtL 3 medbay|covert_ops addProdSuccess
+	local 255 AtL 2 medbay addBarracksMedBio3
+	
+	:addBarracksMedBio2
+	add_bld 255 medbay 1 2 72
+	goto addProdSuccess
+	
+	:addBarracksMedBio3
+	local 255 AtL 2 covert_ops addBarracksMedBio2
+	add_bld 255 covert_ops 1 2 72
+	goto addProdSuccess
+	
+	:addFactoryCheck
+	wait 12
+	notowns armory addFactoryCheck
+	res 13 AtM Ore 199 addFactoryCheck
+	res 13 AtM Gas 99 addFactoryCheck
+	resarea 255 AtL 255 Ore 12000 addFactoryMax
+	resarea 255 AtL 255 Ore 6000 addFactoryMed
+	
+	:addFactoryMin
+	dth 13 Ex 1 crashed_battle addFactoryMinMech
+	dth 13 Ex 3 crashed_battle addFactoryMinAir
+	local 255 AtL 1 factory addReturn
+	add_bld 255 factory 1 1 72
+	add_bld 255 machine_shop 1 1 72
+	goto addProdSuccess
+	
+	:addFactoryMinMech
+	local 255 AtL 2 factory addReturn
+	add_bld 255 factory 1 2 72
+	add_bld 255 machine_shop 1 1 72
+	goto addProdSuccess
+	
+	:addFactoryMinAir
+	local 255 AtL 1 factory addReturn
+	add_bld 255 factory 1 1 72
+	goto addProdSuccess
+	
+	:addFactoryMax
+	dth 13 Ex 1 crashed_battle addFactoryMaxMech
+	dth 13 Ex 2 crashed_battle addFactoryMaxBio
+	dth 13 Ex 3 crashed_battle addFactoryMaxAir
+	local 255 AtL 5 factory addReturn
+	add_bld 255 factory 1 5 72
+	add_bld 255 machine_shop 1 3 72
+	goto addProdSuccess
+	
+	:addFactoryMaxMech
+	local 255 AtL 6 factory addReturn
+	add_bld 255 factory 1 6 72
+	add_bld 255 machine_shop 1 4 72
+	goto addProdSuccess
+	
+	:addFactoryMaxBio
+	local 255 AtL 4 factory addReturn
+	add_bld 255 factory 1 4 72
+	add_bld 255 machine_shop 1 2 72
+	goto addProdSuccess
+	
+	:addFactoryMaxAir
+	local 255 AtL 3 factory addReturn
+	add_bld 255 factory 1 3 72
+	add_bld 255 machine_shop 1 1 72
+	goto addProdSuccess
+	
+	:addFactoryMed
+	dth 13 Ex 1 crashed_battle addFactoryMedMech
+	dth 13 Ex 2 crashed_battle addFactoryMedBio
+	dth 13 Ex 3 crashed_battle addFactoryMedAir
+	local 255 AtL 3 factory addReturn
+	add_bld 255 factory 1 3 72
+	add_bld 255 machine_shop 1 2 72
+	goto addProdSuccess
+	
+	:addFactoryMedMech
+	local 255 AtL 3 factory addReturn
+	add_bld 255 factory 1 3 72
+	add_bld 255 machine_shop 1 2 72
+	goto addProdSuccess
+	
+	:addFactoryMedBio
+	local 255 AtL 2 factory addReturn
+	add_bld 255 factory 1 2 72
+	add_bld 255 machine_shop 1 2 72
+	goto addProdSuccess
+	
+	:addFactoryMedAir
+	local 255 AtL 2 factory addReturn
+	add_bld 255 factory 1 2 72
+	add_bld 255 machine_shop 1 1 72
+	goto addProdSuccess
+	
+	:addStarportCheck
+	wait 12
+	notowns armory addStarportCheck
+	res 13 AtM Ore 149 addStarportCheck
+	res 13 AtM Gas 99 addStarportCheck
+	resarea 255 AtL 255 Ore 12000 addStarportMax
+	resarea 255 AtL 255 Ore 6000 addStarportMed
+	
+	:addStarportMin
+	dth 13 Ex 1 crashed_battle addStarportMinMech
+	dth 13 Ex 3 crashed_battle addStarportMinAir
+	local 255 AtL 1 starport addReturn
+	add_bld 255 starport 1 1 72
+	dth 13 Ex 2 crashed_battle addProdSuccess
+	add_bld 255 control_tower 1 1 72
+	dth 13 Set 1 psi_disrupter blank
+	goto addProdSuccess
+	
+	:addStarportMinMech
+	local 255 AtL 1 starport addReturn
+	add_bld 255 starport 1 1 72
+	local 255 AtL 1 control_tower|physics_lab addProdSuccess
+	rand_j 85 addStarportMinMech2
+	add_bld 255 control_tower 1 1 72
+	goto addProdSuccess
+	
+	:addStarportMinMech2
+	add_bld 255 physics_lab 1 1 72
+	goto addProdSuccess
+	
+	:addStarportMinAir
+	local 255 AtL 2 starport addReturn
+	add_bld 255 starport 1 2 72
+	local 255 AtL 2 control_tower|physics_lab addProdSuccess
+	rand_j 85 addStarportMinAir3
+	
+	:addStarportMinAir2
+	add_bld 255 control_tower 1 2 72
+	goto addProdSuccess
+	
+	:addStarportMinAir3
+	local 255 AtL 1 physics_lab addStarportMinAir2
+	add_bld 255 physics_lab 1 1 72
+	goto addProdSuccess
+	
+	:addStarportMax
+	dth 13 Ex 1 crashed_battle addStarportMaxMech
+	dth 13 Ex 2 crashed_battle addStarportMaxBio
+	dth 13 Ex 3 crashed_battle addStarportMaxAir
+	local 255 AtL 4 starport addReturn
+	add_bld 255 starport 1 4 72
+	local 255 AtL 3 control_tower|physics_lab addProdSuccess
+	rand_j 85 addStarportMaxGen3
+	
+	:addStarportMaxGen2
+	add_bld 255 control_tower 1 2 72
+	goto addProdSuccess
+	
+	:addStarportMaxGen3
+	local 255 AtL 1 physics_lab addStarportMaxGen2
+	add_bld 255 physics_lab 1 1 72
+	goto addProdSuccess
+	
+	:addStarportMaxMech
+	local 255 AtL 2 starport addReturn
+	add_bld 255 starport 1 2 72
+	add_bld 255 control_tower 1 2 72
+	goto addProdSuccess
+	
+	:addStarportMaxBio
+	local 255 AtL 3 starport addReturn
+	add_bld 255 starport 1 3 72
+	local 255 AtL 2 control_tower|physics_lab addProdSuccess
+	rand_j 85 addStarportMaxBio3
+	
+	:addStarportMaxBio2
+	add_bld 255 control_tower 1 2 72
+	goto addProdSuccess
+	
+	:addStarportMaxBio3
+	local 255 AtL 1 physics_lab addStarportMaxBio2
+	add_bld 255 physics_lab 1 1 72
+	goto addProdSuccess
+	
+	:addStarportMaxAir
+	local 255 AtL 5 starport addReturn
+	add_bld 255 starport 1 5 72
+	local 255 AtL 4 control_tower|physics_lab addProdSuccess
+	rand_j 85 addStarportMaxAir3
+	
+	:addStarportMaxAir2
+	add_bld 255 control_tower 1 4 72
+	goto addProdSuccess
+	
+	:addStarportMaxAir3
+	local 255 AtL 2 physics_lab addStarportMaxAir2
+	add_bld 255 physics_lab 1 2 72
+	goto addProdSuccess
+	
+	:addStarportMed
+	dth 13 Ex 1 crashed_battle addStarportMedMech
+	dth 13 Ex 2 crashed_battle addStarportMedBio
+	dth 13 Ex 3 crashed_battle addStarportMedAir
+	local 255 AtL 3 starport addReturn
+	add_bld 255 starport 1 2 72
+	add_bld 255 control_tower 1 1 72
+	goto addProdSuccess
+	
+	:addStarportMedMech
+	local 255 AtL 2 starport addReturn
+	add_bld 255 starport 1 2 72
+	add_bld 255 control_tower 1 1 72
+	goto addProdSuccess
+	
+	:addStarportMedBio
+	local 255 AtL 3 starport addReturn
+	add_bld 255 starport 1 3 72
+	local 255 AtL 3 control_tower|physics_lab addProdSuccess
+	rand_j 85 addStarportMedBio3
+	
+	:addStarportMedBio2
+	add_bld 255 control_tower 1 2 72
+	goto addProdSuccess
+	
+	:addStarportMedBio3
+	local 255 AtL 1 physics_lab addStarportMedBio2
+	add_bld 255 physics_lab 1 1 72
+	goto addProdSuccess
+	
+	:addStarportMedAir
+	local 255 AtL 4 starport addReturn
+	add_bld 255 starport 1 4 72
+	local 255 AtL 4 control_tower|physics_lab addProdSuccess
+	rand_j 85 addStarportMedAir3
+	
+	:addStarportMedAir2
+	add_bld 255 control_tower 1 4 72
+	goto addProdSuccess
+	
+	:addStarportMedAir3
+	local 255 AtL 1 physics_lab addStarportMedAir2
+	add_bld 255 physics_lab 1 1 72
+	
+	:addProdSuccess
+	dth 13 Set 1 psi_disrupter blank
+	
+	:addReturn
+	wait 24
+	return 
