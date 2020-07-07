@@ -86,7 +86,7 @@ script_id PARx
 	goto expWorkerLow
 	
 	:bldOrderExp
-	bring 13 AtL_W 1 gateway|principality|warp_anchor Loc.63 blank
+	bring 13 AtL_W 1 gateway|principality|vicarage Loc.63 blank
 	p_need 1 gateway
 	wait 24
 	call wCyb
@@ -316,7 +316,7 @@ script_id PARx
 	dth 13 Ex 2 crashed_battle addGatewayMinGate
 	
 	:addGatewayMinGen
-	local 255 AtL 2 gateway|principality|warp_anchor addReturn
+	local 255 AtL 2 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 2 72
 	rand_j 64 addGatewayMinGen2
 	rand_j 51 addGatewayMinGen3
@@ -327,18 +327,18 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMinGen3
-	add_bld 255 warp_anchor 1 2 72
+	add_bld 255 vicarage 1 2 72
 	goto addProdSuccess
 	
 	:addGatewayMinMech
-	local 255 AtL 2 gateway|principality|warp_anchor addReturn
+	local 255 AtL 2 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 2 72
 	rand_j 85 addGatewayMinMech2
 	rand_j 51 addGatewayMinMech3
 	goto addProdSuccess
 	
 	:addGatewayMinMech2
-	add_bld 255 warp_anchor 1 2 72
+	add_bld 255 vicarage 1 2 72
 	goto addProdSuccess
 	
 	:addGatewayMinMech3
@@ -346,7 +346,7 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMinGate
-	local 255 AtL 3 gateway|principality|warp_anchor addReturn
+	local 255 AtL 3 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 3 72
 	rand_j 85 addGatewayMinGate2
 	rand_j 51 addGatewayMinGate3
@@ -357,7 +357,7 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMinGate3
-	add_bld 255 warp_anchor 1 3 72
+	add_bld 255 vicarage 1 3 72
 	goto addProdSuccess
 	
 	:addGatewayMax
@@ -366,7 +366,7 @@ script_id PARx
 	dth 13 Ex 3 crashed_battle addGatewayMaxAir
 	
 	:addGatewayMaxGen
-	local 255 AtL 8 gateway|principality|warp_anchor addReturn
+	local 255 AtL 8 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 8 72
 	rand_j 64 addGatewayMaxGen2
 	rand_j 51 addGatewayMaxGen3
@@ -377,18 +377,18 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMaxGen3
-	add_bld 255 warp_anchor 1 8 72
+	add_bld 255 vicarage 1 8 72
 	goto addProdSuccess
 	
 	:addGatewayMaxMech
-	local 255 AtL 6 gateway|principality|warp_anchor addReturn
+	local 255 AtL 6 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 6 72
 	rand_j 85 addGatewayMaxMech2
 	rand_j 51 addGatewayMaxMech3
 	goto addProdSuccess
 	
 	:addGatewayMaxMech2
-	add_bld 255 warp_anchor 1 6 72
+	add_bld 255 vicarage 1 6 72
 	goto addProdSuccess
 	
 	:addGatewayMaxMech3
@@ -396,7 +396,7 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMaxGate
-	local 255 AtL 10 gateway|principality|warp_anchor addReturn
+	local 255 AtL 10 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 10 72
 	rand_j 85 addGatewayMaxGate2
 	rand_j 51 addGatewayMaxGate3
@@ -407,11 +407,11 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMaxGate3
-	add_bld 255 warp_anchor 1 10 72
+	add_bld 255 vicarage 1 10 72
 	goto addProdSuccess
 	
 	:addGatewayMaxAir
-	local 255 AtL 10 gateway|principality|warp_anchor addReturn
+	local 255 AtL 10 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 10 72
 	rand_j 64 addGatewayMaxAir2
 	rand_j 51 addGatewayMaxAir3
@@ -422,7 +422,7 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMaxAir3
-	add_bld 255 warp_anchor 1 10 72
+	add_bld 255 vicarage 1 10 72
 	goto addProdSuccess
 	
 	:addGatewayMed
@@ -431,7 +431,7 @@ script_id PARx
 	dth 13 Ex 3 crashed_battle addGatewayMedAir
 	
 	:addGatewayMedGen
-	local 255 AtL 5 gateway|principality|warp_anchor addReturn
+	local 255 AtL 5 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 5 72
 	rand_j 64 addGatewayMedGen2
 	rand_j 51 addGatewayMedGen3
@@ -442,18 +442,18 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMedGen3
-	add_bld 255 warp_anchor 1 5 72
+	add_bld 255 vicarage 1 5 72
 	goto addProdSuccess
 	
 	:addGatewayMedMech
-	local 255 AtL 4 gateway|principality|warp_anchor addReturn
+	local 255 AtL 4 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 4 72
 	rand_j 85 addGatewayMedMech2
 	rand_j 51 addGatewayMedMech3
 	goto addProdSuccess
 	
 	:addGatewayMedMech2
-	add_bld 255 warp_anchor 1 4 72
+	add_bld 255 vicarage 1 4 72
 	goto addProdSuccess
 	
 	:addGatewayMedMech3
@@ -461,7 +461,7 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMedGate
-	local 255 AtL 5 gateway|principality|warp_anchor addReturn
+	local 255 AtL 5 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 5 72
 	rand_j 85 addGatewayMedGate2
 	rand_j 51 addGatewayMedGate3
@@ -472,11 +472,11 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMedGate3
-	add_bld 255 warp_anchor 1 5 72
+	add_bld 255 vicarage 1 5 72
 	goto addProdSuccess
 	
 	:addGatewayMedAir
-	local 255 AtL 4 gateway|principality|warp_anchor addReturn
+	local 255 AtL 4 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 4 72
 	rand_j 64 addGatewayMedAir2
 	rand_j 51 addGatewayMedAir3
@@ -487,7 +487,7 @@ script_id PARx
 	goto addProdSuccess
 	
 	:addGatewayMedAir3
-	add_bld 255 warp_anchor 1 4 72
+	add_bld 255 vicarage 1 4 72
 	goto addProdSuccess
 	
 	:addRoboCheck

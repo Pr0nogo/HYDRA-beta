@@ -742,6 +742,14 @@ script_id TMCx
 	w_upg
 	call wUpgradeDef
 	extupg 1 augustgrads_revenge 88
+	wait 4000
+	w_upg
+	call wUpgradeDef
+	extupg 1 ground_zero 88
+	wait 4000
+	w_upg
+	call wUpgradeDef
+	extupg 1 peer_reviewed_destruction 88
 	goto wUpgrade
 	
 	:upgGenGhost

@@ -215,7 +215,7 @@ script_id PMCx
 	:wAttack
 	wait 24
 	bring 13 AtM 12 probe Loc.63 wAttack
-	bring 13 AtM 1 gateway|principality|warp_anchor|robotics_facility|robotics_authority|stargate|argosy|starfield Loc.63 wAttack
+	bring 13 AtM 1 gateway|principality|vicarage|robotics_facility|robotics_authority|stargate|argosy|starfield Loc.63 wAttack
 	bring 13 AtL 10 Group_Factories Loc.63 blankReturn
 	res 13 AtL Any 999 blankReturn
 	var Ex|WF(360) underAttack 0 13
@@ -524,6 +524,7 @@ script_id PMCx
 	multi upgCybWeaponCheck
 	multi upgCitZealotCheck
 	multi upgCitLegionCheck
+	multi upgCitDTemplarCheck
 	multi upgRoboClarionCheck
 	multi upgRoboReaverCheck
 	multi upgRoboRelayCheck
@@ -642,7 +643,7 @@ script_id PMCx
 	:upgShieldsGate
 	wait 12
 	var AtL|jump townCount 3 blankReturn 13
-	bring 13 AtM 6 gateway|principality|warp_anchor Loc.63 upgShieldsGate
+	bring 13 AtM 6 gateway|principality|vicarage Loc.63 upgShieldsGate
 	return
 	
 	:upgForgeUtilityCheck
@@ -692,7 +693,7 @@ script_id PMCx
 	:upgCybStrider2
 	wait 12
 	notowns cybernetics_core upgCybStrider2
-	bring 13 AtM 1 warp_anchor Loc.63 upgCybStrider2
+	bring 13 AtM 1 vicarage Loc.63 upgCybStrider2
 	wait 240
 	call wUpgradeDef
 	upg_queue 1 signify_malice 88
@@ -701,7 +702,7 @@ script_id PMCx
 	:upgStriderGen
 	wait 12
 	var AtL|jump townCount 2 blankReturn 13
-	bring 13 AtM 4 gateway|principality|warp_anchor Loc.63 upgStriderGen
+	bring 13 AtM 4 gateway|principality|vicarage Loc.63 upgStriderGen
 	return
 	
 	:upgCybWeaponCheck
@@ -784,8 +785,8 @@ script_id PMCx
 	
 	:upgZealotGen
 	wait 12
-	var AtL|jump townCount 3 blankReturn 13
-	bring 13 AtM 3 gateway|principality|warp_anchor Loc.63 upgZealotGen
+	var AtL|jump townCount 2 blankReturn 13
+	bring 13 AtM 3 gateway|principality|vicarage Loc.63 upgZealotGen
 	return
 	
 	:upgCitLegionCheck
@@ -798,6 +799,24 @@ script_id PMCx
 	call wUpgradeDef
 	upg_queue 1 blade_vortex 88
 	goto wUpgrade
+	
+	:upgCitDTemplarCheck
+	dth 13 AtM_C 1 crashed_battle upgDTemplarGen
+	dth 13 AtL_C 3 crashed_battle upgDTemplarGen
+	
+	:upgCitDTemplar
+	wait 12
+	notowns citadel_of_adun upgCitDTemplar
+	notowns templar_archives upgCitDTemplar
+	call wUpgradeDef
+	extupgrade 1 silent_strikes 88
+	goto wUpgrade
+	
+	:upgDTemplarGen
+	wait 12
+	var AtL|jump townCount 3 blankReturn 13
+	bring 13 AtM 5 gateway|principality|vicarage Loc.63 upgDTemplarGen
+	return
 	
 	:upgRoboShuttleCheck
 	call upgShuttleGen
@@ -1090,7 +1109,7 @@ script_id PMCx
 	:upgDArchonGate
 	wait 12
 	var AtL|jump townCount 3 blankReturn 13
-	bring 13 AtM 6 gateway|principality|warp_anchor Loc.63 upgDArchonGate
+	bring 13 AtM 6 gateway|principality|vicarage Loc.63 upgDArchonGate
 	return
 	
 	:upgObsCheck
@@ -2039,7 +2058,7 @@ script_id PMCx
 	stop
 	
 	:bldOrderExp
-	bring 13 AtL_W 1 gateway|principality|warp_anchor Loc.63 blank
+	bring 13 AtL_W 1 gateway|principality|vicarage Loc.63 blank
 	call wCyb
 	wait 900
 	call wCit
@@ -2291,7 +2310,7 @@ script_id PMCx
 	dth 13 Ex 2 crashed_battle addGatewayMinGate
 	
 	:addGatewayMinGen
-	local 255 AtL 2 gateway|principality|warp_anchor addReturn
+	local 255 AtL 2 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 2 72
 	rand_j 64 addGatewayMinGen2
 	rand_j 51 addGatewayMinGen3
@@ -2302,18 +2321,18 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMinGen3
-	add_bld 255 warp_anchor 1 2 72
+	add_bld 255 vicarage 1 2 72
 	goto addProdSuccess
 	
 	:addGatewayMinMech
-	local 255 AtL 2 gateway|principality|warp_anchor addReturn
+	local 255 AtL 2 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 2 72
 	rand_j 85 addGatewayMinMech2
 	rand_j 51 addGatewayMinMech3
 	goto addProdSuccess
 	
 	:addGatewayMinMech2
-	add_bld 255 warp_anchor 1 2 72
+	add_bld 255 vicarage 1 2 72
 	goto addProdSuccess
 	
 	:addGatewayMinMech3
@@ -2321,7 +2340,7 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMinGate
-	local 255 AtL 3 gateway|principality|warp_anchor addReturn
+	local 255 AtL 3 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 3 72
 	rand_j 85 addGatewayMinGate2
 	rand_j 51 addGatewayMinGate3
@@ -2332,7 +2351,7 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMinGate3
-	add_bld 255 warp_anchor 1 3 72
+	add_bld 255 vicarage 1 3 72
 	goto addProdSuccess
 	
 	:addGatewayMax
@@ -2341,7 +2360,7 @@ script_id PMCx
 	dth 13 Ex 3 crashed_battle addGatewayMaxAir
 	
 	:addGatewayMaxGen
-	local 255 AtL 8 gateway|principality|warp_anchor addReturn
+	local 255 AtL 8 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 8 72
 	rand_j 64 addGatewayMaxGen2
 	rand_j 51 addGatewayMaxGen3
@@ -2352,18 +2371,18 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMaxGen3
-	add_bld 255 warp_anchor 1 8 72
+	add_bld 255 vicarage 1 8 72
 	goto addProdSuccess
 	
 	:addGatewayMaxMech
-	local 255 AtL 6 gateway|principality|warp_anchor addReturn
+	local 255 AtL 6 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 6 72
 	rand_j 85 addGatewayMaxMech2
 	rand_j 51 addGatewayMaxMech3
 	goto addProdSuccess
 	
 	:addGatewayMaxMech2
-	add_bld 255 warp_anchor 1 6 72
+	add_bld 255 vicarage 1 6 72
 	goto addProdSuccess
 	
 	:addGatewayMaxMech3
@@ -2371,7 +2390,7 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMaxGate
-	local 255 AtL 10 gateway|principality|warp_anchor addReturn
+	local 255 AtL 10 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 10 72
 	rand_j 85 addGatewayMaxGate2
 	rand_j 51 addGatewayMaxGate3
@@ -2382,11 +2401,11 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMaxGate3
-	add_bld 255 warp_anchor 1 10 72
+	add_bld 255 vicarage 1 10 72
 	goto addProdSuccess
 	
 	:addGatewayMaxAir
-	local 255 AtL 10 gateway|principality|warp_anchor addReturn
+	local 255 AtL 10 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 10 72
 	rand_j 64 addGatewayMaxAir2
 	rand_j 51 addGatewayMaxAir3
@@ -2397,7 +2416,7 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMaxAir3
-	add_bld 255 warp_anchor 1 10 72
+	add_bld 255 vicarage 1 10 72
 	goto addProdSuccess
 	
 	:addGatewayMed
@@ -2406,7 +2425,7 @@ script_id PMCx
 	dth 13 Ex 3 crashed_battle addGatewayMedAir
 	
 	:addGatewayMedGen
-	local 255 AtL 5 gateway|principality|warp_anchor addReturn
+	local 255 AtL 5 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 5 72
 	rand_j 64 addGatewayMedGen2
 	rand_j 51 addGatewayMedGen3
@@ -2417,18 +2436,18 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMedGen3
-	add_bld 255 warp_anchor 1 5 72
+	add_bld 255 vicarage 1 5 72
 	goto addProdSuccess
 	
 	:addGatewayMedMech
-	local 255 AtL 4 gateway|principality|warp_anchor addReturn
+	local 255 AtL 4 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 4 72
 	rand_j 85 addGatewayMedMech2
 	rand_j 51 addGatewayMedMech3
 	goto addProdSuccess
 	
 	:addGatewayMedMech2
-	add_bld 255 warp_anchor 1 4 72
+	add_bld 255 vicarage 1 4 72
 	goto addProdSuccess
 	
 	:addGatewayMedMech3
@@ -2436,7 +2455,7 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMedGate
-	local 255 AtL 5 gateway|principality|warp_anchor addReturn
+	local 255 AtL 5 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 5 72
 	rand_j 85 addGatewayMedGate2
 	rand_j 51 addGatewayMedGate3
@@ -2447,11 +2466,11 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMedGate3
-	add_bld 255 warp_anchor 1 5 72
+	add_bld 255 vicarage 1 5 72
 	goto addProdSuccess
 	
 	:addGatewayMedAir
-	local 255 AtL 4 gateway|principality|warp_anchor addReturn
+	local 255 AtL 4 gateway|principality|vicarage addReturn
 	add_bld 255 gateway 1 4 72
 	rand_j 64 addGatewayMedAir2
 	rand_j 51 addGatewayMedAir3
@@ -2462,7 +2481,7 @@ script_id PMCx
 	goto addProdSuccess
 	
 	:addGatewayMedAir3
-	add_bld 255 warp_anchor 1 4 72
+	add_bld 255 vicarage 1 4 72
 	goto addProdSuccess
 	
 	:addRoboCheck
@@ -2720,7 +2739,7 @@ script_id PMCx
 	return
 	
 	:pScale
-	bring 13 AtL_W 2 gateway|principality|warp_anchor|robotics_facility|robotics_authority|stargate|argosy|starfield Loc.63 blank
+	bring 13 AtL_W 2 gateway|principality|vicarage|robotics_facility|robotics_authority|stargate|argosy|starfield Loc.63 blank
 	dth 13 Ex 1 crashed_battle pScaleExp
 	dth 13 Ex 2 crashed_battle pScaleAtk
 	dth 13 Ex 3 crashed_battle pScaleExp
@@ -2801,9 +2820,9 @@ script_id PMCx
 	dth 13 Ex 3 crashed_battle addAir
 	
 	:addGen
-	unit_check 13 13 63 Greater 0 0 gateway|principality|warp_anchor robotics_facility|robotics_authority|stargate|argosy|starfield addGate 13
-	unit_check 13 13 63 Greater 0 0 robotics_facility|robotics_authority gateway|principality|warp_anchor|stargate|argosy|starfield addMech 13
-	unit_check 13 13 63 Greater 0 0 stargate|argosy|starfield gateway|principality|warp_anchor|robotics_facility|robotics_authority addAir 13
+	unit_check 13 13 63 Greater 0 0 gateway|principality|vicarage robotics_facility|robotics_authority|stargate|argosy|starfield addGate 13
+	unit_check 13 13 63 Greater 0 0 robotics_facility|robotics_authority gateway|principality|vicarage|stargate|argosy|starfield addMech 13
+	unit_check 13 13 63 Greater 0 0 stargate|argosy|starfield gateway|principality|vicarage|robotics_facility|robotics_authority addAir 13
 	
 	:addGate
 	call atkGate
@@ -2826,63 +2845,63 @@ script_id PMCx
 	:atkGate
 	dth 13 Ex 1 crashed_battle atkGateMech
 	dth 13 Ex 3 crashed_battle atkGateAir
-	bring 13 AtL_C 6 gateway|warp_anchor Loc.63 atkZealotGateMax
-	bring 13 AtM_C 5 gateway|warp_anchor Loc.63 atkZealotGateMin
+	bring 13 AtL_C 6 gateway|vicarage Loc.63 atkZealotGateMax
+	bring 13 AtM_C 5 gateway|vicarage Loc.63 atkZealotGateMin
 	bring 13 AtL_C 1 principality Loc.63 atkLegionGate
 	bring 13 AtL_C 1 cybernetics_core Loc.63 atkDragoonGate
-	bring 13 AtL_C 1 warp_anchor Loc.63 atkHierophantGate
+	bring 13 AtL_C 1 vicarage Loc.63 atkHierophantGate
 	bring 13 AtL_C 1 templar_archives Loc.63 atkTemplarGate
 	bring 13 AtL_C 1 templar_archives Loc.63 atkDTemplarGate
 	return
 	
 	:atkGateMech
 	bring 13 AtL_C 1 cybernetics_core Loc.63 atkDragoonRanger
-	bring 13 AtL_C 1 warp_anchor Loc.63 atkHierophantRanger
-	bring 13 AtL_C 6 gateway|warp_anchor Loc.63 atkZealotRangerMax
-	bring 13 AtM_C 5 gateway|warp_anchor Loc.63 atkZealotRangerMin
+	bring 13 AtL_C 1 vicarage Loc.63 atkHierophantRanger
+	bring 13 AtL_C 6 gateway|vicarage Loc.63 atkZealotRangerMax
+	bring 13 AtM_C 5 gateway|vicarage Loc.63 atkZealotRangerMin
 	bring 13 AtL_C 1 templar_archives Loc.63 atkTemplarRanger
 	bring 13 AtL_C 1 principality Loc.63 atkLegionGen
 	bring 13 AtL_C 1 templar_archives Loc.63 atkDTemplarRanger
 	return
 	
 	:atkGateAir
-	bring 13 AtL_C 6 gateway|warp_anchor Loc.63 atkZealotAirMax
-	bring 13 AtM_C 5 gateway|warp_anchor Loc.63 atkZealotAirMin
+	bring 13 AtL_C 6 gateway|vicarage Loc.63 atkZealotAirMax
+	bring 13 AtM_C 5 gateway|vicarage Loc.63 atkZealotAirMin
 	bring 13 AtL_C 1 cybernetics_core Loc.63 atkDragoonAir
 	bring 13 AtL_C 1 principality Loc.63 atkLegionGen
-	bring 13 AtL_C 1 warp_anchor Loc.63 atkHierophantAir
+	bring 13 AtL_C 1 vicarage Loc.63 atkHierophantAir
 	bring 13 AtL_C 1 templar_archives Loc.63 atkDTemplarAir
 	bring 13 AtL_C 1 templar_archives Loc.63 atkTemplarAir
 	return
 	
 	:atkZealotRangerMax
-	atk_rel zealot gateway|warp_anchor 4
-	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	atk_rel zealot gateway|vicarage 4
+	queue_rel zealot gateway|vicarage 1 gateway|vicarage 255 Global 63 99
 	return
 	
 	:atkZealotRangerMin
-	atk_rel zealot gateway|warp_anchor 7
-	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	atk_rel zealot gateway|vicarage 7
+	queue_rel zealot gateway|vicarage 1 gateway|vicarage 255 Global 63 99
 	return
 	
 	:atkZealotGateMax
-	atk_rel zealot gateway|warp_anchor 4
-	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	atk_rel zealot gateway|vicarage 4
+	queue_rel zealot gateway|vicarage 1 gateway|vicarage 255 Global 63 99
 	return
 	
 	:atkZealotGateMin
-	atk_rel zealot gateway|warp_anchor 7
-	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	atk_rel zealot gateway|vicarage 7
+	queue_rel zealot gateway|vicarage 1 gateway|vicarage 255 Global 63 99
 	return
 	
 	:atkZealotAirMax
-	atk_rel zealot gateway|warp_anchor 4
-	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	atk_rel zealot gateway|vicarage 4
+	queue_rel zealot gateway|vicarage 1 gateway|vicarage 255 Global 63 99
 	return
 	
 	:atkZealotAirMin
-	atk_rel zealot gateway|warp_anchor 7
-	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	atk_rel zealot gateway|vicarage 7
+	queue_rel zealot gateway|vicarage 1 gateway|vicarage 255 Global 63 99
 	return
 	
 	:atkDragoonRanger
@@ -2961,172 +2980,172 @@ script_id PMCx
 	return
 	
 	:atkHierophantRanger
-	bring 13 AtL_C 3 warp_anchor Loc.63 atkHierophantRangerMax
-	bring 13 AtM_C 2 warp_anchor Loc.63 atkHierophantRangerMin
+	bring 13 AtL_C 3 vicarage Loc.63 atkHierophantRangerMax
+	bring 13 AtM_C 2 vicarage Loc.63 atkHierophantRangerMin
 	return
 	
 	:atkHierophantRangerMax
-	atk_rel hierophant warp_anchor 2.25
-	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	atk_rel hierophant vicarage 2.25
+	queue_rel hierophant vicarage 1 vicarage 255 Global 63 99
 	return
 	
 	:atkHierophantRangerMin
-	atk_rel hierophant warp_anchor 1.66
-	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	atk_rel hierophant vicarage 1.66
+	queue_rel hierophant vicarage 1 vicarage 255 Global 63 99
 	return
 	
 	:atkHierophantGate
-	bring 13 AtL_C 3 warp_anchor Loc.63 atkHierophantGateMax
-	bring 13 AtM_C 2 warp_anchor Loc.63 atkHierophantGateMin
+	bring 13 AtL_C 3 vicarage Loc.63 atkHierophantGateMax
+	bring 13 AtM_C 2 vicarage Loc.63 atkHierophantGateMin
 	return
 	
 	:atkHierophantGateMax
-	atk_rel hierophant warp_anchor 1.75
-	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	atk_rel hierophant vicarage 1.75
+	queue_rel hierophant vicarage 1 vicarage 255 Global 63 99
 	return
 	
 	:atkHierophantGateMin
-	atk_rel hierophant warp_anchor 1.25
-	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	atk_rel hierophant vicarage 1.25
+	queue_rel hierophant vicarage 1 vicarage 255 Global 63 99
 	return
 	
 	:atkHierophantAir
-	bring 13 AtL_C 3 warp_anchor Loc.63 atkHierophantAirMax
-	bring 13 AtM_C 2 warp_anchor Loc.63 atkHierophantAirMin
+	bring 13 AtL_C 3 vicarage Loc.63 atkHierophantAirMax
+	bring 13 AtM_C 2 vicarage Loc.63 atkHierophantAirMin
 	return
 	
 	:atkHierophantAirMax
-	atk_rel hierophant warp_anchor 1.25
-	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	atk_rel hierophant vicarage 1.25
+	queue_rel hierophant vicarage 1 vicarage 255 Global 63 99
 	return
 	
 	:atkHierophantAirMin
-	atk_rel hierophant warp_anchor 1
-	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	atk_rel hierophant vicarage 1
+	queue_rel hierophant vicarage 1 vicarage 255 Global 63 99
 	return
 	
 	:atkTemplarRanger
-	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkTemplarRangerMax
-	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkTemplarRangerMin
+	bring 13 AtL_C 3 gateway|principality|vicarage Loc.63 atkTemplarRangerMax
+	bring 13 AtM_C 2 gateway|principality|vicarage Loc.63 atkTemplarRangerMin
 	return
 	
 	:atkTemplarRangerMax
-	atk_rel high_templar gateway|principality|warp_anchor 0.66
-	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel high_templar gateway|principality|vicarage 0.66
+	queue_rel high_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	call atkArchonRangerMax
 	return
 	
 	:atkTemplarRangerMin
-	atk_rel high_templar gateway|principality|warp_anchor 0.45
-	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel high_templar gateway|principality|vicarage 0.45
+	queue_rel high_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	call atkArchonRangerMin
 	return
 	
 	:atkTemplarGate
-	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkTemplarGateMax
-	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkTemplarGateMin
+	bring 13 AtL_C 3 gateway|principality|vicarage Loc.63 atkTemplarGateMax
+	bring 13 AtM_C 2 gateway|principality|vicarage Loc.63 atkTemplarGateMin
 	return
 	
 	:atkTemplarGateMax
-	atk_rel high_templar gateway|principality|warp_anchor 0.75
-	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel high_templar gateway|principality|vicarage 0.75
+	queue_rel high_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	call atkArchonGateMax
 	return
 	
 	:atkTemplarGateMin
-	atk_rel high_templar gateway|principality|warp_anchor 0.5
-	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel high_templar gateway|principality|vicarage 0.5
+	queue_rel high_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	call atkArchonGateMin
 	return
 	
 	:atkTemplarAir
-	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkTemplarAirMax
-	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkTemplarAirMin
+	bring 13 AtL_C 3 gateway|principality|vicarage Loc.63 atkTemplarAirMax
+	bring 13 AtM_C 2 gateway|principality|vicarage Loc.63 atkTemplarAirMin
 	return
 	
 	:atkTemplarAirMax
-	atk_rel high_templar gateway|principality|warp_anchor 0.5
-	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel high_templar gateway|principality|vicarage 0.5
+	queue_rel high_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	return
 	
 	:atkTemplarAirMin
-	atk_rel high_templar gateway|principality|warp_anchor 0.33
-	queue_rel high_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel high_templar gateway|principality|vicarage 0.33
+	queue_rel high_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	return
 	
 	:atkArchonGateMax
-	atk_rel archon gateway|principality|warp_anchor 0.75
+	atk_rel archon gateway|principality|vicarage 0.75
 	return
 	
 	:atkArchonGateMin
-	atk_rel archon gateway|principality|warp_anchor 0.5
+	atk_rel archon gateway|principality|vicarage 0.5
 	return
 	
 	:atkArchonRangerMax
-	atk_rel archon gateway|principality|warp_anchor 0.5
+	atk_rel archon gateway|principality|vicarage 0.5
 	return
 	
 	:atkArchonRangerMin
-	atk_rel archon gateway|principality|warp_anchor 0.33
+	atk_rel archon gateway|principality|vicarage 0.33
 	return
 	
 	:atkDTemplarRanger
-	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkDTemplarRangerMax
-	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkDTemplarRangerMin
+	bring 13 AtL_C 3 gateway|principality|vicarage Loc.63 atkDTemplarRangerMax
+	bring 13 AtM_C 2 gateway|principality|vicarage Loc.63 atkDTemplarRangerMin
 	return
 	
 	:atkDTemplarRangerMax
-	atk_rel dark_templar gateway|principality|warp_anchor 1
-	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel dark_templar gateway|principality|vicarage 1
+	queue_rel dark_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	return
 	
 	:atkDTemplarRangerMin
-	atk_rel dark_templar gateway|principality|warp_anchor 1
-	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel dark_templar gateway|principality|vicarage 1
+	queue_rel dark_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	return
 	
 	:atkDTemplarGate
-	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkDTemplarGateMax
-	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkDTemplarGateMin
+	bring 13 AtL_C 3 gateway|principality|vicarage Loc.63 atkDTemplarGateMax
+	bring 13 AtM_C 2 gateway|principality|vicarage Loc.63 atkDTemplarGateMin
 	return
 	
 	:atkDTemplarGateMax
-	atk_rel dark_templar gateway|principality|warp_anchor 1.33
-	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel dark_templar gateway|principality|vicarage 1.33
+	queue_rel dark_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	call atkDArchonMax
 	return
 	
 	:atkDTemplarGateMin
-	atk_rel dark_templar gateway|principality|warp_anchor 1.11
-	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel dark_templar gateway|principality|vicarage 1.11
+	queue_rel dark_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	call atkDArchonMin
 	return
 	
 	:atkDTemplarAir
-	bring 13 AtL_C 3 gateway|principality|warp_anchor Loc.63 atkDTemplarAirMax
-	bring 13 AtM_C 2 gateway|principality|warp_anchor Loc.63 atkDTemplarAirMin
+	bring 13 AtL_C 3 gateway|principality|vicarage Loc.63 atkDTemplarAirMax
+	bring 13 AtM_C 2 gateway|principality|vicarage Loc.63 atkDTemplarAirMin
 	return
 	
 	:atkDTemplarAirMax
-	atk_rel dark_templar gateway|principality|warp_anchor 1
-	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel dark_templar gateway|principality|vicarage 1
+	queue_rel dark_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	dth 13 Ex_C 2 crashed_battle atkDArchonMax
 	rand_j 64 atkDArchonMax
 	return
 	
 	:atkDTemplarAirMin
-	atk_rel dark_templar gateway|principality|warp_anchor 0.75
-	queue_rel dark_templar gateway|principality|warp_anchor 1 gateway|principality|warp_anchor 255 Global 63 99
+	atk_rel dark_templar gateway|principality|vicarage 0.75
+	queue_rel dark_templar gateway|principality|vicarage 1 gateway|principality|vicarage 255 Global 63 99
 	dth 13 Ex_C 2 crashed_battle atkDArchonMin
 	rand_j 64 atkDArchonMin
 	return
 	
 	:atkDArchonMax
-	atk_rel dark_archon gateway|principality|warp_anchor 0.75
+	atk_rel dark_archon gateway|principality|vicarage 0.75
 	return
 	
 	:atkDArchonMin
-	atk_rel dark_archon gateway|principality|warp_anchor 0.5
+	atk_rel dark_archon gateway|principality|vicarage 0.5
 	return
 	
 	:atkMech
@@ -3395,11 +3414,11 @@ script_id PMCx
 	
 	:qMilitaryGen
 	var Ex|wait canQueue 1 13
-	bring 13 AtL_M 1 gateway|warp_anchor Loc.63 qZealot
+	bring 13 AtL_M 1 gateway|vicarage Loc.63 qZealot
 	bring 13 AtL_M 1 gateway|principality Loc.63 qDragoon
 	bring 13 AtL_M 1 robotics_support_bay Loc.63 qReaver
 	bring 13 AtL_M 1 principality Loc.63 qLegion
-	bring 13 AtL_M 1 warp_anchor Loc.63 qHierophant
+	bring 13 AtL_M 1 vicarage Loc.63 qHierophant
 	bring 13 AtL_M 1 stargate Loc.63 qScout
 	wait 480
 	goto qMilitaryGen
@@ -3408,8 +3427,8 @@ script_id PMCx
 	var Ex|wait canQueue 1 13
 	bring 13 AtL_M 1 gateway|principality Loc.63 qDragoon
 	bring 13 AtL_M 1 robotics_support_bay Loc.63 qReaver
-	bring 13 AtL_M 1 gateway|warp_anchor Loc.63 qZealot
-	bring 13 AtL_M 1 warp_anchor Loc.63 qHierophant
+	bring 13 AtL_M 1 gateway|vicarage Loc.63 qZealot
+	bring 13 AtL_M 1 vicarage Loc.63 qHierophant
 	bring 13 AtL_M 1 stargate Loc.63 qScout
 	bring 13 AtL_M 1 principality Loc.63 qLegion
 	wait 480
@@ -3418,9 +3437,9 @@ script_id PMCx
 	:qMilitaryTemplar
 	var Ex|wait canQueue 1 13
 	bring 13 AtL_M 1 principality Loc.63 qLegion
-	bring 13 AtL_M 1 gateway|warp_anchor Loc.63 qZealot
+	bring 13 AtL_M 1 gateway|vicarage Loc.63 qZealot
 	bring 13 AtL_M 1 gateway|principality Loc.63 qDragoon
-	bring 13 AtL_M 1 warp_anchor Loc.63 qHierophant
+	bring 13 AtL_M 1 vicarage Loc.63 qHierophant
 	bring 13 AtL_M 1 stargate Loc.63 qScout
 	bring 13 AtL_M 1 robotics_support_bay Loc.63 qReaver
 	wait 480
@@ -3429,19 +3448,19 @@ script_id PMCx
 	:qMilitarySkylord
 	var Ex|wait canQueue 1 13
 	bring 13 AtL_M 1 stargate Loc.63 qScout
-	bring 13 AtL_M 1 gateway|warp_anchor Loc.63 qZealot
+	bring 13 AtL_M 1 gateway|vicarage Loc.63 qZealot
 	bring 13 AtL_M 1 principality Loc.63 qLegion
 	bring 13 AtL_M 1 robotics_support_bay Loc.63 qReaver
 	bring 13 AtL_M 1 gateway|principality Loc.63 qDragoon
-	bring 13 AtL_M 1 warp_anchor Loc.63 qHierophant
+	bring 13 AtL_M 1 vicarage Loc.63 qHierophant
 	wait 480
 	goto qMilitarySkylord
 	
 	:qZealot
-	bring 13 Ex 0 gateway|warp_anchor Loc.63 blank
+	bring 13 Ex 0 gateway|vicarage Loc.63 blank
 	bring 13 AtL 12 zealot Loc.63 blank
 	res 13 AtM Ore 99 blank
-	queue_rel zealot gateway|warp_anchor 1 gateway|warp_anchor 255 Global 63 99
+	queue_rel zealot gateway|vicarage 1 gateway|vicarage 255 Global 63 99
 	stop
 	
 	:qDragoon
@@ -3461,12 +3480,12 @@ script_id PMCx
 	stop
 	
 	:qHierophant
-	notowns warp_anchor blank
+	notowns vicarage blank
 	notowns cybernetics_core blank
 	bring 13 AtL 8 hierophant Loc.63 blank
 	res 13 AtM Ore 124 blank
 	res 13 AtM Gas 74 blank
-	queue_rel hierophant warp_anchor 1 warp_anchor 255 Global 63 99
+	queue_rel hierophant vicarage 1 vicarage 255 Global 63 99
 	stop
 	
 	:qReaver
@@ -3501,7 +3520,7 @@ script_id PMCx
 	:antiGriefAirRanger
 	p_need 1 gateway
 	p_need 1 cybernetics_core
-	p_need 1 warp_anchor
+	p_need 1 vicarage
 	train 3 dragoon
 	train 2 hierophant
 	stop

@@ -504,6 +504,7 @@ script_id ZMCx
 	multi upgLairCheck
 	multi upgSpireArmorCheck
 	multi upgSpireAttackCheck
+	multi upgSpireMutaCheck
 	multi upgQueenCheck
 	multi upgGorgCheck
 	multi upgDefilerCheck
@@ -804,6 +805,39 @@ script_id ZMCx
 	wait 12
 	var AtL|jump townCount 4 blankReturn 13
 	bring 13 AtM 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgAirArmorGen
+	return
+	
+	:upgSpireMutaCheck
+	dth 13 AtM_C 2 crashed_battle upgMutaGen
+	dth 13 Ex_C 3 crashed_battle upgMutaAir
+	dth 13 AtL_C 4 crashed_battle upgMutaGen
+	
+	:upgSpireMuta
+	wait 12
+	bring 13 Ex 0 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireMuta2
+	call wUpgradeDef
+	extupgrade 1 lithe_organelle 88
+	wait 2500
+	w_upg
+	
+	:upgSpireMuta2
+	wait 12
+	notowns hive upgSpireMuta2
+	bring 13 Ex 0 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireMuta2
+	call wUpgradeDef
+	extupgrade 1 ablative_wurm 88
+	goto wUpgrade
+	
+	:upgMutaGen
+	wait 12
+	var AtL|jump townCount 4 blankReturn 13
+	bring 13 AtM 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgAirArmorGen
+	return
+	
+	:upgMutaAir
+	wait 12
+	bring 13 AtM 1 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgMutaAir
+	wait 240
 	return
 	
 	:upgQueenCheck
