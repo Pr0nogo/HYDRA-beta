@@ -716,6 +716,10 @@ script_id ZMCx
 	notowns hive upgDenLurker
 	call wUpgradeDef
 	extupg 1 tectonic_claws 88
+	wait 2500
+	wait_upgrades
+	call wUpgradeDef
+	extupg 1 seismic_spines 88
 	goto wUpgrade
 	
 	:upgLurkGen
@@ -816,7 +820,7 @@ script_id ZMCx
 	wait 12
 	bring 13 Ex 0 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireMuta2
 	call wUpgradeDef
-	extupgrade 1 lithe_organelle 88
+	extupg 1 lithe_organelle 88
 	wait 2500
 	w_upg
 	
@@ -825,7 +829,7 @@ script_id ZMCx
 	notowns hive upgSpireMuta2
 	bring 13 Ex 0 spire|guardian_roost|gorgoleth_apiary|devourer_haunt Loc.63 upgSpireMuta2
 	call wUpgradeDef
-	extupgrade 1 ablative_wurm 88
+	extupg 1 ablative_wurm 88
 	goto wUpgrade
 	
 	:upgMutaGen
@@ -861,7 +865,7 @@ script_id ZMCx
 	wait 12
 	notowns hive upgQueen2
 	call wUpgradeDef
-	extupgrade ensnaring_brood 88
+	extupg ensnaring_brood 88
 	wait 480
 	goto wUpgrade
 	
@@ -916,7 +920,12 @@ script_id ZMCx
 	dth 13 AtL_C 4 crashed_battle upgDevoGen
 	
 	:upgDevourer
-	stop
+	wait 12
+	notowns hive upgDevourer
+	notowns devourer_haunt upgDevourer
+	call wUpgradeDef
+	extupg 1 critical_mass 88
+	goto wUpgrade
 	
 	:upgDevoGen
 	wait 12
