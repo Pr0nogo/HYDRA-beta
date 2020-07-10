@@ -537,8 +537,7 @@ script_id ZMCx
 	
 	:upgSpawnVorv
 	wait 12
-	notowns spawning_pool upgSpawnVorv
-	#notowns vorval_pond upgSpawnVorv
+	notowns vorval_pond upgSpawnVorv
 	wait 60
 	call wUpgradeDef
 	extupg 1 adrenal_surge 88
@@ -1298,6 +1297,8 @@ script_id ZMCx
 	wait 300
 	bld 2 hatchery 72
 	wait 300
+	bld 1 vorval_pond 66
+	wait 24
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -1345,6 +1346,8 @@ script_id ZMCx
 	bring 13 AtL_W 15 drone Loc.63 blank
 	bld 1 lair 66
 	wait 24
+	bld 1 vorval_pond 66
+	wait 600
 	var set canAttack 1 13
 	wait 300
 	var set buildGas 1 13
@@ -1435,7 +1438,9 @@ script_id ZMCx
 	call wEvo
 	wait 300
 	call wHydra
-	wait 600
+	wait 450
+	call wVorv
+	wait 150
 	call wSpire
 	wait 900
 	call wLurk
@@ -1667,6 +1672,8 @@ script_id ZMCx
 	wait 24
 	call wLair
 	wait 24
+	call wVorv
+	wait 300
 	call wHatch
 	wait 300
 	call wEvo
@@ -1730,6 +1737,8 @@ script_id ZMCx
 	var set canStatic 1 13
 	wait 24
 	bld 1 evolution_chamber 66
+	wait 300
+	bld 1 vorval_pond 66
 	wait 300
 	bld 1 lair 76
 	wait 300
@@ -1816,7 +1825,9 @@ script_id ZMCx
 	var set canExpand 0 13
 	wait 300
 	queue 1 overlord larva 255 Global Loc.63 80
-	wait 900
+	wait 600
+	bld 1 vorval_pond 66
+	wait 300
 	bld 1 queen_nest 66
 	wait 24
 	queue 1 overlord larva 255 Global Loc.63 80
@@ -1916,6 +1927,8 @@ script_id ZMCx
 	wait 300
 	var set canStatic 1 13
 	wait 24
+	bld 1 vorval_pond 66
+	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
 	wait 24
@@ -1997,6 +2010,8 @@ script_id ZMCx
 	var set buildGas 1 13
 	wait 24
 	bld 1 queen_nest 66
+	wait 300
+	bld 1 vorval_pond 66
 	wait 24
 	queue 1 overlord larva 255 Global Loc.63 80
 	wait 24
@@ -2071,6 +2086,8 @@ script_id ZMCx
 	var set buildSupply 1 13
 	wait 300
 	upg_queue 1 z_melee_attack 88
+	wait 24
+	bld 1 vorval_pond 66
 	wait 300
 	bring 13 AtL_W 1 larva Loc.63 blank
 	queue 1 zergling larva 255 Global Loc.63 80
@@ -2381,8 +2398,10 @@ script_id ZMCx
 	
 	:buildAirFin
 	call buildBool
+	call wVorv
+	wait 300
 	call wEvo
-	wait 900
+	wait 600
 	call wSpire
 	wait 300
 	call wEvo
@@ -2417,7 +2436,9 @@ script_id ZMCx
 	call wSpawn
 	wait 600
 	call wEvo
-	wait 600
+	wait 300
+	call wVorv
+	wait 300
 	call wHydra
 	wait 1200
 	call wLair
@@ -2462,15 +2483,23 @@ script_id ZMCx
 	
 	:wSpawn
 	wait 12
-	bring 13 Ex 0 hatchery|lair|hive Loc.63 wEvo
-	bring 13 AtL 2 spawning_pool Loc.63 blank
-	bring 13 AtL 1 spawning_pool Loc.63 wSpawn2
+	bring 13 Ex 0 hatchery|lair|hive Loc.63 wSpawn
+	bring 13 AtL 2 spawning_pool|vorval_pond Loc.63 blank
+	bring 13 AtL 1 spawning_pool|vorval_pond Loc.63 wSpawn2
 	call wUpgradeDef
 	bld 1 spawning_pool 66
 	return
 	
 	:wSpawn2
 	p_need 1 spawning_pool
+	return
+	
+	:wVorv
+	wait 12
+	bring 13 Ex 0 spawning_pool Loc.63 wVorv
+	bring 13 AtL 1 vorval_pond Loc.63 blank
+	call wUpgradeDef
+	bld 1 vorval_pond 66
 	return
 	
 	:wEvo
@@ -2488,7 +2517,7 @@ script_id ZMCx
 	
 	:wHydra
 	wait 12
-	notowns spawning_pool wHydra
+	bring 13 Ex 0 spawning_pool|vorval_pond Loc.63 wHydra
 	bring 13 AtL 3 hydralisk_den|basilisk_den|lurker_den Loc.63 blank
 	bring 13 AtL 2 hydralisk_den|basilisk_den|lurker_den Loc.63 wHydra2
 	call wUpgradeDef
@@ -2502,7 +2531,7 @@ script_id ZMCx
 	:wLair
 	local 255 AtL 1 lair wLair2
 	wait 12
-	notowns spawning_pool wLair
+	bring 13 Ex 0 spawning_pool|vorval_pond Loc.63 wLair
 	call wUpgradeDef
 	add_bld 255 lair 1 99 76
 	return
@@ -3089,7 +3118,7 @@ script_id ZMCx
 	return
 	
 	:atkVorvalingRange
-	notowns spawning_pool blankReturn
+	notowns vorval_pond blankReturn
 	bring 13 AtL_C 9 larva Loc.63 atkVorvalingRangeMax
 	bring 13 AtM_C 8 larva Loc.63 atkVorvalingRangeMin
 	return
@@ -3105,7 +3134,7 @@ script_id ZMCx
 	return
 	
 	:atkVorvalingSwarm
-	notowns spawning_pool blankReturn
+	notowns vorval_pond blankReturn
 	bring 13 AtL_C 9 larva Loc.63 atkVorvalingSwarmMax
 	bring 13 AtM_C 8 larva Loc.63 atkVorvalingSwarmMin
 	return
@@ -3121,7 +3150,7 @@ script_id ZMCx
 	return
 	
 	:atkVorvalingAir
-	notowns spawning_pool blankReturn
+	notowns vorval_pond blankReturn
 	bring 13 AtL_C 9 larva Loc.63 atkVorvalingAirMax
 	bring 13 AtM_C 8 larva Loc.63 atkVorvalingAirMin
 	return
@@ -3627,7 +3656,7 @@ script_id ZMCx
 	stop
 	
 	:qVorvaling
-	notowns spawning_pool blank
+	notowns vorval_pond blank
 	notowns evolution_chamber blank
 	bring 13 AtL 8 vorvaling Loc.63 blank
 	bring 13 AtM 2 larva Loc.63 blank
