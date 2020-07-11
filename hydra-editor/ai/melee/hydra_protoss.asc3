@@ -1210,7 +1210,7 @@ script_id PMCx
 	:pTown
 	multi mainWorkerStart
 	multi mainTransport
-	bld 1 nexus 90
+	bld 1 nexus 110
 	w_bld 1 nexus
 	multi bldOrder
 	bring 13 AtL_W 1 forge Loc.63 blank
@@ -1273,7 +1273,7 @@ script_id PMCx
 	wait 12
 	bring 13 AtL 90 probe Loc.63 pExpand
 	var Ex|wait canExpand 1 13
-	call wUpgradeDef
+	call wExpandCheck
 	expand 9 expRandTown
 	var set wRes 1 13
 	wait 720
@@ -1295,9 +1295,16 @@ script_id PMCx
 	wait 3300
 	return
 	
+	:wExpandCheck
+	wait 1
+	res 13 AtL Ore 349 blankReturn
+	var AtM miningCount 1 blankReturn 13
+	var Ex|WF(360) underAttack 0 13
+	return
+	
 	:expRandTown
 	call initTown
-	bld 1 nexus 90
+	bld 1 nexus 110
 	multi expWorker
 	w_bldstart 1 nexus
 	bld 1 pylon 65
@@ -1335,12 +1342,14 @@ script_id PMCx
 	w_bld 1 nexus
 	max_workers 18
 	maynard 4
-	goto expWorkerStd
+	
+	:expWorkerStdStart
+	var add miningCount 1 13
 	
 	:expWorkerStd
 	wait 12
 	bring 13 AtL 80 probe Loc.63 expWorkerStd
-	resarea 255 AtM 255 Ore 600 expWorkerLow
+	resarea 255 AtM 255 Ore 600 expWorkerLowStart
 	max_workers 28
 	wait 300
 	local 255 AtL 18 probe expWorkerStd
@@ -1349,8 +1358,11 @@ script_id PMCx
 	queue 1 probe nexus 255 Local Loc.63 80
 	goto expWorkerStd
 	
+	:expWorkerLowStart
+	var sub miningCount 1 13
+	
 	:expWorkerLow
-	resarea 255 AtL 255 Ore 6000 expWorkerStd
+	resarea 255 AtL 255 Ore 6000 expWorkerStdStart
 	max_workers 6
 	wait 300
 	local 255 AtL 6 probe expWorkerLow
