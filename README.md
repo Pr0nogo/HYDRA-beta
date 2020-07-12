@@ -14,6 +14,7 @@ Due to its scope, this project is only compatible with Starcraft version 1.16.1.
 
 # Setup:
 If you do not have version 1.16.1 installed, [follow this guide](http://pr0nogo.wikidot.com/sc-play).
+You should also consult the above guide if you encounter any issues with windowed mode, running mods, etc.
 
 Place HYDRA's maps in your maps folder, creating a specific directory for them if you wish.
 
