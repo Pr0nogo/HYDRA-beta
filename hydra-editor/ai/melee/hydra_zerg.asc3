@@ -655,9 +655,12 @@ script_id ZMCx
 	notowns evolution_chamber upgEvoUtility
 	call wUpgradeDef
 	extupg 1 tendril_amitosis 88
-	wait 4500
+	wait 3000
 	w_upg
 	upg_queue 1 rapid_reconstitution 88
+	wait 3000
+	w_upg
+	extupg 1 nydal_transfusion 88
 	goto wUpgrade
 	
 	:upgUtilityGen
