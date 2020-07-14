@@ -40,3 +40,5 @@ I often ship debug builds, which will print a simple message on map start indica
 If a panic or freeze occurs during your playthroughs, open aise.log in a text editor (such as notepad++), copy the last 50 or so lines, and send them to me via pastebin or a separate text file.
 
 If a crash occurs during your playthroughs, find your .err file in Starcraft\Errors and send it to me.
+
+For more information and instructions on filing issue reports, please see the last question in the [HYDRA FAQ](http://pr0nogo.wikidot.com/sc-hydra#toc1).
