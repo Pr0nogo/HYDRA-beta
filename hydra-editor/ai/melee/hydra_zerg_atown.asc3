@@ -1,7 +1,10 @@
 script_name Expansion Zerg Campaign Area Town
 script_id ZARx
 
+	unstart_campaign
 	start_areatown
+	defaultbuild_off
+	wait 1
 	set_free_id
 	bld 1 hatchery 90
 	multi expWorker

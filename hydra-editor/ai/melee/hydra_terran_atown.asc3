@@ -1,7 +1,10 @@
 script_name Expansion Terran Campaign Area Town
 script_id TARx
 
+	unstart_campaign
 	start_areatown
+	defaultbuild_off
+	wait 1
 	set_free_id
 	bld 1 command_center 90
 	multi expWorker
