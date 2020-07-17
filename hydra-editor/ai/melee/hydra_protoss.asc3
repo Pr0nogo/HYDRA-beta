@@ -1,11 +1,11 @@
 script_name Protoss Expansion Custom Level
 script_id PMCx
 
+	wait 1
 	unstart_campaign
-	wait 1
 	start_town
-	set_free_id
 	wait 1
+	set_free_id
 	default_min 1
 	defaultbuild_off
 	wait 1
@@ -168,6 +168,7 @@ script_id PMCx
 	:dbgBuild4
 	dth 13 Ex 1 crashed_battle dbgBuild4Ranger
 	dth 13 Ex 2 crashed_battle dbgBuild4Gate
+	dth 13 Ex 3 crashed_battle dbgBuild4Skylord
 	goto idle
 	
 	:dbgBuild4Ranger
@@ -176,6 +177,10 @@ script_id PMCx
 	
 	:dbgBuild4Gate
 	print Protoss<32>Templar<32>build<32>4:<32>Legion
+	goto idle
+	
+	:dbgBuild4Skylord
+	print Protoss<32>Skylord<32>build<32>4:<32>Exalted
 	
 	:idle
 	wait 25500
@@ -232,6 +237,11 @@ script_id PMCx
 	:wGas
 	var Ex|wait buildGas 1 13
 	aictrl build_gas
+	
+	:wGas2
+	resarea 255 AtM 255 Gas 5000 blank
+	wait 960
+	bld 2 assimilator 66
 	stop
 	
 	:wSupply
@@ -1306,6 +1316,7 @@ script_id PMCx
 	call initTown
 	bld 1 nexus 110
 	multi expWorker
+	multi wGas2
 	w_bldstart 1 nexus
 	bld 1 pylon 65
 	wait 600
@@ -1940,6 +1951,7 @@ script_id PMCx
 	dth 13 Ex 1 stasis_chamber buildSkylordFFECorsair
 	dth 13 Ex 2 stasis_chamber buildSkylordDon
 	dth 13 Ex 3 stasis_chamber buildSkylord2GateScout
+	dth 13 Ex 4 stasis_chamber buildSkyLordExalted
 	
 	:buildSkylordFFECorsair
 	wait 300
@@ -2042,6 +2054,57 @@ script_id PMCx
 	multi addProd
 	bld 1 citadel_of_adun 88
 	wait 300
+	goto buildSkylordFin
+	
+	:buildSkyLordExalted
+	wait 300
+	bld 1 pylon 66
+	wait 300
+	bld 1 gateway 72
+	wait 24
+	bld 1 assimilator 66
+	wait 300
+	bld 1 forge 72
+	wait 300
+	bld 2 gateway 72
+	wait 300
+	var set buildSupply 1 13
+	bld 1 cybernetics_core 66
+	wait 24
+	queue 1 zealot gateway 255 Local Loc.63 80
+    bld 1 photon_cannon 67
+	wait 300
+	bld 1 stargate 72
+	wait 24
+	bld 2 photon_cannon 67
+	upg_queue 1 p_air_weapon 88
+	wait 300
+	queue 2 dragoon gateway 255 Local Loc.63 80
+	bld 4 photon_cannon 67
+	wait 600
+	queue 1 scout stargate 255 Local Loc.63 80
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	wait 600
+	var set cutWorker 0 13
+	var set canExpand 0 13
+	bld 2 forge 66
+	bld 2 cybernetics_core 66
+	bld 6 photon_cannon 66
+	wait 300
+	multi addProd
+	bld 1 citadel_of_adun 88
+	bld 7 photon_cannon 66
+	wait 300
+	bld 1 templar_archives 88
+	bld 8 photon_cannon 66
+	wait 300
+	bld 1 fleet_beacon 88
+	bld 9 photon_cannon 66
+	wait 300
+	bld 1 arbiter_tribunal 89
+	bld 10 photon_cannon 66
+	wait 1200
 	
 	:buildSkylordFin
 	call buildBool
