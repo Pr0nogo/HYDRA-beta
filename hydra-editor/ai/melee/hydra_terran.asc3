@@ -1997,10 +1997,11 @@ script_id TMCx
 	wait 300
 	bld 1 academy 66
 	wait 50
+	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set canExpand 0 13
-	var set canAttack 1 13
+	var set cutWorker 0 13
 	wait 600
 	bld 1 armory 66
 	wait 900
@@ -2012,6 +2013,15 @@ script_id TMCx
 	wait 600
 	queue 2 vulture factory 255 Local Loc.63 80
 	queue 2 siege_tank factory 255 Local Loc.63 80
+	wait 600
+	var set canAttack 1 13
+	bld 2 barracks 72
+	wait 300
+	bld 4 factory 72
+	wait 600
+	bld 2 covert_ops 66
+	wait 300
+	bld 3 barracks 72
 	multi addProd
 	
 	:buildMechFin
@@ -2287,9 +2297,13 @@ script_id TMCx
 	wait 300
 	bld 1 refinery 66
 	wait 300
+	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set canExpand 0 13
+	var set cutWorker 0 13
+	bld 1 academy 66
+	wait 600
 	var set canAttack 1 13
 	wait 600
 	bld 1 armory 66
