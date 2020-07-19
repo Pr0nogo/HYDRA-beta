@@ -15,9 +15,12 @@ Setup for UMS maps:
 Special thanks to Connor5620 for testing and documenting many of the AI's build orders! You can take a look at his guides at the no frauds club forum.
 https://thenofraudsclub.proboards.com/
 
+Another special thanks to Keyan / Dark Metzen for his work on additional AI builds.
+
 Legend:
 * - Tested and approved
 ♣ - Build by Connor
+K - Build by Keyan / Dark Metzen
 
 =============
 PERSONALITIES
@@ -63,7 +66,7 @@ Mech
 2 - FE 5Fact						♣
 3 - 2Fact Vult						* ♣
 4 - Walker Power					♣
-5 - 4Fact Ghost						
+5 - 4Fact Ghost						K
 
 Raider
 1 - 8Rax					
@@ -71,12 +74,13 @@ Raider
 3 - Fast Ghost/Nuke					
 4 - 4Rax Pressure					* ♣
 5 - Uprising (heavy Cyprian usage)	
-6 - Holy Ackmeds!
+6 - Holy Ackmeds!					K
 
 Air
 1 - 2Port Wraith					*
 2 - Fast BC					
-3 - Wraith Bio						
+3 - Wraith Bio					
+4 - Hotdrop (fast Transports)		K
 
 PROTOSS
 General
@@ -100,6 +104,7 @@ Skylord
 1 - Forge FE Corsair				
 2 - Carrier							
 3 - 2Gate Scout						
+4 - Exalted (fast Arbiter)			K
 
 ZERG
 General

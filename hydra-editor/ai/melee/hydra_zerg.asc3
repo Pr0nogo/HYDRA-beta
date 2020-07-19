@@ -1034,6 +1034,7 @@ script_id ZMCx
 	
 	:zTown
 	multi mainWorkerStart
+	multi islandCheck
 	bld 1 hatchery 110
 	w_bld 1 hatchery
 	multi bldOrder
@@ -1045,6 +1046,16 @@ script_id ZMCx
 	bring 13 AtL_W 1 lair Loc.63 blank
 	#multi addChasmal
 	goto idle
+	
+	:islandCheck
+	groundmap_jump blank
+	bring 13 AtL_W 8 drone Loc.63 blank
+	bld 1 extractor 70
+	bring 13 AtL_W 12 drone Loc.63 blank
+	bld 1 lair 71
+	bring 13 AtL_W 16 drone Loc.63 blank
+	upg_queue 1 overlord_capacity 88
+	stop
 	
 	:mainWorkerStart
 	var add miningCount 1 13

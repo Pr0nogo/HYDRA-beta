@@ -1262,6 +1262,7 @@ script_id PMCx
 	
 	:mainTransport
 	multi mainTransportOn
+	multi islandCheck
 	
 	:mainTransportLoop
 	wait 12
@@ -1273,6 +1274,16 @@ script_id PMCx
 	queue 1 shuttle robotics_facility 255 Global Loc.63 75
 	wait 2440
 	goto mainTransportLoop
+	
+	:islandCheck
+	groundmap_jump blank
+	bring 13 AtL_W 9 probe Loc.63 blank
+	bld 1 assimilator 70
+	bring 13 AtL_W 12 probe Loc.63 blank
+	bld 1 cybernetics_core 71
+	bring 13 AtL_W 16 probe Loc.63 blank
+	bld 1 robotics_facility 72
+	stop
 	
 	:mainTransportOn
 	bring 13 AtL_W 1 robotics_facility|robotics_authority|shuttle Loc.63 blank

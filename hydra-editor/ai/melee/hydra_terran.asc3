@@ -91,7 +91,7 @@ script_id TMCx
 	
 	:slcBuild3
 	dth 13 AtL 1 stasis_chamber dbgBuild
-	dth 13 Rand 4 stasis_chamber blank
+	dth 13 Rand 5 stasis_chamber blank
 	goto dbgBuild
 	
 	:dbgBuild
@@ -185,7 +185,7 @@ script_id TMCx
 	goto idle
 	
 	:dbgBuild4Air
-#	print Terran<32>Air<32>build<32>4:<32>Hotdrop
+	print Terran<32>Air<32>build<32>4:<32>Hotdrop
 	goto idle
 	
 	:dbgBuild5
@@ -1274,6 +1274,7 @@ script_id TMCx
 	
 	:mainTransport
 	multi mainTransportOn
+	multi islandCheck
 	
 	:mainTransportLoop
 	wait 12
@@ -1288,6 +1289,18 @@ script_id TMCx
 	:mainTransportOn
 	bring 13 AtL_W 1 control_tower|physics_lab|dropship Loc.63 blank
 	check_transports
+	stop
+	
+	:islandCheck
+	groundmap_jump blank
+	bring 13 AtL_W 9 scv Loc.63 blank
+	bld 1 refinery 70
+	bring 13 AtL_W 12 scv Loc.63 blank
+	bld 1 armory 71
+	bring 13 AtL_W 15 scv Loc.63 blank
+	bld 1 starport 72
+	bring 13 AtL_W 18 scv Loc.63 blank
+	bld 1 control_tower 72
 	stop
 	
 	:tExpand
@@ -2335,6 +2348,7 @@ script_id TMCx
 	dth 13 Ex 1 stasis_chamber buildAir2PortWraith
 	dth 13 Ex 2 stasis_chamber buildAirDon
 	dth 13 Ex 3 stasis_chamber buildAirRax
+	dth 13 Ex 4 stasis_chamber buildAirHotdrop
 	
 	:buildAir2PortWraith
 	wait 300
@@ -2428,6 +2442,75 @@ script_id TMCx
 	wait 600
 	bld 1 medbay 72
 	wait 24
+	multi addProd
+	goto buildAirFin
+	
+	:buildAirHotdrop
+    wait 300
+    bld 1 supply_depot 66
+    wait 300
+    bld 1 refinery 66
+    wait 24
+    bld 1 barracks 72
+    wait 300
+    bld 2 supply_depot 66
+    wait 24
+    bld 1 armory 66
+    queue 1 marine barracks 255 Local Loc.63 80
+    wait 300
+    var set buildSupply 1 13
+    bld 1 academy 66
+    bld 1 engineering_bay 66
+    queue 1 marine barracks 255 Local Loc.63 80
+    wait 325
+    bld 1 comsat_station 66
+    upg_queue 1 stim_packs 88
+    bld 2 barracks 72
+    bld 1 starport 72
+    wait 24
+    queue 1 firebat barracks 255 Local Loc.63 80
+    upg_queue 1 t_ship_weapon 88
+    upg_queue 1 t_infantry_weapon 88
+    wait 300
+    bld 1 medbay 72
+	wait 24
+    bld 1 control_tower 66
+	wait 24
+    bld 1 science_facility 66
+    wait 24
+    queue 1 marine barracks 255 Local Loc.63 80
+    queue 1 medic barracks 255 Local Loc.63 80
+    wait 24
+    var set canStatic 1 13
+    wait 100
+    queue 2 dropship starport 255 Local Loc.63 80
+    extupg 1 hotdrop 88
+    wait 300
+    bld 4 barracks 72
+    bld 2 starport 72
+    wait 24
+    queue 2 dropship starport 255 Local Loc.63 80
+    wait 300
+    bld 2 control_tower 72
+	wait 24
+    extupg 1 passenger_insurance 88
+	wait 24
+    bld 2 medbay 72
+	wait 24
+    bld 2 covert_ops 72
+	wait 600
+	var set cutWorker 1 13
+	var set canExpand 1 13
+	wait 600
+	var set canExpand 0 13
+	var set cutWorker 0 13
+    wait 24
+    tech optical_flare 88
+    wait 300
+    queue 2 wyvern starport 255 Local Loc.63 80
+	wait 300
+    extupg 1 reverse_thrust 88
+    wait 24
 	multi addProd
 	
 	:buildAirFin
