@@ -2291,44 +2291,87 @@ script_id TMCx
 	goto buildBioFin
 	
 	:buildBioAckmeds
-	wait 300
-	bld 1 barracks 72
-	wait 24
-	bld 1 supply_depot 66
-	wait 300
-	queue 1 marine barracks 255 Local Loc.63 80
-	wait 60
-	var set buildSupply 1 13
-	wait 120
-	queue 1 marine barracks 255 Local Loc.63 80
-	wait 24
-	queue 1 marine barracks 255 Local Loc.63 80
-	wait 24
-	queue 1 marine barracks 255 Local Loc.63 80
-	wait 24
-	queue 1 marine barracks 255 Local Loc.63 80
-	wait 300
-	bld 1 refinery 66
-	wait 300
-	var set cutWorker 1 13
-	var set canExpand 1 13
-	wait 600
-	var set canExpand 0 13
-	var set cutWorker 0 13
-	bld 1 academy 66
-	wait 600
-	var set canAttack 1 13
-	wait 600
-	bld 1 armory 66
-	wait 900
-	bld 2 factory 72
-	wait 600
-	bld 1 machine_shop 72
-	wait 300
-	bld 2 machine_shop 72
-	wait 600
-	queue 2 firebat barracks 255 Local Loc.63 80
-	queue 2 goliath factory 255 Local Loc.63 80
+	 :buildBioAckmeds
+    wait 300
+    bld 1 barracks 72
+    wait 24
+    bld 1 supply_depot 66
+    wait 150
+    bld 1 refinery 66
+    wait 150
+    queue 1 marine barracks 255 Local Loc.63 80
+    wait 60
+    var set buildSupply 1 13
+    wait 150
+    bld 1 academy 88
+    wait 24
+    queue 1 marine barracks 255 Local Loc.63 80
+    wait 300
+    tech stim_packs 88
+    wait 24
+    queue 1 firebat barracks 255 Local Loc.63 80
+    wait 24
+    queue 1 firebat barracks 255 Local Loc.63 80
+    wait 24
+    queue 1 firebat barracks 255 Local Loc.63 80
+    wait 24
+    queue 1 firebat barracks 255 Local Loc.63 80
+    wait 300
+    var set cutWorker 1 13
+    var set canExpand 1 13
+    wait 600
+    var set canExpand 0 13
+    var set cutWorker 0 13
+    wait 150
+    upg_queue 1 marine_range 88
+    wait 24
+    var set canAttack 1 13
+    wait 24
+    bld 2 medbay 88
+    wait 300
+    bld 3 barracks 66
+    wait 60
+    queue 2 firebat barracks 255 Local Loc.63 80    
+    wait 60
+    queue 2 medic barracks 255 Local Loc.63 80
+    wait 60
+    queue 2 firebat barracks 255 Local Loc.63 80
+    wait 60
+    queue 2 firebat barracks 255 Local Loc.63 80
+    wait 150
+    bld 1 armory 72
+    wait 300
+    bld 2 engineering_bay 72
+    wait 24
+    bld 1 science_facility
+    wait 600
+    bld 4 barracks 66
+    wait 24
+    upg_queue 1 t_infantry_weapon 88
+    wait 24
+    upg_queue 1 t_infantry_armor 88
+    wait 24
+    upg_queue 1 apollyoid_adhesive 90
+    wait 24
+    bld 2 comsat_station 88
+    wait 300
+    queue 2 firebat barracks 255 Local Loc.63 80
+    wait 60
+    queue 2 medic barracks 255 Local Loc.63 80    
+    wait 60
+    queue 2 firebat barracks 255 Local Loc.63 80
+    wait 120
+    bld 5 barracks 66
+    wait 24
+    bld 2 covert_ops 88
+    wait 300
+    queue 4 ghost barracks 255 Local Loc.63 80
+    wait 24
+    queue 4 firebat barracks 255 Local Loc.63 80
+    wait 24
+    tech lockdown 88
+    wait 24
+    multi addProd
 	multi addProd
 	
 	:buildBioFin
@@ -2384,33 +2427,43 @@ script_id TMCx
 	tech cloaking_field 88
 	goto buildAirFin
 	
-	:buildAirDon
-	wait 300
-	bld 1 supply_depot 66
-	wait 300
-	bld 1 refinery 66
-	wait 24
-	bld 1 armory 66
-	wait 300
-	bld 2 supply_depot 66
-	wait 300
-	bld 1 starport 72
-	wait 300
-	upg_queue 1 t_ship_weapon 88
-	var set buildSupply 1 13
-	wait 24
-	bld 1 science_facility 66
-	wait 600
-	bld 2 starport 72
-	wait 300
-	bld 1 barracks 72
-	wait 600
-	bld 2 physics_lab 72
-	wait 300
-	queue 2 battlecruiser starport 255 Local Loc.63 80
-	wait 24
-	multi addProd
-	goto buildAirFin
+	:buildAirDonwait 300
+    bld 1 supply_depot 66
+    wait 300
+    bld 1 refinery 66
+    wait 24
+    bld 1 armory 66
+    wait 300
+    bld 2 supply_depot 66
+    wait 300
+    bld 1 starport 72
+    wait 300
+    queue 1 wraith starport 255 Local Loc.63 80
+    wait 24
+    upg_queue 1 t_ship_weapon 88
+    var set buildSupply 1 13
+    wait 24
+    bld 1 science_facility 66
+    wait 24
+    bld 1 barracks 72
+    wait 600
+    queue 2 marine barracks 255 Local Loc.63 80
+    wait 24
+    bld 2 starport 72
+    wait 600
+    bld 2 physics_lab 72
+    wait 300
+    queue 2 battlecruiser starport 255 Local Loc.63 90
+    wait 24
+    extupg 1 fore_castle 88
+    wait 24
+    tech yamato_gun 88
+    wait 300
+    queue 2 battlecruiser starport 255 Local Loc.63 90
+    wait 24
+    multi addProd
+    wait 24
+    goto buildAirFin
 	
 	:buildAirRax
 	wait 300

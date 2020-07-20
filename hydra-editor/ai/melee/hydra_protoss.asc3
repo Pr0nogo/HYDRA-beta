@@ -2080,42 +2080,63 @@ script_id PMCx
 	bld 2 gateway 72
 	wait 300
 	var set buildSupply 1 13
+	wait 24
 	bld 1 cybernetics_core 66
 	wait 24
 	queue 1 zealot gateway 255 Local Loc.63 80
+	wait 24
     bld 1 photon_cannon 67
 	wait 300
 	bld 1 stargate 72
 	wait 24
 	bld 2 photon_cannon 67
+	wait 24
 	upg_queue 1 p_air_weapon 88
 	wait 300
 	queue 2 dragoon gateway 255 Local Loc.63 80
+	wait 24
 	bld 4 photon_cannon 67
 	wait 600
 	queue 1 scout stargate 255 Local Loc.63 80
+	wait 120
 	var set cutWorker 1 13
 	var set canExpand 1 13
 	wait 600
 	var set cutWorker 0 13
 	var set canExpand 0 13
+	wait 24
 	bld 2 forge 66
+	wait 24
 	bld 2 cybernetics_core 66
+	wait 24
 	bld 6 photon_cannon 66
 	wait 300
 	multi addProd
+	wait 24
 	bld 1 citadel_of_adun 88
+	wait 24
 	bld 7 photon_cannon 66
 	wait 300
 	bld 1 templar_archives 88
+	wait 24
 	bld 8 photon_cannon 66
 	wait 300
 	bld 1 fleet_beacon 88
+	wait 24
 	bld 9 photon_cannon 66
 	wait 300
 	bld 1 arbiter_tribunal 89
+	wait 24
 	bld 10 photon_cannon 66
-	wait 1200
+	wait 600
+	queue 1 arbiter starport 255 Local Loc.63 80
+	wait 150
+	tech recall 88
+	wait 150
+	bld 11 photon_cannon 66
+	wait 600
+	tech stasis_field 88
+	wait 24
 	
 	:buildSkylordFin
 	call buildBool
