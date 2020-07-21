@@ -122,7 +122,7 @@ Swarm
 2 - 3Hatch Ultra					♣
 3 - 9Pool							
 4 - 3Hatch Hive						♣
-5 - Congo Todgod (heavy Zergling usage)
+5 - Congo Todgod (ling spam)		K
 
 Air
 1 - 3Hatch Mutaling					
