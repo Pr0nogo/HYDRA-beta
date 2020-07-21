@@ -1292,6 +1292,7 @@ script_id TMCx
 	stop
 	
 	:islandCheck
+	dth 13 Ex 0 z_beacon blank
 	groundmap_jump blank
 	bring 13 AtL_W 9 scv Loc.63 blank
 	bld 1 refinery 70
@@ -2291,7 +2292,6 @@ script_id TMCx
 	goto buildBioFin
 	
 	:buildBioAckmeds
-	 :buildBioAckmeds
     wait 300
     bld 1 barracks 72
     wait 24
@@ -2343,7 +2343,7 @@ script_id TMCx
     wait 300
     bld 2 engineering_bay 72
     wait 24
-    bld 1 science_facility
+    bld 1 science_facility 66
     wait 600
     bld 4 barracks 66
     wait 24
@@ -2427,7 +2427,8 @@ script_id TMCx
 	tech cloaking_field 88
 	goto buildAirFin
 	
-	:buildAirDonwait 300
+	:buildAirDon
+	wait 300
     bld 1 supply_depot 66
     wait 300
     bld 1 refinery 66

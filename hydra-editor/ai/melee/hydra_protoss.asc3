@@ -1276,6 +1276,7 @@ script_id PMCx
 	goto mainTransportLoop
 	
 	:islandCheck
+	dth 13 Ex 0 z_beacon blank
 	groundmap_jump blank
 	bring 13 AtL_W 9 probe Loc.63 blank
 	bld 1 assimilator 70

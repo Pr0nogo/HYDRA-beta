@@ -1048,6 +1048,7 @@ script_id ZMCx
 	goto idle
 	
 	:islandCheck
+	dth 13 Ex 0 z_beacon blank
 	groundmap_jump blank
 	bring 13 AtL_W 8 drone Loc.63 blank
 	bld 1 extractor 70
