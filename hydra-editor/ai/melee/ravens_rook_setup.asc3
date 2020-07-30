@@ -1,0 +1,32 @@
+
+script_name Enter Closest Bunker
+script_id EnBk
+
+	deaths 13 AtLeast 1 psi_emitter ravens_rook_setup
+	enter_bunker
+	stop
+
+	:ravens_rook_setup
+	# Crow Emperor Max Supply
+	supply 0 Set 600 Max 0 Terran blank
+	supply 0 Set 600 Max 0 Protoss blank
+	supply 0 Set 600 Max 0 Zerg blank
+	
+	# Frauds Max Supply
+	supply 1 Set 200 Max 0 Terran blank
+	supply 1 Set 200 Max 0 Protoss blank
+	supply 1 Set 200 Max 0 Zerg blank
+	supply 2 Set 200 Max 0 Terran blank
+	supply 2 Set 200 Max 0 Protoss blank
+	supply 2 Set 200 Max 0 Zerg blank
+	supply 1 Set 200 Max 0 Terran blank
+	supply 3 Set 200 Max 0 Protoss blank
+	supply 3 Set 200 Max 0 Zerg blank
+	supply 4 Set 200 Max 0 Terran blank
+	supply 4 Set 200 Max 0 Protoss blank
+	supply 4 Set 200 Max 0 Zerg blank
+	stop
+	
+	:blank 
+	stop
+	
