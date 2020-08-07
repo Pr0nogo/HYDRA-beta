@@ -1816,16 +1816,15 @@ script_id PMCx
 	bld 1 pylon 66
 	wait 300
 	bld 1 gateway 72
-	wait 300
-	bld 2 gateway 72
 	wait 24
 	bld 1 assimilator 66
-	wait 24
+	wait 900
+	bld 1 cybernetics_core 72
+	wait 900
 	var set buildSupply 1 13
-	wait 24
 	queue 1 zealot gateway 255 Local Loc.63 80
-	wait 24
-	bld 1 cybernetics_core 66
+	wait 600
+	bld 2 gateway 72
 	wait 300
 	bld 3 gateway 72
 	wait 24

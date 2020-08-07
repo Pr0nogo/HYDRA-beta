@@ -1523,7 +1523,7 @@ script_id ZMCx
 	wait 600
 	var set cutWorker 0 13
 	wait 300
-	bld 1 spawning_pool 66
+	bld 1 spawning_pool 72
 	wait 24
 	queue 1 overlord larva 255 Local Loc.63 80
 	w_bld 1 spawning_pool
@@ -1544,17 +1544,21 @@ script_id ZMCx
 	var set cutWorker 0 13
 	var set canExpand 0 13
 	queue 1 overlord larva 255 Global Loc.63 80
-	wait 600
-	bld 1 extractor 66
-	wait 900
-	bld 1 hydralisk_den 66
+	wait 300
+	bld 1 extractor 72
+	wait 1200
+	bld 1 hydralisk_den 72
 	wait 900
 	queue 1 overlord larva 255 Global Loc.63 80
 	wait 24
 	upg_queue 1 hydralisk_speed 88
 	wait 900
 	queue 1 overlord larva 255 Global Loc.63 80
-	wait 24
+	wait 600
+	var set canExpand 1 13
+	wait 600
+	var set canExpand 0 13
+	wait 300
 	bld 1 evolution_chamber 66
 	wait 600
 	var set canUpgrade 1 13
@@ -1562,25 +1566,27 @@ script_id ZMCx
 	var set buildGas 1 13
 	var set buildSupply 1 13
 	multi addProd
-	bring 13 AtL_W 1 larva Loc.63 blank
-	queue 1 hydralisk larva 255 Global Loc.63 80
-	wait 24
-	bring 13 AtL_W 1 larva Loc.63 blank
-	queue 1 hydralisk larva 255 Global Loc.63 80
-	wait 24
-	bring 13 AtL_W 1 larva Loc.63 blank
-	queue 1 hydralisk larva 255 Global Loc.63 80
-	wait 24
-	bring 13 AtL_W 1 larva Loc.63 blank
-	queue 1 hydralisk larva 255 Global Loc.63 80
-	wait 24
-	bring 13 AtL_W 1 larva Loc.63 blank
-	queue 1 hydralisk larva 255 Global Loc.63 80
-	wait 24
-	bring 13 AtL_W 1 larva Loc.63 blank
-	queue 1 hydralisk larva 255 Global Loc.63 80
-	wait 24
 	bld 2 hatchery 72
+	wait 300
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 24
+	bring 13 AtL_W 1 larva Loc.63 blank
+	queue 1 hydralisk larva 255 Global Loc.63 80
+	wait 300
+	bld 3 hatchery 72
 	goto buildConnorFin
 	
 	:buildConnor2HatchLurker
