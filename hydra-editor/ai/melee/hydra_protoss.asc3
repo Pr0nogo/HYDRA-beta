@@ -292,11 +292,11 @@ script_id PMCx
 	def_max 18 clarion
 	def_max 10 warp_relay
 	def_max 12 observer
+	def_max 80 aurora
 	def_max 64 scout
 	def_max 28 corsair
 	def_max 42 exemplar
 	def_max 20 carrier
-	def_max 16 starcaller
 	def_max 12 arbiter
 	stop
 	
@@ -326,11 +326,11 @@ script_id PMCx
 	defb_gg 1 high_templar
 	defb_gg 1 archon
 	defb_gg 1 reaver
+	defb_gg 3 aurora
 	defb_gg 2 scout
 	rand_j 160 blankReturn
 	defb_gg 1 carrier
 	rand_j 64 blankReturn
-	defb_gg 1 starcaller
 	return
 	
 	:pDefGBuildGen2
@@ -342,12 +342,12 @@ script_id PMCx
 	defb_gg 1 dark_templar
 	defb_gg 1 archon
 	#defb_gg 1 clarion
+	defb_gg 2 aurora
 	defb_gg 2 scout
 	defb_gg 1 exemplar
 	rand_j 160 blankReturn
 	defb_gg 1 carrier
 	rand_j 64 blankReturn
-	defb_gg 1 starcaller
 	return
 	
 	:pDefGBuildMech
@@ -367,10 +367,10 @@ script_id PMCx
 	defb_gg 3 dragoon
 	defb_gg 1 reaver
 	defb_gg 1 hierophant
+	defb_gg 2 aurora
 	defb_gg 2 scout
 	defb_gg 1 exemplar
 	defb_gg 1 arbiter
-	#defb_gg 1 starcaller
 	defb_gg 1 carrier
 	defb_gg 1 zealot
 	return
@@ -407,6 +407,7 @@ script_id PMCx
 	defb_gg 2 zealot
 	defb_gg 1 dragoon
 	defb_gg 1 hierophant
+	defb_gg 3 aurora
 	defb_gg 3 scout
 	defb_gg 1 carrier
 	defb_gg 1 arbiter
@@ -416,9 +417,9 @@ script_id PMCx
 	dth 13 Set 0 raynor_marine blank
 	defb_gg 2 zealot
 	defb_gg 1 dragoon
+	defb_gg 2 aurora
 	defb_gg 2 scout
 	defb_gg 1 exemplar
-	#defb_gg 1 starcaller
 	defb_gg 1 carrier
 	defb_gg 1 arbiter
 	return
@@ -435,20 +436,21 @@ script_id PMCx
 	defb_ag 1 exemplar
 	defb_aa 2 dragoon
 	defb_aa 1 hierophant
+	defb_ag 2 aurora
+	defb_aa 2 aurora
 	defb_aa 1 scout
 	defb_aa 1 corsair
 	defb_aa 1 exemplar
 	rand_j 160 blankReturn
 	defb_ag 1 carrier
 	defb_aa 1 carrier
-	rand_j 64 blankReturn
-	defb_ag 1 starcaller
-	defb_aa 1 starcaller
 	return
 	
 	:pDefABuildMech
 	defb_ag 3 dragoon
 	defb_ag 1 hierophant
+	defb_ag 3 aurora
+	defb_aa 3 aurora
 	defb_ag 2 scout
 	defb_aa 3 dragoon
 	defb_aa 1 hierophant
@@ -465,6 +467,7 @@ script_id PMCx
 	defb_ag 1 hierophant
 	defb_ag 1 high_templar
 	defb_ag 1 archon
+	defb_gg 2 aurora
 	defb_ag 1 scout
 	defb_ag 1 arbiter
 	defb_aa 2 dragoon
@@ -478,6 +481,8 @@ script_id PMCx
 	:pDefABuildAir
 	defb_ag 1 dragoon
 	defb_ag 1 hierophant
+	defb_ag 2 aurora
+	defb_aa 2 aurora
 	defb_ag 3 scout
 	defb_ag 1 exemplar
 	defb_ag 1 arbiter
@@ -490,9 +495,6 @@ script_id PMCx
 	rand_j 160 blankReturn
 	defb_ag 1 carrier
 	defb_aa 1 carrier
-	rand_j 64 blankReturn
-	defb_ag 1 starcaller
-	defb_aa 1 starcaller 
 	return
 	
 	:pDefUse
@@ -506,14 +508,14 @@ script_id PMCx
 	defu_gg 2 scout
 	defu_gg 1 exemplar
 	defu_gg 1 carrier
-	defu_gg 1 starcaller
+	defu_gg 4 aurora
 	defu_ag 2 dragoon
 	defu_ag 1 hierophant
 	defu_ag 1 archon
 	defu_ag 2 scout
 	defu_ag 1 exemplar
 	defu_ag 1 carrier
-	defu_ag 1 starcaller
+	defu_ag 4 aurora
 	defu_aa 2 dragoon
 	defu_aa 1 hierophant
 	defu_aa 1 archon
@@ -521,7 +523,7 @@ script_id PMCx
 	defu_aa 1 exemplar
 	defu_aa 2 corsair
 	defu_aa 1 carrier
-	defu_aa 1 starcaller
+	defu_aa 4 aurora
 	return
 	
 	:pUpg
@@ -549,7 +551,6 @@ script_id PMCx
 	multi upgFleetCorsairCheck
 	multi upgFleetExemplarCheck
 	multi upgFleetScoutCheck
-	multi upgFleetStarcallerCheck
 	multi upgTempDArchonCheck
 	multi upgTempTemplarCheck
 	multi upgObsCheck
@@ -1011,23 +1012,6 @@ script_id PMCx
 	notowns carrier upgCarrierGen
 	return
 	
-	:upgFleetStarcallerCheck
-	dth 13 AtM_C 2 crashed_battle upgStarGen
-	dth 13 AtL_C 4 crashed_battle upgStarGen
-	
-	:upgFleetStarcaller
-	wait 12
-	notowns fleet_beacon upgFleetStarcaller
-	wait 60
-	call wUpgradeDef
-	extupg 1 starcaller_mana 88
-	goto wUpgrade
-	
-	:upgStarGen
-	wait 12
-	notowns starcaller upgStarGen
-	return
-	
 	:upgTempTemplarCheck
 	dth 13 Ex 2 crashed_battle upgTempTemplarGate
 	dth 13 Ex_C 0 crashed_battle upgTempGen
@@ -1182,7 +1166,7 @@ script_id PMCx
 	stop
 	
 	:ioHallucinate
-	i_orders 148 0 1 high_templar 960 t_siege_mode|paladin|wyvern|battlecruiser|archon|reaver|carrier|starcaller|lurker|guardian|devourer|ultralisk|keskathalor 90 RandomRate(60 240)|InCombat|Own|Allied|NotEnemies
+	i_orders 148 0 1 high_templar 960 t_siege_mode|paladin|wyvern|battlecruiser|archon|reaver|carrier|lurker|guardian|devourer|ultralisk|keskathalor 90 RandomRate(60 240)|InCombat|Own|Allied|NotEnemies
 	i_orders 148 0 1 high_templar 960 ghost|siege_tank|goliath|wraith|zealot|dragoon|hierophant|dark_templar|scout|hydralisk|basilisk|mutalisk|gorgoleth 80 RandomRate(60 240)|InCombat|Own|NotEnemies
 	stop
 	
@@ -1204,7 +1188,7 @@ script_id PMCx
 	stop
 	
 	:ioMindControl
-	i_orders 182 0 1 dark_archon 1440 ghost|savant|t_siege_mode|paladin|wyvern|battlecruiser|high_templar|dark_archon|reaver|carrier|starcaller|guardian|devourer|defiler|ultralisk|keskathalor 90 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 35))
+	i_orders 182 0 1 dark_archon 1440 ghost|savant|t_siege_mode|paladin|wyvern|battlecruiser|high_templar|dark_archon|reaver|carrier|guardian|devourer|defiler|ultralisk|keskathalor 90 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 35))
 	i_orders 182 0 1 dark_archon 1440 medic|shaman|siege_tank|goliath|wraith|dragoon|hierophant|archon|dark_templar|basilisk|lurker|mutalisk|queen 75 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 25))
 	i_orders 182 0 1 dark_archon 1440 medic|shaman|siege_tank|goliath|wraith|dragoon|hierophant|archon|dark_templar|basilisk|lurker|mutalisk|queen 60 RandomRate(24 80)|Health(GreaterThanPercent 40)|InCombat|Targeting(Own|Ally|OtherUnit)|Self(Energy(GreaterThanPercent 15))
 	i_orders 182 0 1 dark_archon 1440 Group_Men 90 Deathrattle|Targeting(OtherUnit)
@@ -1216,7 +1200,7 @@ script_id PMCx
 	
 	:ioStasis
 	i_orders 147 0 1 arbiter 1080 Group_Men 80 RandomRate(60 240)|Count(AtL 4 128 14)|InCombat|Targeting(Own|Ally|OtherUnit)
-	i_orders 147 0 1 arbiter 1080 wyvern|battlecruiser|reaver|carrier|starcaller|guardian|devourer|ultralisk|keskathalor 80 RandomRate(120 240)|Health(GreaterThanPercent 40)
+	i_orders 147 0 1 arbiter 1080 wyvern|battlecruiser|reaver|carrier|guardian|devourer|ultralisk|keskathalor 80 RandomRate(120 240)|Health(GreaterThanPercent 40)
 	stop
 	
 	:ioRecall
@@ -2901,12 +2885,12 @@ script_id PMCx
 	var add atkCycle 1 13
 	wait 250
 	var AtL|jump atkCycle 2 atkDo 13
-	supply 13 AtM 24 InUnits zealot|legionnaire|dragoon|hierophant|dark_templar|archon|scout|exemplar|carrier|starcaller|reaver Protoss atkGen
+	supply 13 AtM 24 InUnits zealot|legionnaire|dragoon|hierophant|dark_templar|archon|scout|exemplar|carrier|aurora|reaver Protoss atkGen
 	
 	:atkDo
 	#attack_jump 13 AtM 30 Group_Men Supply atkGen 13
 	#attack_jump 13 AtL 80 Group_Men Supply atkExp 13
-	supply 13 AtL 80 InUnits zealot|legionnaire|dragoon|hierophant|dark_templar|archon|scout|exemplar|carrier|starcaller|reaver Protoss atkExp
+	supply 13 AtL 80 InUnits zealot|legionnaire|dragoon|hierophant|dark_templar|archon|scout|exemplar|carrier|aurora|reaver Protoss atkExp
 	
 	:atkNow
 	atk_now
@@ -3320,7 +3304,7 @@ script_id PMCx
 	bring 13 AtM_C 6 stargate|argosy|starfield Loc.63 atkCorsairAirMin
 	bring 13 AtL_C 1 argosy Loc.63 atkExemplarAir
 	bring 13 AtL_C 1 fleet_beacon Loc.63 atkCarrierAir
-	#bring 13 AtL_C 1 starfield Loc.63 atkStarcallerAir
+	bring 13 AtL_C 1 starfield Loc.63 atkAuroraAirMax
 	bring 13 AtL_C 1 arbiter_tribunal Loc.63 atkArbiter
 	return
 	
@@ -3330,7 +3314,7 @@ script_id PMCx
 	bring 13 AtL_C 5 stargate|argosy|starfield Loc.63 atkScoutRangerMax
 	bring 13 AtM_C 4 stargate|argosy|starfield Loc.63 atkScoutRangerMin
 	bring 13 AtL_C 1 fleet_beacon Loc.63 atkCarrierRanger
-	#bring 13 AtL_C 1 starfield Loc.63 atkStarcaller
+	bring 13 AtL_C 1 starfield Loc.63 atkAuroraRangerMin
 	bring 13 AtL_C 7 stargate|argosy|starfield Loc.63 atkCorsairGenMax
 	bring 13 AtM_C 6 stargate|argosy|starfield Loc.63 atkCorsairGenMin
 	return
@@ -3343,7 +3327,37 @@ script_id PMCx
 	bring 13 AtL_C 1 fleet_beacon Loc.63 atkCarrierGate
 	bring 13 AtL_C 7 stargate|argosy|starfield Loc.63 atkCorsairGenMax
 	bring 13 AtM_C 6 stargate|argosy|starfield Loc.63 atkCorsairGenMin
-	#bring 13 AtL_C 1 starfield Loc.63 atkStarcaller
+	bring 13 AtL_C 1 starfield Loc.63 atkAuroraGateMin
+	return
+	
+	:atkAuroraRangerMax
+	atk_rel aurora stargate|argosy|starfield 4
+	queue_rel aurora stargate|argosy|starfield 2 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkAuroraRangerMin
+	atk_rel aurora stargate|argosy|starfield 3
+	queue_rel aurora stargate|argosy|starfield 2 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkAuroraGateMax
+	atk_rel aurora stargate|argosy|starfield 4.5
+	queue_rel aurora stargate|argosy|starfield 2 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkAuroraGateMin
+	atk_rel aurora stargate|argosy|starfield 3.25
+	queue_rel aurora stargate|argosy|starfield 2 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkAuroraAirMax
+	atk_rel aurora stargate|argosy|starfield 7
+	queue_rel aurora stargate|argosy|starfield 2 stargate|argosy|starfield 255 Global 63 99
+	return
+	
+	:atkAuroraAirMin
+	atk_rel aurora stargate|argosy|starfield 4
+	queue_rel aurora stargate|argosy|starfield 2 stargate|argosy|starfield 255 Global 63 99
 	return
 	
 	:atkScoutRangerMax
@@ -3680,6 +3694,8 @@ script_id PMCx
 	tech_j 17 Set 7 1 blank
 	tech_j 17 Set 10 1 blank
 	tech_j 17 Set 11 1 blank
+	tech_j 17 Set 13 1 blank
+	tech_j 17 Set 18 0 blank
 	tech_j 17 Set 20 1 blank
 	tech_j 17 Set 24 1 blank
 	tech_j 17 Set 27 1 blank

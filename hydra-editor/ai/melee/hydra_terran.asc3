@@ -1205,7 +1205,7 @@ script_id TMCx
 	stop
 	
 	:ioObservance
-	i_orders 122 0 1 science_vessel 1280 shaman|goliath|siege_tank|t_siege_mode|goliath|paladin|wraith|wyvern|battlecruiser|lurker|ultralisk|keskathalor|dragoon|hierophant|reaver|scout|exemplar|carrier|starcaller|arbiter 80 RandomRate(48 160)|Count(AtL 2 128 14)|InCombat|Self(Hp(GreaterThanPercent 33))
+	i_orders 122 0 1 science_vessel 1280 shaman|goliath|siege_tank|t_siege_mode|goliath|paladin|wraith|wyvern|battlecruiser|lurker|ultralisk|keskathalor|dragoon|hierophant|reaver|scout|exemplar|carrier|aurora|arbiter 80 RandomRate(48 160)|Count(AtL 2 128 14)|InCombat|Self(Hp(GreaterThanPercent 33))
 	i_orders 122 0 1 science_vessel 1280 Group_Men 75 RandomRate(48 160)|Count(AtL 4 128 14)|InCombat|Self(Hp(GreaterThanPercent 33))
 	stop
 	
@@ -3850,6 +3850,8 @@ script_id TMCx
 	tech_j 17 Set 7 1 blank
 	tech_j 17 Set 10 1 blank
 	tech_j 17 Set 11 1 blank
+	tech_j 17 Set 13 1 blank
+	tech_j 17 Set 18 0 blank
 	tech_j 17 Set 20 1 blank
 	tech_j 17 Set 24 1 blank
 	tech_j 17 Set 27 1 blank
