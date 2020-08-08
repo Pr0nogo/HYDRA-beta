@@ -36,7 +36,7 @@ script_id PMCx
 	var set atkCycle 0 13
 	queue 1 probe nexus 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
-	upg_j 13 Set 58 1 blank
+	multi cheatResource
 	multi uAttack
 	multi wResource
 	multi wGas
@@ -181,6 +181,12 @@ script_id PMCx
 	
 	:dbgBuild4Skylord
 	print Protoss<32>Skylord<32>build<32>4:<32>Exalted
+	goto idle
+	
+	:cheatResource
+	dth 13 Ex 1 data_disc blank
+	upg_j 13 Set 58 1 blank
+	stop
 	
 	:idle
 	wait 25500

@@ -37,7 +37,7 @@ script_id ZMCx
 	var set atkCycle 0 13
 	queue 1 drone larva 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank
-	upg_j 13 Set 58 3 blank
+	multi cheatResource
 	multi uAttack
 	multi wResource
 	multi wGas
@@ -185,6 +185,12 @@ script_id ZMCx
 	
 	:dbgBuild5Swarm
 	print Zerg<32>Swarm<32>build<32>5:<32>Congo<32>Todgod
+	goto idle
+	
+	:cheatResource
+	dth 13 Ex 1 data_disc blank
+	upg_j 13 Set 58 3 blank
+	stop
 	
 	:idle
 	wait 25500
@@ -343,6 +349,7 @@ script_id ZMCx
 	defb_gg 1 mutalisk
 	defb_gg 1 guardian
 	defb_gg 1 ultralisk
+	defb_gg 1 gorgoleth
 	return
 	
 	:zDefGBuildConnor
@@ -355,6 +362,7 @@ script_id ZMCx
 	defb_gg 1 lurker
 	defb_gg 1 ultralisk
 	defb_gg 1 mutalisk
+	defb_gg 1 gorgoleth
 	return
 	
 	:zDefGBuildConnor2
@@ -375,6 +383,7 @@ script_id ZMCx
 	defb_gg 1 hydralisk
 	defb_gg 1 ultralisk
 	defb_gg 2 mutalisk
+	defb_gg 1 gorgoleth
 	defb_gg 1 queen
 	return
 	
@@ -398,6 +407,7 @@ script_id ZMCx
 	defb_gg 1 guardian
 	defb_gg 1 defiler
 	defb_gg 1 hydralisk
+	defb_gg 1 gorgoleth
 	return
 	
 	:zDefGBuildAir2
@@ -408,6 +418,7 @@ script_id ZMCx
 	defb_gg 1 ultralisk
 	defb_gg 1 guardian
 	defb_gg 1 queen
+	defb_gg 1 gorgoleth
 	return
 	
 	:zDefABuild
@@ -441,12 +452,12 @@ script_id ZMCx
 	:zDefABuildSwarm
 	defb_ag 2 hydralisk
 	defb_ag 2 mutalisk
-	#defb_ag 1 gorgoleth
+	defb_ag 1 gorgoleth
 	defb_ag 1 devourer
 	defb_aa 2 hydralisk
 	defb_aa 2 mutalisk
 	defb_aa 1 scourge
-	#defb_aa 1 gorgoleth
+	defb_aa 1 gorgoleth
 	defb_aa 1 devourer
 	return
 	
@@ -890,7 +901,10 @@ script_id ZMCx
 	:upgGorg
 	wait 12
 	notowns gorgoleth_apiary upgGorg
-	wait 240
+	call wUpgradeDef
+	tech essence_drain 88
+	tech_j 13 AtL_W 35 1 blank
+	multi ioDrain
 	call wUpgradeDef
 	extupg 1 ravening_mandible 88
 	wait 4500
@@ -1013,6 +1027,10 @@ script_id ZMCx
 	:ioBroodling2
 	i_orders 121 0 1 queen 1080 Group_Men 65 RandomRate(120 240)|Hp(GreaterThanPercent 40)|InCombat
 	i_orders 121 1 1 queen 1080 Group_Men 99 Deathrattle|Targeting(OtherUnit)
+	stop
+	
+	:ioDrain
+	i_orders 154 0 2 gorgoleth 240 Group_Men 80 Targeting(Own|Ally)|Energy(GreaterThanPercent 30)|InCombat|RandomRate(72 120)|Self(Energy(LessThanPercent 70))|Self(Hp(GreaterThanPercent 50))
 	stop
 	
 	:ioSwarm
@@ -1506,9 +1524,9 @@ script_id ZMCx
 	call wBas
 	wait 2400
 	call wDevo
-	#wait 2400
-	#call wSpire
-	#call wGorg
+	wait 2400
+	call wSpire
+	call wGorg
 	stop
 	
 	:bldOrderConnor
@@ -1745,10 +1763,10 @@ script_id ZMCx
 	call wSpire
 	wait 900
 	call wGuard
-	#wait 600
-	#call wGorg
+	wait 600
+	call wGorg
 	wait 2400
-	#call wSpire
+	call wSpire
 	call wDevo
 	stop
 	
@@ -2228,8 +2246,8 @@ script_id ZMCx
 	wait 2400
 	call wDevo
 	wait 2400
-	#p_need 3 spire
-	#p_need 1 gorgoleth_apiary
+	p_need 3 spire
+	p_need 1 gorgoleth_apiary
 	stop
 	
 	:bldOrderAir
@@ -2567,9 +2585,9 @@ script_id ZMCx
 	wait 600
 	call wUltra
 	wait 900
-	#p_need 3 spire
-	#p_need 1 gorgoleth_apiary
-	#wait 600
+	p_need 3 spire
+	p_need 1 gorgoleth_apiary
+	wait 600
 	call wDefiler
 	wait 2400
 	call wHydra
@@ -2772,11 +2790,11 @@ script_id ZMCx
 	notowns spire wGorg
 	bring 13 AtL 2 gorgoleth_apiary Loc.63 blank
 	bring 13 AtL 1 gorgoleth_apiary Loc.63 wGorg2
-	#bld 1 gorgoleth_apiary 66
+	bld 1 gorgoleth_apiary 66
 	return
 	
 	:wGorg2
-	#p_need 1 gorgoleth_apiary
+	p_need 1 gorgoleth_apiary
 	return
 	
 	:wGuard

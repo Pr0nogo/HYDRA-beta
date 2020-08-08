@@ -36,7 +36,7 @@ script_id TMCx
 	var set atkCycle 0 13
 	queue 1 scv command_center 255 Local Loc.63 80
 	dth 13 Set 1 khaydarin_crystal blank	
-	upg_j 13 Set 58 2 blank
+	multi cheatResource
 	multi uAttack
 	multi wResource
 	multi wGas
@@ -208,6 +208,11 @@ script_id TMCx
 	:dbgBuild6Bio
 	print Terran<32>Raider<32>build<32>6:<32>Holy<32>Ackmeds!
 	goto idle
+	
+	:cheatResource
+	dth 13 Ex 1 data_disc blank
+	upg_j 13 Set 58 2 blank
+	stop
 	
 	:idle
 	wait 25500
