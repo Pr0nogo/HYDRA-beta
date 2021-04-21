@@ -1,5 +1,8 @@
 # Project: HYDRA
 
+**WE HAVE MOVED TO GITLAB!**
+For all current/recent files, please visit [the gitlab repository](https://gitlab.com/the-no-frauds-club/release/HYDRA-beta) and [the official website](http://www.fraudsclub.com/hydra/).
+
 Thank you for testing Project: HYDRA 2.0!
 
 Please send any feedback to me through [my discord server](https://discordapp.com/invite/s5SKBmY), [my forum](https://thenofraudsclub.proboards.com), or [my email](mailto:Pronogo@hotmail.com)
