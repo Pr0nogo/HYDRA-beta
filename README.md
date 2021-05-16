@@ -2,7 +2,7 @@
 
 **WE HAVE MOVED TO GITLAB!**
 
-For all current/recent files, please visit [the gitlab repository](https://gitlab.com/the-no-frauds-club/release/HYDRA-beta) and [the official website](http://www.fraudsclub.com/hydra/).
+For all current/recent files, please visit [the gitlab repository](https://gitlab.com/the-no-frauds-club/release/HYDRA-beta) and [the official website](http://www.fraudsclub.com/cosmonarchy/).
 
 ----
 
